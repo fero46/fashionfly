@@ -1,0 +1,7 @@
+de:
+  styles:
+    form:
+      category_select: Unterkategorie
+      brand_select: Marken
+      color_select: Farbe
+      price_select: Preis

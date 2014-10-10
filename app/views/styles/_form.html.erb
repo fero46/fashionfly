@@ -1,0 +1,44 @@
+<div class="design_canvas" id ="droparea">
+  <div class="area">
+  </div>
+</div>
+
+<div class="designer_sidebar">
+  <ul class="main_category_select">
+    <% Category.where(category_id: nil).each_with_index do |category, index| %>
+      <li class =" main_select <%= "#{ "active" if index == 0 }" %>" id = "main_category_<%= category.id %>">
+        <%= link_to category.name, '#', class: 'cateogry_select', 'data-id'=> category.id %></li>
+    <% end %>
+  </ul>
+  <div class="clear"></div>
+  <div class="style_filter">
+    <%= render 'shared/selection', 
+               id: 'subcategory_select',  
+               text_placeholder: t('.category_select') %>
+
+    <%= render 'shared/selection', 
+               id: 'brand_select',  
+               text_placeholder: t('.brand_select') %>
+
+    <%= render 'shared/selection', 
+               id: 'color_select',  
+               text_placeholder: t('.color_select') %>               
+
+    <%= render 'shared/selection', 
+               id: 'price_select',  
+               text_placeholder: t('.price_select') %>
+  </div>
+
+  <div class="products_select_area">
+    <% for product in Product.limit(10) %>
+    <%= render 'products/small_product', product:product %>
+    <% end %>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    new Designer();
+  })
+</script>
