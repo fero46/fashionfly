@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'rails', '4.0.5'
+gem 'rails', '4.0.9'
 gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -14,7 +14,7 @@ gem 'rack-utf8_sanitizer'
 gem "mini_magick"
 gem "rmagick"
 gem 'color'
-gem 'jquery-ui-rails'
+gem 'fashion_fly_editor', :git => "git@bitbucket.org:fashionfly/fashion-fly-editor.git"
 
 group :doc do
   gem 'sdoc', require: false

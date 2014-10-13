@@ -1,7 +1,7 @@
 Fashionfly::Application.routes.draw do
 
-  get "products/index"
-  resources :styles
+  mount FashionFlyEditor::Engine => "/combine"
+  resources :styles, only: [:show, :index]
 
   root 'styles#index'
 

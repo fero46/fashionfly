@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818170940) do
+ActiveRecord::Schema.define(version: 20141013225715) do
 
   create_table "brands", force: true do |t|
     t.string "name"
@@ -41,6 +41,26 @@ ActiveRecord::Schema.define(version: 20140818170940) do
   end
 
   add_index "colorizations", ["name"], name: "index_colorizations_on_name", using: :btree
+
+  create_table "fashion_fly_editor_collection_items", force: true do |t|
+    t.integer  "collection_id"
+    t.integer  "item_id"
+    t.integer  "x_coordinate"
+    t.integer  "y_coordinate"
+    t.float    "scale_x"
+    t.float    "scale_y"
+    t.float    "rotation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fashion_fly_editor_collections", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "products", force: true do |t|
     t.string   "affi_shop"
