@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141013225715) do
+ActiveRecord::Schema.define(version: 20141013233527) do
 
   create_table "brands", force: true do |t|
     t.string "name"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 20141013225715) do
   end
 
   add_index "colorizations", ["name"], name: "index_colorizations_on_name", using: :btree
+
+  create_table "configurations", force: true do |t|
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "configurations", ["key"], name: "index_configurations_on_key", unique: true, using: :btree
 
   create_table "fashion_fly_editor_collection_items", force: true do |t|
     t.integer  "collection_id"
@@ -82,5 +91,14 @@ ActiveRecord::Schema.define(version: 20141013225715) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "scopes", force: true do |t|
+    t.string   "country_code"
+    t.string   "locale"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "scopes", ["country_code"], name: "index_scopes_on_country_code", unique: true, using: :btree
 
 end

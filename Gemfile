@@ -15,7 +15,7 @@ gem "mini_magick"
 gem "rmagick"
 gem 'color'
 gem 'fashion_fly_editor', :git => "git@bitbucket.org:fashionfly/fashion-fly-editor.git"
-
+gem "geocoder"
 group :doc do
   gem 'sdoc', require: false
 end
