@@ -1,13 +1,9 @@
-<div class="block notice">
-  <h3>Simple Block</h3>
-  <div class="content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  </div>
-</div>
+<% if @scope %>
 <div class="block">
-  <h3>Links</h3>
+  <h3>Scope Konfiguration</h3>
   <ul class="navigation">
-    <li><a href="#">Link 1</a></li>
-    <li><a href="#">Link 2</a></li>
+    <li><%= link_to 'Mappings', backend_scope_mappings_path(@scope) %></li>
+    <li><%= link_to 'Kategorien', backend_scope_categories_path(@scope) %></li>
   </ul>
 </div>
+<% end %>

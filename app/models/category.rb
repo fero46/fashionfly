@@ -1,8 +1,12 @@
 class Category < ActiveRecord::Base
+
     has_many :categorizations
     has_many :products, :through => :categorizations
     has_many :categories
     belongs_to :category
+    belongs_to :scope
+    validates :name, presence: true
+    validates :scope_id, presence: true
 
     before_save :update_slug
 

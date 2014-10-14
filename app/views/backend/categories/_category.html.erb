@@ -1,0 +1,38 @@
+<li class="category">
+  <div class="pre_action">
+    <% if category.categories.any? %>
+      <%= link_to image_tag('arrow_down.png'), '#', class: 'arrow_down' %>
+      <%= link_to image_tag('arrow_right.png'), '#', class: 'arrow_right' %>
+    <% end %>
+    <%= link_to image_tag('plus.png'), '#', class: 'add_button' %>
+  </div>
+  <span class="name">
+    <%= category.name %>
+  </span>
+  <div class="action">
+    <%= link_to image_tag('delete.png'), '#', class: 'delete_button' %>
+  </div>
+  <div class="clear"></div>
+  <div class="formular">
+      <%= form_for :category, 
+                  url: backend_scope_categories_path(@scope), 
+                  html: { :class => :form, id: 'main_category_form' } do |f| %>
+        <%= f.label :name, class: 'label'  %>
+        <%= f.text_field :name, class: 'text_field' %>
+        <%= f.hidden_field :main_taxon, value: false %>
+        <%= f.hidden_field :scope_id, value: @scope.id %>
+        <%= f.hidden_field :category_id, value: category.id %>
+        <div class="action">
+          <br />
+          <%= f.submit 'Anlegen', class: 'button' %>
+        </div>
+      <% end %>
+  </div>
+  <div class="clear"></div>
+
+  <% if category.categories.any? %>
+    <ul class="subcat">
+      <%= render category.categories %>
+    </ul>
+  <% end %>
+</li>

@@ -19,7 +19,17 @@
         </ul>
       </div>
       <div id="main-navigation">
-        <ul class="wat-cf"> <li class="<%= controller.controller_path == 'backend/dashboards' ? 'active' : '' %>"><a href="<%= backend_root_path %>">Dashboard</a></li> <li class="<%= controller.controller_path == 'backend/configurations' ? 'active' : '' %>"><a href="<%= backend_configurations_path %>">Konfiguration</a></li> <li class="<%= controller.controller_path == 'backend/scopes' ? 'active' : '' %>"><a href="<%= backend_scopes_path %>">Länderbereich</a></li></ul>
+        <ul class="wat-cf">
+            <li class="<%= activate ['dashboards'] %>">
+              <a href="<%= backend_root_path %>">Dashboard</a>
+            </li> 
+            <li class="<%= activate ['configurations'] %>">
+              <a href="<%= backend_configurations_path %>">Konfiguration</a>
+            </li>
+            <li class="<%= activate ['scopes']  %>">
+              <a href="<%= backend_scopes_path %>">Länderbereich</a>
+            </li>
+        </ul>
       </div>
     </div>    
     <div id="wrapper" class="wat-cf">

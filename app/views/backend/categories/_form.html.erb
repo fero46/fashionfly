@@ -1,0 +1,38 @@
+
+  <div class="group">
+    <%= f.label :name, t("activerecord.attributes.category.name", :default => "Name"), :class => :label %>
+    <%= f.text_field :name, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :category_id, t("activerecord.attributes.category.category_id", :default => "Category"), :class => :label %>
+    <%= f.number_field :category_id, :class => 'number_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :slug, t("activerecord.attributes.category.slug", :default => "Slug"), :class => :label %>
+    <%= f.text_field :slug, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :scope_id, t("activerecord.attributes.category.scope_id", :default => "Scope"), :class => :label %>
+    <%= f.number_field :scope_id, :class => 'number_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :main_taxon, t("activerecord.attributes.category.main_taxon", :default => "Main taxon"), :class => :label %>
+    <%= f.check_box :main_taxon, :class => 'check_box' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+        
+<div class="group navform wat-cf">
+  <button class="button" type="submit">
+    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+  </button>
+  <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
+	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), backend_categories_path, :class => "text_button_padding link_button" %>
+</div>

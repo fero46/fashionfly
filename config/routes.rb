@@ -3,7 +3,11 @@ Fashionfly::Application.routes.draw do
   namespace :backend do
     root :to => 'dashboards#show'
     resources :configurations
-    resources :scopes
+    resources :scopes do 
+      resources :categories
+      resources :mappings
+      resources :affiliate
+    end
   end
 
   scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do

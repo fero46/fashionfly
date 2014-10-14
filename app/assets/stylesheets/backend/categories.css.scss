@@ -1,0 +1,39 @@
+.tree
+{
+  margin-top: 10px; 
+  list-style: none;
+  li{
+    display: block;
+    min-height: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    .name{
+      float:left;
+      padding-top: 5px;
+    }
+    .pre_action{
+      float:left;
+      margin-right: 15px;
+      .arrow_right{
+        display: inline-block;
+      }
+      .arrow_down{
+        display: none;
+      }
+    }
+    .action{
+      float: right;
+    }
+    .formular{
+      display: none;
+      padding:15px 25px; 
+    }
+    ul{
+      padding: 25px 25px;
+    }
+    .subcat{
+      display: none;
+    }
+  }
+}
