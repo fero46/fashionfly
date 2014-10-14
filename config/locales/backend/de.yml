@@ -1,0 +1,11 @@
+de:
+  web-app-theme:
+    list: Alle
+    new: Neu
+    edit: Bearbeiten
+    save: Speichern
+    delete: Löschen
+    show: Zeigen
+    all: Alle
+    cancel: Abbrechen
+    created_at: Erstellt am
