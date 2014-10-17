@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014132326) do
+ActiveRecord::Schema.define(version: 20141017163950) do
 
   create_table "brands", force: true do |t|
     t.string "name"
@@ -44,11 +44,29 @@ ActiveRecord::Schema.define(version: 20141014132326) do
     t.datetime "updated_at"
   end
 
+  create_table "color_words", force: true do |t|
+    t.integer "scope_id"
+    t.integer "colorization_id"
+    t.string  "sentence_part"
+    t.string  "descriptive"
+  end
+
+  add_index "color_words", ["colorization_id"], name: "index_color_words_on_colorization_id", using: :btree
+  add_index "color_words", ["scope_id"], name: "index_color_words_on_scope_id", using: :btree
+
   create_table "colorizations", force: true do |t|
     t.string "name"
   end
 
   add_index "colorizations", ["name"], name: "index_colorizations_on_name", using: :btree
+
+  create_table "colorizations_words", force: true do |t|
+    t.integer "colorization_id"
+    t.integer "word_id"
+  end
+
+  add_index "colorizations_words", ["colorization_id"], name: "index_colorizations_words_on_colorization_id", using: :btree
+  add_index "colorizations_words", ["word_id"], name: "index_colorizations_words_on_word_id", using: :btree
 
   create_table "configurations", force: true do |t|
     t.string   "key"
@@ -108,7 +126,10 @@ ActiveRecord::Schema.define(version: 20141014132326) do
     t.text     "deepLink"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "scope_id"
   end
+
+  add_index "products", ["scope_id"], name: "index_products_on_scope_id", using: :btree
 
   create_table "scopes", force: true do |t|
     t.string   "country_code"
@@ -118,5 +139,25 @@ ActiveRecord::Schema.define(version: 20141014132326) do
   end
 
   add_index "scopes", ["country_code"], name: "index_scopes_on_country_code", unique: true, using: :btree
+
+  create_table "synonyms", force: true do |t|
+  end
+
+  create_table "synonyms_words", force: true do |t|
+    t.integer "synonym_id"
+    t.integer "word_id"
+  end
+
+  add_index "synonyms_words", ["synonym_id"], name: "index_synonyms_words_on_synonym_id", using: :btree
+  add_index "synonyms_words", ["word_id"], name: "index_synonyms_words_on_word_id", using: :btree
+
+  create_table "words", force: true do |t|
+    t.integer "scope_id"
+    t.string  "value"
+    t.string  "type"
+  end
+
+  add_index "words", ["scope_id"], name: "index_words_on_scope_id", using: :btree
+  add_index "words", ["type"], name: "index_words_on_type", using: :btree
 
 end

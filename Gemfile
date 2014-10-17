@@ -18,6 +18,7 @@ gem 'fashion_fly_editor', :git => "git@bitbucket.org:fashionfly/fashion-fly-edit
 gem "geocoder"
 gem 'web-app-theme'
 gem 'rails-i18n'
+gem 'tokenizer'
 # gem 'devise-i18n'
 group :doc do
   gem 'sdoc', require: false

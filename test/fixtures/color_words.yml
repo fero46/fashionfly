@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  scope_id: 1
+  colorization_id: 1
+  sentence_part: MyString
+  : 
+
+two:
+  scope_id: 1
+  colorization_id: 1
+  sentence_part: MyString
+  : 
