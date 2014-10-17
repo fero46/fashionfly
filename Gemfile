@@ -19,6 +19,8 @@ gem "geocoder"
 gem 'web-app-theme'
 gem 'rails-i18n'
 gem 'tokenizer'
+gem 'unicode'
+
 # gem 'devise-i18n'
 group :doc do
   gem 'sdoc', require: false
