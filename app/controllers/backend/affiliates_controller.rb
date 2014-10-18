@@ -37,6 +37,9 @@ class Backend::AffiliatesController < Backend::BackendController
 
   end
 
+  def edit
+    @affiliate = @scope.affiliates.where(id: params[:id]).first
+  end
 
   def update
     @affiliate = @scope.affiliates.where(id: params[:id]).first
@@ -67,6 +70,19 @@ protected
                                       :item_tag,
                                       :category_tag,
                                       :category_split_char,
+                                      :ean_tag, 
+                                      :image_tag, 
+                                      :name_tag, 
+                                      :number_tag, 
+                                      :description_tag, 
+                                      :brand_tag, 
+                                      :price_tag, 
+                                      :currency_code_tag, 
+                                      :shipping_cost_tag, 
+                                      :delivery_time_tag, 
+                                      :last_modified_tag, 
+                                      :link_tag, 
+                                      :ready,
                                       :mappings_attributes => [:id ,:name, :category_id])
   end
 

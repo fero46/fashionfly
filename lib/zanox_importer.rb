@@ -120,7 +120,6 @@ class ZanoxImporter
     product.original = File.open(image_path)
     product.save!
 
-
     puts "Save"
 
     Categorization.where(product_id: product.id).destroy_all

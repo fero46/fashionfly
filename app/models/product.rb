@@ -8,9 +8,14 @@ class Product < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   mount_uploader :original, OriginalUploader
 
-  validates :scope, presence: true
-  validates :colorization, presence: true
-  validates :brand, presence: true
-  validates :description, presence: true
+  validates :scope, presence: true, if: :published?
+  validates :colorization, presence: true, if: :published?
+  validates :brand, presence: true, if: :published?
+  validates :description, presence: true, if: :published?
+
+
+  def published?
+    self.published
+  end
 
 end

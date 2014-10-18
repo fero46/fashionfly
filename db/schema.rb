@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018165318) do
+ActiveRecord::Schema.define(version: 20141018212412) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -158,8 +158,10 @@ ActiveRecord::Schema.define(version: 20141018165318) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "scope_id"
+    t.boolean  "published",                                     default: false
   end
 
+  add_index "products", ["published"], name: "index_products_on_published", using: :btree
   add_index "products", ["scope_id"], name: "index_products_on_scope_id", using: :btree
 
   create_table "scopes", force: true do |t|
