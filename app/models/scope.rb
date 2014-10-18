@@ -1,7 +1,7 @@
 class Scope < ActiveRecord::Base
   
   has_many :categories
-  has_many :mappings
+  has_many :affiliates
   has_many :products
   
   validates :country_code, presence: true, uniqueness: true

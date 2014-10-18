@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  file: MyString
+  ready: false
+  scope_id: 
+  item_tag: MyString
+  category_tag: MyString
+  category_split_char: MyString
+  ean_tag: MyString
+  image_tag: MyString
+  name_tag: MyString
+  number_tag: MyString
+  description_tag: MyString
+  brand_tag: MyString
+  number_tag: MyString
+  price_tag: MyString
+  sgipping_cost: 
+  last_modified_tag: MyString
+  delivery_time_tag: MyString
+  currency_code_tag: MyString
+  link_tag: MyString
+  importer: MyString
+
+two:
+  file: MyString
+  ready: false
+  scope_id: 
+  item_tag: MyString
+  category_tag: MyString
+  category_split_char: MyString
+  ean_tag: MyString
+  image_tag: MyString
+  name_tag: MyString
+  number_tag: MyString
+  description_tag: MyString
+  brand_tag: MyString
+  number_tag: MyString
+  price_tag: MyString
+  sgipping_cost: 
+  last_modified_tag: MyString
+  delivery_time_tag: MyString
+  currency_code_tag: MyString
+  link_tag: MyString
+  importer: MyString

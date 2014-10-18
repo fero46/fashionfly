@@ -5,8 +5,9 @@ Fashionfly::Application.routes.draw do
     resources :configurations
     resources :scopes do 
       resources :categories
-      resources :mappings
-      resources :affiliate
+      resources :affiliates do 
+        resources :mappings
+      end
     end
   end
 

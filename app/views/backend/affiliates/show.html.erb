@@ -1,0 +1,14 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", backend_scope_affiliates_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_backend_scope_affiliate_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", backend_scope_affiliate_path(@scope, @affiliate) %></li>
+    </ul>
+  </div>
+  <div class="content">            
+    <h2 class="title"><%= @affiliate.name %></h2>
+    <div class="inner">
+    </div>
+  </div>
+</div>

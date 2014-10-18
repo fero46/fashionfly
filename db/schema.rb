@@ -11,7 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017163950) do
+ActiveRecord::Schema.define(version: 20141018120152) do
+
+  create_table "affiliates", force: true do |t|
+    t.string   "file"
+    t.string   "name"
+    t.boolean  "ready"
+    t.integer  "scope_id"
+    t.string   "item_tag"
+    t.string   "category_tag"
+    t.string   "category_split_char"
+    t.string   "ean_tag"
+    t.string   "image_tag"
+    t.string   "name_tag"
+    t.string   "number_tag"
+    t.string   "description_tag"
+    t.string   "brand_tag"
+    t.string   "price_tag"
+    t.string   "shipping_cost_tag"
+    t.string   "last_modified_tag"
+    t.string   "delivery_time_tag"
+    t.string   "currency_code_tag"
+    t.string   "link_tag"
+    t.string   "importer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "affiliates", ["scope_id"], name: "index_affiliates_on_scope_id", using: :btree
 
   create_table "brands", force: true do |t|
     t.string "name"
@@ -102,8 +129,10 @@ ActiveRecord::Schema.define(version: 20141017163950) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "affiliate_id"
   end
 
+  add_index "mappings", ["affiliate_id"], name: "index_mappings_on_affiliate_id", using: :btree
   add_index "mappings", ["category_id"], name: "index_mappings_on_category_id", using: :btree
   add_index "mappings", ["name"], name: "index_mappings_on_name", using: :btree
 

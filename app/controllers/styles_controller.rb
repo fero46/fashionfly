@@ -1,7 +1,7 @@
 class StylesController < ApplicationController
 
 
-  def indexn
+  def index
   end
 
 
