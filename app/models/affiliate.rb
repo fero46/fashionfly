@@ -1,6 +1,6 @@
 class Affiliate < ActiveRecord::Base
   belongs_to :scope
-  has_many :mappings
+  has_many :mappings,  :dependent => :destroy
 
   def self.IMPORTERS
     [:GenericImporter]
@@ -14,5 +14,7 @@ class Affiliate < ActiveRecord::Base
   validates :importer, :presence  => true
   validates :category_tag, :presence  => true
   validates :item_tag, :presence  => true
+
+  accepts_nested_attributes_for :mappings, :reject_if => lambda { |a| a[:category_id].blank? }, :allow_destroy => true
 
 end

@@ -23,7 +23,7 @@
             <%= affiliate.id %>
           </td>
                     <td>
-            <%= link_to affiliates.country_code, backend_scope_affiliate_path(@scope, affiliate) %>
+            <%= link_to affiliate.name, backend_scope_affiliate_path(@scope, affiliate) %>
           </td>
                     <td>
             <%= affiliate.created_at %>

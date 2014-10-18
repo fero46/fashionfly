@@ -16,6 +16,11 @@ class Backend::CategoriesController < Backend::BackendController
     redirect_to backend_scope_categories_path(@scope)
   end
 
+  def destroy
+    @scope.categories.where(id: params[:id]).first.try(:destroy)
+    redirect_to backend_scope_categories_path(@scope)
+  end
+
 protected
 
   def find_scope

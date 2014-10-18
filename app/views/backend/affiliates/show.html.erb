@@ -9,6 +9,21 @@
   <div class="content">            
     <h2 class="title"><%= @affiliate.name %></h2>
     <div class="inner">
+       <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_backend_scope_affiliate_path(@scope, @affiliate), :class => "button" %> <br />  <br />
+        <h2>Mappings</h2>
+          <%= form_for @affiliate, :url => backend_scope_affiliate_path(@scope, @affiliate), :html => { :class => :form } do |f| -%>
+          <table>
+            <%= f.fields_for :mappings do |builder| %>
+              <tr>
+                <td><%= builder.object.try(:name) %></td>
+                <%= builder.hidden_field :name %>
+                <td><%= builder.select :category_id, @affiliate.scope.categories.where(leaf: true).collect{|p| [ p.name_with_parent, p.id ] }, { include_blank: true } %></td>
+              </tr>
+            <% end %>
+          </table>
+
+          <%= f.submit 'Mappings speicher', class: 'button' %>
+        <% end %>
     </div>
   </div>
 </div>

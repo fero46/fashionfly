@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018120152) do
+ActiveRecord::Schema.define(version: 20141018165318) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -56,8 +56,10 @@ ActiveRecord::Schema.define(version: 20141018120152) do
     t.boolean  "main_taxon"
     t.integer  "position"
     t.boolean  "published",   default: false
+    t.boolean  "leaf"
   end
 
+  add_index "categories", ["leaf"], name: "index_categories_on_leaf", using: :btree
   add_index "categories", ["main_taxon"], name: "index_categories_on_main_taxon", using: :btree
   add_index "categories", ["position"], name: "index_categories_on_position", using: :btree
   add_index "categories", ["published"], name: "index_categories_on_published", using: :btree
