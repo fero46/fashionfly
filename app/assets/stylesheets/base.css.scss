@@ -1,0 +1,111 @@
+@import "color";
+
+body{
+  background: $footer_bg;
+  color: $footer_font;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.container{
+  width:1170px;
+  margin: 0px auto;
+  position: relative;
+}
+
+header{
+  background: white;
+  color: $content_font_color;
+  .top_header{
+    height: 64px;
+    #logo{
+      position: absolute;
+      left:0px;
+      top:20px;
+      height: 20px;
+    }
+    #facebook_count{
+      position: absolute;
+      left:200px;
+      top:20px;
+    }
+    border-bottom: 1px solid $border_color;
+  }
+  .header_navigation{
+    height: 45px;
+    list-style: none;
+    border-bottom: 1px solid $border_color;    
+    li{
+      float:left;
+      text-transform: uppercase;
+      position: relative;
+      a.item{
+        font-size: 18px;
+        text-decoration: none;
+        color: $content_font_color;
+        padding: 13px 7px 14px 7px;
+        display:block;
+        &:hover{
+          background: $red;
+          color: white;
+        }
+      }
+      &:hover {
+        a.item{
+          background: $red;
+          color: white;
+        }
+        ul.submenu{
+        position: absolute;
+        display: block;
+        background: white;
+        z-index: 2000;
+        min-width: 140px;
+        }
+      }
+      ul.submenu{
+        display: none;
+        border-top: 5px solid $red;
+        li{
+          display: block;
+          a{
+            display: block;
+            text-decoration: none;
+            text-align: left;
+            font-size:14px;
+            color: $content_font_color;            
+            font-weight: normal;
+            padding:7px;
+            width: 200px;
+            &:hover{
+              background: $red;
+              color: white;
+            }            
+          }
+        }
+      }
+      &.selected{
+        a{
+          font-weight: bold;
+        }
+      }
+    }
+
+  }
+
+}
+
+.content{
+  background: $content_bg;
+  color: $content_font_color;
+  h1{
+    padding-top:15px;
+    text-align: center;
+    font-size:30px;
+    margin-bottom: 5px;
+  }
+  h2.subline{
+    text-align: center;
+    font-weight: normal;
+    font-size: 18px;
+  }
+}
