@@ -123,10 +123,10 @@ def create_categories scope, categories, parent_id=nil
   for category in categories
     has_childrend = category.is_a?(Hash)
     if has_childrend
-      parent = Category.create(scope_id: scope.id, name: category[:name] ,category_id: parent_id, main_taxon: parent_id == nil)
+      parent = Category.create(scope_id: scope.id, name: category[:name] ,category_id: parent_id, main_taxon: parent_id == nil, leaf:false)
       create_categories scope,category[:categories], parent.id
     else
-      Category.create(scope_id: scope.id, name: category,category_id: parent_id, main_taxon: false)
+      Category.create(scope_id: scope.id, name: category,category_id: parent_id, main_taxon: false, leaf:true)
     end
   end
 end
