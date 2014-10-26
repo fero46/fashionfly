@@ -39,6 +39,7 @@ class GenericImporter
                                   affi_code: id,
                                   scope_id: @scope.id).first_or_create
           Categorization.where(product_id: product.id).destroy_all
+          update_product_categories(product, values)
           next if product.lastModified==product_last_modified(values)
           product = update_product_attributes product, values
           update_product_images product, values
@@ -126,7 +127,7 @@ private
   end
 
 
-  def update_product_categories(product, value)
+  def update_product_categories(product, values)
     category = find_mapping(product_category(values))
     while category.present? do
       next if category.blank? 

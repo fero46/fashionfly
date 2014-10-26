@@ -12,7 +12,6 @@ gem 'sidekiq'
 gem 'libxml-ruby'
 gem 'rack-utf8_sanitizer'
 gem "mini_magick"
-gem "rmagick"
 gem 'color'
 gem 'fashion_fly_editor', :git => "git@bitbucket.org:fashionfly/fashion-fly-editor.git"
 gem "geocoder"
@@ -21,9 +20,8 @@ gem 'rails-i18n'
 gem 'tokenizer'
 gem 'unicode'
 gem 'clockwork'
-gem 'sidekiq'
 gem 'sinatra', require: false
-
+gem 'kaminari'
 # gem 'devise-i18n'
 group :doc do
   gem 'sdoc', require: false

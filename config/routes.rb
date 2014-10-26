@@ -21,6 +21,7 @@ Fashionfly::Application.routes.draw do
     namespace :api do
       resources :categories
       resources :colors
+      resources :products
     end
     root 'welcome#index'
   end

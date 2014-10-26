@@ -79,6 +79,9 @@ GEM
     jquery-ui-rails (4.0.5)
       railties (>= 3.1.0)
     json (1.8.1)
+    kaminari (0.16.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     libxml-ruby (2.7.0)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -186,13 +189,13 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 1.2)
   jquery-rails
+  kaminari
   libxml-ruby
   mini_magick
   mysql2
   rack-utf8_sanitizer
   rails (= 4.0.9)
   rails-i18n
-  rmagick
   sass-rails (~> 4.0.2)
   sdoc
   sidekiq

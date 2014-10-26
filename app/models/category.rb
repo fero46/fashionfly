@@ -41,6 +41,10 @@ class Category < ActiveRecord::Base
       slug.gsub('_', ' ')
     end
 
+    def brands
+      products.joins(:brand).group(:name)
+    end
+
 
 private
     def clean_name name
