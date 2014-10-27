@@ -10,10 +10,10 @@
       <li><a href="" class="item">Outfits</a></li>
       <% for category in scope.categories.where(main_taxon:true) %>
         <li class="<%= 'selected' if category.name == 'Damenmode' %>">
-          <a href="" class="item"><%= category.name %></a>
+          <a href="<%= category_path(params[:locale], category.slug) %>" class="item"><%= category.name %></a>
           <ul class="submenu">
           <% for subcategory in category.categories %> 
-            <li> <a href=""><%= subcategory.name %> </a></li>
+            <li> <a href="<%= category_path(params[:locale],subcategory.slug) %>"><%= subcategory.name %> </a></li>
           <% end %>
           </ul>
         </li>

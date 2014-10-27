@@ -17,6 +17,7 @@ Fashionfly::Application.routes.draw do
   scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
     resources :styles, only: [:show, :index]
     resources :products
+    resources :categories
     mount FashionFlyEditor::Engine => "/combine"
     namespace :api do
       resources :categories
