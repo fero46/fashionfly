@@ -3,12 +3,12 @@ require 'sidekiq/web'
 Fashionfly::Application.routes.draw do
 
   namespace :backend do
-    mount Sidekiq::Web => '/sidekiq'    
+    mount Sidekiq::Web => '/sidekiq'
     root :to => 'dashboards#show'
     resources :configurations
-    resources :scopes do 
+    resources :scopes do
       resources :categories
-      resources :affiliates do 
+      resources :affiliates do
         resources :mappings
       end
     end
@@ -20,6 +20,7 @@ Fashionfly::Application.routes.draw do
     resources :categories
     mount FashionFlyEditor::Engine => "/combine"
     namespace :api do
+      match 'categories', to: 'categories#index', via: [:options]
       resources :categories
       resources :colors
       resources :products
