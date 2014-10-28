@@ -25,7 +25,7 @@ class Backend::AffiliatesController < Backend::BackendController
 
   def show
     @affiliate = @scope.affiliates.where(id: params[:id]).first
-    @unmapped_categories = MappingService.new(@affiliate).all_categories
+    @unmapped_categories = @affiliate.categories
 
     for mapping in @affiliate.mappings
       @unmapped_categories.delete(mapping.name)
@@ -44,7 +44,7 @@ class Backend::AffiliatesController < Backend::BackendController
   def update
     @affiliate = @scope.affiliates.where(id: params[:id]).first
     @affiliate.update(affiliate_attributes)
-    @unmapped_categories = MappingService.new(@affiliate).all_categories
+    @unmapped_categories = @affiliate.categories
 
     for mapping in @affiliate.mappings
       @unmapped_categories.delete(mapping.name)

@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 Fashionfly::Application.routes.draw do
 
+  get "categories/index"
   namespace :backend do
     mount Sidekiq::Web => '/sidekiq'
     root :to => 'dashboards#show'

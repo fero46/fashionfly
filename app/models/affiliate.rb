@@ -3,7 +3,7 @@ class Affiliate < ActiveRecord::Base
   has_many :mappings,  :dependent => :destroy
 
   def self.IMPORTERS
-    [:GenericImporter]
+    [:GenericImporter, :AffilinetImporter]
   end
 
   mount_uploader :file, FileUploader
@@ -16,5 +16,14 @@ class Affiliate < ActiveRecord::Base
   validates :item_tag, :presence  => true
 
   accepts_nested_attributes_for :mappings, :reject_if => lambda { |a| a[:category_id].blank? }, :allow_destroy => true
+
+
+  def start_import
+    importer.constantize.new(self).import
+  end
+
+  def categories
+    importer.constantize.new(self).categories    
+  end
 
 end

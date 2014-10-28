@@ -1,4 +1,4 @@
-class StylesController < ApplicationController
+class StylesController < ScopeController
 
 
   def index

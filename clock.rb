@@ -12,6 +12,6 @@ module Clockwork
   # handler do |job, time|
   #   puts "Running #{job}, at #{time}"
   # end
-
-  every(10.seconds, 'frequent.job') {puts "HanseSohn"}
+  sleep(1)
+  every(1.minute, 'Import Check') {ImportPrepareWorker.prepare}
 end

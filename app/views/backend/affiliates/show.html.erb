@@ -17,7 +17,7 @@
               <tr>
                 <td><%= builder.object.try(:name) %></td>
                 <%= builder.hidden_field :name %>
-                <td><%= builder.select :category_id, @affiliate.scope.categories.where(leaf: true).collect{|p| [ p.name_with_parent, p.id ] }, { include_blank: true } %></td>
+                <td><%= builder.select :category_id, @affiliate.scope.categories.where(leaf: true).order(:slug).collect{|p| [ p.name_with_parent, p.id ] }, { include_blank: true } %></td>
               </tr>
             <% end %>
           </table>

@@ -23,8 +23,15 @@ class GenericImporter
   end
 
   def import
+    total_counter = total_count
+    actual_counter = 0
     document.root.children.each do |tag|
       if tag.name == @affiliate.item_tag
+        actual_counter+=1
+        if actual_counter % 20 == 0
+          @affiliate.percent = ((actual_counter.to_f/total_counter.to_f).to_f * 100).to_i
+          @affiliate.save
+        end
         id = nil
         tag.attributes.each do |a|
           id = a.value if a.name == 'id' || a.name == 'zupid'
@@ -46,19 +53,33 @@ class GenericImporter
         end
       end
     end
+    @affiliate.percent = 100
+    @affiliate.save
     true
   end
 
-private
+  def total_count
+    counter = 0
+    document.root.children.each do |tag|
+        counter+=1 if tag.name == @affiliate.item_tag
+    end
+    counter
+  end
+
+protected
 
   def update_product_images product, values
-    full_path_to_tmp = Rails.root.to_s + "/tmp/"
-    
+    remote_image_path = product_remote_image(values)
+    import_product_image(product, values, remote_image_path)
+  end
+
+
+  def import_product_image product, values, remote_image_path
+    full_path_to_tmp = Rails.root.to_s + "/tmp/"   
     image_path = full_path_to_tmp+"#{product.id}_image.png"
     difference_path = full_path_to_tmp+"#{product.id}_difference.png"
     halo_mask = full_path_to_tmp + "#{product.id}_halo.png"
     output_path = full_path_to_tmp+"#{product.id}_out.png"
-    remote_image_path = product_remote_image(values)
 
     File.open(image_path, "wb") do |saved_file|
       # the following "open" is provided by open-uri

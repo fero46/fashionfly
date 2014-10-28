@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018212412) do
+ActiveRecord::Schema.define(version: 20141028123854) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -36,8 +36,11 @@ ActiveRecord::Schema.define(version: 20141018212412) do
     t.string   "importer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "importing",           default: false
+    t.integer  "percent",             default: 0
   end
 
+  add_index "affiliates", ["importing"], name: "index_affiliates_on_importing", using: :btree
   add_index "affiliates", ["scope_id"], name: "index_affiliates_on_scope_id", using: :btree
 
   create_table "brands", force: true do |t|
