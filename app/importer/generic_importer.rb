@@ -88,6 +88,9 @@ protected
       end
     end
 
+    product.original = File.open(image_path)
+    product.save
+
     open(image_path, 'wb') do |dest|
       open(remote_image_path, 'rb') do |src|
         dest.write(src.read)
@@ -119,10 +122,8 @@ protected
     product.colorization_id = brand.id
 
     product.image = File.open(output_path)
-    product.original = File.open(image_path)
-
     product.save
-
+    
     #cleanup
     File.delete(image_path) if File.exist?(image_path)
     File.delete(difference_path) if File.exist?(difference_path)

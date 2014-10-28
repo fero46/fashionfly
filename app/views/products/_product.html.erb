@@ -1,1 +1,8 @@
-_product.html.erb
+<div class="product">
+  <div class="image_container">
+    <%=link_to image_tag(product.original.url, class: 'product_image'), product_path(params[:locale], product) %>
+    <a class="love_button "></a>
+  </div>
+  <h3><%= link_to product.name, product_path(params[:locale], product) %></h3>
+  <h4><%= number_to_currency product.price, unit: product.currencyCode %></h4>
+</div>

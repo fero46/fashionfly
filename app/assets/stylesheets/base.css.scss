@@ -12,6 +12,10 @@ body{
   position: relative;
 }
 
+.clear{
+  clear:both;
+}
+
 header{
   background: white;
   color: $content_font_color;
