@@ -1,0 +1,33 @@
+<div class="group">
+  <%= f.label :title, t("activerecord.attributes.affilate.name", :default => "Name"), :class => :label %>
+  <%= f.text_field :title, :class => 'text_field' %>
+  <span class="description">Hier der Name des Contests</span>
+</div>
+
+<div class="group">
+  <%= f.label :banner, t("activerecord.attributes.affilate.locale", :default => "Banner"), :class => :label %>
+  <%= f.file_field :banner, :class => 'file_field' %><br />
+  <%= f.hidden_field :banner_cache %>
+  <span class="description">Banner</span>
+</div>
+
+<div class="group">
+  <%= f.label :body, t("activerecord.attributes.affilate.locale", :default => "Text"), :class => :label %>
+  <%= f.text_area :body, :class => 'file_area tinymce', :rows => 40, :cols => 120 %><br />
+  <span class="description">Banner</span>
+</div>
+
+<div class="group">
+  <%= f.check_box :finished %>
+  <%= f.label :finished, t("activerecord.attributes.affilate.locale", :default => "Contest beendet")%>
+</div>
+
+<%= tinymce %>
+
+<div class="group navform wat-cf">
+  <button class="button" type="submit">
+    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+  </button>
+  <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
+  <%= link_to t("web-app-theme.cancel", :default => "Cancel"), backend_scope_affiliates_path(@scope), :class => "text_button_padding link_button" %>
+</div>

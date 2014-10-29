@@ -9,6 +9,7 @@ Fashionfly::Application.routes.draw do
     resources :configurations
     resources :scopes do
       resources :categories
+      resources :contests
       resources :affiliates do
         resources :mappings
       end

@@ -1,13 +1,13 @@
 <header class="header">
   <div class="top_header">
     <div class="container">
-      <%= image_tag 'logo.png', id: 'logo' %>
+      <%= link_to (image_tag 'logo.png', id: 'logo', title:'FashionFly'), root_path %>
       <iframe src="//www.facebook.com/plugins/like.php?href=<%= like_url %>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=365563203593715" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true" id="facebook_count"></iframe>
     </div>
   </div>
   <nav class="header_navigation">
     <div class="container">
-      <li><a href="" class="item">Outfits</a></li>
+      <li><a href="" class="item"><%= t('.outfit') %></a></li>
       <% for category in scope.categories.where(main_taxon:true) %>
         <li class="<%= 'selected' if category.name == 'Damenmode' %>">
           <a href="<%= category_path(params[:locale], category.slug) %>" class="item"><%= category.name %></a>

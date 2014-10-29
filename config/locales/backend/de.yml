@@ -9,3 +9,9 @@ de:
     all: Alle
     cancel: Abbrechen
     created_at: Erstellt am
+  backend:
+    scopes:
+      sidebar:
+        affiliate: Affiliate
+        categories: Kategorien
+        contest: Contest

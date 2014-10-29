@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028123854) do
+ActiveRecord::Schema.define(version: 20141029124217) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -108,6 +108,21 @@ ActiveRecord::Schema.define(version: 20141028123854) do
   end
 
   add_index "configurations", ["key"], name: "index_configurations_on_key", unique: true, using: :btree
+
+  create_table "contests", force: true do |t|
+    t.string   "title"
+    t.string   "banner"
+    t.string   "slug"
+    t.text     "body"
+    t.integer  "scope_id"
+    t.boolean  "finished"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contests", ["finished"], name: "index_contests_on_finished", using: :btree
+  add_index "contests", ["scope_id"], name: "index_contests_on_scope_id", using: :btree
+  add_index "contests", ["slug"], name: "index_contests_on_slug", using: :btree
 
   create_table "fashion_fly_editor_collection_items", force: true do |t|
     t.integer  "collection_id"
