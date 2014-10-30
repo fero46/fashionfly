@@ -1,4 +1,11 @@
 de:
+  breadcrumb:
+    you_are_here: Du bist Hier
+  link:
+    home: Home
   shared:
     header:
       outfit: Outfits
+  products:
+    filter:
+      category_title: Kategorie

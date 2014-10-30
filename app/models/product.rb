@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   has_many :categorizations, dependent: :destroy
-  has_many :categories
+  has_many :categories, :through => :categorizations
   belongs_to :brand
   belongs_to :colorization
   belongs_to :scope

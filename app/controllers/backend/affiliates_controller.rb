@@ -34,7 +34,6 @@ class Backend::AffiliatesController < Backend::BackendController
     for unmapped_category in @unmapped_categories
       @affiliate.mappings.build(name: unmapped_category)
     end
-
   end
 
   def edit

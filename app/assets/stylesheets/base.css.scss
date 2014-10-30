@@ -10,6 +10,9 @@ body{
   width:1170px;
   margin: 0px auto;
   position: relative;
+  &.main{
+    padding-top: 30px;
+  }
 }
 
 .clear{
@@ -111,5 +114,95 @@ header{
     text-align: center;
     font-weight: normal;
     font-size: 18px;
+  }
+}
+.products{
+  margin-left: 324px;
+  .pagination{
+    text-align: center;
+  }
+}
+.filter{
+  width: 274px;
+  margin-right: 50px;
+  float: left;
+  .block_box{
+    background: white;
+    margin-bottom: 20px;
+  }
+  h2{
+    text-transform: uppercase;
+    font-size: 16px;
+    padding: 10px;
+    border-bottom: 1px solid $border_color;
+  }
+  .category_select{
+    ul{
+      list-style: none;
+      li{
+        a{
+          display: block;
+          padding: 10px;
+          border-bottom: 1px solid $border_color;
+          color: #999;
+          text-decoration: none;
+          &:hover{
+            color: #2c2c2c;
+          }
+        }
+        ul li a{
+          padding-left:20px;
+          &.active{
+            color: $content_font_color;
+          }
+        }
+        &.active > a{
+          color: $content_font_color;
+        }
+      }
+    }
+  }
+}
+
+.product_show{
+  margin-left: 324px;
+  background: white;
+  padding-top: 30px;
+  position: relative;
+  .breadcrumb{
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    color: #999;
+    font-size: 14px;
+    a{
+      color: #999;
+      display: inline-block;
+      margin: 0px 5px;
+    }
+    strong{
+      color: $content_font_color;
+    }
+  }
+  h1{
+    font-size: 35px;
+    border-bottom: 1px solid $border_color;
+    padding: 30px 20px;
+    padding-top: 10px;
+    margin-bottom: 30px;
+  }
+  .image_block{
+    margin: 20px;
+    margin-top: 0px;
+    width: 340px;
+    float:left;
+    border: 1px solid $border_color;
+    img{
+      width: 300px;
+      margin: 0px auto;
+    }
+  }
+  .info_box{
+    margin-left: 420px;
   }
 }

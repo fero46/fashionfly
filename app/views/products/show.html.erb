@@ -1,0 +1,13 @@
+<%= render 'products/filter' %>
+<div class="product_show">
+  <%= breadcrumb_product_page @product %>
+  <h1><%= @product.name %></h1>
+  <div class="image_block">
+    <%= image_tag @product.original %>
+  </div>
+  <div class="info_box">
+    <%= link_to 'zum Shop', @product.deepLink %>
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="clear"></div>
