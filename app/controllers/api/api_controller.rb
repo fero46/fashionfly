@@ -1,4 +1,4 @@
-class Api::ApiController < ApplicationController
+class Api::ApiController < ScopeController
   respond_to :json
 
   before_filter :check_format
