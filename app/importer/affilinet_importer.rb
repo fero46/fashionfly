@@ -87,6 +87,11 @@ class AffilinetImporter < GenericImporter
           next if should_not_update(product, values)
           product = update_product_attributes product, values
           update_product_images product, values
+        else
+          product = Product.where(affi_shop: @affiliate.name, 
+                                  affi_code: id,
+                                  scope_id: @scope.id).first
+          product.destroy if product.present?
         end
 
       end

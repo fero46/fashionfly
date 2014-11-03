@@ -40,6 +40,7 @@ class GenericImporter
         tag.children.each do |t|
           values[t.name] = t.content
         end
+
         if find_mapping(product_category(values)).present?
           next if product_remote_image(values).blank?
           product = Product.where(affi_shop: @affiliate.name, 
@@ -50,6 +51,11 @@ class GenericImporter
           next if product.lastModified==product_last_modified(values)
           product = update_product_attributes product, values
           update_product_images product, values
+        else
+          product = Product.where(affi_shop: @affiliate.name, 
+                        affi_code: id,
+                        scope_id: @scope.id).first
+          product.destroy if product.present?
         end
       end
     end
