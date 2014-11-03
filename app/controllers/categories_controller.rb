@@ -1,7 +1,9 @@
 class CategoriesController < ScopeController
 
   def index
+    params[:per] = 9 if params[:per].blank?
     @products = ProductSearchService.new(@scope, params).products
+    @categories = @category_group
   end
 
   def show

@@ -13,7 +13,5 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require language
-//= require products
-//= require styles
-//= require products
+//= require app
+//= require_tree ./angular

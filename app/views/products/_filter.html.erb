@@ -2,7 +2,7 @@
   <div class="block_box category_select">
     <h2><%= t('.category_title') %></h2>
     <ul>
-      <% for category in @category_group.categories %>
+      <% for category in create_categories(@category_group) %>
         <li class="<%= 'active' if @main_category.present? && @main_category.id == category.id %>">
           <%= link_to category.name, category_path(params[:locale], category.slug) %>
           <% if @main_category.present? && @main_category.id == category.id %>

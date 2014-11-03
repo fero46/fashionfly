@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029124217) do
+ActiveRecord::Schema.define(version: 20141031104816) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -144,6 +144,18 @@ ActiveRecord::Schema.define(version: 20141029124217) do
     t.datetime "updated_at"
   end
 
+  create_table "favorites", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.string   "cookie_store"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorites", ["cookie_store"], name: "index_favorites_on_cookie_store", using: :btree
+  add_index "favorites", ["product_id"], name: "index_favorites_on_product_id", using: :btree
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
+
   create_table "mappings", force: true do |t|
     t.integer  "category_id"
     t.string   "name"
@@ -201,6 +213,29 @@ ActiveRecord::Schema.define(version: 20141029124217) do
 
   add_index "synonyms_words", ["synonym_id"], name: "index_synonyms_words_on_synonym_id", using: :btree
   add_index "synonyms_words", ["word_id"], name: "index_synonyms_words_on_word_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "",     null: false
+    t.string   "name"
+    t.string   "avatar"
+    t.string   "role",                   default: "user"
+    t.string   "encrypted_password",     default: "",     null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,      null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["name"], name: "index_users_on_name", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["role"], name: "index_users_on_role", using: :btree
 
   create_table "words", force: true do |t|
     t.integer "scope_id"

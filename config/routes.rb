@@ -2,7 +2,6 @@ require 'sidekiq/web'
 
 Fashionfly::Application.routes.draw do
 
-  get "categories/index"
   namespace :backend do
     mount Sidekiq::Web => '/sidekiq'
     root :to => 'dashboards#show'
@@ -17,8 +16,13 @@ Fashionfly::Application.routes.draw do
   end
 
   scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
+    devise_for :users
     resources :styles, only: [:show, :index]
-    resources :products
+    
+    resources :products do
+      resources :favorites, only: [:create, :destroy]
+    end
+
     resources :categories
     mount FashionFlyEditor::Engine => "/combine"
     namespace :api do

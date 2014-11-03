@@ -20,4 +20,17 @@ module ProductsHelper
     end
     return prefix + '>' + link
   end
+
+  def favorite(product_id)
+    if current_user.present?
+      fav = current_user.favorites
+    else
+      fav = Favorite.where(cookie_store: cookies[:cookie_store] )
+    end
+    if fav.where(product_id: product_id).any?
+      return "likeon"
+    else
+      return ""
+    end
+  end
 end

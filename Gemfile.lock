@@ -38,6 +38,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
+    bcrypt (3.1.7)
     builder (3.1.4)
     capistrano (3.2.1)
       i18n
@@ -63,6 +64,13 @@ GEM
     color (1.7.1)
     colorize (0.7.3)
     connection_pool (2.0.0)
+    devise (3.3.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+    devise-i18n (0.11.1)
     erubis (2.7.0)
     execjs (2.2.2)
     geocoder (1.2.5)
@@ -95,6 +103,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    orm_adapter (0.5.0)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-protection (1.5.3)
@@ -178,6 +187,8 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unicode (0.4.4.1)
+    warden (1.2.3)
+      rack (>= 1.0)
     web-app-theme (0.7.0)
 
 PLATFORMS
@@ -189,6 +200,8 @@ DEPENDENCIES
   clockwork
   coffee-rails (~> 4.0.0)
   color
+  devise
+  devise-i18n
   fashion_fly_editor!
   geocoder
   jbuilder (~> 1.2)

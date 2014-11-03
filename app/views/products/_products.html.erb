@@ -1,5 +1,5 @@
 <%= render 'products/filter' %>
-<div class="products">
+<div class="products" ng-controller="FavoriteController">
   <%= render @products %>
   <div class="clear"></div>  
   <%= paginate @products %>

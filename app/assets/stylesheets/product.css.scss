@@ -34,10 +34,6 @@
       }
       &.likeon{
         background: image-url("likeon.png") no-repeat center center;
-        &:hover{
-          background: image-url("likeoff.png") no-repeat center center;        
-        }
-
       }
     }
   }

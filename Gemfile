@@ -24,7 +24,8 @@ gem 'sinatra', require: false
 gem 'kaminari'
 gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
-# gem 'devise-i18n'
+gem 'devise'
+gem 'devise-i18n'
 group :doc do
   gem 'sdoc', require: false
 end

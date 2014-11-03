@@ -26,13 +26,13 @@ header{
     height: 64px;
     #logo{
       position: absolute;
-      left:0px;
+      left:10px;
       top:20px;
       height: 20px;
     }
     #facebook_count{
       position: absolute;
-      left:200px;
+      left:210px;
       top:20px;
     }
     border-bottom: 1px solid $border_color;
@@ -200,6 +200,7 @@ header{
     img{
       width: 300px;
       margin: 0px auto;
+      display: block;
     }
   }
   .info_box{
