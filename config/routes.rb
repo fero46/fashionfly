@@ -15,14 +15,13 @@ Fashionfly::Application.routes.draw do
     end
   end
 
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
   scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
-    devise_for :users
-    resources :styles, only: [:show, :index]
-    
+    resources :styles, only: [:show, :index]    
     resources :products do
       resources :favorites, only: [:create, :destroy]
     end
-
     resources :categories
     mount FashionFlyEditor::Engine => "/combine"
     namespace :api do

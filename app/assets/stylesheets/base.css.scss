@@ -36,6 +36,16 @@ header{
       top:20px;
     }
     border-bottom: 1px solid $border_color;
+    .right_side_header{
+      position: absolute;
+      right: 0px;
+      ul.top{
+        list-style: none;
+        li{
+          float:left;
+        }
+      }
+    }
   }
   .header_navigation{
     height: 45px;

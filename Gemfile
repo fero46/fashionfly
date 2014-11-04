@@ -26,7 +26,15 @@ gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
 gem 'devise'
 gem 'devise-i18n'
+gem 'domp'
+gem 'settingslogic'
 group :doc do
   gem 'sdoc', require: false
 end
 gem 'capistrano', group: :development
+gem "omniauth"
+gem "omniauth-facebook"
+gem "omniauth-twitter"
+gem "omniauth-pinterest"
+gem "omniauth-tumblr"
+gem "omniauth-google"

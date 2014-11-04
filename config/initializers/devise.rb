@@ -1,51 +1,12 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  # The secret key used by Devise. Devise uses this key to generate
-  # random tokens. Changing this key will render invalid all existing
-  # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = '867cc35ae8b6d02fa4927e68edefb802d5455a07221102d7b1e3f1c4fa11171fcb879e78870831cb6027f08ffacbb297c38311b96a82b636591593fe9f81ec5b'
-
-  # ==> Mailer Configuration
-  # Configure the e-mail address which will be shown in Devise::Mailer,
-  # note that it will be overwritten if you use your own mailer class
-  # with default "from" parameter.
+  config.secret_key = '867cc35ae8b6d02fa4927e68edefb802d5455a07221102d7b1e3f1c4fa11171fcb879e78870831cb6027f08ffacbb297c38311b96a82b636591593fe9f81ec5b'
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
-
-  # ==> ORM configuration
-  # Load and configure the ORM. Supports :active_record (default) and
-  # :mongoid (bson_ext recommended) by default. Other ORMs may be
-  # available as additional gems.
   require 'devise/orm/active_record'
-
-  # ==> Configuration for any authentication mechanism
-  # Configure which keys are used when authenticating a user. The default is
-  # just :email. You can configure it to use [:username, :subdomain], so for
-  # authenticating a user, both parameters are required. Remember that those
-  # parameters are used only when authenticating and not when retrieving from
-  # session. If you need permissions, you should implement that in a before filter.
-  # You can also supply a hash where the value is a boolean determining whether
-  # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [ :email ]
-
-  # Configure parameters from the request object used for authentication. Each entry
-  # given should be a request method and it will automatically be passed to the
-  # find_for_authentication method and considered in your model lookup. For instance,
-  # if you set :request_keys to [:subdomain], :subdomain will be used on authentication.
-  # The same considerations mentioned for authentication_keys also apply to request_keys.
-  # config.request_keys = []
-
-  # Configure which authentication keys should be case-insensitive.
-  # These keys will be downcased upon creating or modifying a user and when used
-  # to authenticate or find a user. Default is :email.
   config.case_insensitive_keys = [ :email ]
-
-  # Configure which authentication keys should have whitespace stripped.
-  # These keys will have whitespace before and after removed upon creating or
-  # modifying a user and when used to authenticate or find a user. Default is :email.
   config.strip_whitespace_keys = [ :email ]
 
   # Tell if authentication through request.params is enabled. True by default.
@@ -97,7 +58,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '40e0c199b7891a9c35e3aa1a68fbcc71941fadc619ffd7bbed02f0e6c423f091c98f35335c0936a42d81dbd6d66fed19f195dbee9550a0124ca8713c2974316f'
+  config.pepper = '40e0c199b7891a9c35e3aa1a68fbcc71941fadc619ffd7bbed02f0e6c423f091c98f35335c0936a42d81dbd6d66fed19f195dbee9550a0124ca8713c2974316f'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -232,7 +193,14 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+
+
+   config.omniauth :facebook, Settings.oauth.facebook.id, Settings.oauth.facebook.secret
+   config.omniauth :twitter, 'APP_ID', 'APP_SECRET'
+   config.omniauth :pinterest, 'APP_ID', 'APP_SECRET'
+   config.omniauth :tumblr, 'APP_ID', 'APP_SECRET'
+   config.omniauth :google, 'APP_ID', 'APP_SECRET'
+
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

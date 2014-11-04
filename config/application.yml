@@ -1,0 +1,20 @@
+defaults: &defaults
+  app:
+    name: FashionFly 
+  company:
+    name: FashionFly GmbH
+    street: Eckermann str. 4
+    city: "21423 Winsen Luhe, Germany" 
+  oauth:
+    facebook:
+      id: x
+      secret: x
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

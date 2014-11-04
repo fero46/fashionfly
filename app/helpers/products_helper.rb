@@ -15,7 +15,7 @@ module ProductsHelper
       link = link_to I18n.t('link.home'), root_path
       prefix = ''
     else
-      link = link_to category.name, category_path(params[:locale], category.slug)
+      link = link_to category.name, category_path(assigned_locale, category.slug)
       prefix = category_breadcrumb category.category
     end
     return prefix + '>' + link
