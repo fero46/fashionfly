@@ -2,7 +2,6 @@
   <div class="secondary-navigation">
     <ul class="wat-cf">
       <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", backend_scope_categories_path(@scope)  %></li>
-      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_backend_scope_category_path(@scope) %></li>
     </ul>
   </div>          
   <div class="content">          
@@ -26,7 +25,8 @@
       <div class="clear"></div>
       </div>
     <ul class="tree">
-      <%= render @categories %>
+
+      <%= render filter_main_categories @categories %>
     </ul>
     </div>
   </div>

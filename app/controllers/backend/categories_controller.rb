@@ -3,7 +3,7 @@ class Backend::CategoriesController < Backend::BackendController
   respond_to :json
 
   def index
-    @categories = @scope.categories.where(main_taxon: true)
+    @categories = @scope.categories
   end
 
   def create
@@ -13,6 +13,17 @@ class Backend::CategoriesController < Backend::BackendController
     else
       flash[:error] = "Nicht gespeichert"  
     end 
+    redirect_to backend_scope_categories_path(@scope)
+  end
+
+
+  def update
+    @category = Category.find(params[:id])
+    if @category.update(category_attributes)
+      flash[:notice] = "Erfolgreich aktualisiert"
+    else
+      flash[:error] = "Änderungen nicht gespeichert"
+    end
     redirect_to backend_scope_categories_path(@scope)
   end
 

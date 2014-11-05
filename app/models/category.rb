@@ -5,6 +5,8 @@ class Category < ActiveRecord::Base
     has_many :categories,  :dependent => :destroy
     belongs_to :category
     belongs_to :scope
+    has_and_belongs_to_many :icons
+
     validates :name, presence: true
     validates :scope_id, presence: true
 

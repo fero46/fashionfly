@@ -1,6 +1,6 @@
 <li class="category">
   <div class="pre_action">
-    <% if category.categories.any? %>
+    <% if filter_child_categories(@categories, category) %>
       <%= link_to image_tag('arrow_down.png'), '#', class: 'arrow_down' %>
       <%= link_to image_tag('arrow_right.png'), '#', class: 'arrow_right' %>
     <% end %>
@@ -10,6 +10,9 @@
     <%= category.name %>
   </span>
   <div class="action">
+    <%= link_to image_tag('edit.png'), '#', class: 'edit_button'%>
+
+
     <%= link_to image_tag('delete.png'), backend_scope_category_path(@scope, category), class: 'delete_button', :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"  %>
   </div>
   <div class="clear"></div>
@@ -19,6 +22,10 @@
                   html: { :class => :form, id: 'main_category_form' } do |f| %>
         <%= f.label :name, class: 'label'  %>
         <%= f.text_field :name, class: 'text_field' %>
+        <% if category.main_taxon %>
+          <%= f.label :icons, class: 'label'  %>
+          <%= f.select :icons, icon_categories %>
+        <% end %>
         <%= f.hidden_field :main_taxon, value: false %>
         <%= f.hidden_field :scope_id, value: @scope.id %>
         <%= f.hidden_field :category_id, value: category.id %>
@@ -30,9 +37,28 @@
   </div>
   <div class="clear"></div>
 
-  <% if category.categories.any? %>
+
+  <div class="edit_formular">
+      <%= form_for category, 
+                  url: backend_scope_category_path(@scope, category), 
+                  html: { :class => :form, id: 'main_category_form' } do |f| %>
+        <%= f.label :name, class: 'label'  %>
+        <%= f.text_field :name, class: 'text_field' %>
+        <% if is_parent_main_group?(@categories, category) %>
+          <%= f.label :icons, class: 'label'  %>
+          <%= f.select :icons, icon_categories %>
+        <% end %>
+        <div class="action">
+          <br />
+          <%= f.submit 'Änderung speichern', class: 'button' %>
+        </div>
+      <% end %>
+  </div>
+  <div class="clear"></div>
+
+  <% if filter_child_categories(@categories, category) %>
     <ul class="subcat">
-      <%= render category.categories %>
+      <%= render filter_child_categories(@categories, category) %>
     </ul>
   <% end %>
 </li>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104172811) do
+ActiveRecord::Schema.define(version: 20141105134347) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -77,6 +77,14 @@ ActiveRecord::Schema.define(version: 20141104172811) do
   add_index "categories", ["published"], name: "index_categories_on_published", using: :btree
   add_index "categories", ["scope_id"], name: "index_categories_on_scope_id", using: :btree
   add_index "categories", ["slug"], name: "index_categories_on_slug", using: :btree
+
+  create_table "categories_icons", force: true do |t|
+    t.integer "category_id"
+    t.integer "icon_id"
+  end
+
+  add_index "categories_icons", ["category_id"], name: "index_categories_icons_on_category_id", using: :btree
+  add_index "categories_icons", ["icon_id"], name: "index_categories_icons_on_icon_id", using: :btree
 
   create_table "categorizations", force: true do |t|
     t.integer  "product_id"
@@ -168,6 +176,13 @@ ActiveRecord::Schema.define(version: 20141104172811) do
   add_index "favorites", ["cookie_store"], name: "index_favorites_on_cookie_store", using: :btree
   add_index "favorites", ["product_id"], name: "index_favorites_on_product_id", using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
+
+  create_table "icons", force: true do |t|
+    t.string "name"
+    t.string "image"
+  end
+
+  add_index "icons", ["name"], name: "index_icons_on_name", using: :btree
 
   create_table "mappings", force: true do |t|
     t.integer  "category_id"
