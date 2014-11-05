@@ -24,7 +24,7 @@ protected
   end
 
   def cookie_store
-    cookies[:cookie_store] = (0...50).map { ('a'..'z').to_a[rand(26)] }.join if current_user.blank? && cookies[:cookie_store].blank?
+    cookies[:cookie_store] = (0...30).map { ('a'..'z').to_a[rand(26)] }.join if current_user.blank? && cookies[:cookie_store].blank? 
     cookies[:cookie_store]
   end
 

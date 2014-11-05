@@ -9,13 +9,21 @@ class Category < ActiveRecord::Base
 
     validates :name, presence: true
     validates :scope_id, presence: true
+    validates :slug,  uniqueness: true
 
     before_save :update_slug
     before_save :update_position
     after_save :update_leaf
 
     def update_slug
-      self.slug = create_slug(self)
+      default = create_slug(self)
+      myslug = default
+      counter = 0
+      until Category.where(slug: myslug).first.blank?
+        counter+=1
+        myslug = "#{default}_#{counter}"
+      end
+      self.slug=myslug
     end
 
     def create_slug cati

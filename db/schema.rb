@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105134347) do
+ActiveRecord::Schema.define(version: 20141105185648) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20141105134347) do
   add_index "categories", ["position"], name: "index_categories_on_position", using: :btree
   add_index "categories", ["published"], name: "index_categories_on_published", using: :btree
   add_index "categories", ["scope_id"], name: "index_categories_on_scope_id", using: :btree
-  add_index "categories", ["slug"], name: "index_categories_on_slug", using: :btree
+  add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
 
   create_table "categories_icons", force: true do |t|
     t.integer "category_id"
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 20141105134347) do
     t.datetime "updated_at"
   end
 
-  add_index "favorites", ["cookie_store"], name: "index_favorites_on_cookie_store", using: :btree
+  add_index "favorites", ["cookie_store"], name: "index_favorites_on_cookie_store", length: {"cookie_store"=>30}, using: :btree
   add_index "favorites", ["product_id"], name: "index_favorites_on_product_id", using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
@@ -233,8 +233,8 @@ ActiveRecord::Schema.define(version: 20141105134347) do
     t.boolean  "published",    default: false
   end
 
-  add_index "scopes", ["country_code"], name: "index_scopes_on_country_code", unique: true, using: :btree
-  add_index "scopes", ["locale"], name: "index_scopes_on_locale", using: :btree
+  add_index "scopes", ["country_code"], name: "index_scopes_on_country_code", length: {"country_code"=>10}, using: :btree
+  add_index "scopes", ["locale"], name: "index_scopes_on_locale", length: {"locale"=>10}, using: :btree
   add_index "scopes", ["published"], name: "index_scopes_on_published", using: :btree
 
   create_table "synonyms", force: true do |t|
