@@ -6,6 +6,23 @@ de:
   shared:
     header:
       outfit: Outfits
+      sign_in_and_up: Anmelden/Registrieren
+      sign_out: Abmelden
+    select_popup:
+      title: Wähle dein Land aus.
+      description: Wir sind in sehr vielen Ländern vertretten und wir erweitern immer unser Angebot
   products:
     filter:
       category_title: Kategorie
+  users:
+    shared:
+      links:
+        sign_in: Anmelden
+        sign_up: Registrieren
+        sign_in_with: Mit %{provider} anmelden
+        forgot_password: Passwort vergessen?
+        no_confirmation: Keine Bestätigungsmail erhalten ?
+      oauth:
+        title: Oder ganz einfach und unkompliziert anmelden.
+        description: Melde dich ganz einfach mit einem bestehendem Benutzerzugang an. 
+        sign_in_with: Mit %{provider} anmelden

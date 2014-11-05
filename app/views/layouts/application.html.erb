@@ -2,7 +2,6 @@
 <html ng-app="FashionFly">
 <head>
   <title>Fashionfly</title>
-<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -15,19 +14,8 @@
   </div>
 </section>
 <footer class="footer">
-<div
-  class="fb-like"
-  data-share="false"
-  data-width="450"
-  data-show-faces="false">
 </div>
-
-</div>
-
-
-
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-resource.min.js"></script>
+<%= query_review_output %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </body>
 </html>

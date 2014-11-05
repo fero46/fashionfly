@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header" ng-controller="HeaderController">
   <div class="top_header">
     <div class="container">
       <%= link_to (image_tag 'logo.png', id: 'logo', title:'FashionFly'), scoped_root_path %>
@@ -8,22 +8,25 @@
         <ul class="top">
           <% if current_user.present? %>
             <li>
-              <%= link_to 'Abmelden', destroy_user_session_path, :method => :delete %>
+              <%= link_to t('sign_out'), destroy_user_session_path, :method => :delete %>
             </li>
 
           <% else %>
-            <li><%= link_to t('.sign_in'), new_user_session_path() %></li>
+            <li><%= link_to t('.sign_in_and_up'), login_path %></li>
           <% end %>
+             <li><%= link_to t('.faq'), faq_path(assigned_locale) %></li>
+            <li><%= link_to generate_name_and_flag(@scope.country_code),'#', 
+            class: 'flag', 'ng-click' => 'selectCountry()' %></li>
+        </ul>
+        <ul class="bottom">
         </ul>
       </div>
-
-
     </div>
   </div>
   <nav class="header_navigation">
     <div class="container">
       <li><a href="" class="item"><%= t('.outfit') %></a></li>
-      <% for category in scope.categories.where(main_taxon:true) %>
+      <% for category in category_groups %>
         <li class="<%= 'selected' if @category_group.present? && category.id == @category_group.id %>">
           <a href="<%= category_path(assigned_locale, category.slug) %>" class="item"><%= category.name %></a>
           <ul class="submenu">
@@ -36,3 +39,5 @@
     </div>
   </nav>
 </header>
+
+<%= render 'shared/select_popup' %>

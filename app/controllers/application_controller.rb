@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale_cookie
   before_action :check_favorite
 
-  helper_method :get_right_scope, :locale_cookie, :assigned_locale
+  helper_method :get_right_scope, :locale_cookie, :assigned_locale, :cookie_store
 
 protected 
 
@@ -45,12 +45,12 @@ protected
   end
 
   def get_right_scope
-    @right_scope if @right_scope.present?
+    return @scope if @scope.present?
     code = Geocoder.search(request_ip).try(:first).try(:country_code)
     scope = nil
     scope = Scope.where(country_code: code).first if code.present?
     scope = Scope.where(country_code: ::Configuration.where(key: 'default_country_code').first.value).first if scope.blank?
-    @right_scope = scope
+    @scope = scope
   end
 
   def locale_cookie

@@ -1,0 +1,18 @@
+<div class="popup_background" id="country_select">
+  <div class="popup_container">
+    <h2><%= t('.title') %></h2>
+    <p><%= t('.description') %></p>
+    <% Scope.country_codes_mapped_in_region.each do |region,subregion| %>
+      <h3><%= t(".#{region.downcase}") %></h3>
+      <% subregion.each do |subregion, countries| %>
+        <h4><%= subregion %></h4>
+        <% for country in countries %>
+          <span class="country_selection">
+            <%= link_to generate_name_and_flag(country[:code]), 
+                        root_path(locale: country[:locale]) %>
+          <span>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

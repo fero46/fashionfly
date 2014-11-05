@@ -30,6 +30,12 @@ Fashionfly::Application.routes.draw do
       resources :colors
       resources :products
     end
+    get 'login',  to:'users#new', as: 'login'
+    get "faq", to: 'static#faq', as: 'faq'
+    get "terms", to: 'static#terms', as: 'terms'
+    get "impress", to: 'static#impress', as: 'impress'
+    get "privacy", to: 'static#privacy', as: 'privacy'
+
     root 'welcome#index'
   end
 

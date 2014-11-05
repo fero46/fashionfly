@@ -28,6 +28,11 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'domp'
 gem 'settingslogic'
+gem 'bourbon'
+gem 'countries'
+gem 'country_select'
+gem 'i18n-country-translations'
+gem "query_reviewer"
 group :doc do
   gem 'sdoc', require: false
 end

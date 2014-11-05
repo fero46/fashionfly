@@ -11,9 +11,9 @@ class ProductSearchService
 
 
   def products
-    @products = @scope.products
+    @products = Product.where(scope_id: @scope.id)
     if params[:category]
-      @products = @products.includes(:categorizations).where("categorizations.category_id" => params[:category])
+      @products = @products.joins(:categorizations).where("categorizations.category_id" => params[:category])
     end
     if params[:brand]
       @products = @products.where("products.brand_id" => params[:brand])      

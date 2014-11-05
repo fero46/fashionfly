@@ -13,13 +13,6 @@ module ApplicationHelper
     end
   end
 
-  def create_categories category_group
-    if category_group.present?
-      category_group.categories
-    else
-      Category.where(main_taxon: true)
-    end
-  end
 
   def scoped_root_path
     if assigned_locale.present?
@@ -28,4 +21,17 @@ module ApplicationHelper
       "/"
     end
   end
+
+
+  def generate_name_and_flag code
+    name = Country.new(code).name
+    image_tag("flags/#{format_name(name)}.png") + I18n.t(code, :scope => :countries)
+  end
+
+private
+
+  def format_name name=""
+    name.downcase.gsub('\'', '').gsub(' ', '_').gsub('-','_')
+  end
+
 end

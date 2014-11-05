@@ -16,6 +16,7 @@ module Fashionfly
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
     config.autoload_paths << Rails.root.join('lib')
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.assets.precompile += ['backend.css','backend.js']
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]

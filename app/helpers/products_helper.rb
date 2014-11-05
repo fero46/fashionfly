@@ -22,15 +22,34 @@ module ProductsHelper
   end
 
   def favorite(product_id)
+    favorite_cache[product_id] if favorite_cache[product_id].present? 
+    if favorites[product_id].present?
+      favorite_cache[product_id] = "likeon"
+    else
+      favorite_cache[product_id] = ''
+    end
+    favorite_cache[product_id]
+  end
+
+
+  def favorites
+    @favs ||= load_favorite
+  end
+
+  def load_favorite
+    favs = {}
+    fav = Favorite.none
     if current_user.present?
       fav = current_user.favorites
     else
-      fav = Favorite.where(cookie_store: cookies[:cookie_store] )
+      fav = Favorite.where(cookie_store: cookie_store)
     end
-    if fav.where(product_id: product_id).any?
-      return "likeon"
-    else
-      return ""
-    end
+    fav.each {|f| favs[f.product_id] = 'active'}
+    return favs
+  end
+
+
+  def favorite_cache
+    @favorite_cache ||= {}
   end
 end

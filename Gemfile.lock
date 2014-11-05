@@ -40,6 +40,9 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.2)
     bcrypt (3.1.7)
+    bourbon (3.2.3)
+      sass (~> 3.2)
+      thor
     builder (3.1.4)
     capistrano (3.2.1)
       i18n
@@ -65,6 +68,11 @@ GEM
     color (1.7.1)
     colorize (0.7.3)
     connection_pool (2.0.0)
+    countries (0.9.3)
+      currencies (~> 0.4.2)
+    country_select (2.1.0)
+      countries (~> 0.9, >= 0.9.3)
+    currencies (0.4.2)
     devise (3.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -83,6 +91,9 @@ GEM
     hashie (3.3.1)
     hike (1.2.3)
     i18n (0.6.11)
+    i18n-country-translations (1.0.4)
+      i18n (~> 0.5)
+      railties (>= 3.0.0)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -145,6 +156,7 @@ GEM
       omniauth-oauth (~> 1.0)
     orm_adapter (0.5.0)
     polyglot (0.3.5)
+    query_reviewer (0.2.2)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -236,16 +248,20 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bourbon
   capistrano
   carrierwave
   clockwork
   coffee-rails (~> 4.0.0)
   color
+  countries
+  country_select
   devise
   devise-i18n
   domp
   fashion_fly_editor!
   geocoder
+  i18n-country-translations
   jbuilder (~> 1.2)
   jquery-rails
   kaminari
@@ -258,6 +274,7 @@ DEPENDENCIES
   omniauth-pinterest
   omniauth-tumblr
   omniauth-twitter
+  query_reviewer
   rack-utf8_sanitizer
   rails (= 4.0.9)
   rails-i18n

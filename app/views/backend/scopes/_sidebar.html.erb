@@ -1,4 +1,4 @@
-<% if @scope %>
+<% if @scope.present? && !@scope.new_record? %>
 <div class="block">
   <h3>Scope Konfiguration</h3>
   <ul class="navigation">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104135025) do
+ActiveRecord::Schema.define(version: 20141104172811) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20141104135025) do
     t.boolean  "leaf"
   end
 
+  add_index "categories", ["category_id"], name: "index_categories_on_category_id", using: :btree
   add_index "categories", ["leaf"], name: "index_categories_on_leaf", using: :btree
   add_index "categories", ["main_taxon"], name: "index_categories_on_main_taxon", using: :btree
   add_index "categories", ["position"], name: "index_categories_on_position", using: :btree
@@ -83,6 +84,10 @@ ActiveRecord::Schema.define(version: 20141104135025) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "categorizations", ["category_id", "product_id"], name: "index_categorizations_on_category_id_and_product_id", using: :btree
+  add_index "categorizations", ["category_id"], name: "index_categorizations_on_category_id", using: :btree
+  add_index "categorizations", ["product_id"], name: "index_categorizations_on_product_id", using: :btree
 
   create_table "color_words", force: true do |t|
     t.integer "scope_id"
@@ -199,6 +204,9 @@ ActiveRecord::Schema.define(version: 20141104135025) do
     t.boolean  "published",                                     default: false
   end
 
+  add_index "products", ["affi_shop", "affi_code"], name: "affi_name", using: :btree
+  add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
+  add_index "products", ["colorization_id"], name: "index_products_on_colorization_id", using: :btree
   add_index "products", ["published"], name: "index_products_on_published", using: :btree
   add_index "products", ["scope_id"], name: "index_products_on_scope_id", using: :btree
 
@@ -207,9 +215,12 @@ ActiveRecord::Schema.define(version: 20141104135025) do
     t.string   "locale"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "published",    default: false
   end
 
   add_index "scopes", ["country_code"], name: "index_scopes_on_country_code", unique: true, using: :btree
+  add_index "scopes", ["locale"], name: "index_scopes_on_locale", using: :btree
+  add_index "scopes", ["published"], name: "index_scopes_on_published", using: :btree
 
   create_table "synonyms", force: true do |t|
   end
@@ -252,8 +263,13 @@ ActiveRecord::Schema.define(version: 20141104135025) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
