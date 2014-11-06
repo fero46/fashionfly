@@ -12,7 +12,7 @@ for color in colors
   Colorization.where(name: "##{color}").first_or_create
 end
 
-delete_all_categories = true
+delete_all_categories = false
 
 if delete_all_categories 
   Category.where(scope_id: germany.id).destroy_all
@@ -60,7 +60,7 @@ german_categories = [
       },
       {
         name: 'Beauty',
-        categories: ['Lippenstift', 'Augen Make-Up', 'Augen Make-Up', 'Nagellack', ' Parfüm', 'Körperpflege', 'Haarpflege', 'Gesichtspflege', 'Sonnenpflege']
+        categories: ['Lippenstift', 'Augen Make-Up', 'Augen Make-Up', 'Nagellack', 'Parfüm', 'Körperpflege', 'Haarpflege', 'Gesichtspflege', 'Sonnenpflege']
       },
       {
         name: 'Bademode',
@@ -131,4 +131,17 @@ def create_categories scope, categories, parent_id=nil
   end
 end
 
-create_categories germany,german_categories 
+#create_categories germany,german_categories
+
+#### Icons
+icons = Dir[Rails.root.join('db','icons').to_s+"/*"]
+
+for icon in icons
+  basename = File.basename(icon, ".png")
+  id = basename.split('_')[0]
+  basename = basename.gsub("#{id}_", '')
+  myicon = Icon.where(id: id).first_or_initialize
+  myicon.name = basename
+  myicon.image = File.new(icon)
+  myicon.save
+end

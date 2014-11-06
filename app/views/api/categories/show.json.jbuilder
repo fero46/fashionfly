@@ -2,6 +2,7 @@ if @category.main_taxon?
   json.categories @category.categories do |json, category|
     json.id category.id
     json.name category.name
+    json.icon category_icon category
   end
 else
   json.categories @category.categories do |json, category|

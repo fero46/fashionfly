@@ -24,7 +24,7 @@
         <%= f.text_field :name, class: 'text_field' %>
         <% if category.main_taxon %>
           <%= f.label :icons, class: 'label'  %>
-          <%= f.select :icons, icon_categories %>
+          <%= collection_select :category, :icon_ids, icon_categories, :id, :name, {:name => 'category[icon_ids][]'}%>
         <% end %>
         <%= f.hidden_field :main_taxon, value: false %>
         <%= f.hidden_field :scope_id, value: @scope.id %>
@@ -46,7 +46,7 @@
         <%= f.text_field :name, class: 'text_field' %>
         <% if is_parent_main_group?(@categories, category) %>
           <%= f.label :icons, class: 'label'  %>
-          <%= f.select :icons, icon_categories %>
+          <%= collection_select :category, :icon_ids, icon_categories, :id, :name, {:name => 'category[icon_ids][]'}%>
         <% end %>
         <div class="action">
           <br />

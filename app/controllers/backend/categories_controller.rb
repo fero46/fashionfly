@@ -43,7 +43,8 @@ protected
                                       :main_taxon,
                                       :scope_id,
                                       :category_id,
-                                      :position)
+                                      :position,
+                                      :icon_ids)
   end
 
 
