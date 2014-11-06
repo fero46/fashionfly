@@ -29,9 +29,6 @@ protected
   end
 
   def check_favorite
-    puts "Cookiestore #{cookie_store}"
-    puts "Current_USER #{current_user}"
-
     if current_user.present? && cookie_store.present?
       myfavs = Favorite.where(user_id: nil).where(cookie_store: cookie_store)
       puts Favorite.where(user_id: nil).where(cookie_store: cookie_store).to_sql
