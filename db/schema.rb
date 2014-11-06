@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106161332) do
+ActiveRecord::Schema.define(version: 20141106165439) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -220,12 +220,14 @@ ActiveRecord::Schema.define(version: 20141106161332) do
     t.boolean  "published",                                     default: false
     t.integer  "actual_trend",                                  default: 0
     t.integer  "last_trend",                                    default: 0
+    t.integer  "favorites_count",                               default: 0
   end
 
   add_index "products", ["actual_trend"], name: "index_products_on_actual_trend", using: :btree
   add_index "products", ["affi_shop", "affi_code"], name: "affi_name", using: :btree
   add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
   add_index "products", ["colorization_id"], name: "index_products_on_colorization_id", using: :btree
+  add_index "products", ["favorites_count"], name: "index_products_on_favorites_count", using: :btree
   add_index "products", ["published"], name: "index_products_on_published", using: :btree
   add_index "products", ["scope_id"], name: "index_products_on_scope_id", using: :btree
 
