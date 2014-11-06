@@ -19,19 +19,18 @@ class Category < ActiveRecord::Base
       default = create_slug(self)
       myslug = default
       counter = 0
-      until Category.where(slug: myslug).first.blank?
+      while Category.where(slug: myslug).first.present?
         counter+=1
         myslug = "#{default}_#{counter}"
       end
       self.slug=myslug
     end
 
-    def create_slug cati
-      return "" if cati.blank?
-      parent = Category.where(id: cati.category_id).first
-      parent_slug = ""
-      parent_slug = create_slug(parent) + "-" if parent.present?
-      return parent_slug + clean_name(cati.name).try(:downcase)
+    def create_slug category
+      return scope.locale if category.blank?
+      parent = category.category
+      parent_slug = create_slug(parent) + "_"
+      return parent_slug + clean_name(category.name).try(:downcase)
     end
 
     def update_position
