@@ -1,0 +1,39 @@
+<footer class="footer">
+  <div class="container">
+    <div class="first_column">
+      <h2><%= t('.what_is_fashionfly') %></h2>
+      <p><%= t('.answer_1') %></p>
+      <p><%= t('.answer_2') %></p>
+      <p><%= t('.answer_3') %></p>
+    </div>
+    <div class="second_column">
+      <h2><%= t('.information') %></h2>
+      <ul>
+        <li><%= link_to raw(t('.about')), about_path %></li>
+        <li><%= link_to raw(t('.team')), team_path %></li>
+        <li><%= link_to raw(t('.faq')), faq_path %></li>
+        <li><%= link_to raw(t('.impress')), impress_path %></li>
+        <li><%= link_to raw(t('.terms')), terms_path %></li>
+        <li><%= link_to raw(t('.privacy')), privacy_path %></li>
+        <li><%= link_to raw(t('.disclaimer')), disclaimer_path %></li>
+
+      </ul>
+    </div>
+    <div class="first_column">
+      <h2><%= t('.find_us') %></h2><br />
+      <p class="nounderline">
+        <%= link_to '', '', class: 'social', id:'facebook', title: 'facebook' %>
+        <%= link_to '', '', class: 'social', id:'twitter', title: 'twitter' %>
+        <%= link_to '', '', class: 'social', id:'google-plus', title: 'google-plus' %>
+        <%= link_to '', '', class: 'social', id:'pinterest', title: 'pinterest' %>
+        <%= link_to '', '', class: 'social', id:'instagram', title: 'instagram' %>
+        <%= link_to '', '', class: 'social', id:'youtube', title: 'youtube' %>
+      </p>
+    </div>
+
+    <div class="clear"></div>
+    <div class="footer_ending">
+      <%= link_to image_tag('madewith.png', title: 'Made With Love in Hamburg'), 'http://hansehype.de', title: 'Internet Agentur Hamburg' %>
+    </div>
+  </div>
+</footer>

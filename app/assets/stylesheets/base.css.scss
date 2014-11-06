@@ -6,6 +6,118 @@ body{
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+.footer{
+  padding: 20px 0px;
+  font-weight: 300;
+  line-height: 18px;
+  h2{
+    line-height: 22px;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding-bottom: 5px;
+    border-bottom:1px solid white;
+    display: inline-block;
+    font-weight: 400;
+  }
+  p{
+    font-size: 14px;
+    line-height: 18px;
+    padding:10px 0px;
+    display: block; 
+    padding-bottom: 0px;
+  }
+  .first_column,.second_column{
+    width: 400px;
+    float:left;
+    margin-right: 25px;
+  }
+  .second_column{
+    width: 200px;
+  }
+  a{
+    color:white;
+    text-decoration: none;
+    &:hover{
+      color: $red;
+    }
+  }
+  ul{
+    padding:10px 0px;
+    padding-bottom: 0px;
+    display: block;
+    list-style: none;
+    li{
+    font-size: 14px;
+    line-height: 18px;      
+    }
+  }
+  a.social{
+    display: inline-block;
+    width:32px;
+    height: 32px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    &:hover{
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    &#facebook{
+      background: image-url('social/facebook-white.png') no-repeat;
+      border: none;
+      &:hover{
+        background: image-url('social/facebook-red.png') no-repeat;
+        border: none;
+      }
+    }
+    &#google-plus{
+      background: image-url('social/google-plus-white.png') no-repeat;
+      border: none;
+      &:hover{
+        background: image-url('social/google-plus-red.png') no-repeat;
+        border: none;
+      }
+    }
+    &#twitter{
+      background: image-url('social/twitter-white.png') no-repeat;
+      border: none;
+      &:hover{
+        background: image-url('social/twitter-red.png') no-repeat;
+        border: none;
+      }
+    }
+    &#pinterest{
+      background: image-url('social/pinterest-white.png') no-repeat;
+      border: none;
+      &:hover{
+        background: image-url('social/pinterest-red.png') no-repeat;
+        border: none;
+      }
+    }
+    &#youtube{
+      background: image-url('social/youtube-white.png') no-repeat;
+      border: none;
+      &:hover{
+        background: image-url('social/youtube-red.png') no-repeat;
+        border: none;
+      }
+    }
+    &#instagram{
+      background: image-url('social/instagram-white.png') no-repeat;
+      border: none;
+      &:hover{
+        background: image-url('social/instagram-red.png') no-repeat;
+        border: none;
+      }
+    }
+  }
+  .footer_ending{
+    padding: 25px;
+    text-align: center;
+  }
+}
+
 .container{
   width:1170px;
   margin: 0px auto;

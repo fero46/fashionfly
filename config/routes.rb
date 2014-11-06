@@ -35,6 +35,9 @@ Fashionfly::Application.routes.draw do
     end
     get 'login',  to:'users#new', as: 'login'
     get "faq", to: 'static#faq', as: 'faq'
+    get 'about', to: 'static#about', as: 'about'
+    get 'team', to: 'static#team', as: 'team'
+    get 'disclaimer', to: 'static#disclaimer', as: 'disclaimer'
     get "terms", to: 'static#terms', as: 'terms'
     get "impress", to: 'static#impress', as: 'impress'
     get "privacy", to: 'static#privacy', as: 'privacy'

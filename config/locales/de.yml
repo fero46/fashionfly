@@ -22,6 +22,20 @@ de:
   link:
     home: Home
   shared:
+    footer:
+      what_is_fashionfly: Was ist FashionFly?
+      answer_1: "FashionFly ist eine Modeportal in dem Nutzer ihre Outfits teilen können. Erhalte Feedback für dein Outfit und hole Rat auf die Frage: 'Was soll ich heute Anziehen ?'"
+      answer_2: "Auf FashionFly holst du die dir die neusten Inspirationen für dein individuellen Outfit. Auf FashionFly erhälts du Inspirationen für Parties, Urlaub und Freizeit."
+      answer_3: "Sei ein Teil auf FashionFly in der Empfehlungscommunity und melde dich heute noch an und erstelle dein persöhnlich Outfit."
+      information: Informationen
+      about: Über <span class="red">❤</span> FashionFly
+      team: Das FashionFly Team
+      faq: Häufige Fragen
+      impress: Impressum
+      terms: AGB
+      privacy: Datenschutzerklärung
+      disclaimer: Haftungsausschuss
+      find_us: Finde uns auf
     header:
       outfit: Outfits
       sign_in_and_up: Anmelden/Registrieren
