@@ -14,4 +14,5 @@ module Clockwork
   # end
   sleep(1)
   every(1.minute, 'Import Check') {ImportPrepareWorker.prepare}
+  every(1.day, 'Trends Check'){TrendCheckWorker.check}
 end

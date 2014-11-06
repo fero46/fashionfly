@@ -18,4 +18,16 @@ class Product < ActiveRecord::Base
     self.published
   end
 
+  def copy_trend!
+    self.last_trend = self.actual_trend
+    save!
+  end
+
+  def add_previous_trend! new_value
+    new_value = 0 if new_value.blank?
+    if self.last_trend > 0 
+      self.actual_trend = new_value + (self.last_trend * 0.5).to_i
+      save!
+    end
+  end
 end
