@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106165439) do
+ActiveRecord::Schema.define(version: 20141106181737) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(version: 20141106165439) do
     t.datetime "updated_at"
     t.boolean  "importing",           default: false
     t.integer  "percent",             default: 0
+    t.string   "logo"
+    t.boolean  "free_shipping",       default: false
+    t.boolean  "pay_invoice",         default: false
+    t.boolean  "premium",             default: false
   end
 
   add_index "affiliates", ["importing"], name: "index_affiliates_on_importing", using: :btree
@@ -50,6 +54,15 @@ ActiveRecord::Schema.define(version: 20141106165439) do
   end
 
   add_index "authentication_providers", ["name"], name: "index_name_on_authentication_providers", using: :btree
+
+  create_table "average_caches", force: true do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "avg",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "brands", force: true do |t|
     t.string "name"
@@ -197,8 +210,15 @@ ActiveRecord::Schema.define(version: 20141106165439) do
   add_index "mappings", ["category_id"], name: "index_mappings_on_category_id", using: :btree
   add_index "mappings", ["name"], name: "index_mappings_on_name", using: :btree
 
+  create_table "overall_averages", force: true do |t|
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "overall_avg",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "products", force: true do |t|
-    t.string   "affi_shop"
     t.string   "affi_code"
     t.string   "name"
     t.string   "number"
@@ -221,15 +241,44 @@ ActiveRecord::Schema.define(version: 20141106165439) do
     t.integer  "actual_trend",                                  default: 0
     t.integer  "last_trend",                                    default: 0
     t.integer  "favorites_count",                               default: 0
+    t.integer  "affiliate_id"
+    t.boolean  "premium",                                       default: false
   end
 
   add_index "products", ["actual_trend"], name: "index_products_on_actual_trend", using: :btree
-  add_index "products", ["affi_shop", "affi_code"], name: "affi_name", using: :btree
+  add_index "products", ["affiliate_id", "affi_code", "scope_id"], name: "index_products_on_affiliate_id_and_affi_code_and_scope_id", unique: true, using: :btree
+  add_index "products", ["affiliate_id"], name: "index_products_on_affiliate_id", using: :btree
   add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
   add_index "products", ["colorization_id"], name: "index_products_on_colorization_id", using: :btree
   add_index "products", ["favorites_count"], name: "index_products_on_favorites_count", using: :btree
+  add_index "products", ["premium"], name: "index_products_on_premium", using: :btree
   add_index "products", ["published"], name: "index_products_on_published", using: :btree
   add_index "products", ["scope_id"], name: "index_products_on_scope_id", using: :btree
+
+  create_table "rates", force: true do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "stars",         null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
+  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id", using: :btree
+
+  create_table "rating_caches", force: true do |t|
+    t.integer  "cacheable_id"
+    t.string   "cacheable_type"
+    t.float    "avg",            null: false
+    t.integer  "qty",            null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
 
   create_table "scopes", force: true do |t|
     t.string   "country_code"

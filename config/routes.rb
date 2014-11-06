@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 Fashionfly::Application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   namespace :backend do
     mount Sidekiq::Web => '/sidekiq'
     root :to => 'dashboards#show'
@@ -22,6 +23,8 @@ Fashionfly::Application.routes.draw do
     resources :products do
       resources :favorites, only: [:create, :destroy]
     end
+    post 'product_partner', to:'products#refshop', as: :refshop
+
     resources :categories
     mount FashionFlyEditor::Engine => "/combine"
     namespace :api do
@@ -35,7 +38,6 @@ Fashionfly::Application.routes.draw do
     get "terms", to: 'static#terms', as: 'terms'
     get "impress", to: 'static#impress', as: 'impress'
     get "privacy", to: 'static#privacy', as: 'privacy'
-
     root 'welcome#index'
   end
 

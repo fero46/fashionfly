@@ -7,6 +7,7 @@ class ImporterWorker
       affiliate.start_import
       affiliate.ready = false
       affiliate.importing = false
+      affiliate.percent = 100
       affiliate.save
     end
   end

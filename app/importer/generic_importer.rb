@@ -43,16 +43,18 @@ class GenericImporter
 
         if find_mapping(product_category(values)).present?
           next if product_remote_image(values).blank?
-          product = Product.where(affi_shop: @affiliate.name, 
+          product = Product.where(affiliate_id: @affiliate.id, 
                                   affi_code: id,
                                   scope_id: @scope.id).first_or_create
+          product.premium = @affiliate.premium
+          product.save
           Categorization.where(product_id: product.id).destroy_all
           update_product_categories(product, values)
           next if product.lastModified==product_last_modified(values)
           product = update_product_attributes product, values
           update_product_images product, values
         else
-          product = Product.where(affi_shop: @affiliate.name, 
+          product = Product.where(affiliate_id: @affiliate.id, 
                         affi_code: id,
                         scope_id: @scope.id).first
           product.destroy if product.present?
@@ -86,6 +88,8 @@ protected
     difference_path = full_path_to_tmp+"#{product.id}_difference.png"
     halo_mask = full_path_to_tmp + "#{product.id}_halo.png"
     output_path = full_path_to_tmp+"#{product.id}_out.png"
+    with_border =  full_path_to_tmp+"#{product.id}_bordered.png"
+    trimmed_out = full_path_to_tmp+"#{product.id}_trimmed.png"
 
     File.open(image_path, "wb") do |saved_file|
       # the following "open" is provided by open-uri
@@ -112,11 +116,19 @@ protected
     result_command = "convert #{image_path} -bordercolor white -border 1  #{halo_mask} \
                       -alpha Off -compose CopyOpacity -composite  #{output_path}"
 
+    border_command = "convert #{output_path} -bordercolor none -border 3x3 #{with_border}"
+
+    trim_command = "convert #{with_border} -trim +repage #{trimmed_out}"
+
+
     system alpha_command
     system halo_command
     system result_command
+    system border_command
+    system trim_command
 
-    image = Magick::Image.read(output_path).first
+
+    image = Magick::Image.read(trimmed_out).first
     # reduce number of colors
     quantized = image.quantize(1, Magick::RGBColorspace)
  
@@ -127,7 +139,7 @@ protected
     brand = Colorization.where(name: average_color).first_or_create
     product.colorization_id = brand.id
 
-    product.image = File.open(output_path)
+    product.image = File.open(trimmed_out)
     product.save
     
     #cleanup
@@ -135,6 +147,8 @@ protected
     File.delete(difference_path) if File.exist?(difference_path)
     File.delete(halo_mask) if File.exist?(halo_mask)
     File.delete(output_path) if File.exist?(output_path)
+    File.delete(with_border) if File.exist?(with_border)
+    File.delete(trimmed_out) if File.exist?(trimmed_out)
 
   end
 

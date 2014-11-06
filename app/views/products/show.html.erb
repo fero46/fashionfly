@@ -1,13 +1,60 @@
-<%= render 'products/filter' %>
-<div class="product_show">
-  <%= breadcrumb_product_page @product %>
-  <h1><%= @product.name %></h1>
-  <div class="image_block">
-    <%= image_tag @product.original %>
+<div class="product_show" ng-controller="FavoriteController">
+  <div class="image_container">
+    <%= image_tag @product.original.detail_view %>
+    <a class="love_button <%= favorite(@product.id) %>" ng-click="clickFavorite(<%= @product.id %>)" 
+              id="fav<%= @product.id %>"
+              path="<%= product_favorites_path(assigned_locale, @product) %>"></a>
   </div>
-  <div class="info_box">
-    <%= link_to 'zum Shop', @product.deepLink %>
+  <div class="information_area">
+    <%= breadcrumb_product_page @product %>
+    <div class="top_info">
+      <h1><%= @product.name %></h1>
+      <div class="ratable">
+        <%= rating_for @product, "rate", :star => 5 %> 
+        <div class="rate_text">
+          <%= t '.rates', count: @product.rates("rate").count %> / <strong><%= t'.rate_now' %></strong>
+         </div>
+         <div class="clear"></div>
+      </div>
+    </div>
+    <div class="price_info">
+      <span class="red"><%=number_to_currency @product.price %></span>
+      <span><%= t('.at') %></span>
+      <%= image_tag @product.affiliate.logo, title: @product.affiliate.name, 'ng-click' => 'callForm()' %>
+
+      <%= form_tag refshop_path(assigned_locale), method: 'post', class: 'callForm' , target: "_blank" do %>
+        <%= hidden_field_tag 'product_id', @product.id %>
+        <%= button_tag t('.to_shop'), class: 'button' %>
+      <% end %>
+    </div>
+    <div class="specials">
+      <ul>
+        <li><%= raw t('.free_shipping') %></li>
+        <li><%= raw t('.pay_invoice') %></li>
+        <li><%= raw t('.garanti') %></li>
+      </ul>
+    </div>
+    <div class="description">
+      <%= simple_format raw @product.description %>
+      <br />
+      <a href="#" ng-click="callForm()"><%= t('.more') %></a>
+    </div>
+    <div class="description">
+      <strong><%= t('.brand') %> :</strong> <%= @product.try(:brand).try(:name) %><br />
+      <strong><%= t('.color') %> :</strong> <%= t '.' + @product.try(:colorization).try(:name).gsub('#','') %><br />
+    </div>
+    <div class="description">
+      <%= social_share_button_tag(@product.name, :popup => "true") %>
+    </div>
   </div>
   <div class="clear"></div>
 </div>
-<div class="clear"></div>
+
+
+<div class="similar">
+  <h2><%= t('.similar_products') %></h2>
+  <% for product in @product.similar_products %>
+    <%= render product %>
+  <% end %>
+  <div class="clear"></div>
+</div>

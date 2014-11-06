@@ -64,6 +64,7 @@ protected
 
   def affiliate_attributes
     params.require(:affiliate).permit(:name,
+                                      :logo,
                                       :file,
                                       :importer,
                                       :item_tag,
@@ -82,6 +83,9 @@ protected
                                       :last_modified_tag, 
                                       :link_tag, 
                                       :ready,
+                                      :pay_invoice,
+                                      :free_shipping,
+                                      :premium,
                                       :mappings_attributes => [:id ,:name, :category_id])
   end
 

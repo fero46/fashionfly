@@ -10,6 +10,16 @@ class ProductsController < ScopeController
   end
 
 
+  def refshop
+    @product = Product.where(params[:product_id]).first
+    if @product.blank? || @product.deepLink.blank?
+      redirect_to root_path(@scope)
+    else
+      redirect_to @product.deepLink
+    end
+  end
+
+
 protected
 
   def category_select category, group = false

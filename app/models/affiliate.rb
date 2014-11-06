@@ -1,15 +1,17 @@
 class Affiliate < ActiveRecord::Base
   belongs_to :scope
   has_many :mappings,  :dependent => :destroy
-
+  has_many :products
   def self.IMPORTERS
     [:GenericImporter, :AffilinetImporter]
   end
 
   mount_uploader :file, FileUploader
+  mount_uploader :logo, ShoplogoUploader
 
 
   validates :file, :presence  => true
+  validates :logo, :presence => true
   validates :name, :presence  => true
   validates :importer, :presence  => true
   validates :category_tag, :presence  => true

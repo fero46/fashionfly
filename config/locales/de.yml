@@ -1,4 +1,22 @@
 de:
+  social_share_button:
+    share_to: Auf %{name} teilen
+    weibo: Sina Weibo
+    twitter: Twitter
+    facebook: Facebook
+    douban: Douban
+    qq: Qzone
+    tqq: Tqq
+    delicious: Delicious
+    baidu: Baidu.com
+    kaixin001: Kaixin001.com
+    renren: Renren.com
+    google_plus: Google+
+    google_bookmark: Google Bookmark
+    tumblr: Tumblr
+    plurk: Plurk
+    pinterest: Pinterest
+    email: Email
   breadcrumb:
     you_are_here: Du bist Hier
   link:
@@ -14,6 +32,39 @@ de:
   products:
     filter:
       category_title: Kategorie
+    show:
+      more: Mehr Information
+      similar_products: Ähnliche Produkte
+      rates: 
+        zero: Keine Bewertung
+        one: Eine Bewertung
+        other: "%{count} Bertungen"
+      rate_now: Bewerte jetzt dieses Produkt
+      at: bei
+      to_shop: zum shop
+      free_shipping: Versand und Rückversand <span class="red">kostenlos</span>
+      pay_invoice: Kauf auf Rechnung <span class="red">möglich</span>
+      garanti: Sicher einkaufen mit der FashionFly <span class="red">Garantie</span>
+      brand: Marke
+      color: Farbe
+      77858f: grau/blau
+      000000: schwarz
+      019e13: grün
+      2c2bd1: blau
+      2ed0cd: turkis
+      7cfe6f: hell grün
+      b9531c: bordau
+      c5e1fd: hellblau
+      c61cd0: lila
+      d4d4d4: grau
+      e7db9c: hell gelb/orange
+      f4cb62: gelb/orange
+      ff0000: rot
+      ff59ae: rosa
+      ffc702: orange
+      ffdfef: hell rosa
+      ffff02: gelb
+      ffffff: weiß
   users:
     shared:
       links:

@@ -5,6 +5,12 @@
   </div>
 
   <div class="group">
+    <%= f.label :logo, t("activerecord.attributes.affilate.locale", :default => "Logo"), :class => :label %>
+    <%= f.file_field :logo, :class => 'file_field' %><br />
+    <span class="description">Logo</span>
+  </div>
+
+  <div class="group">
     <%= f.label :file, t("activerecord.attributes.affilate.locale", :default => "File"), :class => :label %>
     <%= f.file_field :file, :class => 'file_field' %><br />
     <span class="description">Affiliate XML</span>
@@ -110,6 +116,25 @@
     <%= f.label :ready, t("activerecord.attributes.affilate.ready", :default => "Ready to Import"), :class => :label %>
     <%= f.check_box :ready, :class => 'file_field' %><br />
     <span class="description">Auswählen wenn beim nächsten Durchlauf die Affiliates Importiert werden sollen.</span>
+  </div>
+
+
+  <div class="group">
+    <%= f.label :free_shipping, t("activerecord.attributes.affilate.ready", :default => "Free Shipping"), :class => :label %>
+    <%= f.check_box :free_shipping, :class => 'file_field' %><br />
+    <span class="description">Auswählen wenn der Shop kostenlos Shipping anbietet</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :pay_invoice, t("activerecord.attributes.affilate.ready", :default => "Invoice Pay"), :class => :label %>
+    <%= f.check_box :pay_invoice, :class => 'file_field' %><br />
+    <span class="description">Auswählen wenn der Shop Rechnungskauf anbietet.</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :premium, t("activerecord.attributes.affilate.ready", :default => "Premium"), :class => :label %>
+    <%= f.check_box :premium, :class => 'file_field' %><br />
+    <span class="description">Auswählen wenn der Shop nur Premiumprodukte anbietet.</span>
   </div>
 
 

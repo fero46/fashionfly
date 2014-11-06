@@ -1,13 +1,10 @@
 # encoding: utf-8
 
-class OriginalUploader < CarrierWave::Uploader::Base
+class ShoplogoUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
-  version :detail_view  do
-    process resize_to_fit: [550, 650]
-  end
-
+  process resize_to_fit: [200, 40]
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
@@ -26,5 +23,6 @@ protected
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
+
 
 end

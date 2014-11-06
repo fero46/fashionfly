@@ -79,16 +79,18 @@ class AffilinetImporter < GenericImporter
 
         if find_mapping(product_category(values)).present?
           next if product_remote_image(values).blank?
-          product = Product.where(affi_shop: @affiliate.name, 
+          product = Product.where(affiliate_id: @affiliate.id, 
                                   affi_code: id,
                                   scope_id: @scope.id).first_or_create
+          product.premium = @affiliate.premium
+          product.save
           Categorization.where(product_id: product.id).destroy_all
           update_product_categories(product, values)
           next if should_not_update(product, values)
           product = update_product_attributes product, values
           update_product_images product, values
         else
-          product = Product.where(affi_shop: @affiliate.name, 
+          product = Product.where(affiliate_id: @affiliate.id, 
                                   affi_code: id,
                                   scope_id: @scope.id).first
           product.destroy if product.present?

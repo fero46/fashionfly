@@ -33,6 +33,8 @@ gem 'countries'
 gem 'country_select'
 gem 'i18n-country-translations'
 gem "query_reviewer"
+gem 'ratyrate'
+gem 'social-share-button'
 group :doc do
   gem 'sdoc', require: false
 end

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  ratyrate_rater
 
   def self.create_from_omniauth(params)
     attributes = {

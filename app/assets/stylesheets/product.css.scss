@@ -21,21 +21,6 @@
       margin:0px auto;
       margin-bottom: 5px;
     }
-    .love_button{
-      position: absolute;
-      top:10px;
-      right:10px;
-      height:20px;
-      width: 20px;
-      background: image-url("likeoff.png") no-repeat center center;
-      cursor: pointer;
-      &:hover{
-        background: image-url("likeon.png") no-repeat center center;        
-      }
-      &.likeon{
-        background: image-url("likeon.png") no-repeat center center;
-      }
-    }
   }
   
   h3{
@@ -48,5 +33,123 @@
   }
   h4{
     color: $red;
+  }
+}
+
+.product_show{
+  .image_container{
+    width: 550px;
+    text-align: center;
+    float:left;
+    position: relative;
+    background: white;
+  }
+  .information_area{
+    margin-left: 50px;
+    text-align: left;
+    float: left;
+    width: 570px;
+    .breadcrumb{
+      color: $grey;
+      text-transform: uppercase;
+      border-bottom: 1px solid $border_color;
+      padding-bottom: 25px;
+      font-size: 16px;
+      font-weight: 300;
+      a{
+        color: $grey;
+        text-decoration: none;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+    .top_info{
+      padding-bottom: 30px;
+      border-bottom: 1px solid $border_color;
+      h1{
+        text-align: left;
+        font-size: 34px;
+        text-transform: uppercase;
+        margin: 25px 0px 15px 0px
+      }
+      .ratable{
+        .star{
+          float:left;
+          margin-right:  15px;
+        }
+        color: $grey;
+        font-weight: 300;
+        strong{
+          font-weight: 400;
+        }
+      }
+      .rate_text{
+        float:left;
+      }
+    }
+    .price_info{
+      position: relative;
+      font-size: 24px;
+      padding: 10px 0px;
+      border-bottom: 1px solid $border_color;
+      height: 47px;
+      span.red{
+        color: $red;
+        font-weight: 600;
+      }
+      span, img{
+        vertical-align: middle;
+        display: inline-block;
+      }
+      span{
+        position: relative;
+        top: 5px;
+        margin-right: 10px;
+      }
+      img{
+        cursor: pointer;
+      }
+      .button{
+        position: absolute;
+        right: 45px;
+        top: 10px;
+        font-size: 24px;
+        font-family: 'Source Sans Pro', sans-serif;
+        cursor: pointer;
+      }
+    }
+    .specials, .description{
+      padding: 25px 0px;
+      border-bottom: 1px solid $border_color;
+      ul{
+        padding-left:20px;
+        text-indent:2px;
+        list-style: none;
+        list-style-position:outside;
+        li:before{
+          content: '✓';  
+          font-weight: 200;
+          margin-left: -10px; 
+          margin-right: 15px;
+        }
+        li{
+          font-weight: 600;
+        }
+      }
+      a{
+        color: red;
+      }
+    }
+  }
+}
+
+.similar{
+  padding: 45px 0px;
+  h2{
+      border-bottom: 1px solid $border_color;
+      padding-bottom: 25px;
+      font-size: 36px;
+      margin-bottom: 15px;
   }
 }
