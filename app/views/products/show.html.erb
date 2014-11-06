@@ -51,7 +51,7 @@
 </div>
 
 
-<div class="similar">
+<div class="similar" ng-controller="FavoriteController">
   <h2><%= t('.similar_products') %></h2>
   <% for product in @product.similar_products %>
     <%= render product %>
