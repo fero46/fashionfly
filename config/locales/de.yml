@@ -50,6 +50,7 @@ de:
     filter:
       category_title: Kategorie
       color_title: Farbe
+      price: Preis
     show:
       unknown: Unbekannt
       more: Mehr Information

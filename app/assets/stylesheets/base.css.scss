@@ -261,6 +261,11 @@ header{
   width: 274px;
   margin-right: 50px;
   float: left;
+  select{
+    border: 1px solid $border_color;
+    width: 100%;
+    font-size: 16px;
+  }
   .block_box{
     background: white;
     margin-bottom: 20px;
@@ -305,7 +310,7 @@ header{
       width: 32px;
       cursor:ponter;
       border: 1px solid $border_color;
-      &:hover{
+      &:hover, &.active{
         border: 1px solid $red;
       }
     }

@@ -19,13 +19,22 @@
   </div>
 
   <div class="block_box color_filter">
+    <h2><%= t('.price') %></h2>
+    <div class="inner">
+      <select id="price"  ng-change="changeSelect(selectedItem)" ng-model="selectedItem" ng-options="item for item in items"></select>
+    </div>
+  </div>
+
+  <div class="block_box color_filter">
     <h2><%= t('.color_title') %></h2>
     <div class="inner">
       <% for hex in Colorization.colorhex %>
         <%= link_to '', '#',  style: "background: #{hex}", 
-                                     'ng-click' => "colorSelect('#{hex.gsub('#','')}')" %>
+                                     'ng-click' => "colorSelect('#{hex.gsub('#','')}')",
+                                     id: hex.gsub('#','')%>
       <% end %>
     </div>
   </div>
+
 
 </div>
