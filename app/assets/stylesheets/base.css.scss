@@ -466,3 +466,48 @@ span.red{
     margin-right: 25px
   }
 }
+
+.pagination{
+  height: 35px;
+  padding-bottom: 35px;
+  span{
+    background: $red;
+    color: white;
+    position: relative;;
+    display: inline-block;
+    padding: 0px;
+    margin: 0;
+    margin-right: -3px;
+    font-size: 18px;
+    font-weight: 400;
+    a{
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      &:hover{
+        color: $black;
+      }
+    }
+  }
+  .page{
+    padding: 0;
+    background: white;
+    color: black;
+    &.current{
+      padding: 10px;
+      color: $red;
+    }
+    &.gap{
+      padding: 10px;
+    }
+    a{
+      background: white;
+      color: black;
+      padding: 10px;
+      &:hover{
+        color: $red;
+      }
+    }
+  }
+}
