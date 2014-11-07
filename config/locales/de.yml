@@ -47,6 +47,10 @@ de:
       title: Wähle dein Land aus.
       description: Wir sind in sehr vielen Ländern vertretten und wir erweitern immer unser Angebot
   products:
+    products:
+      sort_by: Sortieren nach
+      sorting_values: "neuestem Produkt#ältestem Produkt#neuestem Trend#meisten Likes"
+      select_per: Zeige
     filter:
       category_title: Kategorie
       color_title: Farbe

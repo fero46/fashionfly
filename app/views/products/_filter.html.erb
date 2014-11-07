@@ -21,7 +21,7 @@
   <div class="block_box color_filter">
     <h2><%= t('.price') %></h2>
     <div class="inner">
-      <select id="price"  ng-change="changeSelect(selectedItem)" ng-model="selectedItem" ng-options="item for item in items"></select>
+      <select id="price"  ng-change="changeSelect('price', selectedItem)" ng-model="selectedItem" ng-options="item for item in items"></select>
     </div>
   </div>
 

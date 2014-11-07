@@ -1,4 +1,11 @@
 <%= render 'products/filter' %>
+<div class="white_box pagination_options" ng-controller="FilterController">
+  <%= t('.sort_by') %> 
+  <select id="sort_by"  ng-change="changeSelect('sort_by',selectSort)" ng-model="selectSort" ng-options="sort for sort in sortings" values='<%= t('.sorting_values') %>'></select>
+  <%= t('.select_per') %> 
+  <select id="per"  ng-change="changeSelect('per',selectPer)" ng-model="selectPer" ng-options="per for per in pers" ></select>
+
+</div>
 <div class="products" ng-controller="FavoriteController">
   <%= render @products %>
   <div class="clear"></div>  

@@ -4,17 +4,15 @@ App.controller 'FilterController', ['$scope',($scope) ->
     params = $.deparam.querystring()
     color = params.color
     $('#'+color).addClass('active')
-    $(document).ready(->
-      counter = 0
-      result = 0
-      for item in $scope.items
-        if item == params.price
-          result = counter
-        counter+=1
-      $('#price').val(result)
+    $(document).ready( ->
+      $('#price').val(window.index_of($scope.items, params.price)) if !!params.price
+      if !!params.sort_by
+        $('#sort_by').val(params.sort_by)
+      else
+        $('#sort_by').val(0)
+      $('#per').val(window.index_of($scope.pers, params.per))
     )
 
-    
   rebuild_query = (newparam={}) ->
     params = $.deparam.querystring()
     params = $.extend(params, newparam);
@@ -24,13 +22,21 @@ App.controller 'FilterController', ['$scope',($scope) ->
       new_location = new_location+"?"+str
     window.location.replace(new_location)
 
-  $scope.items = ['0-50' ,'50-100', '100-250', '250-500', '>500'];
-
+  $scope.items = ['0-50' ,'50-100', '100-250', '250-500', '>500']
+  $scope.sortings = $('#sort_by').attr('values').split('#')
+  $scope.pers = ['12', '24', '36', '48', '60']
   $scope.colorSelect = (colorSelect) ->
     rebuild_query({color: colorSelect})
 
-  $scope.changeSelect = (selectedItem) ->
-    rebuild_query({price: selectedItem})
+  $scope.changeSelect = (key, selectedItem) ->
+    store={}
+    if key == 'price' || key == 'per'
+      store[key] = selectedItem
+    else
+      value = window.index_of($scope.sortings, selectedItem)
+      store[key] = value
+    rebuild_query(store)
 
+  window.rebuild=init()
   init()
 ]

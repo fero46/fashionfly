@@ -1,7 +1,9 @@
 class CategoriesController < ScopeController
 
+  before_action :set_per_param
+
+
   def index
-    params[:per] = 9 if params[:per].blank?
     @products = ProductSearchService.new(@scope, params).products
     @categories = @category_group
   end
@@ -29,6 +31,10 @@ protected
       result = category_select(category.category,group)
       return result ? result : category
     end
+  end
+
+  def set_per_param
+    params[:per] = 12 if params[:per].blank?
   end
 
 end

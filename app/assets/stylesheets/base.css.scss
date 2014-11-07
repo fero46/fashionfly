@@ -445,3 +445,24 @@ span.red{
   }
   padding-bottom: 35px;
 }
+
+ select{
+    border: 1px solid $border_color;
+    font-size: 16px;
+    height: 24px;
+}
+
+.white_box{
+  background: white;
+  padding: 25px 15px;
+}
+
+.pagination_options{
+  margin-left: 324px;
+  margin-bottom: 30px;
+  select{
+    height: 36px;
+    margin-left: 5px;
+    margin-right: 25px
+  }
+}
