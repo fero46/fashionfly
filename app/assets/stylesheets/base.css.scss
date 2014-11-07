@@ -410,3 +410,15 @@ header{
 span.red{
   color: $red;
 }
+
+
+.trendbox{
+  text-align: left;
+  h2{
+    font-size: 24px;
+    font-weight: 300;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $border_color;
+  }
+  padding-bottom: 35px;
+}

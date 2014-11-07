@@ -1,2 +1,15 @@
-<h1>Jeden Tag neues entdecken</h1>
-<h2 class="subline">Die neuesten Outfit kombiniert aus über 100 Shops</p>
+<div class="container">
+
+  <div class="trendbox">
+    <h2>Die neusten Outfit-Trends</h2>
+
+  </div>
+
+<div class="trendbox" ng-controller="FavoriteController">
+    <h2><%= t('.trends_products') %></h2>
+    <%= render Product.trends.limit(8) %>
+    <div class="clear"></div>
+  </div>
+
+
+</div>
