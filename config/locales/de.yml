@@ -21,6 +21,9 @@ de:
     you_are_here: Du bist Hier
   link:
     home: Home
+  static:
+    about:
+      title: Über FashionFly
   shared:
     footer:
       what_is_fashionfly: Was ist FashionFly?
@@ -47,12 +50,18 @@ de:
     filter:
       category_title: Kategorie
     show:
+      unknown: Unbekannt
       more: Mehr Information
       similar_products: Ähnliche Produkte
       rates: 
         zero: Keine Bewertung
         one: Eine Bewertung
         other: "%{count} Bertungen"
+      like_count: Anzahl der Likes
+      likes:
+        zero: Keine Likes
+        one: ein Like
+        other: "%{count} Likes"
       rate_now: Bewerte jetzt dieses Produkt
       at: bei
       to_shop: zum shop
@@ -67,7 +76,7 @@ de:
       2c2bd1: blau
       2ed0cd: turkis
       7cfe6f: hell grün
-      b9531c: bordau
+      b9531c: braun
       c5e1fd: hellblau
       c61cd0: lila
       d4d4d4: grau
