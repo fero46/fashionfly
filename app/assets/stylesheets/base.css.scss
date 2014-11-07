@@ -170,6 +170,23 @@ header{
           }
         }
       }
+      .bottom{
+        position: absolute;
+        right: -7px;
+        top: 25px;
+        width: 565px;
+        .header_navigation{
+          border-bottom: none;
+          li{
+            a{
+              &:hover{
+                background: none;
+                color: $red;
+              }
+            }
+          }
+        }
+      }
     }
   }
   .header_navigation{
