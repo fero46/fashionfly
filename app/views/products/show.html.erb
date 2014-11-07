@@ -40,11 +40,14 @@
       <a href="#" ng-click="callForm()"><%= t('.more') %></a>
     </div>
     <div class="description">
-      <strong><%= t('.brand') %> :</strong> <%= @product.try(:brand).try(:name) %><br />
-      <strong><%= t('.color') %> :</strong> <%= t '.' + @product.try(:colorization).try(:name).gsub('#','') %><br />
+      <strong><%= t('.brand') %> :</strong> <%= product_brand(@product) %><br />
+      <strong><%= t('.color') %> :</strong> <%= product_color(@product) %><br />
     </div>
     <div class="description">
       <%= social_share_button_tag(@product.name, :popup => "true") %>
+      <br />
+      <strong><%= t('.like_count') %> :</strong>
+      <%= t('.likes', count:@product.favorites.count) %>
     </div>
   </div>
   <div class="clear"></div>

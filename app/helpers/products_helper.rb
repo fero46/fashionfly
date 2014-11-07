@@ -52,4 +52,30 @@ module ProductsHelper
   def favorite_cache
     @favorite_cache ||= {}
   end
+
+  def product_color product
+    if product.blank? || product.colorization.blank? 
+      t 'products.show.unknown'
+    else
+      t 'products.show.' + product.colorization.try(:name).gsub('#','')
+    end
+  end
+
+  def product_color_hex product
+    if product.blank? || product.colorization.blank? 
+      'none'
+    else
+       product.colorization.try(:name)
+    end
+  end
+
+  def product_brand product
+    if product.blank? || product.brand.blank?
+      t 'products.show.unknown'
+    else
+      product.try(:brand).try(:name)
+    end    
+  end
+
+
 end

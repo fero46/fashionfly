@@ -127,18 +127,6 @@ protected
     system border_command
     system trim_command
 
-
-    image = Magick::Image.read(trimmed_out).first
-    # reduce number of colors
-    quantized = image.quantize(1, Magick::RGBColorspace)
- 
-    # Create an image that has 1 pixel for each of the TOP_N colors.
-    normal = sort_by_decreasing_frequency(quantized)
-    rgb_color = get_pix(normal)
-    average_color = colorname(rgb_color)
-    brand = Colorization.where(name: average_color).first_or_create
-    product.colorization_id = brand.id
-
     product.image = File.open(trimmed_out)
     product.save
     
@@ -149,6 +137,9 @@ protected
     File.delete(output_path) if File.exist?(output_path)
     File.delete(with_border) if File.exist?(with_border)
     File.delete(trimmed_out) if File.exist?(trimmed_out)
+
+    #colormatch
+    product.match_color
 
   end
 
@@ -271,72 +262,6 @@ protected
     source = XML::Parser.string(xml)
     @document = source.parse
   end
-
-  def average_color(image)
-    total = 0
-    avg = { :r => 0.0, :g => 0.0, :b => 0.0 }
-
-    image.quantize.color_histogram.each do |c,n|
-      avg[:r] += n * c.red
-      avg[:g] += n * c.green
-      avg[:b] += n * c.blue
-      total += n
-    end
-
-    avg.each_key do |c| 
-      avg[c] /= total
-      avg[c] = (avg[c] /  Magick::QuantumRange * 255).to_i
-    end
-
-    return [avg[:r],avg[:g],avg[:b]]
-  end
-
-  def colorname mycolor
-    _colors = ["e7db9c", "ffff02", "7cfe6f", "ffdfef", 
-               "ffdfef", "2ed0cd", "b9531c", "f4cb62", 
-               "c61cd0", "ff0000", "ffffff", "2c2bd1", 
-               "d4d4d4", "ffc702", "000000", "019e13", 
-               "c5e1fd", "ff59ae", "77858f"]
-
-    colors = []
-
-    for _color in _colors
-      colors << Color::RGB.from_html("#"+_color)
-    end
-
-    matcher = Color::RGB.from_html("#"+mycolor)
-
-    matcher.closest_match(colors).html
-  end
-
-
-  def sort_by_decreasing_frequency(img)
-    hist = img.color_histogram
-    # sort by decreasing frequency
-    sorted = hist.keys.sort_by {|p| -hist[p]}
-    new_img = Magick::Image.new(hist.size, 1)
-    new_img.store_pixels(0, 0, hist.size, 1, sorted)
-  end
-   
-  def get_pix(img)
-    pixels = img.get_pixels(0, 0, img.columns, 1)
-    result = ""
-    pixels.each do |p|
-      result = p.to_color(Magick::AllCompliance, false, 8, true)
-    end
-    result
-  end
-
-
-  def convert_to_decimal_rgb hex
-    components =  hex.scan(/.{2}/)
-    rgb = [0,0,0]
-    rgb[0] = components[0].to_i
-    rgb[1] = components[0].to_i
-    rgb[2] = components[0].to_i
-    rgb
-  end
-
 
   def clean_name name
     name.gsub('ö', 'oe').gsub('ü', 'ue').gsub('ä', 'ae').gsub('ß','ss').gsub('%', '').gsub(' ','_')
