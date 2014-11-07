@@ -57,7 +57,7 @@ module ProductsHelper
     if product.blank? || product.colorization.blank? 
       t 'products.show.unknown'
     else
-      t 'products.show.' + product.colorization.try(:name).gsub('#','')
+      t 'products.show.' + product.colorization.try(:name).gsub('#','_')
     end
   end
 

@@ -1,4 +1,4 @@
-<div class="filter">
+<div class="filter" ng-controller="FilterController">
   <div class="block_box category_select">
     <h2><%= t('.category_title') %></h2>
     <ul>
@@ -17,4 +17,15 @@
       <% end %>
     </ul>
   </div>
+
+  <div class="block_box color_filter">
+    <h2><%= t('.color_title') %></h2>
+    <div class="inner">
+      <% for hex in Colorization.colorhex %>
+        <%= link_to '', '#',  style: "background: #{hex}", 
+                                     'ng-click' => "colorSelect('#{hex.gsub('#','')}')" %>
+      <% end %>
+    </div>
+  </div>
+
 </div>

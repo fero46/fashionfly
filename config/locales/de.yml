@@ -49,6 +49,7 @@ de:
   products:
     filter:
       category_title: Kategorie
+      color_title: Farbe
     show:
       unknown: Unbekannt
       more: Mehr Information
@@ -70,24 +71,24 @@ de:
       garanti: Sicher einkaufen mit der FashionFly <span class="red">Garantie</span>
       brand: Marke
       color: Farbe
-      77858f: grau/blau
-      000000: schwarz
-      019e13: grün
-      2c2bd1: blau
-      2ed0cd: turkis
-      7cfe6f: hell grün
-      b9531c: braun
-      c5e1fd: hellblau
-      c61cd0: lila
-      d4d4d4: grau
-      e7db9c: hell gelb/orange
-      f4cb62: gelb/orange
-      ff0000: rot
-      ff59ae: rosa
-      ffc702: orange
-      ffdfef: hell rosa
-      ffff02: gelb
-      ffffff: weiß
+      _77858f: grau/blau
+      _000000: schwarz
+      _019e13: grün
+      _2c2bd1: blau
+      _2ed0cd: turkis
+      _7cfe6f: hell grün
+      _b9531c: braun
+      _c5e1fd: hellblau
+      _c61cd0: lila
+      _d4d4d4: grau
+      _e7db9c: hell gelb/orange
+      _f4cb62: gelb/orange
+      _ff0000: rot
+      _ff59ae: rosa
+      _ffc702: orange
+      _ffdfef: hell rosa
+      _ffff02: gelb
+      _ffffff: weiß
   users:
     shared:
       links:

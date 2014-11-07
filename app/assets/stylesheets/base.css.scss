@@ -298,6 +298,21 @@ header{
       }
     }
   }
+  .color_filter{
+    a{
+      display: inline-block;
+      height: 32px;
+      width: 32px;
+      cursor:ponter;
+      border: 1px solid $border_color;
+      &:hover{
+        border: 1px solid $red;
+      }
+    }
+    .inner{
+      padding: 9px;
+    }
+  }
 }
 
 .socialbuttons{

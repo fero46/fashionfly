@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.raty
+//= require jquerybbq_min
 //= require ratyrate
 //= require social-share-button
 //= require angular
