@@ -19,9 +19,11 @@ class Category < ActiveRecord::Base
       default = create_slug(self)
       myslug = default
       counter = 0
-      while Category.where(slug: myslug).first.present?
+      other_category = Category.where(slug: myslug).first 
+      while other_category.present? && other_category.id != self.id
         counter+=1
         myslug = "#{default}_#{counter}"
+        other_category = Category.where(slug: myslug).first 
       end
       self.slug=myslug
     end
