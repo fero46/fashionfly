@@ -12,7 +12,9 @@
             </li>
 
           <% else %>
-            <li><%= link_to t('.sign_in_and_up'), login_path %></li>
+            <li><%= link_to t('.sign_in'), new_user_session_path(locale:assigned_locale) %></li>
+            <li><%= link_to t('.sign_up'), new_user_registration_path(locale:assigned_locale) %></li>
+
           <% end %>
              <li><%= link_to t('.faq'), faq_path(assigned_locale) %></li>
             <li><%= link_to generate_name_and_flag(@scope.country_code),'#', 

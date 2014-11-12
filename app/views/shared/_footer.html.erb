@@ -9,13 +9,13 @@
     <div class="second_column">
       <h2><%= t('.information') %></h2>
       <ul>
-        <li><%= link_to raw(t('.about')), about_path %></li>
-        <li><%= link_to raw(t('.team')), team_path %></li>
-        <li><%= link_to raw(t('.faq')), faq_path %></li>
-        <li><%= link_to raw(t('.impress')), impress_path %></li>
-        <li><%= link_to raw(t('.terms')), terms_path %></li>
-        <li><%= link_to raw(t('.privacy')), privacy_path %></li>
-        <li><%= link_to raw(t('.disclaimer')), disclaimer_path %></li>
+        <li><%= link_to raw(t('.about')), about_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.team')), team_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.faq')), faq_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.impress')), impress_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.terms')), terms_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.privacy')), privacy_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.disclaimer')), disclaimer_path(assigned_locale) %></li>
 
       </ul>
     </div>

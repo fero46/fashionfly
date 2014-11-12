@@ -3,8 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :find_scope
+
   before_action :cookie_store
-  before_action :set_locale_cookie
   before_action :check_favorite
 
   helper_method :get_right_scope, :locale_cookie, :assigned_locale, :cookie_store
@@ -54,8 +55,8 @@ protected
     cookies[:locale_cookie]
   end
 
-  def set_locale_cookie
-    cookies[:locale_cookie] = params[:locale] if params[:locale].present?
+  def set_locale_cookie locale=params[:locale]
+    cookies[:locale_cookie] = locale if locale.present?
   end
 
   def after_sign_out_path_for(resource_or_scope)
@@ -68,10 +69,17 @@ protected
 
   def assigned_locale
     return @locale if @locale.present?
-    @locale = params[:locale]
+    @locale = params[:locale] 
     @locale = locale_cookie if @locale.blank?
-    @locale = get_right_scope.locale
+    @locale = get_right_scope.locale if @locale.blank?
+    set_locale_cookie @locale
+    return @locale
   end
 
+
+  def find_scope
+    @scope = Scope.where(locale: assigned_locale).first
+    I18n.locale = @scope.locale if @scope.present?
+  end
 
 end

@@ -1,9 +1,9 @@
 <div class="socialbuttons">
-  <h2><%= t('.title') %></h2>
-  <p><%= t('.description') %></p>
 <%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to t('.sign_in_with', provider: "#{provider.to_s.titleize}"),omniauth_authorize_path(resource_name, provider), class: "socialbutton #{provider.to_s}" %>
+
+  <%- AuthenticationProvider.order(:position).each do |provider| %>
+    <%= link_to t('.sign_in_with', provider: "#{provider.name.to_s.titleize}"),omniauth_authorize_path(resource_name, provider.name), class: "socialbutton #{provider.name.to_s}" %>
   <% end -%>
 <% end -%>
+<div class="clear"></div>
 </div>

@@ -8,6 +8,14 @@ class User < ActiveRecord::Base
 
   ratyrate_rater
 
+  attr_accessor :email_confirmation
+
+  validate :email_has_to_be_validated, on: :create
+
+  def email_has_to_be_validated
+    errors.add(:email_confirmation, I18n.t("user.identical")) unless email_confirmation == email
+  end
+
   def self.create_from_omniauth(params)
     attributes = {
       email: params['info']['email'],

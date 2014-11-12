@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107161318) do
+ActiveRecord::Schema.define(version: 20141111180316) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -49,11 +49,13 @@ ActiveRecord::Schema.define(version: 20141107161318) do
 
   create_table "authentication_providers", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "position",   default: 0
   end
 
   add_index "authentication_providers", ["name"], name: "index_name_on_authentication_providers", using: :btree
+  add_index "authentication_providers", ["position"], name: "index_authentication_providers_on_position", using: :btree
 
   create_table "average_caches", force: true do |t|
     t.integer  "rater_id"

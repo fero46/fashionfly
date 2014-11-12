@@ -124,6 +124,7 @@ body{
   position: relative;
   &.main{
     padding-top: 30px;
+    padding-bottom: 30px;
   }
 }
 
@@ -526,5 +527,158 @@ span.red{
         color: $red;
       }
     }
+  }
+}
+
+.formular{
+  input[type='text'], input[type='password'], input[type='email'], textarea{
+    width: 100%;
+    display: block;
+    padding: 8px 5px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    border: 1px solid $border_color;
+    &.error{
+      border: 1px solid $red;
+    }
+  }
+  .button{
+    display: block;
+    width: 100%;
+    padding: 15px 5px;
+    margin: 25px 0px;
+    font-size: 16px;
+  }
+  #error_explanation{
+    background: $red;
+    margin: 5px 0px;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+    h2{
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: 15px;
+    }
+    ul{
+      list-style: none;
+      font-weight: 300;
+    }
+  }
+}
+
+.devise{
+  margin-bottom: 55px;
+  position: relative;
+  h1{
+    font-weight: normal;
+    color: $grey;
+    text-align: left;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  a{
+    color: $red;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+  .top_left{
+      position: absolute;
+      top:15px;
+      right: 35px;
+      font-size: 14px;
+      a{
+        color: $red;
+      }
+      span{
+        margin-right: 5px; 
+      }
+    }
+
+  .left{
+    float:left;
+    width: 350px;
+    padding-right: 55px;
+  }
+
+
+  .right{
+    margin-left: 405px;
+    position: relative;
+    padding-left: 25px;
+    .seperator{
+      position: absolute;
+      top:0px;
+      bottom:0px;
+      left: 3px;
+      border-left: 1px solid $border_color;
+      span{
+        position: absolute;
+        display: block;
+        background: white;
+        left: -16px;
+        top: 88px;
+        padding: 5px;
+        font-size: 12px;
+        text-transform: lowercase;
+      }
+    }
+    .socialbuttons{
+      padding-top: 49px;
+    }
+    .socialbutton{      
+      height: 36px;
+      float:left;
+      display: block;
+      padding: 0px;
+      padding-left: 85px;
+      padding-right: 15px;
+      padding-top: 15px;
+      font-size: 18px;
+      color: white;
+      text-align: right;
+      min-width: initial;
+      width: 200px;
+      margin-left: 35px;
+      margin-bottom: 15px;
+      &:hover{
+        text-decoration: none;
+    box-shadow: 1px 1px 5px #888888;
+
+      }
+      &.facebook{
+        background: #2a80b9 image-url('social/button_facebook.jpg') no-repeat;
+      }
+      &.twitter{
+        background: #3598db image-url('social/button_twitter.jpg') no-repeat;
+      }
+      &.tumblr{
+        background: #2c4762 image-url('social/button_tumblr.png') no-repeat;
+      }
+      &.pinterest{
+        background: #cb2028 image-url('social/button_pinterest.jpg') no-repeat;
+      }
+      &.google{
+        background: #e84c3d image-url('social/button_google.jpg') no-repeat;
+      }      
+    }
+  }
+}
+
+.flash{
+  margin-bottom: 25px;
+  text-align: center;
+  padding: 8px;
+  display: block;
+  &.alert{
+    background: $red;
+    color: white;
+  }
+  &.notice{
+    background: $green;
+    color: white;
   }
 }

@@ -1,15 +1,19 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to t('.sign_in'), new_session_path(resource_name) %>
+  <div class="top_left">
+    <span><%= t('.signin_text') %></span><%= link_to t('.sign_in'), new_session_path(resource_name, locale: assigned_locale) %>
+  </div>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to t('.sign_up'), new_registration_path(resource_name) %><br />
+  <div class="top_left">
+    <span><%= t('.signup_text') %></span><%= link_to t('.sign_up'), new_registration_path(resource_name, locale: assigned_locale) %>
+  </div>
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to t('.forgot_password'), new_password_path(resource_name) %><br />
+  <%= link_to t('.forgot_password'), new_password_path(resource_name, locale: assigned_locale) %><br />
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to t('.no_confirmation'), new_confirmation_path(resource_name) %><br />
+  <%= link_to t('.no_confirmation'), new_confirmation_path(resource_name, locale: assigned_locale) %><br />
 <% end -%>

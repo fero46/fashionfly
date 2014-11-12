@@ -10,6 +10,9 @@
 <%= render 'shared/header' %>
 <section class="content">
   <div class="container main">
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: "flash #{name}" %>
+    <% end -%>
     <%= yield %>
   </div>
 </section>

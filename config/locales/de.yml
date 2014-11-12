@@ -1,4 +1,17 @@
 de:
+  user:
+    identical: muss bestätigt werden
+  activerecord:
+    models:
+      user: Benutzer
+    attributes:
+      user:
+        remember_me: Angemeldet bleiben.
+        email: E-mail
+        email_confirmation: E-Mail Bestätigung
+        password: Passwort
+        password_confirmation: Passwort Bestätigung
+        current_password: Altes Passwort
   views:
     pagination:
       first: "&laquo;"
@@ -61,7 +74,8 @@ de:
       fashionblog: Fashionblog
       my_fashionfly: Mein FashionFly
       outfit: Outfits
-      sign_in_and_up: Anmelden/Registrieren
+      sign_in: Anmelden
+      sign_up: Registrieren
       sign_out: Abmelden
     select_popup:
       title: Wähle dein Land aus.
@@ -115,13 +129,30 @@ de:
       _ffff02: gelb
       _ffffff: weiß
   users:
+    registrations:
+      new:
+        title: Kostenlos Registrieren
+        placeholder_email: Deine E-Mail Adresse
+        placeholder_email_confirmation: E-Mail Adresse wiederholen
+        placeholder_password: Dein Passwort
+        placeholder_password_confirmation: Bestätige dein Passwort
+        sign_up: Kostenlos Registrieren
+    sessions:
+      new:
+        title: Melde dich an
+        placeholder_email: Deine E-Mail Adresse
+        placeholder_password: Dein Passwort
+        or: Oder
+        login: Anmelden
     shared:
       links:
-        sign_in: Anmelden
-        sign_up: Registrieren
+        sign_in: Jetzt Anmelden!
+        sign_up: Jetzt Registrieren!
         sign_in_with: Mit %{provider} anmelden
         forgot_password: Passwort vergessen?
         no_confirmation: Keine Bestätigungsmail erhalten ?
+        signup_text: Du bist noch nicht auf FashionFly angemeldet?
+        signin_text: Du bist schon auf FashionFly registriert ?
       oauth:
         title: Oder ganz einfach und unkompliziert anmelden.
         description: Melde dich ganz einfach mit einem bestehendem Benutzerzugang an. 
