@@ -11,7 +11,7 @@ class ProductSearchService
 
 
   def products
-    @products = Product.where(scope_id: @scope.id)
+    @products = Product.where(scope_id: @scope.id, published: true)
     if params[:category]
       @products = @products.joins(:categorizations).where("categorizations.category_id" => params[:category])
     end
@@ -33,7 +33,7 @@ class ProductSearchService
     end
     type = params[:sort_by].present? ? params[:sort_by] : 0
     @products = order_product(@products, type.to_i)
-    @products.page(params[:page]).per(params[:per].present? ? params[:per] : 10)
+    @products.page(params[:page]).per(params[:per].present? ? params[:per] : 9)
   end
 
 

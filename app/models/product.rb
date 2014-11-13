@@ -19,7 +19,7 @@ class Product < ActiveRecord::Base
 
 
   def self.trends
-    order('actual_trend DESC')
+    where(published: true).order('actual_trend DESC')
   end
 
   def self.recolor

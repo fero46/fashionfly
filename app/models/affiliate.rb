@@ -22,6 +22,8 @@ class Affiliate < ActiveRecord::Base
 
   def start_import
     importer.constantize.new(self).import
+    products.where('image = ?', nil).destroy_all
+    products.where(published: false).update_all( "published = 1" )
   end
 
   def categories
