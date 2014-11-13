@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111180316) do
+ActiveRecord::Schema.define(version: 20141112124810) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -160,6 +160,18 @@ ActiveRecord::Schema.define(version: 20141111180316) do
   add_index "contests", ["scope_id"], name: "index_contests_on_scope_id", using: :btree
   add_index "contests", ["slug"], name: "index_contests_on_slug", using: :btree
 
+  create_table "fashion_fly_editor_categories", force: true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.integer  "parent_id"
+    t.string   "parent_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fashion_fly_editor_categories", ["parent_id", "parent_type"], name: "category_parent", using: :btree
+  add_index "fashion_fly_editor_categories", ["slug"], name: "index_fashion_fly_editor_categories_on_slug", unique: true, using: :btree
+
   create_table "fashion_fly_editor_collection_items", force: true do |t|
     t.integer  "collection_id"
     t.integer  "item_id"
@@ -178,7 +190,23 @@ ActiveRecord::Schema.define(version: 20141111180316) do
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category_id"
+    t.integer  "user_id"
   end
+
+  add_index "fashion_fly_editor_collections", ["category_id"], name: "index_fashion_fly_editor_collections_on_category_id", using: :btree
+  add_index "fashion_fly_editor_collections", ["user_id"], name: "index_fashion_fly_editor_collections_on_user_id", using: :btree
+
+  create_table "fashion_fly_editor_subscribtions", force: true do |t|
+    t.integer  "collection_id"
+    t.integer  "subscriber_id"
+    t.string   "subscriber_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fashion_fly_editor_subscribtions", ["collection_id"], name: "index_fashion_fly_editor_subscribtions_on_collection_id", using: :btree
+  add_index "fashion_fly_editor_subscribtions", ["subscriber_id", "subscriber_type"], name: "subscriber", using: :btree
 
   create_table "favorites", force: true do |t|
     t.integer  "product_id"
