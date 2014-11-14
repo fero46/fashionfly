@@ -4,6 +4,9 @@ class Scope < ActiveRecord::Base
   has_many :affiliates
   has_many :products
   has_many :contests
+
+  has_many :subscriptions, class_name: 'FashionFlyEditor::Subscribtion', as: :subscriber
+  has_many :collections, through: :subscriptions, class_name: 'FashionFlyEditor::Collection'
     
   validates :country_code, presence: true, uniqueness: true
   validates :locale, presence: true

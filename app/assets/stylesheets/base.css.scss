@@ -269,12 +269,8 @@ header{
     font-size: 18px;
   }
 }
-.products{
-  margin-left: 324px;
-  .pagination{
-    text-align: center;
-  }
-}
+
+
 .filter{
   width: 274px;
   margin-right: 50px;
@@ -316,6 +312,10 @@ header{
           }
         }
         &.active > a{
+          color: $content_font_color;
+        }
+        &.bold > a{
+          font-weight: bold;
           color: $content_font_color;
         }
       }
@@ -470,6 +470,14 @@ span.red{
     height: 24px;
 }
 
+.white_content{
+  padding: 25px 15px;
+  background: white;
+  .center{
+    text-align: center
+  }
+}
+
 .white_box{
   background: white;
   padding: 25px 15px;
@@ -565,6 +573,9 @@ span.red{
       list-style: none;
       font-weight: 300;
     }
+  }
+  .label{
+    font-weight: bold;
   }
 }
 

@@ -16,7 +16,17 @@
 //= require jquerybbq_min
 //= require ratyrate
 //= require social-share-button
+//= require tinymce-jquery
 //= require angular
 //= require angular-resource
 //= require app
 //= require_tree ./angular
+
+//<![CDATA[
+tinyMCE.init({
+selector: "textarea.tinymce",
+toolbar: ["styleselect | bold italic | undo redo | code link media image | fullscreen"],
+plugins: "image,link,fullscreen,code,media",
+language: "de"
+});
+//]]>

@@ -19,6 +19,7 @@ Fashionfly::Application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
+    resources :contests
     resources :styles, only: [:show, :index]    
     resources :products do
       resources :favorites, only: [:create, :destroy]

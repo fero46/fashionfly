@@ -1,0 +1,27 @@
+.contests{
+  margin-left: 324px;
+  .right_side{
+    text-align: right;
+    padding-bottom: 5px;
+  }
+  .contest{
+    padding: 0px;
+    padding-bottom: 25px;
+  }
+  .center{
+    img{
+      border:none;
+      padding: 0;
+      width: 100%;
+    }
+  }
+
+  .text_container{
+    padding: 10px;
+  }
+  .formular_container{
+    display: block;
+    position: relative;
+    padding: 25px;
+  }
+}

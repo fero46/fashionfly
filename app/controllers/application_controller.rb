@@ -44,11 +44,17 @@ protected
 
   def get_right_scope
     return @scope if @scope.present?
-    code = Geocoder.search(request_ip).try(:first).try(:country_code)
-    scope = nil
-    scope = Scope.where(country_code: code).first if code.present?
-    scope = Scope.where(country_code: ::Configuration.where(key: 'default_country_code').first.value).first if scope.blank?
-    @scope = scope
+    locale = params[:locale] 
+    locale = locale_cookie if locale.blank?
+    @scope = Scope.where(locale: locale).first if locale.present?
+    if @scope.blank?
+      code = Geocoder.search(request_ip).try(:first).try(:country_code)
+      @scope = Scope.where(country_code: code).first if code.present?
+    end
+    if @scope.blank?
+      @scope = Scope.where(country_code: ::Configuration.where(key: 'default_country_code').first.value).first
+    end
+    @scope
   end
 
   def locale_cookie
@@ -69,8 +75,6 @@ protected
 
   def assigned_locale
     return @locale if @locale.present?
-    @locale = params[:locale] 
-    @locale = locale_cookie if @locale.blank?
     @locale = get_right_scope.locale if @locale.blank?
     set_locale_cookie @locale
     return @locale

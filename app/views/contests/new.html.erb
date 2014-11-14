@@ -1,0 +1,17 @@
+<%= render 'contests/sidebar' %>
+<div class="contests">
+  <div class="right_side">
+    <%= link_to t('action.back'), contests_path(locale:assigned_locale), class:'button' %>
+  </div>
+  <div class="white_content contest">
+    <h1 style="text-align:left"><%=t '.title' %></h1>
+    <div class="formular_container">
+      <%= form_for(@contest, html: {class: 'formular'}, url: contests_path(locale: assigned_locale)) do |f| %>
+        <%= render 'form', f: f %>
+        <%= f.submit class: 'button' %>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

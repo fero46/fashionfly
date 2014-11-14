@@ -1,10 +1,24 @@
 de:
+  action:
+    back: Zurück
+    new: Neu
+    cancel: Abbruch
+    edit: Bearbeiten
+    created: "%{entity} erfolgreich erstellt."
+    updated: "%{entity} erfolgreich erstellt." 
+    destroyed: "%{entity} erfolgreich erstellt." 
+    error: "Es sind Fehler vorhanden." 
   user:
     identical: muss bestätigt werden
   activerecord:
     models:
       user: Benutzer
+      contest: Wettbewerb
     attributes:
+      contest:
+        title: Wettbewerbs Name
+        body: Text inhalt
+        banner: Banner
       user:
         remember_me: Angemeldet bleiben.
         email: E-mail
@@ -53,6 +67,15 @@ de:
   static:
     about:
       title: Über FashionFly
+  contests:
+    edit:
+      title: Wettbewerb bearbeiten
+    new:
+      title: Neuen Wettbewerb anlegen
+    contests:
+      new: Neuen Wettbewerb anlegen
+    sidebar: 
+      title: Wettbewerbe
   shared:
     footer:
       what_is_fashionfly: Was ist FashionFly?

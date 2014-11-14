@@ -1,0 +1,14 @@
+<%= f.label :title, Contest.human_attribute_name(:title), class: 'label' %><br />
+
+<%= f.text_field :title, 
+                  autofocus: true, 
+                  placeholder: Contest.human_attribute_name(:title),
+                  :class => field_class(@contest, :title)  %>
+
+<%= f.label :body, Contest.human_attribute_name(:body), class: 'label' %><br />
+<%= f.text_area :body,
+                  placeholder: Contest.human_attribute_name(:body),
+                  :class => field_class(@contest, :body) + " tinymce"  %><br />
+<%= f.label :banner, Contest.human_attribute_name(:banner), class: 'label' %><br />
+<%= f.file_field :banner, 
+                  :class => field_class(@contest, :banner)  %>     

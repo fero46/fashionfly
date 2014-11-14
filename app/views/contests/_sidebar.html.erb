@@ -1,0 +1,12 @@
+<div class="filter" ng-controller="FilterController">
+  <div class="block_box category_select">
+    <h2><%= t('.title') %></h2>
+    <ul>
+      <% for contest in @contests %>
+        <li class="<%= 'bold' if @contest.present? && @contest.id == contest.id %>">
+          <%= link_to contest.title, contest_path(assigned_locale, contest.slug) %>
+        </li>  
+      <% end %>
+    </ul>
+  </div>
+</div>

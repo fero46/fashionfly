@@ -1,0 +1,14 @@
+<div class="white_content contest">
+  <div class="center">
+    <%= image_tag @contest.banner %>
+  </div>
+  <div class="right_side">
+    <%= link_to t('action.edit'), 
+                edit_contest_path(locale: assigned_locale, id: @contest.slug),
+                class: 'button'%>
+  </div>
+  <h1><%= @contest.title %></h1>
+  <div class="text_container">
+    <%= simple_format @contest.body %>
+  </div>
+</div>

@@ -1,5 +1,8 @@
 class Contest < ActiveRecord::Base
   belongs_to :scope
+  has_many :subscriptions, class_name: 'FashionFlyEditor::Subscribtion', as: :subscriber
+  has_many :collections, through: :subscriptions, class_name: 'FashionFlyEditor::Collection'
+
   mount_uploader :banner, ImageUploader
 
   validates :title,  presence: true
