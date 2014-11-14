@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
 
   def self.assign_collection collection, options={}
-    return if collection.new_record?
+    return if collection.class.name != FashionFlyEditor::Collection.name || collection.new_record?
     if options[:scope].present?
       myscope = Scope.find(options[:scope])
       myscope.subscriptions.create(collection_id: collection.id)
