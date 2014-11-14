@@ -50,11 +50,11 @@ class ContestsController < ScopeController
 private
 
   def contests
-    @contests = Contest.where(scope_id: @scope.id).order(created_at: :desc).page(params[:page]).per(30)
+    @contests = @scope.contests.order(created_at: :desc).page(params[:page]).per(30)
   end
 
   def find_contest
-    @contest = Contest.where(scope_id: @scope.id).where(slug: params[:id]).first
+    @contest = @scope.contests.order(created_at: :desc).where(slug: params[:id]).first
     redirect_to contests_path(locale: @scope.locale) if @contest.blank?
   end
 
