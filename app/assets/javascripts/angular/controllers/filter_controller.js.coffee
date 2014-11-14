@@ -23,7 +23,7 @@ App.controller 'FilterController', ['$scope',($scope) ->
     window.location.replace(new_location)
 
   $scope.items = ['0-50' ,'50-100', '100-250', '250-500', '>500']
-  $scope.sortings = $('#sort_by').attr('values').split('#')
+  $scope.sortings = $('#sort_by').attr('values').split('#') if $('#sort_by').length
   $scope.pers = ['12', '24', '36', '48', '60']
   $scope.colorSelect = (colorSelect) ->
     rebuild_query({color: colorSelect})
