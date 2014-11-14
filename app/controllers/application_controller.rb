@@ -10,6 +10,16 @@ class ApplicationController < ActionController::Base
 
   helper_method :get_right_scope, :locale_cookie, :assigned_locale, :cookie_store
 
+
+  def self.assign_collection collection, options={}
+    return if collection.new_record?
+    if options[:scope].present?
+      myscope = Scope.find(options[:scope])
+      myscope.subscriptions.create(collection_id: collection.id)
+      myscope.add_to_contest(collection) if options[:contest]
+    end
+  end
+
 protected 
 
   def request_ip

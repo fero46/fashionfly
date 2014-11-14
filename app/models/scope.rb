@@ -11,8 +11,6 @@ class Scope < ActiveRecord::Base
   validates :country_code, presence: true, uniqueness: true
   validates :locale, presence: true
 
-
-
   def self.country_codes_mapped_in_region
     return @region if @region.present?
     @region = {}
@@ -24,5 +22,13 @@ class Scope < ActiveRecord::Base
     end
     @region
   end
+
+  def add_to_contest collection
+    contest = @scope.contests.order(created_at: :desc).first
+    if contest.present?
+      contest.subscriptions.create(collection_id: collection.id)
+    end
+  end
+
 
 end
