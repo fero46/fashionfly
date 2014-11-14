@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112124810) do
+ActiveRecord::Schema.define(version: 20141114190523) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(version: 20141112124810) do
     t.float    "rotation"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image"
   end
 
   create_table "fashion_fly_editor_collections", force: true do |t|
