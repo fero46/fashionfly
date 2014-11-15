@@ -35,6 +35,7 @@ gem 'i18n-country-translations'
 gem "query_reviewer"
 gem 'ratyrate'
 gem 'social-share-button'
+gem 'puma'
 group :doc do
   gem 'sdoc', require: false
 end

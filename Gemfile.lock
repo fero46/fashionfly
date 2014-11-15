@@ -155,6 +155,8 @@ GEM
       omniauth-oauth (~> 1.0)
     orm_adapter (0.5.0)
     polyglot (0.3.5)
+    puma (2.9.2)
+      rack (>= 1.1, < 2.0)
     query_reviewer (0.2.2)
     rack (1.5.2)
     rack-protection (1.5.3)
@@ -277,6 +279,7 @@ DEPENDENCIES
   omniauth-pinterest
   omniauth-tumblr
   omniauth-twitter
+  puma
   query_reviewer
   rack-utf8_sanitizer
   rails (= 4.0.9)
