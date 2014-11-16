@@ -2,11 +2,13 @@
   <div class="image_container">
     <%=link_to collection_path(assigned_locale, collection) do %>
       <%= image_tag(collection.image.preview.url, class: 'collection_image') %>
-      <span><%=  collection.title %></span>
     <% end %>
     <a  class="love_button <%= favorite(collection) %>" 
         ng-click="clickFavorite('col',<%= collection.id %>)" 
         id="col<%= collection.id %>"
         path="<%= collection_favorites_path(assigned_locale, collection) %>"></a>
   </div>
+  <h3><%=  collection.title %></h3>
+  <h4><%= raw t('.from_user', user: collection.user.name, 
+                          url: user_profile(collection.user)) %></h4>
 </div>

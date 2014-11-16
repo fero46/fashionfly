@@ -61,6 +61,10 @@ de:
     plurk: Plurk
     pinterest: Pinterest
     email: Email
+  fashion_fly_editor:
+    collections:
+      collection:
+        from_user: "von <a href='%{url}' title='%{user}'>%{user}</a>"
   collections:
     show: 
       used_products: Produkte in diesem Outfit

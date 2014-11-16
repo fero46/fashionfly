@@ -1,7 +1,6 @@
 require 'sidekiq/web'
 
 Fashionfly::Application.routes.draw do
-
   #mount Lit::Engine => '/lit'
   get "outfit_categories/index"
   post '/rate' => 'rater#create', :as => 'rate'
@@ -31,7 +30,7 @@ Fashionfly::Application.routes.draw do
       resources :favorites, only: [:create, :destroy]
     end
     post 'product_partner', to:'products#refshop', as: :refshop
-
+    resources :profiles, only: [:show, :edit, :update]
     resources :categories
     resources :outfit_categories
     mount FashionFlyEditor::Engine => "/combine"
