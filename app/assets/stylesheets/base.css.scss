@@ -247,7 +247,7 @@ header{
         }
       }
       &.selected{
-        a{
+        & > a{
           font-weight: 600;
         }
       }
