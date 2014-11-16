@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116053358) do
+ActiveRecord::Schema.define(version: 20141116151430) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -154,11 +154,15 @@ ActiveRecord::Schema.define(version: 20141116053358) do
     t.boolean  "finished"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "startdate"
+    t.date     "enddate"
   end
 
+  add_index "contests", ["enddate"], name: "index_contests_on_enddate", using: :btree
   add_index "contests", ["finished"], name: "index_contests_on_finished", using: :btree
   add_index "contests", ["scope_id"], name: "index_contests_on_scope_id", using: :btree
   add_index "contests", ["slug"], name: "index_contests_on_slug", using: :btree
+  add_index "contests", ["startdate"], name: "index_contests_on_startdate", using: :btree
 
   create_table "fashion_fly_editor_categories", force: true do |t|
     t.string   "name"

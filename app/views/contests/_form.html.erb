@@ -11,4 +11,13 @@
                   :class => field_class(@contest, :body) + " tinymce"  %><br />
 <%= f.label :banner, Contest.human_attribute_name(:banner), class: 'label' %><br />
 <%= f.file_field :banner, 
-                  :class => field_class(@contest, :banner)  %>     
+                  :class => field_class(@contest, :banner)  %>
+
+<br />
+<%= f.label :startdate, Contest.human_attribute_name(:startdate), class: 'label' %><br />
+<%= f.text_field :startdate, 
+                  :class => field_class(@contest, :startdate)+ " datepicker"  %>
+
+<%= f.label :enddate, Contest.human_attribute_name(:enddate), class: 'label' %><br />
+<%= f.text_field :enddate, 
+                  :class => field_class(@contest, :enddate)+ " datepicker"  %>

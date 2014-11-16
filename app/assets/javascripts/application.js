@@ -14,11 +14,13 @@
 //= require jquery_ujs
 //= require jquery.raty
 //= require jquerybbq_min
+//= require datetimepicker.js
 //= require ratyrate
 //= require social-share-button
 //= require tinymce-jquery
 //= require angular
 //= require angular-resource
+//= require appconfig
 //= require app
 //= require_tree ./angular
 

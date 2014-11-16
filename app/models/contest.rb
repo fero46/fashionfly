@@ -9,6 +9,8 @@ class Contest < ActiveRecord::Base
   validates :body,   presence: true
   validates :banner, presence: true
   validates :slug, presence: true, uniqueness: true
+  validates :startdate, presence: true
+  validates :enddate, presence: true
 
   before_validation :update_slug
 

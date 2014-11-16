@@ -50,7 +50,7 @@ class ContestsController < ScopeController
 private
 
   def contests
-    @contests = @scope.contests.order(created_at: :desc).page(params[:page]).per(30)
+    @contests = @scope.contests.where('startdate <= ?', Date.today).order(startdate: :desc).page(params[:page]).per(30)
   end
 
   def find_contest
@@ -59,6 +59,6 @@ private
   end
 
   def contest_attributes
-    params.require(:contest).permit(:title, :body, :banner, :finished)
+    params.require(:contest).permit(:title, :body, :banner, :finished, :startdate, :enddate)
   end  
 end
