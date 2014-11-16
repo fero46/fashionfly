@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     return if collection.class.name != FashionFlyEditor::Collection.name || collection.new_record?
     if options[:scope].present?
       myscope = Scope.find(options[:scope])
-      myscope.subscriptions.create(collection_id: collection.id)
+      myscope.collections << collection
       myscope.add_to_contest(collection) if options[:contest]
     end
     collection.published=true
