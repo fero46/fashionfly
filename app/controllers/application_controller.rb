@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :get_right_scope, :locale_cookie, :assigned_locale, :cookie_store
 
-
   def self.assign_collection collection, options={}
     return if collection.class.name != FashionFlyEditor::Collection.name || collection.new_record?
     if options[:scope].present?
@@ -18,6 +17,8 @@ class ApplicationController < ActionController::Base
       myscope.subscriptions.create(collection_id: collection.id)
       myscope.add_to_contest(collection) if options[:contest]
     end
+    collection.published=true
+    collection.save
   end
 
 protected 

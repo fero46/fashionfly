@@ -1,8 +1,8 @@
 <div class="product_show" ng-controller="FavoriteController">
   <div class="image_container">
     <%= image_tag @product.original.detail_view %>
-    <a class="love_button <%= favorite(@product.id) %>" ng-click="clickFavorite(<%= @product.id %>)" 
-              id="fav<%= @product.id %>"
+    <a class="love_button <%= favorite(@product) %>" ng-click="clickFavorite('prod',<%= @product.id %>)" 
+              id="prod<%= @product.id %>"
               path="<%= product_favorites_path(assigned_locale, @product) %>"></a>
   </div>
   <div class="information_area">
@@ -47,7 +47,7 @@
       <%= social_share_button_tag(@product.name, :popup => "true") %>
       <br />
       <strong><%= t('.like_count') %> :</strong>
-      <%= t('.likes', count:@product.favorites.count) %>
+      <%= t('.likes', count:@product.favorites_count) %>
     </div>
   </div>
   <div class="clear"></div>

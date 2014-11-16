@@ -21,14 +21,15 @@ module ProductsHelper
     return prefix + '/' + link
   end
 
-  def favorite(product_id)
-    favorite_cache[product_id] if favorite_cache[product_id].present? 
-    if favorites[product_id].present?
-      favorite_cache[product_id] = "likeon"
+  def favorite(markable)
+    markable_key = markable.class.name + markable.id.to_s
+    favorite_cache[markable_key] if favorite_cache[markable_key].present? 
+    if favorites[markable_key].present?
+      favorite_cache[markable_key] = "likeon"
     else
-      favorite_cache[product_id] = ''
+      favorite_cache[markable_key] = ''
     end
-    favorite_cache[product_id]
+    favorite_cache[markable_key]
   end
 
 
@@ -44,7 +45,7 @@ module ProductsHelper
     else
       fav = Favorite.where(cookie_store: cookie_store)
     end
-    fav.each {|f| favs[f.product_id] = 'active'}
+    fav.each {|f| favs[f.markable_type+f.markable_id.to_s] = 'active'}
     return favs
   end
 

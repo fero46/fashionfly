@@ -1,8 +1,9 @@
-<div class="container">
+<div class="container" ng-controller="FavoriteController">
 
   <div class="trendbox">
-    <h2>Die neusten Outfit-Trends</h2>
-
+    <h2><%= t('.trends_outfits') %></h2>
+    <%= render FashionFlyEditor::Collection.trends.limit(8) %>
+    <div class="clear"></div>
   </div>
 
 <div class="trendbox" ng-controller="FavoriteController">

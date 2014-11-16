@@ -1,12 +1,12 @@
 App.controller 'FavoriteController', ['$scope',($scope) ->
-  $scope.clickFavorite = (product_id) ->
-    fav=$("#fav"+product_id)
+  $scope.clickFavorite = (prefix,id) ->
+    fav=$("#"+prefix+id)
     active = "likeon"
     path = fav.attr('path')
     if fav.hasClass(active)
       fav.removeClass(active)
       $.ajax(
-        url:path+'/'+product_id,
+        url:path+'/'+id,
         type: 'DELETE'
       )
     else

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114190523) do
+ActiveRecord::Schema.define(version: 20141116005507) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -193,9 +193,16 @@ ActiveRecord::Schema.define(version: 20141114190523) do
     t.datetime "updated_at"
     t.integer  "category_id"
     t.integer  "user_id"
+    t.integer  "actual_trend"
+    t.integer  "last_trend"
+    t.integer  "favorites_count"
+    t.boolean  "published",       default: false
   end
 
+  add_index "fashion_fly_editor_collections", ["actual_trend"], name: "index_fashion_fly_editor_collections_on_actual_trend", using: :btree
   add_index "fashion_fly_editor_collections", ["category_id"], name: "index_fashion_fly_editor_collections_on_category_id", using: :btree
+  add_index "fashion_fly_editor_collections", ["favorites_count"], name: "index_fashion_fly_editor_collections_on_favorites_count", using: :btree
+  add_index "fashion_fly_editor_collections", ["published"], name: "index_fashion_fly_editor_collections_on_published", using: :btree
   add_index "fashion_fly_editor_collections", ["user_id"], name: "index_fashion_fly_editor_collections_on_user_id", using: :btree
 
   create_table "fashion_fly_editor_subscribtions", force: true do |t|
@@ -210,7 +217,8 @@ ActiveRecord::Schema.define(version: 20141114190523) do
   add_index "fashion_fly_editor_subscribtions", ["subscriber_id", "subscriber_type"], name: "subscriber", using: :btree
 
   create_table "favorites", force: true do |t|
-    t.integer  "product_id"
+    t.integer  "markable_id"
+    t.string   "markable_type"
     t.integer  "user_id"
     t.string   "cookie_store"
     t.datetime "created_at"
@@ -219,7 +227,9 @@ ActiveRecord::Schema.define(version: 20141114190523) do
 
   add_index "favorites", ["cookie_store"], name: "index_favorites_on_cookie_store", length: {"cookie_store"=>30}, using: :btree
   add_index "favorites", ["created_at"], name: "index_favorites_on_created_at", using: :btree
-  add_index "favorites", ["product_id"], name: "index_favorites_on_product_id", using: :btree
+  add_index "favorites", ["markable_id", "markable_type"], name: "index_favorites_on_markable_id_and_markable_type", using: :btree
+  add_index "favorites", ["markable_id"], name: "index_favorites_on_markable_id", using: :btree
+  add_index "favorites", ["markable_type"], name: "index_favorites_on_markable_type", using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "icons", force: true do |t|

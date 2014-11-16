@@ -2,20 +2,28 @@ class TrendCheckWorker
   include Sidekiq::Worker
 
   def perform
+    
+    Product.where(published: true).find_in_batches(batch_size: 500) do |group|
+      group.each { |product| copy_trend(product) }
+    end
+
+    FashionFlyEditor::Collection.where(published: true).find_in_batches(batch_size: 500) do |group|
+      group.each { |collection| copy_trend(collection) }
+    end
+
     end_week =  Date.today.beginning_of_week.to_datetime
     start_week = end_week - 7.days
-    favorites = Favorite.where('created_at >= ?', start_week).where('created_at < ?', end_week)
-    Product.find_in_batches(batch_size: 500) do |group|
-      group.each { |product| product.copy_trend! }
+
+    Favorite.where('created_at >= ?', start_week).where('created_at < ?', end_week).find_in_batches(batch_size: 500) do |group|
+      group.each { |favorite| increase_trend(favorite) }
     end
 
-    for favorite in favorites
-      product_favorite_counter_cache[favorite.product_id] = 0 if product_favorite_counter_cache[favorite.product_id].blank?
-      product_favorite_counter_cache[favorite.product_id]+=1 
+    Product.where(published: true).find_in_batches(batch_size: 500) do |group|
+      group.each { |product| recalculate_trend(product) }
     end
 
-    Product.where(true).find_in_batches( batch_size: 250) do |group|
-      group.each { |product| product.add_previous_trend!(product_favorite_counter_cache[product.id]) }
+    FashionFlyEditor::Collection.where(published: true).find_in_batches(batch_size: 500) do |group|
+      group.each { |collection| recalculate_trend(collection) }
     end
 
   end
@@ -24,9 +32,23 @@ class TrendCheckWorker
     perform_async()
   end
 
-  def product_favorite_counter_cache
-    @product_favorite_counter_cache ||={}
+
+private
+
+  def copy_trend markable
+    markable.last_trend = 0
+    markable.last_trend = markable.actual_trend if markable.actual_trend
+    markable.actual_trend = 0
+    markable.save!
   end
 
+  def increase_trend(favorite)
+    favorite.markable.increment!(:actual_trend)
+  end
+
+  def recalculate_trend markable
+    markable.actual_trend = markable.actual_trend + (markable.last_trend * 0.5).to_i
+    markable.save
+  end
 
 end

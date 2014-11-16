@@ -20,8 +20,11 @@ Fashionfly::Application.routes.draw do
 
   scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
     resources :contests
-    resources :styles, only: [:show, :index]    
-    resources :products do
+    resources :styles, only: [:show, :index]
+    resources :products, only: [:show, :index] do
+      resources :favorites, only: [:create, :destroy]
+    end
+    resources :collections, only: [:show, :index] do
       resources :favorites, only: [:create, :destroy]
     end
     post 'product_partner', to:'products#refshop', as: :refshop

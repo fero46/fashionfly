@@ -151,6 +151,10 @@ de:
       _ffdfef: hell rosa
       _ffff02: gelb
       _ffffff: weiß
+  welcome:
+    index:
+      trends_products: Die neuesten Produkttrends
+      trends_outfits: Die neusten Outfit-Trends
   users:
     registrations:
       new:

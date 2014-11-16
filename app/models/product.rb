@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   has_many :categorizations, dependent: :destroy
   has_many :categories, :through => :categorizations
-  has_many :favorites, dependent: :destroy
+  has_many :favorites, as: :object, dependent: :destroy
   belongs_to :brand
   belongs_to :colorization
   belongs_to :scope
@@ -32,16 +32,6 @@ class Product < ActiveRecord::Base
     self.published
   end
 
-  def copy_trend!
-    self.last_trend = self.actual_trend
-    save!
-  end
-
-  def add_previous_trend! new_value
-    new_value = 0 if new_value.blank?
-    self.actual_trend = new_value + (self.last_trend * 0.5).to_i
-    save!
-  end
 
   def similar_products
     category = self.categories.where(leaf: true).first
