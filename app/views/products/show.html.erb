@@ -53,6 +53,14 @@
   <div class="clear"></div>
 </div>
 
+<div class="similar" ng-controller="FavoriteController">
+  <h2><%= t('.used_in_collections') %></h2>
+  <% for collection in @product.used_in_collections %>
+    <%= render collection %>
+  <% end %>
+  <div class="clear"></div>
+</div>
+
 
 <div class="similar" ng-controller="FavoriteController">
   <h2><%= t('.similar_products') %></h2>

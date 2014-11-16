@@ -2,6 +2,8 @@ class Product < ActiveRecord::Base
   has_many :categorizations, dependent: :destroy
   has_many :categories, :through => :categorizations
   has_many :favorites, as: :object, dependent: :destroy
+  has_many :subscriptions, class_name: 'FashionFlyEditor::Subscribtion', as: :subscriber
+  has_many :collections, through: :subscriptions, class_name: 'FashionFlyEditor::Collection'
   belongs_to :brand
   belongs_to :colorization
   belongs_to :scope
@@ -40,6 +42,10 @@ class Product < ActiveRecord::Base
     products.where('products.id != ?', self.id).offset(rand(products.count)).limit(4)
   end
 
+
+  def used_in_collections
+    collections.order('created_at DESC').limit(4)
+  end
 
   def maincolor
     return @avg_color_hex if @avg_color_hex

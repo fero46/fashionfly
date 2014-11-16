@@ -17,6 +17,12 @@ class ApplicationController < ActionController::Base
       myscope.collections << collection
       myscope.add_to_contest(collection) if options[:contest]
     end
+
+    for collection_item in collection.collection_items
+      product = nil
+      product = Product.where(id: collection_item.item_id).first if collection_item.item_id.present?
+      product.collections << collection if product.present?
+    end
     collection.published=true
     collection.save
   end
