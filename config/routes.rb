@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 Fashionfly::Application.routes.draw do
 
+  mount Lit::Engine => '/lit'
   get "outfit_categories/index"
   post '/rate' => 'rater#create', :as => 'rate'
   namespace :backend do

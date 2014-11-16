@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116031649) do
+ActiveRecord::Schema.define(version: 20141116053358) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -240,6 +240,73 @@ ActiveRecord::Schema.define(version: 20141116031649) do
   end
 
   add_index "icons", ["name"], name: "index_icons_on_name", using: :btree
+
+  create_table "lit_incomming_localizations", force: true do |t|
+    t.text     "translated_value"
+    t.integer  "locale_id"
+    t.integer  "localization_key_id"
+    t.integer  "localization_id"
+    t.string   "locale_str"
+    t.string   "localization_key_str"
+    t.integer  "source_id"
+    t.integer  "incomming_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lit_incomming_localizations", ["incomming_id"], name: "index_lit_incomming_localizations_on_incomming_id", using: :btree
+  add_index "lit_incomming_localizations", ["locale_id"], name: "index_lit_incomming_localizations_on_locale_id", using: :btree
+  add_index "lit_incomming_localizations", ["localization_id"], name: "index_lit_incomming_localizations_on_localization_id", using: :btree
+  add_index "lit_incomming_localizations", ["localization_key_id"], name: "index_lit_incomming_localizations_on_localization_key_id", using: :btree
+  add_index "lit_incomming_localizations", ["source_id"], name: "index_lit_incomming_localizations_on_source_id", using: :btree
+
+  create_table "lit_locales", force: true do |t|
+    t.string   "locale"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_hidden",  default: false
+  end
+
+  create_table "lit_localization_keys", force: true do |t|
+    t.string   "localization_key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_completed",     default: false
+    t.boolean  "is_starred",       default: false
+  end
+
+  add_index "lit_localization_keys", ["localization_key"], name: "index_lit_localization_keys_on_localization_key", unique: true, using: :btree
+
+  create_table "lit_localization_versions", force: true do |t|
+    t.text     "translated_value"
+    t.integer  "localization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lit_localization_versions", ["localization_id"], name: "index_lit_localization_versions_on_localization_id", using: :btree
+
+  create_table "lit_localizations", force: true do |t|
+    t.integer  "locale_id"
+    t.integer  "localization_key_id"
+    t.text     "default_value"
+    t.text     "translated_value"
+    t.boolean  "is_changed",          default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lit_localizations", ["locale_id"], name: "index_lit_localizations_on_locale_id", using: :btree
+  add_index "lit_localizations", ["localization_key_id"], name: "index_lit_localizations_on_localization_key_id", using: :btree
+
+  create_table "lit_sources", force: true do |t|
+    t.string   "identifier"
+    t.string   "url"
+    t.string   "api_key"
+    t.datetime "last_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "mappings", force: true do |t|
     t.integer  "category_id"
