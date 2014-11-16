@@ -2,13 +2,13 @@
 
   <div class="trendbox">
     <h2><%= t('.trends_outfits') %></h2>
-    <%= render FashionFlyEditor::Collection.trends.limit(8) %>
+    <%= render @scope.collections.trends.limit(8) %>
     <div class="clear"></div>
   </div>
 
 <div class="trendbox" ng-controller="FavoriteController">
     <h2><%= t('.trends_products') %></h2>
-    <%= render Product.trends.limit(8) %>
+    <%= render @scope.products.trends.limit(8) %>
     <div class="clear"></div>
   </div>
 
