@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116151430) do
+ActiveRecord::Schema.define(version: 20141116194250) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -211,7 +211,7 @@ ActiveRecord::Schema.define(version: 20141116151430) do
   add_index "fashion_fly_editor_collections", ["published"], name: "index_fashion_fly_editor_collections_on_published", using: :btree
   add_index "fashion_fly_editor_collections", ["user_id"], name: "index_fashion_fly_editor_collections_on_user_id", using: :btree
 
-  create_table "fashion_fly_editor_subscribtions", force: true do |t|
+  create_table "fashion_fly_editor_subscriptions", force: true do |t|
     t.integer  "collection_id"
     t.integer  "subscriber_id"
     t.string   "subscriber_type"
@@ -219,8 +219,8 @@ ActiveRecord::Schema.define(version: 20141116151430) do
     t.datetime "updated_at"
   end
 
-  add_index "fashion_fly_editor_subscribtions", ["collection_id"], name: "index_fashion_fly_editor_subscribtions_on_collection_id", using: :btree
-  add_index "fashion_fly_editor_subscribtions", ["subscriber_id", "subscriber_type"], name: "subscriber", using: :btree
+  add_index "fashion_fly_editor_subscriptions", ["collection_id"], name: "index_fashion_fly_editor_subscriptions_on_collection_id", using: :btree
+  add_index "fashion_fly_editor_subscriptions", ["subscriber_id", "subscriber_type"], name: "subscriber", using: :btree
 
   create_table "favorites", force: true do |t|
     t.integer  "markable_id"

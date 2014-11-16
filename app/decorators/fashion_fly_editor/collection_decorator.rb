@@ -6,6 +6,6 @@ FashionFlyEditor::Collection.class_eval do
   end
 
   def products
-    Product.where('id in (?)', subscribtions.where('subscriber_type = ?', ::Product).select(:subscriber_id))
+    Product.where('id in (?)', subscriptions.where('subscriber_type = ?', ::Product).select(:subscriber_id))
   end
 end

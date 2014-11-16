@@ -2,7 +2,7 @@ class Product < ActiveRecord::Base
   has_many :categorizations, dependent: :destroy
   has_many :categories, :through => :categorizations
   has_many :favorites, as: :object, dependent: :destroy
-  has_many :subscriptions, class_name: 'FashionFlyEditor::Subscribtion', as: :subscriber
+  has_many :subscriptions, class_name: 'FashionFlyEditor::Subscription', as: :subscriber
   has_many :collections, through: :subscriptions, class_name: 'FashionFlyEditor::Collection'
   belongs_to :brand
   belongs_to :colorization

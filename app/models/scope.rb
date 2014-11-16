@@ -9,7 +9,7 @@ class Scope < ActiveRecord::Base
   has_many :child_outfit_categories, class_name: 'FashionFlyEditor::Category',  as: :parent, :dependent => :destroy
 
 
-  has_many :subscriptions, class_name: 'FashionFlyEditor::Subscribtion', as: :subscriber
+  has_many :subscriptions, class_name: 'FashionFlyEditor::Subscription', as: :subscriber
   has_many :collections, through: :subscriptions, class_name: 'FashionFlyEditor::Collection'
 
   validates :country_code, presence: true, uniqueness: true
