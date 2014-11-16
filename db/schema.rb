@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116194250) do
+ActiveRecord::Schema.define(version: 20141116234527) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -436,6 +436,7 @@ ActiveRecord::Schema.define(version: 20141116194250) do
     t.string   "name"
     t.string   "avatar"
     t.string   "role",                   default: "user"
+    t.string   "slug"
     t.string   "encrypted_password",     default: "",     null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -458,6 +459,7 @@ ActiveRecord::Schema.define(version: 20141116194250) do
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role"], name: "index_users_on_role", using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
 
   create_table "words", force: true do |t|
     t.integer "scope_id"
