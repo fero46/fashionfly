@@ -36,7 +36,7 @@ gem "query_reviewer"
 gem 'ratyrate'
 gem 'social-share-button'
 gem 'puma'
-gem 'lit'
+#gem 'lit'
 group :doc do
   gem 'sdoc', require: false
 end
