@@ -25,7 +25,7 @@ protected
     if @scope.has_contest?
       contest_option = {}
       contest_option[:name]='contest'
-      contest_option[:type]='check'
+      contest_option[:type]='checkbox'
       contest_option[:value]=false
       contest_option[:label]= I18n.t('activerecord.attributes.contest.form_label')
       result << contest_option
