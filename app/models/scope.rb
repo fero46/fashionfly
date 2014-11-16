@@ -5,11 +5,20 @@ class Scope < ActiveRecord::Base
   has_many :products
   has_many :contests
 
+  has_many :outfit_categories, class_name: 'FashionFlyEditor::Category'
+  has_many :child_outfit_categories, class_name: 'FashionFlyEditor::Category',  as: :parent, :dependent => :destroy
+
+
   has_many :subscriptions, class_name: 'FashionFlyEditor::Subscribtion', as: :subscriber
   has_many :collections, through: :subscriptions, class_name: 'FashionFlyEditor::Collection'
-    
+
   validates :country_code, presence: true, uniqueness: true
   validates :locale, presence: true
+
+
+  def name
+    nil
+  end
 
   def self.country_codes_mapped_in_region
     return @region if @region.present?

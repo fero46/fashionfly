@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116005507) do
+ActiveRecord::Schema.define(version: 20141116031649) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -167,9 +167,11 @@ ActiveRecord::Schema.define(version: 20141116005507) do
     t.string   "parent_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "scope_id"
   end
 
   add_index "fashion_fly_editor_categories", ["parent_id", "parent_type"], name: "category_parent", using: :btree
+  add_index "fashion_fly_editor_categories", ["scope_id"], name: "index_fashion_fly_editor_categories_on_scope_id", using: :btree
   add_index "fashion_fly_editor_categories", ["slug"], name: "index_fashion_fly_editor_categories_on_slug", unique: true, using: :btree
 
   create_table "fashion_fly_editor_collection_items", force: true do |t|

@@ -1,0 +1,54 @@
+@import "color";
+
+.outfit_submenu{
+  border-top: 5px solid $red;
+  position: absolute;
+  display: none;
+  background: white;
+  list-style: none;
+  z-index: 20000;
+  width: 400px;
+  li{
+    display:block;
+  }
+  & > li{
+    float:left;
+    display: block;
+    width:199px;
+    padding-top: 15px;
+    border-right: 1px solid $border_color;
+    span{
+      display: block;
+      text-align: center;
+      font-weight: 600;
+      padding: 5px 0px;
+      margin-bottom: 5px;
+    }
+    ul{
+      list-style: none;
+      display: block;
+      li{
+        float: none;
+        display: block;
+        a{
+          display: block;
+          width:180px;
+          padding: 5px;
+          padding-left: 15px;
+          color:$black;
+          text-decoration: none;
+          &:hover{
+            background: $red;
+            color: white;
+          }
+        }
+
+      }
+    }
+  }
+  li.clear{
+    clear: both;
+    margin: 0;
+    padding: 0;
+  }
+}

@@ -2,12 +2,14 @@ require 'sidekiq/web'
 
 Fashionfly::Application.routes.draw do
 
+  get "outfit_categories/index"
   post '/rate' => 'rater#create', :as => 'rate'
   namespace :backend do
     mount Sidekiq::Web => '/sidekiq'
     root :to => 'dashboards#show'
     resources :configurations
     resources :scopes do
+      resources :outfit_categories
       resources :categories
       resources :contests
       resources :affiliates do
@@ -30,6 +32,7 @@ Fashionfly::Application.routes.draw do
     post 'product_partner', to:'products#refshop', as: :refshop
 
     resources :categories
+    resources :outfit_categories
     mount FashionFlyEditor::Engine => "/combine"
     namespace :api do
       match 'categories', to: 'categories#index', via: [:options]
