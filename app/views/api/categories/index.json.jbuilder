@@ -10,6 +10,10 @@ json.scope do
   json.type @scope.class.name
 end
 
+json.collection do
+  json.redirect_url  collections_url(@scope.locale) + "/:id"
+end
+
 json.categories @categories do |json, category|
   json.id category.id
   json.name category.name
