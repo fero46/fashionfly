@@ -1,3 +1,10 @@
+json.options @options do |json, option|
+  json.type option[:type]
+  json.name option[:name]
+  json.value option[:value]
+  json.label option[:label]
+end
+
 json.scope do
   json.id  @scope.id
   json.type @scope.class.name

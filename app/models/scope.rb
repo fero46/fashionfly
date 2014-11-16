@@ -39,5 +39,13 @@ class Scope < ActiveRecord::Base
     end
   end
 
+  def has_contest?
+    contests.where('startdate <= ?', Date.today).where('enddate >=?', Date.today).any?
+  end
+
+  def actual_contest
+    contests.where('startdate <= ?', Date.today).order(startdate: :desc).first
+  end
+
 
 end

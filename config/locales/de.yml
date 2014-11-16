@@ -19,6 +19,7 @@ de:
         title: Wettbewerbs Name
         body: Text inhalt
         banner: Banner
+        form_label: Beim Wettbewerb mitmachen
       user:
         remember_me: Angemeldet bleiben.
         email: E-mail
