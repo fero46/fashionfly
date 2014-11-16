@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   ratyrate_rater
 
+  mount_uploader :avatar, AvatarUploader
+
   attr_accessor :email_confirmation
 
   validate :email_has_to_be_validated, on: :create
@@ -17,12 +19,24 @@ class User < ActiveRecord::Base
   end
 
   def self.create_from_omniauth(params)
+    pass = Devise.friendly_token
+    image  = params['info']['image']
+    if params['provider'] == 'facebook'
+      image.gsub!('https', 'http')
+      image.gsub!("http","https")
+    end
     attributes = {
       email: params['info']['email'],
-      password: Devise.friendly_token
+      email_confirmation: params['info']['email'],
+      password: pass,
+      password_confirmation: pass,
+      name: params['info']['name'],
+      remote_avatar_url: image
     }
-
-    create(attributes)
+    user = User.new(attributes)
+    user.skip_confirmation!
+    user.save
+    user
   end
 
 
