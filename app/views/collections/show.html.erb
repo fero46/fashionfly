@@ -1,2 +1,22 @@
-<h1>Collections#show</h1>
-<p>Find me in app/views/collections/show.html.erb</p>
+<div class="collection_show" ng-controller="FavoriteController">
+  <div class="leftside">
+    <h2><%= @collection.title %></h2>
+    <%= image_tag @collection.image.original %>
+    <a  class="love_button <%= favorite(@collection) %>" 
+        ng-click="clickFavorite('col',<%= @collection.id %>)" 
+        id="col<%= @collection.id %>"
+        path="<%= collection_favorites_path(assigned_locale, @collection) %>"></a>
+
+    <div class="details">
+      <%= @collection.try(:user).try(:avatar) %>
+    </div>
+
+  </div>
+  <div class="productviews">
+    <h2><%= t('.used_products') %></h2>
+  <% for product in @collection.products %>
+    <%= render 'products/small_product', product: product %>
+  <% end %>
+  </div>
+  <div style="clear:both"></div>
+</div>

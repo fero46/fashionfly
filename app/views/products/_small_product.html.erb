@@ -1,1 +1,26 @@
-<%= image_tag product.image, 'class' => 'preview objectDrag', 'data-attr' => product.id %>
+<div class="small_product">
+  <div class="image">
+    <%= image_tag product.original.smaller %>
+  </div>
+  <div class="product_info">
+    <h4><%= product.name %></h4>
+    <%= rating_for product, "rate", :star => 5 %> 
+
+    <%= image_tag product.affiliate.logo, 
+                  title: product.affiliate.name, 
+                  'ng-click' => 'callForm()',
+                  class: 'affilogo' %>
+    <h5><%= product.categories.last.name %></h5>
+    <h6><%= product.brand.name %></h6>
+    <h6><%= number_to_currency product.price %></h6>
+
+      <%= form_tag refshop_path(assigned_locale), method: 'post', class: 'callForm' , target: "_blank" do %>
+      <%= hidden_field_tag 'product_id', product.id %>
+      <%= button_tag t('products.show.to_shop'), class: 'button' %>
+    <% end %>
+    <br />
+    <strong><%= t('products.show.like_count') %> :</strong><%= t('products.show.likes', count:product.favorites_count) %><br />
+    <strong><%= link_to t('.details'), product_path(assigned_locale, product) %></strong>
+    <br />
+  </div>
+</div>

@@ -61,6 +61,9 @@ de:
     plurk: Plurk
     pinterest: Pinterest
     email: Email
+  collections:
+    show: 
+      used_products: Produkte in diesem Outfit
   breadcrumb:
     you_are_here: Du bist Hier
   link:

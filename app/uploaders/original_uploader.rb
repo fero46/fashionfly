@@ -8,6 +8,10 @@ class OriginalUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [550, 650]
   end
 
+  version :smaller do
+    process resize_to_fit: [192, 227]
+  end
+
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"

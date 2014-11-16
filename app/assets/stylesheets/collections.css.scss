@@ -32,3 +32,22 @@
     }
   }
 }
+
+.collection_show{
+  h2{
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $border_color;
+    padding-bottom: 20px;
+  }     
+  .leftside{
+    width: 570px;
+    float:left;
+    margin-right: 10px;
+    position: relative; 
+  }
+  .productviews{
+    margin-left: 600px; 
+  }
+}

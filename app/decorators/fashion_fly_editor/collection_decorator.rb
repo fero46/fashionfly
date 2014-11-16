@@ -4,4 +4,8 @@ FashionFlyEditor::Collection.class_eval do
   def self.trends
     where(published: true).order('actual_trend DESC')
   end
+
+  def products
+    Product.where('id in (?)', subscribtions.where('subscriber_type = ?', ::Product).select(:subscriber_id))
+  end
 end

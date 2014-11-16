@@ -3,5 +3,6 @@ class CollectionsController < ApplicationController
   end
 
   def show
+    @collection = FashionFlyEditor::Collection.find(params[:id])
   end
 end
