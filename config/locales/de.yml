@@ -68,6 +68,11 @@ de:
   collections:
     show: 
       used_products: Produkte in diesem Outfit
+      created_from: "Erstellt von <a href='%{url}' title='%{user}'>%{user}</a>"
+      created_at: "Erstellt am %{date}"
+      share: "Teil diesen Style in deinem Netzwerk"
+      embedd: "Einbetten"
+      embedd_to: "html-Code zum Einbetten in Blogs und Homepages:" 
   breadcrumb:
     you_are_here: Du bist Hier
   link:

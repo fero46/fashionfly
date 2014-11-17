@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
     if params['provider'] == 'facebook'
       image.gsub!('https', 'http')
       image.gsub!("http","https")
+      image=image+"?type=large"
     end
     attributes = {
       email: params['info']['email'],
@@ -54,6 +55,7 @@ class User < ActiveRecord::Base
       name: params['info']['name'],
       remote_avatar_url: image
     }
+    puts params.to_yaml
     user = User.new(attributes)
     user.skip_confirmation!
     user.save

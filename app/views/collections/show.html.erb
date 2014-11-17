@@ -6,9 +6,31 @@
         ng-click="clickFavorite('col',<%= @collection.id %>)" 
         id="col<%= @collection.id %>"
         path="<%= collection_favorites_path(assigned_locale, @collection) %>"></a>
+    <div class="share">
+      <span><%= t('.share') %></span> <%= social_share_button_tag(@collection.title, :popup => "true") %>
+<h3><%= t('.embedd_to') %></h3>
+<textarea><script type='text/javascript'>
+FashionFlyWidget = {};
+FashionFlyWidget.collection = 2;
+FashionFlyWidget.host = <%= request.host_with_port %>
+</script>
+<%= javascript_include_tag javascript_url("widget"), type:'text/javascript' %>
+<div class='fashionfly-widget'></div>
+</textarea>
+    </div>
 
     <div class="details">
-      <%= @collection.try(:user).try(:avatar) %>
+      <%= image_tag @collection.try(:user).try(:avatar).try(:smaller) %>
+      <div class="inner">
+        <h3><%= @collection.title %></h3>
+        <%= raw t('.created_from', user: @collection.user.name, 
+                          url: user_profile(@collection.user)) %> <br />
+        <%= raw t('.created_at', date: l(@collection.created_at, format: :short)) %>
+        <div class="description">
+          <%= simple_format @collection.description %>
+        </div>       
+      </div>
+      <div style="clear:both"></div>
     </div>
 
   </div>
