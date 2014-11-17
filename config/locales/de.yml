@@ -8,6 +8,8 @@ de:
     updated: "%{entity} erfolgreich erstellt." 
     destroyed: "%{entity} erfolgreich erstellt." 
     error: "Es sind Fehler vorhanden." 
+    collection_not_found: 'Ihr Outfit wurde nicht gefunden'
+    required_to_signed_in: 'Du musst dich Anmelden um das Outfit abzuspeichern.'
   user:
     identical: muss bestätigt werden
   activerecord:

@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
 
   validate :email_has_to_be_validated, on: :create
 
-  before_save :update_slug
-
+  before_save  :update_slug
+  after_create :make_secret
 
   def email_has_to_be_validated
     errors.add(:email_confirmation, I18n.t("user.identical")) unless email_confirmation == email
@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     self.slug=myslug
   end
 
+  def make_secret
+    self.secret = self.id.to_s+SecureRandom.hex(64)
+    save
+  end
 
   def create_slug
     clean_name.downcase

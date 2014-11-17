@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116234527) do
+ActiveRecord::Schema.define(version: 20141117174031) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -452,6 +452,7 @@ ActiveRecord::Schema.define(version: 20141116234527) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "secret"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -459,6 +460,7 @@ ActiveRecord::Schema.define(version: 20141116234527) do
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role"], name: "index_users_on_role", using: :btree
+  add_index "users", ["secret"], name: "index_users_on_secret", using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
 
   create_table "words", force: true do |t|

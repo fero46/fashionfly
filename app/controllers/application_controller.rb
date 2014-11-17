@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
   before_action :cookie_store
   before_action :check_favorite
 
-  helper_method :get_right_scope, :locale_cookie, :assigned_locale, :cookie_store
+  helper_method :get_right_scope, :locale_cookie, :assigned_locale, :cookie_store, :mycookies
 
-  def self.assign_collection collection, options={}
+  def self.assign_collection collection, controller, options={}
     return if collection.class.name != FashionFlyEditor::Collection.name || collection.new_record?
     if options[:scope].present?
       myscope = Scope.find(options[:scope])
@@ -23,8 +23,20 @@ class ApplicationController < ActionController::Base
       product = Product.where(id: collection_item.item_id).first if collection_item.item_id.present?
       product.collections << collection if product.present?
     end
-    collection.published=true
+    user = User.where(secret: options[:user]) if options[:user].present? 
+    if user.present? 
+      collection.user_id = user.id
+      collection.published=true
+      controller.cookie_access_hook[:collection] = nil
+    else
+      collection.published=false
+      controller.cookie_access_hook[:collection] = collection.id
+    end
     collection.save
+  end
+
+  def mycookies
+    cookies
   end
 
 protected 
@@ -87,7 +99,16 @@ protected
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    root_path(assigned_locale)
+    collection = FashionFlyEditor::Collection.where(id: cookies[:collection]).first if cookies[:collection].present?
+    if collection.present?
+      collection.user_id = current_user.id
+      collection.published = true
+      cookies[:collection] = nil
+      collection.save
+      collection_path(collection.scope.locale, collection)
+    else
+      root_path(assigned_locale)
+    end
   end
 
   def assigned_locale
