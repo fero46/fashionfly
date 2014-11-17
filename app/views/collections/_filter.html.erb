@@ -1,0 +1,20 @@
+<div class="filter" ng-controller="FilterController">
+  <div class="block_box category_select">
+    <h2><%= t('.category_title') %></h2>
+    <ul>
+      <% for category in create_outfit_categories(@category_group) %>
+        <li class="<%= 'active' if @main_category.present? && @main_category.id == category.id %>">
+          <%= link_to category.name, outfit_category_path(assigned_locale, category.slug) %>
+          <% if @main_category.present? && @main_category.id == category.id %>
+          <ul>
+            <% for subcategory in category.categories %>
+            <li class="<%= 'active' if @category.present? && @category.id == subcategory.id %>"> 
+              <%= link_to subcategory.name, outfit_category_path(assigned_locale, subcategory.slug) %></li>
+            <% end %>
+          </ul>
+          <% end %>
+        </li>  
+      <% end %>
+    </ul>
+  </div>
+</div>

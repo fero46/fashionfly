@@ -34,7 +34,7 @@
   <nav class="header_navigation">
     <div class="container">
       <li class="<%= 'selected' if @outfit_category.present?%>">
-          <a href="" class="item"><%= t('.outfit') %></a>
+          <a href="<%= outfit_categories_path(assigned_locale) %>" class="item"><%= t('.outfit') %></a>
         <ul class="outfit_submenu">
           <% for outfit_category in outfit_category_groups %>
             <li>
