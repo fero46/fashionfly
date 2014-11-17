@@ -9,7 +9,7 @@
     <div class="share">
       <span><%= t('.share') %></span> <%= social_share_button_tag(@collection.title, :popup => "true") %>
 <h3><%= t('.embedd_to') %></h3>
-<textarea><script type='text/javascript'>
+<textarea readonly><script type='text/javascript'>
 FashionFlyWidget = {};
 FashionFlyWidget.collection = 2;
 FashionFlyWidget.host = <%= request.host_with_port %>
