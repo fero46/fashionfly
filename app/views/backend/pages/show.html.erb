@@ -1,0 +1,33 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", backend_scope_pages_path(@scope)  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_backend_scope_page_path(@scope) %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", backend_scope_page_path(@scope, @page) %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+        <p>
+          <b><%= t("activerecord.attributes.backend_page.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</b>
+          <%= @page.name %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.backend_page.title", :default => t("activerecord.labels.title", :default => "Title")) %>:</b>
+          <%= @page.title %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.backend_page.body", :default => t("activerecord.labels.body", :default => "Body")) %>:</b>
+          <%= @page.body %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_backend_scope_page_path(@scope, @page), :class => "button" %> 
+        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), backend_scope_page_path(@scope, @page), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

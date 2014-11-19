@@ -16,7 +16,13 @@ de:
     models:
       user: Benutzer
       contest: Wettbewerb
+      scope: Länderkontext
+      page: Seite
     attributes:
+      page:
+        name: Name
+        title: Titel
+        body: Textinhalt
       scope:
         country_code: Ländercode
         locale: Sprache

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119133845) do
+ActiveRecord::Schema.define(version: 20141119143807) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -331,6 +331,19 @@ ActiveRecord::Schema.define(version: 20141119133845) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "pages", force: true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.text     "body"
+    t.integer  "scope_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["name", "scope_id"], name: "index_pages_on_name_and_scope_id", unique: true, using: :btree
+  add_index "pages", ["name"], name: "index_pages_on_name", using: :btree
+  add_index "pages", ["scope_id"], name: "index_pages_on_scope_id", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "affi_code"

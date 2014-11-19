@@ -12,6 +12,7 @@ Fashionfly::Application.routes.draw do
       resources :outfit_categories
       resources :categories
       resources :contests
+      resources :pages
       resources :affiliates do
         resources :mappings
       end

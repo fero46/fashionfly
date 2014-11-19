@@ -4,13 +4,11 @@ class Scope < ActiveRecord::Base
   has_many :affiliates
   has_many :products
   has_many :contests
-
   has_many :outfit_categories, class_name: 'FashionFlyEditor::Category'
   has_many :child_outfit_categories, class_name: 'FashionFlyEditor::Category',  as: :parent, :dependent => :destroy
-
-
   has_many :subscriptions, class_name: 'FashionFlyEditor::Subscription', as: :subscriber
   has_many :collections, through: :subscriptions, class_name: 'FashionFlyEditor::Collection'
+  has_many :pages
 
   validates :country_code, presence: true, uniqueness: true
   validates :locale, presence: true
