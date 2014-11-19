@@ -1,3 +1,7 @@
+<% content_for :seo_text do %>
+  <%= render_seo_block "__categories__#{@category_group.try(:slug)}" %>
+<% end %>
+
 <%= render 'products/filter' %>
 <div class="white_box pagination_options" ng-controller="FilterController">
   <%= t('.sort_by') %> 

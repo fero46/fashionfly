@@ -16,6 +16,7 @@
     <%= yield %>
   </div>
 </section>
+<%= yield :seo_text %>
 <%= render 'shared/footer' %>
 <%= query_review_output %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>

@@ -12,3 +12,6 @@
   <%= paginate @collections %>
 </div>
 <div class="clear"></div>
+<% content_for :seo_text do %>
+  <%= render_seo_block "__collections__#{@category_group.try(:slug)}" %>
+<% end %>

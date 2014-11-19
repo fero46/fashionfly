@@ -6,6 +6,29 @@ body{
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+.s_textblock{
+  padding: 25px;
+  font-size: 14px;
+  background: #ececec;
+  color: $black;
+  font-weight: 400;
+  h1{
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  strong{
+    font-weight: 600;
+  }
+  .center{
+    text-align: center;
+  }
+  p{
+    margin-bottom: 5px;
+  }
+}
+
 .footer{
   padding: 20px 0px;
   font-weight: 300;

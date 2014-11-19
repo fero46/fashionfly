@@ -13,6 +13,13 @@ class Scope < ActiveRecord::Base
   validates :country_code, presence: true, uniqueness: true
   validates :locale, presence: true
 
+  def page name
+    mypages[:name] ||= pages.where(name: name).first
+  end
+
+  def mypages
+    {}
+  end
 
   def name
     nil

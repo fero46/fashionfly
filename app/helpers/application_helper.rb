@@ -1,5 +1,19 @@
 module ApplicationHelper
   
+
+  def render_seo_block name
+    if @scope.page(name).present?
+      content_tag 'section', class: 's_textblock' do 
+        content_tag 'div', class: 'container' do
+          content_tag('h1', @scope.page(name).title) if @scope.page(name).title.present?
+          simple_format @scope.page(name).body
+        end
+      end
+    else
+      content_tag 'div', '',id: name, style: 'display:none'
+    end
+  end
+
   def field_class(resource, field_name)
     if resource.errors[field_name].present?
       return "error".html_safe
