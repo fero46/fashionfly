@@ -10,12 +10,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :get_right_scope, :locale_cookie, :assigned_locale, :cookie_store, :mycookies
 
-  def self.assign_collection collection, controller, options={} 
+  def self.assign_collection collection, controller, options={}
     return if collection.class.name != FashionFlyEditor::Collection.name || collection.new_record?
     if options[:scope].present?
       myscope = Scope.find(options["scope"])
       myscope.collections << collection
-      myscope.add_to_contest(collection) if options["contest"].to_s == 'true' 
+      myscope.add_to_contest(collection) if options["contest"].to_s == 'true'
     end
 
     for collection_item in collection.collection_items
@@ -23,8 +23,8 @@ class ApplicationController < ActionController::Base
       product = Product.where(id: collection_item.item_id).first if collection_item.item_id.present?
       product.collections << collection if product.present?
     end
-    user = User.where(secret: options["user"]) if options[:user].present? 
-    if user.present? 
+    user = User.where(secret: options["user"]).first if options[:user].present?
+    if user.present?
       collection.user_id = user.id
       collection.published=true
       controller.cookie_access_hook[:collection] = nil
@@ -39,10 +39,10 @@ class ApplicationController < ActionController::Base
     cookies
   end
 
-protected 
+protected
 
   def request_ip
-    if Rails.env.development? 
+    if Rails.env.development?
       params[:ip] ? params[:ip] : "80.203.37.20" # "85.177.133.79"
     else
       request.remote_ip
@@ -54,7 +54,7 @@ protected
   end
 
   def cookie_store
-    cookies[:cookie_store] = (0...30).map { ('a'..'z').to_a[rand(26)] }.join if current_user.blank? && cookies[:cookie_store].blank? 
+    cookies[:cookie_store] = (0...30).map { ('a'..'z').to_a[rand(26)] }.join if current_user.blank? && cookies[:cookie_store].blank?
     cookies[:cookie_store]
   end
 
@@ -73,7 +73,7 @@ protected
 
   def get_right_scope
     return @scope if @scope.present?
-    locale = params[:locale] 
+    locale = params[:locale]
     locale = locale_cookie if locale.blank?
     @scope = Scope.where(locale: locale).first if locale.present?
     if @scope.blank?
