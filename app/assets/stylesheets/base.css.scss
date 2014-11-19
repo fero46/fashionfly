@@ -29,6 +29,18 @@ body{
   }
 }
 
+.whitebox{
+  background: white;
+  padding: 25px;
+  ul{
+    list-style: none;
+  }
+  a{
+    color: $red;
+    text-decoration: none;
+  }
+}
+
 .footer{
   padding: 20px 0px;
   font-weight: 300;
