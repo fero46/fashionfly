@@ -22,12 +22,12 @@
     <div class="first_column">
       <h2><%= t('.find_us') %></h2><br />
       <p class="nounderline">
-        <%= link_to '', '', class: 'social', id:'facebook', title: 'facebook' %>
-        <%= link_to '', '', class: 'social', id:'twitter', title: 'twitter' %>
-        <%= link_to '', '', class: 'social', id:'google-plus', title: 'google-plus' %>
-        <%= link_to '', '', class: 'social', id:'pinterest', title: 'pinterest' %>
-        <%= link_to '', '', class: 'social', id:'instagram', title: 'instagram' %>
-        <%= link_to '', '', class: 'social', id:'youtube', title: 'youtube' %>
+        <%= social_footer_link :facebook %>
+        <%= social_footer_link :twitter %>
+        <%= social_footer_link :google %>
+        <%= social_footer_link :pinterest %>
+        <%= social_footer_link :instagram %>
+        <%= social_footer_link :youtube %>
       </p>
     </div>
 

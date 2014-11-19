@@ -17,6 +17,15 @@ de:
       user: Benutzer
       contest: Wettbewerb
     attributes:
+      scope:
+        country_code: Ländercode
+        locale: Sprache
+        facebook: Facebook Fanseite
+        twitter: Twitter Profil
+        google: Google+ Seite
+        pinterest: Pinterest Profil
+        instagram: Instagram Profil
+        youtube: Youtube Kanal
       contest:
         title: Wettbewerbs Name
         body: Text inhalt

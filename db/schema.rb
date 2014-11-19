@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117174031) do
+ActiveRecord::Schema.define(version: 20141119133845) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -400,6 +400,12 @@ ActiveRecord::Schema.define(version: 20141117174031) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "published",    default: false
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "google"
+    t.string   "pinterest"
+    t.string   "instagram"
+    t.string   "youtube"
   end
 
   add_index "scopes", ["country_code"], name: "index_scopes_on_country_code", length: {"country_code"=>10}, using: :btree

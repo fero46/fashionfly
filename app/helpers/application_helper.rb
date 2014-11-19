@@ -36,6 +36,13 @@ module ApplicationHelper
     image_tag("flags/#{format_name(name)}.png") + I18n.t(code, :scope => :countries)
   end
 
+  def social_footer_link network
+    link = @scope.send(network)
+    if link.present?
+      link_to '', link, class: 'social', id:network.to_s, title: network.to_s
+    end
+  end
+
 private
 
   def format_name name=""
