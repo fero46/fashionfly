@@ -10,12 +10,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :get_right_scope, :locale_cookie, :assigned_locale, :cookie_store, :mycookies
 
-  def self.assign_collection collection, controller, options={}
+  def self.assign_collection collection, controller, options={} 
     return if collection.class.name != FashionFlyEditor::Collection.name || collection.new_record?
     if options[:scope].present?
-      myscope = Scope.find(options[:scope])
+      myscope = Scope.find(options["scope"])
       myscope.collections << collection
-      myscope.add_to_contest(collection) if options[:contest]
+      myscope.add_to_contest(collection) if options["contest"].to_s == 'true' 
     end
 
     for collection_item in collection.collection_items
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       product = Product.where(id: collection_item.item_id).first if collection_item.item_id.present?
       product.collections << collection if product.present?
     end
-    user = User.where(secret: options[:user]) if options[:user].present? 
+    user = User.where(secret: options["user"]) if options[:user].present? 
     if user.present? 
       collection.user_id = user.id
       collection.published=true

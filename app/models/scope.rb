@@ -38,9 +38,9 @@ class Scope < ActiveRecord::Base
   end
 
   def add_to_contest collection
-    contest = @scope.contests.order(created_at: :desc).first
-    if contest.present?
-      contest.collections << collection
+    mycontest = contests.order(created_at: :desc).first
+    if mycontest.present?
+      mycontest.collections << collection
     end
   end
 
