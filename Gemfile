@@ -32,7 +32,6 @@ gem 'bourbon'
 gem 'countries'
 gem 'country_select'
 gem 'i18n-country-translations'
-gem "query_reviewer"
 gem 'ratyrate'
 gem 'social-share-button'
 gem 'puma'
