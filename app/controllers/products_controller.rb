@@ -11,7 +11,7 @@ class ProductsController < ScopeController
 
 
   def refshop
-    @product = Product.where(params[:product_id]).first
+    @product = Product.where(id: params[:product_id]).first
     if @product.blank? || @product.deepLink.blank?
       redirect_to root_path(@scope)
     else

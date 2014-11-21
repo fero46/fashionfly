@@ -15,6 +15,6 @@ App.controller 'FavoriteController', ['$scope',($scope) ->
         type: 'POST'
       )
       fav.addClass(active)
-  $scope.callForm = () ->
-    $('.callForm').submit()
+  $scope.callForm = (id) ->
+    $('#callForm'+id).submit()
 ]
