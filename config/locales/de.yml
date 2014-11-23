@@ -95,8 +95,9 @@ de:
   link:
     home: Home
   static:
-    about:
-      title: Über FashionFly
+    team:
+      title: Das Team
+      description: Wir arbeiten für die beste Community
   contests:
     edit:
       title: Wettbewerb bearbeiten
