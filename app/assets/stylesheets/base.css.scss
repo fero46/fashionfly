@@ -185,10 +185,10 @@ header{
     }
     border-bottom: 1px solid $border_color;
     .right_side_header{
-      position: absolute;
-      right: 0px;
-      top:5px;
+      float:right;
+      height: 65px;
       ul.top{
+        float:right;
         list-style: none;
         li{
           float:left;
@@ -207,10 +207,8 @@ header{
         }
       }
       .bottom{
-        position: absolute;
-        right: -7px;
-        top: 25px;
-        width: 565px;
+        float:right;
+        padding-top: 15px;
         .header_navigation{
           border-bottom: none;
           li{
@@ -220,6 +218,9 @@ header{
                 color: $red;
               }
             }
+            &.last a{
+                padding-right: 0px;
+              }
           }
         }
       }

@@ -8,7 +8,7 @@
         <ul class="top">
           <% if current_user.present? %>
             <li>
-              <%= link_to t('sign_out'), destroy_user_session_path, :method => :delete %>
+              <%= link_to t('.sign_out'), destroy_user_session_path, :method => :delete %>
             </li>
 
           <% else %>
@@ -20,12 +20,12 @@
             <li><%= link_to generate_name_and_flag(@scope.country_code),'#', 
             class: 'flag', 'ng-click' => 'selectCountry()' %></li>
         </ul>
+        <div class="clear"></div>
         <ul class="bottom">
             <nav class="header_navigation">
               <li><a href="<%= fashion_fly_editor_path(assigned_locale) %>" class="item"><%= t('.create_outfit') %></a></li>
               <li><a href="<%= contests_path(assigned_locale) %>" class="item"><%= t('.contest') %></a></li>
-              <li><a href="" class="item"><%= t('.fashionblog') %></a></li>
-              <li><a href="" class="item"><%= t('.my_fashionfly') %></a></li>
+              <li class="last"><a href="" class="item"><%= t('.my_fashionfly') %></a></li>
             </nav>
         </ul>
       </div>
