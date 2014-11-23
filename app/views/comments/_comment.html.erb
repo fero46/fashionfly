@@ -20,7 +20,6 @@
           <%= f.submit t('.edit_comment') ,class: 'button' %>
       <% end %>
     </div>
-    <% end %>
     <div class="action_buttons">
       <%= link_to t('action.edit'),'', class:'comment_edit', data: comment.id, id:"edit#{comment.id}" %>
       <%= link_to(t('action.destroy'), 
@@ -32,6 +31,8 @@
       <%= link_to t('action.cancel'),'', class:'comment_edit_cancel', data: comment.id, id:"cancel#{comment.id}" %>
 
     </div>
+    <% end %>
+
   </div>
   <div style="clear:both"></div>
 
