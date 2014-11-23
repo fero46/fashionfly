@@ -5,8 +5,8 @@ module ApplicationHelper
     if @scope.page(name).present?
       content_tag 'section', class: 's_textblock' do 
         content_tag 'div', class: 'container' do
-          content_tag('h1', @scope.page(name).title) if @scope.page(name).title.present?
-          simple_format @scope.page(name).body
+          concat content_tag('h1', @scope.page(name).title) if @scope.page(name).title.present?
+          concat simple_format @scope.page(name).body
         end
       end
     else
