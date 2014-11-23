@@ -31,6 +31,7 @@ Fashionfly::Application.routes.draw do
     end
     resources :collections, only: [:show, :index] do
       resources :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy, :update]
     end
     post 'product_partner', to:'products#refshop', as: :refshop
     resources :profiles, only: [:show, :edit, :update]

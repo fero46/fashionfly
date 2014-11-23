@@ -1,6 +1,6 @@
 FashionFlyEditor::Collection.class_eval do
   has_many :favorites, as: :markable, dependent: :destroy
-  
+  acts_as_commentable
   ratyrate_rateable "rate"
 
   def self.trends

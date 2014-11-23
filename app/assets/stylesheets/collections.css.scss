@@ -93,11 +93,15 @@
       padding:10px;
     }
   }
-  .details{
+  .details, .commenting_box, .comment{
     background: white;
     margin-top: 20px;
     position: relative;
     padding: 15px;
+    a{
+      color:$red;
+      text-decoration: none;
+    }
     img{
       float:left;
     }
@@ -110,6 +114,29 @@
       .description{
         margin-top: 10px;
       }
+    }
+    textarea{
+      margin-top:15px;
+      width: 448px;
+      height: 80px;
+      font-size: 12px;
+    }
+  }
+  .comment{
+    img{
+      margin-top: 10px;
+    }
+    .inner{
+      margin-left: 80px;
+    }
+    .action_buttons{
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 12px;
+    }
+    .comment_form_box, .comment_edit_cancel{
+      display: none;
     }
   }
 }

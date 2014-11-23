@@ -38,6 +38,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    acts_as_commentable (4.0.2)
     arel (4.0.2)
     bcrypt (3.1.9)
     bourbon (3.2.3)
@@ -253,6 +254,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_commentable
   bourbon
   capistrano
   carrierwave

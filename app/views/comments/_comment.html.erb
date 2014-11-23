@@ -1,0 +1,39 @@
+<div class="comment">
+  <%= image_tag comment.try(:user).try(:avatar).try(:mini) %>
+  <div class="inner">
+    <div class="description comment_content_box" id="comment<%= comment.id %>">
+      <strong><%= raw t('.comment_from',  user: comment.user.name, 
+                                  url: user_profile(comment.user)) %> <br />
+      <%= raw t('collections.show.created_at', 
+                                  date: l(comment.created_at, 
+                                  format: :short)) %> :</strong>
+      <%= comment.comment %>
+    </div>
+    <% if current_user.present?  && comment.user_id == current_user.id %>
+    <div class="comment_form_box" id="comment_form<%= comment.id %>">
+      <%= form_for comment, 
+                    url: collection_comment_path(locale: assigned_locale, 
+                                                  collection_id:@collection,
+                                                  id: comment.id),
+                    html:{class: 'formular'} do |f| %>
+          <%= f.text_area :comment, placeholder: t('collections.show.your_comment') %>
+          <%= f.submit t('.edit_comment') ,class: 'button' %>
+      <% end %>
+    </div>
+    <% end %>
+    <div class="action_buttons">
+      <%= link_to t('action.edit'),'', class:'comment_edit', data: comment.id, id:"edit#{comment.id}" %>
+      <%= link_to(t('action.destroy'), 
+                  collection_comment_path(locale: assigned_locale,                      collection_id:@collection,
+                                          id: comment.id),
+                  :method => :delete, 
+                  :confirm => t('action.destroy_confirm', entity: Comment.model_name.human),
+                  id:"destroy#{comment.id}")%>
+      <%= link_to t('action.cancel'),'', class:'comment_edit_cancel', data: comment.id, id:"cancel#{comment.id}" %>
+
+    </div>
+  </div>
+  <div style="clear:both"></div>
+
+
+</div>

@@ -4,6 +4,8 @@ de:
     new: Neu
     cancel: Abbruch
     edit: Bearbeiten
+    destroy: Löschen
+    destroy_confirm: "%{entity} wird entgültig gelöscht"
     created: "%{entity} erfolgreich erstellt."
     updated: "%{entity} erfolgreich erstellt." 
     destroyed: "%{entity} erfolgreich erstellt." 
@@ -18,6 +20,7 @@ de:
       contest: Wettbewerb
       scope: Länderkontext
       page: Seite
+      comment: Kommentar
     attributes:
       page:
         name: Name
@@ -82,6 +85,10 @@ de:
     collections:
       collection:
         from_user: "von <a href='%{url}' title='%{user}'>%{user}</a>"
+  comments:
+    comment:
+      edit_comment: "Kommentar bearbeiten"
+      comment_from: "Kommentar von <a href='%{url}' title='%{user}'>%{user}</a>"
   collections:
     show: 
       used_products: Produkte in diesem Outfit
@@ -90,6 +97,9 @@ de:
       share: "Teil diesen Style in deinem Netzwerk"
       embedd: "Einbetten"
       embedd_to: "html-Code zum Einbetten in Blogs und Homepages:" 
+      create_comment: "Jetzt dieses Outfit kommentieren"
+      save_comment: "Jetzt kommentieren"
+      your_comment: "Ihr Kommentar" 
   breadcrumb:
     you_are_here: Du bist Hier
   link:

@@ -35,6 +35,7 @@ gem 'i18n-country-translations'
 gem 'ratyrate'
 gem 'social-share-button'
 gem 'puma'
+gem 'acts_as_commentable'
 #gem 'lit'
 group :doc do
   gem 'sdoc', require: false

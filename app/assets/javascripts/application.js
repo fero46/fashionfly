@@ -21,6 +21,7 @@
 //= require angular
 //= require angular-resource
 //= require appconfig
+//= require comments
 //= require app
 //= require_tree ./angular
 
