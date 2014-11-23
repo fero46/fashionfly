@@ -7,6 +7,10 @@
         id="col<%= @collection.id %>"
         path="<%= collection_favorites_path(assigned_locale, @collection) %>"></a>
     <div class="share">
+      <div class="ratable">
+        <%= rating_for @collection, "rate", :star => 5 %> 
+      </div>
+
       <span><%= t('.share') %></span> <%= social_share_button_tag(@collection.title, :popup => "true") %>
 <h3><%= t('.embedd_to') %></h3>
 <textarea readonly><script type='text/javascript'>
