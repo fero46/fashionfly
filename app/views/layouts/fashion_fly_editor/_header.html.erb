@@ -1,0 +1,71 @@
+<header class="header" ng-controller="HeadersController">
+  <div class="top_header">
+    <div class="container">
+      <%= link_to (image_tag 'logo.png', id: 'logo', title:'FashionFly'), scoped_root_path %>
+      <iframe src="//www.facebook.com/plugins/like.php?href=<%= like_url %>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=365563203593715" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true" id="facebook_count"></iframe>
+
+      <div class="right_side_header">
+        <ul class="top">
+          <% if current_user.present? %>
+            <li>
+              <%= link_to t('sign_out'), main_app.destroy_user_session_path, :method => :delete %>
+            </li>
+
+          <% else %>
+            <li><%= link_to t('.sign_in'), main_app.new_user_session_path(locale:assigned_locale) %></li>
+            <li><%= link_to t('.sign_up'), main_app.new_user_registration_path(locale:assigned_locale) %></li>
+
+          <% end %>
+             <li><%= link_to t('.faq'), main_app.faq_path(assigned_locale) %></li>
+            <li><%= link_to generate_name_and_flag(@scope.country_code),'#',
+            class: 'flag', 'ng-click' => 'selectCountry()' %></li>
+        </ul>
+        <ul class="bottom">
+            <nav class="header_navigation">
+              <li><a href="<%= main_app.fashion_fly_editor_path(assigned_locale) %>" class="item"><%= t('.create_outfit') %></a></li>
+              <li><a href="<%= main_app.contests_path(assigned_locale) %>" class="item"><%= t('.contest') %></a></li>
+              <li><a href="" class="item"><%= t('.fashionblog') %></a></li>
+              <li><a href="" class="item"><%= t('.my_fashionfly') %></a></li>
+            </nav>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <nav class="header_navigation">
+    <div class="container">
+      <li class="<%= 'selected' if @outfit_category.present?%>">
+          <a href="<%= main_app.outfit_categories_path(assigned_locale) %>" class="item"><%= t('.outfit') %></a>
+        <ul class="outfit_submenu">
+          <% for outfit_category in outfit_category_groups %>
+            <li>
+              <span><%= outfit_category.name %></span>
+              <ul>
+                <% for subcategory in outfit_category.categories %>
+                  <li>
+                    <a href="<%= main_app.outfit_category_path(assigned_locale,subcategory.slug) %>">
+                      <%= subcategory.name %>
+                    </a>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+          <li class="clear"></li>
+        </ul>
+
+      </li>
+      <% for category in category_groups %>
+        <li class="<%= 'selected' if @category_group.present? && category.id == @category_group.id %>">
+          <a href="<%= main_app.category_path(assigned_locale, category.slug) %>" class="item"><%= category.name %></a>
+          <ul class="submenu">
+          <% for subcategory in category.categories %>
+            <li> <a href="<%= main_app.category_path(assigned_locale,subcategory.slug) %>"><%= subcategory.name %> </a></li>
+          <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </div>
+  </nav>
+</header>
+
+<%= render 'shared/select_popup' %>

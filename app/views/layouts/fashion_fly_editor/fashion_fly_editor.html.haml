@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title FashionFlyEditor
+    = stylesheet_link_tag    "application", media: "all"
+    = stylesheet_link_tag    "fashion_fly_editor/application", media: "all"
+    = javascript_include_tag "//code.jquery.com/jquery-1.11.0.min.js"
+    = javascript_include_tag "fashion_fly_editor/application"
+    = csrf_meta_tags
+  %body{ 'ng-app' => 'ffe' }
+    = render 'layouts/fashion_fly_editor/header'
+
+    = yield
+
+    = render 'layouts/fashion_fly_editor/footer'
