@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141123010625) do
+ActiveRecord::Schema.define(version: 20141124192803) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -385,6 +385,8 @@ ActiveRecord::Schema.define(version: 20141123010625) do
     t.integer  "favorites_count",                               default: 0
     t.integer  "affiliate_id"
     t.boolean  "premium",                                       default: false
+    t.integer  "width",                                         default: 0
+    t.integer  "height",                                        default: 0
   end
 
   add_index "products", ["actual_trend"], name: "index_products_on_actual_trend", using: :btree

@@ -127,6 +127,11 @@ protected
     system border_command
     system trim_command
 
+    img = MiniMagick::Image.open(trimmed_out)
+    
+    product.width  = img['width']
+    product.height = img['height']
+
     product.image = File.open(trimmed_out)
     product.save
     

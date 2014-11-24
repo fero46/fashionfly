@@ -11,5 +11,7 @@ json.products @products do |json, product|
   json.price product.price
   json.name product.name
   json.image request.protocol + request.host_with_port + product.image.url
+  json.width product.width
+  json.height product.height
   json.url product.deepLink
 end
