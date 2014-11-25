@@ -17,7 +17,7 @@ module Fashionfly
     # config.time_zone = 'Central Time (US & Canada)'
     config.autoload_paths << Rails.root.join('lib')
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
-    config.assets.precompile += ['backend.css','backend.js', 'widget.js', 'widget.css']
+    config.assets.precompile += ['backend.css','backend.js', 'widget.js', 'widget.css', 'overwrites.css']
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.default_locale = :de
     config.i18n.enforce_available_locales = false
