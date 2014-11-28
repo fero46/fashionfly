@@ -52,18 +52,19 @@ class User < ActiveRecord::Base
       image.gsub!("http","https")
       image=image+"?type=large"
     end
+    
     attributes = {
-      email: params['info']['email'],
-      email_confirmation: params['info']['email'],
       password: pass,
       password_confirmation: pass,
       name: params['info']['name'],
       remote_avatar_url: image
     }
-    puts params.to_yaml
     user = User.new(attributes)
+    user.email = params['info']['email']
+    user.email_confirmation =  params['info']['email']
     user.skip_confirmation!
     user.save
+    user.confirm!
     user
   end
 
