@@ -310,7 +310,7 @@ header{
 }
 
 
-.filter{
+.filter, .navigation{
   width: 274px;
   margin-right: 50px;
   float: left;
@@ -330,7 +330,7 @@ header{
     border-bottom: 1px solid $border_color;
     font-weight: 600;
   }
-  .category_select{
+  .category_select, .navigation_select{
     ul{
       list-style: none;
       li{
@@ -602,7 +602,6 @@ span.red{
     margin: 5px 0px;
     color: white;
     padding: 10px;
-    width: 100%;
     margin-bottom: 15px;
     h2{
       font-size: 16px;
@@ -615,7 +614,17 @@ span.red{
     }
   }
   .label{
-    font-weight: bold;
+    font-weight: 400;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  span.info{
+    font-weight: 400;
+    color: darken($blue, 50%);
+    font-size: 12px;
+  }
+  p{
+    margin-bottom: 20px;
   }
 }
 

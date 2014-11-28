@@ -26,6 +26,7 @@ Fashionfly::Application.routes.draw do
   scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
     resources :contests
     resources :styles, only: [:show, :index]
+    resources :profiles, only:[:show, :update, :edit]
     resources :products, only: [:show, :index] do
       resources :favorites, only: [:create, :destroy]
     end
@@ -34,7 +35,6 @@ Fashionfly::Application.routes.draw do
       resources :comments, only: [:create, :destroy, :update]
     end
     post 'product_partner', to:'products#refshop', as: :refshop
-    resources :profiles, only: [:show, :edit, :update]
     resources :categories
     resources :outfit_categories
     mount FashionFlyEditor::Engine => "/combine"

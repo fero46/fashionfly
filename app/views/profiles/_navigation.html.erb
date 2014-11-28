@@ -1,0 +1,10 @@
+<div class="navigation">
+  <div class="block_box navigation_select">
+  <h2><%= t('.title') %></h2>
+  <ul>
+    <li><%= link_to(t('action.back'), user_profile(current_user)) %></li>
+    <li class="<%= active[:profile] %>"><%= link_to(t('.edit_profile'), edit_profile_path(assigned_locale, current_user)) %></li>
+    <li class="<%= active[:edit] %>"><%= link_to(t('.edit_registration'), edit_user_registration_path(locale: assigned_locale)) %></li>
+  </ul>
+</div>
+</div>

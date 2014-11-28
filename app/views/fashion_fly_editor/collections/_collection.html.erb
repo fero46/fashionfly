@@ -9,6 +9,6 @@
         path="<%= collection_favorites_path(assigned_locale, collection) %>"></a>
   </div>
   <h3><%=  collection.title %></h3>
-  <h4><%= raw t('.from_user', user: collection.user.name, 
+  <h4><%= raw t('.from_user', user: user_name(collection.user), 
                           url: user_profile(collection.user)) %></h4>
 </div>

@@ -7,6 +7,7 @@
       <div class="right_side_header">
         <ul class="top">
           <% if current_user.present? %>
+            <li><%=link_to "#{current_user.name}", user_profile(current_user) %></li>
             <li>
               <%= link_to t('.sign_out'), destroy_user_session_path, :method => :delete %>
             </li>
@@ -25,7 +26,10 @@
             <nav class="header_navigation">
               <li><a href="<%= fashion_fly_editor_path(assigned_locale) %>" class="item"><%= t('.create_outfit') %></a></li>
               <li><a href="<%= contests_path(assigned_locale) %>" class="item"><%= t('.contest') %></a></li>
-              <li class="last"><a href="" class="item"><%= t('.my_fashionfly') %></a></li>
+              <% if current_user %>
+                <li class="last">
+                  <%= link_to t('.my_fashionfly'), user_profile(current_user), class: 'item' %>
+              <% end %>
             </nav>
         </ul>
       </div>

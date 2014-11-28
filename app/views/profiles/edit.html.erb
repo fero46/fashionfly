@@ -1,2 +1,8 @@
-<h1>Profiles#edit</h1>
-<p>Find me in app/views/profiles/edit.html.erb</p>
+<div class="container">
+  <%= render 'navigation',  active: {profile: 'active' } %>
+  <div class="profile_formular">
+    <h1> <%= t 'action.edit_profile' %></h1>
+    <%= render 'form' %>
+  </div>
+  <div class="clear"></div>
+</div>

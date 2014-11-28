@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :authentications, class_name: 'UserAuthentication', dependent: :destroy
   has_many :favorites
   has_many :comments
+  has_many :collections, class_name: 'FashionFlyEditor::Collection'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :omniauthable, :database_authenticatable, :registerable,
@@ -10,16 +11,28 @@ class User < ActiveRecord::Base
   ratyrate_rater
 
   mount_uploader :avatar, AvatarUploader
+  mount_uploader :banner, BannerUploader
+
+  auto_html_for :info do
+    html_escape
+    image
+    instagram
+    youtube(:width => 400, :height => 250, :autoplay => false)
+    vimeo
+    link :target => "_blank", :rel => "nofollow"
+    simple_format
+  end
 
   attr_accessor :email_confirmation
 
   validate :email_has_to_be_validated, on: :create
+  validate :name, presence: true
 
   before_save  :update_slug
   after_create :make_secret
 
   def email_has_to_be_validated
-    errors.add(:email_confirmation, I18n.t("user.identical")) unless email_confirmation == email
+    errors.add(:email_confirmation, I18n.t("user.identical")) if email_confirmation != email
   end
 
   def update_slug

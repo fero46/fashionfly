@@ -1,2 +1,18 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<div class="profile container" ng-controller="ProfileController">
+  <div class="profiles_header" data="<%= @user.banner %>">
+    <div class="profile_image">
+      <%= image_tag @user.avatar.smaller %>
+    </div>
+    <span class="name">
+        <%= @user.name %>
+    </span>
+  </div>
+  <div class="detail">
+    <%= profile_edit(@user) %>
+    <h2><%= t('.info') %></h2>
+    <div class="clear"></div>
+    <div class="info">
+      <%= @user.info_html %>
+    </div>  
+  </div>
+</div>

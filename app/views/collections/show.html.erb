@@ -24,10 +24,10 @@ FashionFlyWidget.host = <%= request.host_with_port %>
     </div>
 
     <div class="details">
-      <%= image_tag @collection.try(:user).try(:avatar).try(:smaller) %>
+      <%= image_tag user_image(@collection.user, :smaller) %>
       <div class="inner">
         <h3><%= @collection.title %></h3>
-        <%= raw t('.created_from', user: @collection.user.name, 
+        <%= raw t('.created_from', user: user_name(@collection.user),
                           url: user_profile(@collection.user)) %> <br />
         <%= raw t('.created_at', date: l(@collection.created_at, format: :short)) %>
         <div class="description">

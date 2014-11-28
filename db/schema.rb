@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125120353) do
+ActiveRecord::Schema.define(version: 20141125161111) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(version: 20141125120353) do
     t.integer  "last_trend"
     t.integer  "favorites_count"
     t.boolean  "published",       default: false
+    t.integer  "visits_count",    default: 0
   end
 
   add_index "fashion_fly_editor_collections", ["actual_trend"], name: "index_fashion_fly_editor_collections_on_actual_trend", using: :btree
@@ -470,16 +471,16 @@ ActiveRecord::Schema.define(version: 20141125120353) do
   add_index "user_authentications", ["user_id"], name: "index_user_authentications_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "",     null: false
+    t.string   "email",                                default: "",     null: false
     t.string   "name"
     t.string   "avatar"
-    t.string   "role",                   default: "user"
+    t.string   "role",                                 default: "user"
     t.string   "slug"
-    t.string   "encrypted_password",     default: "",     null: false
+    t.string   "encrypted_password",                   default: "",     null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,      null: false
+    t.integer  "sign_in_count",                        default: 0,      null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -491,6 +492,14 @@ ActiveRecord::Schema.define(version: 20141125120353) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "secret"
+    t.string   "banner"
+    t.text     "info"
+    t.integer  "fashion_fly_editor_collections_count", default: 0
+    t.integer  "favorites_count",                      default: 0
+    t.integer  "five_star_rates_count",                default: 0
+    t.integer  "visitors",                             default: 0
+    t.integer  "max_single_collection_share",          default: 0
+    t.integer  "visits_count",                         default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

@@ -5,13 +5,16 @@ de:
     cancel: Abbruch
     edit: Bearbeiten
     destroy: Löschen
+    update: Aktualisieren
     destroy_confirm: "%{entity} wird entgültig gelöscht"
+    edit_profile: Profil bearbeiten
     created: "%{entity} erfolgreich erstellt."
     updated: "%{entity} erfolgreich erstellt." 
     destroyed: "%{entity} erfolgreich erstellt." 
     error: "Es sind Fehler vorhanden." 
     collection_not_found: 'Ihr Outfit wurde nicht gefunden'
     required_to_signed_in: 'Du musst dich Anmelden um das Outfit abzuspeichern.'
+    edit_resource: Email und Password bearbeitet
   user:
     identical: muss bestätigt werden
   activerecord:
@@ -41,12 +44,15 @@ de:
         banner: Banner
         form_label: Beim Wettbewerb mitmachen
       user:
+        unknown: Unbekannt 
         remember_me: Angemeldet bleiben.
         email: E-mail
         email_confirmation: E-Mail Bestätigung
         password: Passwort
         password_confirmation: Passwort Bestätigung
         current_password: Altes Passwort
+        name: Benutzername
+        avatar: Anzeigebild
   views:
     pagination:
       first: "&laquo;"
@@ -81,6 +87,14 @@ de:
     plurk: Plurk
     pinterest: Pinterest
     email: Email
+  profiles:
+    navigation:
+      title: Bearbeitungsmenu
+      edit_profile: Profil
+      edit_registration: Email und Passwort
+    form:
+      remove_image: Anzeigebild entfernen
+      update_profile: Profil speichern
   fashion_fly_editor:
     collections:
       collection:
@@ -207,6 +221,13 @@ de:
         placeholder_password: Dein Passwort
         placeholder_password_confirmation: Bestätige dein Passwort
         sign_up: Kostenlos Registrieren
+      edit:
+        wait_confirmation: Bestätigen Sie bitte %{email}
+        leaf_blank: "(wenn du dein Passwort nicht ändern willst, lass das Feld leer.)"
+        old_pass: "(dein altes Passwort eingeben um die Änderung zu bestätigen)"
+        unhappy: "Bist du nicht mehr glücklich mit FashionFly und willst dein Account löschen ?"
+        cancel_my_account: "Mein Konto löschen"
+        account: Konto
     sessions:
       new:
         title: Melde dich an

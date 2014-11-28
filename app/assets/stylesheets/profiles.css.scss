@@ -1,3 +1,97 @@
-// Place all the styles related to the profiles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "color";
+.profile{
+  .profiles_header{
+    position: relative;
+    height: 236px;
+    background-color: $blue;
+    .profile_image{
+      background: $white;
+      padding: 10px;
+      border: 1px solid $border_color;
+      display: inline-block;
+      position: absolute;
+      left: 45px;
+      top: 45px;
+      width:125px;
+      height: 125px;
+      text-align: center;
+    }
+    .name{
+      font-size: 24px;
+      position: absolute;
+      top: 110px;
+      left: 215px;
+      color: white;
+      text-shadow: 2px 2px 2px #000;
+      font-weight: 600;
+    }
+  }
+  .edit_button{
+    float: right;
+    padding-bottom: 15px;
+    color: $red;
+  }
+  .detail{
+    background: $white;
+    padding: 45px;
+    h2{
+      margin-bottom: 15px;
+      font-weight: 600;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+    .info{
+      background: lighten($grey, 45%);
+      padding: 10px;
+      line-height: 18px;
+      font-weight: 400;
+      a{
+        color: $red;
+      }
+      p{
+        margin-bottom: 18px;
+      }
+    }
+  }
+}
+
+.profile_formular{
+  background: white;
+  margin-left: 324px; 
+  padding: 15px;
+  h1{
+    text-align: left;
+    margin-bottom: 25px;
+  }
+  h2{
+    margin-bottom: 15px;
+  }
+  p{
+    margin-bottom: 15px;
+  }
+  .button{
+    cursor: pointer;
+  }
+  .profile_edit{
+    .upload_box{
+      margin-bottom: 15px;
+      img{
+        display: inline-block;
+        background: $white;
+        border: 1px solid $border_color;
+        padding: 10px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+  input[type='text'], input[type='password'], input[type='email'], textarea{
+    width: 800px;
+  }
+  textarea{
+    height: 150px;
+  }
+  .action{
+    width: 350px;
+    float:right;
+  }
+}
