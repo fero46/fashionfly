@@ -31,6 +31,11 @@ class ProductSearchService
         @products = @products.where('price > ?', greater)
       end
     end
+    if params[:name].present?
+        query = params[:name]
+        @products = @products.where('name like ?',"%#{query}%")      
+    end
+
     type = params[:sort_by].present? ? params[:sort_by] : 0
     @products = order_product(@products, type.to_i)
     @products.page(params[:page]).per(params[:per].present? ? params[:per] : 9)
