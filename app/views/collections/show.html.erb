@@ -13,13 +13,10 @@
 
       <span><%= t('.share') %></span> <%= social_share_button_tag(@collection.title, :popup => "true") %>
 <h3><%= t('.embedd_to') %></h3>
-<textarea readonly><script type='text/javascript'>
-FashionFlyWidget = {};
-FashionFlyWidget.collection = 2;
-FashionFlyWidget.host = <%= request.host_with_port %>
-</script>
+<textarea readonly>
 <%= javascript_include_tag javascript_url("widget"), type:'text/javascript' %>
-<div class='fashionfly-widget'></div>
+<div class='fashionfly-widget' data='<%=@collection.id %>' host="<%= request.host_with_port %>"></div>
+
 </textarea>
     </div>
 

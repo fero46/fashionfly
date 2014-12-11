@@ -1,50 +1,27 @@
+#= require jquery
+
 <% environment.context_class.instance_eval { include Rails.application.routes.url_helpers;include ActionView::Helpers::OutputSafetyHelper
  } %>
 
-(->
-  # For old versions of IE
-  scriptLoadHandler = ->
-    jQuery = window.jQuery.noConflict(true)
-    main()
+$j = jQuery.noConflict();
+$j(document).ready ($) ->
+  prefix = "http://"
+
+  if window.fashion_fly_is_inside == true
     return
-  main = ->
-    jQuery(document).ready ($) ->
-      css_link = $("<link>",
-        rel: "stylesheet"
-        type: "text/css"
-        href: '//'+FashionFlyWidget.host+'<%= stylesheet_path("widget.css", only_path: false) %>'
-      )
-      css_link.appendTo "head"
-      jsonp_url= '//'+FashionFlyWidget.host+'<%= widgets_path(format: "json") %>';
-      $.ajax
-        url: jsonp_url
-        data: FashionFlyWidget
-        dataType: "jsonp"
-        success: (data) ->
-          # ANTWORT VON Controller
-          $.each data, (i, d) ->
-            $(".fashionfly-widget").append d.template
-            return
-
-          return
-
-      return
-
-    return
-  jQuery = undefined
-  if window.jQuery is `undefined` or window.jQuery.fn.jquery isnt "1.4.2"
-    script_tag = document.createElement("script")
-    script_tag.setAttribute "type", "text/javascript"
-    script_tag.setAttribute "src", "//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
-    if script_tag.readyState
-      script_tag.onreadystatechange = ->
-        scriptLoadHandler()  if @readyState is "complete" or @readyState is "loaded"
-        return
-    else
-      script_tag.onload = scriptLoadHandler
-    (document.getElementsByTagName("head")[0] or document.documentElement).appendChild script_tag
-  else
-    jQuery = window.jQuery
-    main()
-  return
-)()
+  window.fashion_fly_is_inside = true
+  $j('.fashionfly-widget').each (index, value) ->
+    host = $j(value).attr('host')
+    data_id = $j(value).attr('data')
+    css_link = $("<link>",
+      rel: "stylesheet"
+      type: "text/css"
+      href: prefix+host+'<%= stylesheet_path("widget.css", only_path: false) %>'
+    )
+    css_link.appendTo "head"
+    jsonp_url= prefix+host+'<%= widgets_path() %>'+'/'+data_id
+    console.log(jsonp_url)
+    $j.ajax
+      url: jsonp_url
+      success: (data) ->
+        $j(value).append data
