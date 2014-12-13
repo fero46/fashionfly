@@ -3,7 +3,11 @@
   <div class="right_side">
     <%= link_to t('.new'), new_contest_path(locale:assigned_locale), class:'button' %>
   </div>
-  <%= render @contest %>
+  <% if @contest.present? %>
+    <%= render @contest %>
+  <% end %>
 </div>
 <div class="clear"></div>
-<%= render @contest.collections %>
+<% if @contest.present? %>
+  <%= render @contest.collections %>
+<% end %>
