@@ -42,7 +42,14 @@ gem 'fog'
 group :doc do
   gem 'sdoc', require: false
 end
-gem 'capistrano', group: :development
+
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
+gem 'capistrano-sidekiq'
+gem 'capistrano-rails-collection'
+gem 'capistrano3-puma'
+
 gem "omniauth"
 gem "omniauth-facebook"
 gem "omniauth-twitter"
