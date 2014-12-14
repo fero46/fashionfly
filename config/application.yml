@@ -9,10 +9,21 @@ defaults: &defaults
     facebook:
       id: x
       secret: x
-
+    tumblr:
+      id: x
+      secret: 104oqBPGO7nqXgnTMvcMwgKfms8OZDuwJo9IU9dICWEQZnAaXc
+    twitter:
+      id: XrPEL3EaKYiv08wqj5XRHZClF
+      secret: byOPa31EjtlrcopJQRmQaY7GDWR3gKrzKteucbV9AAQSWI9QGO
+    google:
+      id: 160386295309-ragvk7g62vcfimrhv3vbcjktqujcmt4c.apps.googleusercontent.com
+      secret: nva9FLxy1DPkhu01-ZW-2O7J
 development:
   <<: *defaults
-
+  oauth:
+    facebook:
+      id: x
+      secret: x
 test:
   <<: *defaults
 
