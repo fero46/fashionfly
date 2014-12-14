@@ -8,7 +8,7 @@ CarrierWave.configure do |config|
       :provider               => 'AWS',
       :aws_access_key_id      =>  'x',
       :aws_secret_access_key  => 'x',
-      :region                 => 'eu-west-1'
+      :region                 => 'eu-central-1'
     }
     config.fog_directory = 'fashionfly'
   end
