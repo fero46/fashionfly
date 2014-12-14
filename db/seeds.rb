@@ -12,7 +12,7 @@ for color in colors
   Colorization.where(name: "##{color}").first_or_create
 end
 
-delete_all_categories = false
+delete_all_categories = true
 
 if delete_all_categories 
   Category.where(scope_id: germany.id).destroy_all
@@ -131,7 +131,7 @@ def create_categories scope, categories, parent_id=nil
   end
 end
 
-#create_categories germany,german_categories
+create_categories germany,german_categories
 
 #### Icons
 icons = Dir[Rails.root.join('db','icons').to_s+"/*"]
