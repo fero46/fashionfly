@@ -4,6 +4,8 @@ class OriginalUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
+  storage :fog
+
   version :detail_view  do
     process resize_to_fit: [550, 650]
   end

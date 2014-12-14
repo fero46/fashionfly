@@ -4,6 +4,8 @@ class ShoplogoUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
+  storage :fog
+
   process resize_to_fit: [200, 40]
 
   def store_dir

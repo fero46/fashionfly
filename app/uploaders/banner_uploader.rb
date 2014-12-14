@@ -4,7 +4,7 @@ class BannerUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
   
-  storage :file
+  storage :fog
 
   process resize_to_fill: [1068, 236]
  

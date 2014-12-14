@@ -4,7 +4,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
   
-  storage :file
+  storage :fog
 
   version :detail_view  do
     process resize_to_fit: [250, 250]
