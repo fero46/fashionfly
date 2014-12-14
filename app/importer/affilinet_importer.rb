@@ -93,7 +93,10 @@ class AffilinetImporter < GenericImporter
           product = Product.where(affiliate_id: @affiliate.id, 
                                   affi_code: id,
                                   scope_id: @scope.id).first
-          product.destroy if product.present?
+          if product.present?
+            product.published = false
+            product.save
+          end
         end
 
       end
