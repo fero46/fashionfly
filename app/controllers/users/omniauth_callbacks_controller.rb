@@ -16,7 +16,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     create
   end
 
-  def google
+  def google_oauth2
     create
   end
 

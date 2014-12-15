@@ -18,6 +18,9 @@
 </section>
 <%= yield :seo_text %>
 <%= render 'shared/footer' %>
+
+<%= render 'shared/email_enter_form' if (current_user.present? && current_user.email_has_to_change? || @show_form) %>
+
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </body>
 </html>

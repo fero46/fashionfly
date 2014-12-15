@@ -19,7 +19,7 @@ Fashionfly::Application.routes.draw do
     end
   end
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'confirmations' }
 
   resources :widgets
 
@@ -27,6 +27,7 @@ Fashionfly::Application.routes.draw do
     resources :contests
     resources :styles, only: [:show, :index]
     resources :profiles, only:[:show, :update, :edit]
+    patch 'email_edit', to: 'profiles#email_edit', as: :email_edit
     resources :products, only: [:show, :index] do
       resources :favorites, only: [:create, :destroy]
     end

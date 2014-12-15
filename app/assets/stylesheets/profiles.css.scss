@@ -95,3 +95,24 @@
     float:right;
   }
 }
+
+#email_editing{
+  display: block;
+  padding-top:100px;
+  img{
+    float:left;
+  }
+  .aside{
+    margin-left: 150px;
+    padding-right: 20px;
+    h3{
+      margin-bottom: 10px;
+    }
+    p{
+      margin-bottom: 20px;
+    }
+    .error{
+      color: red;
+    }
+  }
+}

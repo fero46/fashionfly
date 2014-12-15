@@ -1,0 +1,29 @@
+<div class="popup_background" id="email_editing">
+  <div class="popup_container">
+      <%= image_tag current_user.avatar.smaller %>
+      <div class="aside">
+        <% if @mail_send  %>
+          <h3><%= t('.success') %></h3>
+          <p><%= t('.success_description') %></p>
+          <p><%= link_to t('.reload'), root_path(assigned_locale), class: 'button' %></p>
+        <% else %>
+          <h3><%= t('.title') %></h3>
+          <p><%= t('.description') %></p>
+          <%= form_for current_user, url: email_edit_path(assigned_locale, id:current_user.id), html:{class: 'formular profile_edit'} do |f| %>
+          <div>
+            <%= f.label :email, class:'label' %>
+              <%= f.email_field :email, autofocus: true, 
+                                        value: current_user.email_has_to_change? ? '' : current_user.email %>
+          </div>
+          <div>
+            <%= f.label :email_confirmation, class:'label' %>
+            <%= f.email_field :email_confirmation %>
+          </div>
+          <div>
+            <%= f.submit t('.update_email'), class: 'button'  %>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+  </div>
+</div>

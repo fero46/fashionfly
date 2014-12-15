@@ -12,7 +12,16 @@ class ProfilesController < ScopeController
 
   def design
     @user = current_user
+  end
 
+  def email_edit
+    @user = current_user
+    @user.confirm_email
+    if @user.update!(email_attributes)
+      @mail_send = true
+    end
+    @show_form = true
+    render :template => "welcome/index"
   end
 
   def update
@@ -25,6 +34,11 @@ class ProfilesController < ScopeController
   end
 
 protected 
+
+  def email_attributes
+    params.require(:user).permit(:email,
+                                :email_confirmation)
+  end
 
   def user_attributes
     params.require(:user).permit(:banner,

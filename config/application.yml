@@ -24,6 +24,15 @@ development:
     facebook:
       id: x
       secret: x
+    tumblr:
+      id: x
+      secret: x
+    twitter:
+      id: x
+      secret: x
+    google:
+      id: x
+      secret: x
 test:
   <<: *defaults
 

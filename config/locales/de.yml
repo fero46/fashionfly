@@ -9,14 +9,15 @@ de:
     destroy_confirm: "%{entity} wird entgültig gelöscht"
     edit_profile: Profil bearbeiten
     created: "%{entity} erfolgreich erstellt."
-    updated: "%{entity} erfolgreich erstellt." 
+    updated: "%{entity} erfolgreich aktualisiert." 
     destroyed: "%{entity} erfolgreich erstellt." 
     error: "Es sind Fehler vorhanden." 
     collection_not_found: 'Ihr Outfit wurde nicht gefunden'
     required_to_signed_in: 'Du musst dich Anmelden um das Outfit abzuspeichern.'
     edit_resource: Email und Password bearbeitet
+    edit_email: 'Email wurde aktualisiert'
   user:
-    identical: muss bestätigt werden
+    identical: muss eingegeben werden
   activerecord:
     models:
       user: Benutzer
@@ -132,6 +133,13 @@ de:
     sidebar: 
       title: Wettbewerbe
   shared:
+    email_enter_form:
+      success: Du hast Erfolgreich deine Email eingegeben
+      success_description: Du erhälts in kurze eine E-Mail mit einem Bestätigungslink. Du kannst jederzeit deine E-Mail noch einmal eingeben in dem du diese Seite neu ladest. 
+      reload: Seite Neu Laden.
+      title: Nur noch deine E-Mail Adresse
+      description: Bitte gib deine E-Mail Adresse ins Formular ein.
+      update_email: E-Mail aktualisieren
     footer:
       what_is_fashionfly: Was ist FashionFly?
       answer_1: "FashionFly ist eine Modeportal in dem Nutzer ihre Outfits teilen können. Erhalte Feedback für dein Outfit und hole Rat auf die Frage: 'Was soll ich heute Anziehen ?'"

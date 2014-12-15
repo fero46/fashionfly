@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :find_scope
-
   before_action :cookie_store
   before_action :check_favorite
+
 
   helper_method :get_right_scope, :locale_cookie, :assigned_locale, :cookie_store, :mycookies
 
@@ -40,7 +40,6 @@ class ApplicationController < ActionController::Base
   end
 
 protected
-
   def request_ip
     if Rails.env.development?
       params[:ip] ? params[:ip] : "80.203.37.20" # "85.177.133.79"

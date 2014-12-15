@@ -199,7 +199,7 @@ Devise.setup do |config|
    config.omniauth :twitter, Settings.oauth.twitter.id, Settings.oauth.twitter.secret
    # config.omniauth :pinterest, 'APP_ID', 'APP_SECRET'
    config.omniauth :tumblr, Settings.oauth.tumblr.id, Settings.oauth.tumblr.secret
-   config.omniauth :google, Settings.oauth.google.id, Settings.oauth.google.secret
+   config.omniauth :google_oauth2, Settings.oauth.google.id, Settings.oauth.google.secret
 
 
   # ==> Warden configuration
