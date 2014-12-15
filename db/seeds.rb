@@ -1,9 +1,10 @@
+# encoding: UTF-8
 germany = Scope.where(country_code: 'DE', locale:'de').first_or_create
 usa =Scope.where(country_code: 'US', locale:'en').first_or_create
 brittish = Scope.where(country_code: 'GB', locale:'gb-en').first_or_create
 canadian = Scope.where(country_code: 'CA', locale:'ca-en').first_or_create
 australien = Scope.where(country_code: 'AU', locale:'au-en').first_or_create
-turkey = Scope.where(country_code: 'TR', locale:'TR').first_or_create
+turkey = Scope.where(country_code: 'TR', locale:'tr').first_or_create
 
 
 Configuration.where(key: 'default_country_code', value: 'de').first_or_create
@@ -20,109 +21,244 @@ end
 delete_all_categories = true
 
 if delete_all_categories 
-  Category.where(scope_id: germany.id).destroy_all
+  Category.destroy_all
+  FashionFlyEditor::Category.destroy_all
 end
+
+german_outfits = [
+  {
+    name: 'Damenoutfits',
+    categories: ['Abendmode', 'Business', 'Club & Party', 'Freizeit', 'Sport']
+  },
+  {
+    name: 'Herrenoutfits',
+    categories: ['Club & Party','Business', 'Freizeit', 'Sport']
+  }  
+]
+
+english_outfits = [
+  {
+    name: "Women's outfits",
+    categories: ['Evening', 'Business', 'Club & Party', 'Casual', 'Sport']
+  },
+  {
+    name: "Men's outfits",
+    categories: ['Business', 'Club & Party', 'Casual', 'Sport']
+  }  
+]
+
+turkish_outfits = [
+  {
+    name: "Kadın kıyafetler",
+    categories: ['Akşam', 'İş', 'Club & Parti', 'Günlük', 'Spor']
+  },
+  {
+    name: "Erkek kıyafetler",
+    categories: ['İş', 'Club & Parti', 'Günlük', 'Spor']
+  }  
+]
+
+turkish_categories = [
+  {
+    name: 'Kadın',
+    categories:[
+      {
+        name: 'Elbiseler',
+        categories: ['Mini', 'Uzun', 'Gündüz', 'Gece']
+      },
+      {
+        name: 'Tişörtler ve üstler',
+        categories: ['Tişörtler ', 'Gömlek', 'Spor', 'Kazaklar', 'Hırkalar']
+      },
+      {
+        name: 'Pantolonlar',
+        categories: ['Dar', 'Düz', 'Şalvar ', 'Streç', 'Sport', 'Jeans', 'Slim', 'Denim tayt']
+      },
+      {
+        name: 'Etekler',
+        categories: ['Mini', 'Midi', 'Maksi']
+      },
+      {
+        name: 'Manto ve Ceketler',
+        categories: ['Deri', 'Blazer', 'Montlar', 'Şik', 'Bolerolar', 'Jile', 'Spor']
+      },
+      {
+        name: 'Ayakkabı',
+        categories: ['Bot', 'Spor Ayakkabı', 'Çizme', 'Topuklu Ayakkabı', 'Babet/Düz Ayakkabı', 'Sneakers', 'Terlik/Sandalet', 'Günlük', 'Ev', 'Comfort', 'Outdoor']
+      },
+      {
+        name: 'Çanta',
+        categories: ['Günlük', 'Omuz Çanta', 'Sirt Çanta', 'Abiye Çanta', 'Spor Çanta', 'Seyahat Çanta', 'Makyaj Çanta']
+      },
+      {
+        name: 'Aksesuar',
+        categories: ['Cüzdan', 'Cüzdan', 'Şal', 'Şapka', 'Kemer', 'Elviden', 'Güneş Gözlüğü', 'Diğerleri']
+      },
+      {
+        name: 'Takı',
+        categories: ['Kolye', 'Bileklik', 'Küpe', 'Yüzük', 'Saç Aksesuarı', 'Kulak Aksesuarı', 'Halhal']
+      },
+      {
+        name: 'Güzellik',
+        categories: ['Ruj', 'Göz Makyajı', 'Makyajı', 'Oje', 'Parfüm', 'Vücut Bakımı', 'Saç Bakımı', 'Yüz Bakımı', 'Güneş Bakımı']
+      },
+      {
+        name: 'Mayo',
+        categories: ['Bikini', 'Bikini Üstleri', 'Bikini Altları', 'Mayolar']
+      }
+    ]
+  },
+  {
+    name: 'Men',
+    categories:[
+      {
+        name: 'Tişörtler ve üstler',
+        categories: ['Tişörtler','Pololsr', 'Gömlek', 'Kazaklar', 'Hırkalar']
+      },
+      {
+        name: 'Pantolonlar',
+        categories: ['Jeans', 'Bermuda', 'Pantolon', 'Spor']
+      },
+      {
+        name: 'Manto ve Ceketler',
+        categories: ['Jackets', 'Montlar', 'Deri', 'Blazer']
+      },
+      {
+        name: 'Takım',
+        categories: ['Takım Ceketler', 'Takım Pantolonlar', 'Takım Yelekler', 'Takım Kombin']        
+      },
+      {
+        name: 'Spor giyim',
+        categories: ['Üst', 'Alt', 'Koşu Pantolon', 'Spor Şort']        
+      },
+      {
+        name: 'Ayakkabı',
+        categories: ['Bot', 'Spor Ayakkabı', 'Günlük', 'Klasik', 'Outdoor', 'Klasik Ayakkabı', 'Terlik/Sandalet', 'Loafer', 'Ev']
+      },
+      {
+        name: 'Çanta',
+        categories: ['Omuz', 'Evrak', 'Bel', 'Sırt']
+      },
+      {
+        name: 'Aksesuar',
+        categories: ['Cüzdan', 'Kemer','Şal', 'Şapka', 'Bere', 'Atkı', 'Elviden', 'Matara', 'Güneş Gözlüğü', 'Diğerleri']
+      },
+      {
+        name: 'Takı',
+        categories: ['Saat', 'Bilezikler', 'Zincirler', 'Yüzük']
+      },
+      {
+        name: 'Güzellik',
+        categories: ['Parfüm', 'Saç Bakımı', 'Yüz Bakımı', 'Güneş Bakımı']
+      },
+      {
+        name: 'Mayolar',
+        categories: ['Mayo', 'Şort']
+      }
+    ]
+  }
+]
 
 
 english_categories = [
   {
-     name: 'Ladies Fashion',
-     categories: [
-       {
-         name: 'clothes',
-         categories: ['Causal clothes', 'Evening Dresses', 'Bustier Dress', 'Shift', 'Maxi Dresses', 'Mini Dress', 'Party Dresses', 'knitted dresses']
-       },
-       {
-         name: 'Tops'
-         categories: ['Tops', 'T-Shirts', 'Blouses', 'sweater', 'Cardigans', 'west', 'Longsleeves', 'Hoodie', 'tunics']
-       },
-       {
-         name: 'pants'
-         categories: ['jeans', 'chinos' 'pants' 'Capri pants', 'Short & Bermdas', 'leggings', 'overalls']
-       },
-       {
-         name: 'skirts'
-         categories: ['Short skirts', 'Skirts', 'Skirts']
-       },
-       {
-         name: 'Jackets & Coats'
-         categories: ['jackets', 'coats', 'Blazer']
-       },
-       {
-         name: 'shoes'
-         categories: ['Ballerinas', 'Pumps', 'Lace', 'sneaker', 'Boots', 'Sandals', 'Ankle Boots', 'Thigh', 'Boots']
-       },
-       {
-         name: 'bags'
-         categories: ['handbags', 'Shoulder Bag', 'Cases & Wallets', 'backpacks', 'clutches']
-       },
-       {
-         name: 'accessories'
-         categories: ['belt', 'Sunglasses', 'scarves', 'linen', 'Hats & Caps', 'Gloves', 'stockings / tights', 'Other']
-       },
-       {
-         name: 'Schmuchk'
-         categories: ['Arm', 'Haslketten', 'earrings', 'Rings', 'watches', 'followers']
-       },
-       {
-         name: 'Beauty'
-         categories: ['Lipstick', 'Eye Make-Up', 'Eye Make-Up', 'nail polish', 'Perfume', 'personal care', 'Hair Care', 'Face Care', 'Sun Care']
-       },
-       {
-         name: 'Swimwear'
-         categories: ['Bikinies', 'Bikini Tops', 'Pants', 'swimsuits']
-       }
-     ]
-   },
-   {
-     name: 'Menswear'
-     categories: [
-       {
-         name: 'Tops'
-         categories: ['Shirts', 'polo shirts', 'shirts', 'sweater', 'sweaters', 'Hoodie', 'Long Sleeve']
-       },
-       {
-         name: 'pants'
-         categories: ['jeans', 'pants', 'Shorts']
-       },
-       {
-         name: 'Jackets & Coats'
-         categories: ['jackets', 'coats', 'jackets']
-       },
-       {
-         name: 'Suits'
-         categories: ['suit jackets',' suit trousers', 'Suit West ',' combination ']
-       },
-       {
-         name: 'Sportswear'
-         categories: ['function Tops', 'Functional Pants', 'Joggers', 'sports pants']
-       },
-       {
-         name: 'shoes'
-         categories: ['sneaker', 'Boots', 'Lace', 'moccasins and slippers', 'Open shoes']
-       },
-       {
-         name: 'bags'
-         categories: ['shoulder bags', 'briefcases', 'backpacks']
-       },
-       {
-         name: 'accessories'
-         categories: ['belt', 'scarves', 'Hats & Caps', 'Gloves', 'Ties & Bow', 'Purses', 'sunglasses']
-       },
-       {
-         name: 'Jewelry'
-         categories: ['watches', 'bracelets', 'chains', 'Rings']
-       },
-       {
-         name: 'Beauty'
-         categories: ['Parfürm', 'Harr care', 'Face Care', 'personal care']
-       },
-       {
-         name: 'Swimwear'
-         categories: ['swimwear', 'Board Shorts']
-       }
-     ]
-   }
+    name: 'Women',
+    categories:[
+      {
+        name: 'Dresses',
+        categories: ['Causal Dresses', 'Evening Growns', 'Strapless Dresses', 'Cocktail Dresses', 'Maxi Dresses', 'Shift Dresses', 'Party Dresses', 'Knitted Dresses']
+      },
+      {
+        name: 'Tops & Shirts',
+        categories: ['Tops', 'T-Shirts', 'Blouses & Shirts', 'Jumpers', 'Cardigans', 'Vests', 'Longsleeves', 'Hoodies', 'Tunics']
+      },
+      {
+        name: 'Bottoms',
+        categories: ['Jeans', 'Chino Pants', 'Trousers', 'Capri Pants', 'Shorts', 'Leggings', 'Overalls']
+      },
+      {
+        name: 'Skirts',
+        categories: ['Mini Skirts', 'Midi Skirts', 'Maxi Skirts']
+      },
+      {
+        name: 'Coats & Jackets',
+        categories: ['Jackets', 'Coats', 'Blazers']
+      },
+      {
+        name: 'Shoes',
+        categories: ['Ballerinas', 'Heels', 'Lace-Up Shoes', 'Sneakers', 'Boots', 'Sandals', 'Ankle Boots', 'Overknee Boots', 'Wedges']
+      },
+      {
+        name: 'Bags',
+        categories: ['Handbags', 'Crossbody Bags', 'Cases & Wallets', 'Backpacks', 'Clutches']
+      },
+      {
+        name: 'Accessories',
+        categories: ['Belts', 'Sunglasses', 'Scarves & Shawls', 'Hats & Caps', 'Gloves', 'Tights/Socks', 'Other Accessories']
+      },
+      {
+        name: 'Jewellery',
+        categories: ['Bracelets', 'Necklaces', 'Earrings', 'Rings', 'Watches', 'Pendants']
+      },
+      {
+        name: 'Beauty',
+        categories: ['Lipstick', 'Eye Make-Up', 'Make-Up', 'Nail Polish', 'Fragrance', 'Body Care', 'Hair Care', 'Face Care', 'Sun Care']
+      },
+      {
+        name: 'Swimwear',
+        categories: ['Bikinis', 'Bikini-Tops', 'Bikini Bottoms', 'Swimsuits']
+      }
+    ]
+  },
+  {
+    name: 'Men',
+    categories:[
+      {
+        name: 'Tops & Shirts',
+        categories: ['T-Shirts','Poloshirts', 'Shirts', 'Pullovers', 'Cardigans', 'Hoodies', 'Longsleeves']
+      },
+      {
+        name: 'Bottoms',
+        categories: ['Jeans', 'Pants', 'Shorts']
+      },
+      {
+        name: 'Coats & Jackets',
+        categories: ['Jackets', 'Coats']
+      },
+      {
+        name: 'Suits',
+        categories: ['Suit Jackes', 'Suit Pants', 'Suits Vests', 'Combinations']        
+      },
+      {
+        name: 'Sportswear',
+        categories: ['Upper Parts', 'Bottom Parts', 'Jogging Pants', 'Sportshorts']        
+      },
+      {
+        name: 'Shoes',
+        categories: ['Sneaker', 'Boots', 'Lace-Up Shoes', 'Mokassins & Slippers', 'Open Toe Shoes']
+      },
+      {
+        name: 'Bags',
+        categories: ['Crossbody Bags', 'Briefcases', 'Backpacks']
+      },
+      {
+        name: 'Accessories',
+        categories: ['Belts', 'Scarves & Shawls', 'Hats & Caps', 'Gloves', 'Ties', 'Cases & Wallets', 'Sunglasses']
+      },
+      {
+        name: 'Jewellery',
+        categories: ['Watches', 'Bracelets', 'Chains', 'Rings']
+      },
+      {
+        name: 'Beauty',
+        categories: ['Fragrance', 'Hair Care', 'Face Care', 'Body Care']
+      },
+      {
+        name: 'Swimwear',
+        categories: ['Trunks', 'Boardshorts']
+      }
+    ]
+  }
 ]
 german_categories = [
   {
@@ -237,19 +373,37 @@ def create_categories scope, categories, parent_id=nil
   end
 end
 
-usa =Scope.where(country_code: 'US', locale:'en').first_or_create
-brittish = Scope.where(country_code: 'GB', locale:'gb-en').first_or_create
-canadian = Scope.where(country_code: 'CA', locale:'ca-en').first_or_create
-australien = Scope.where(country_code: 'AU', locale:'au-en').first_or_create
-turkey = Scope.where(country_code: 'TR', locale:'TR').first_or_create
-
 create_categories germany,german_categories
 create_categories usa,english_categories
 create_categories brittish,english_categories
 create_categories canadian,english_categories
 create_categories australien,english_categories
-create_categories turkey,english_categories
+create_categories turkey, turkish_categories
 
+
+def create_outfit_categories categories, parent
+  parent_id = parent.id
+  parent_type = parent.class.name
+  for category in categories
+    has_childrend = category.is_a?(Hash)
+    if has_childrend
+      name = category[:name]
+    else
+      name = category
+    end
+    parent = FashionFlyEditor::Category.create(name: name,
+                                               parent_id: parent_id,
+                                               parent_type: parent_type)
+    create_outfit_categories(category[:categories], parent) if has_childrend
+  end
+end
+
+create_outfit_categories german_outfits, germany
+create_outfit_categories english_outfits, usa
+create_outfit_categories english_outfits, brittish
+create_outfit_categories english_outfits, canadian
+create_outfit_categories english_outfits, australien
+create_outfit_categories turkish_outfits, turkey
 
 
 #### Icons
