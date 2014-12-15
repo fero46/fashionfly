@@ -1,5 +1,5 @@
 redis_conn = proc {
-  Redis::Namespace.new(:ns, :redis => Redis.new)
+  Redis.new
 }
 Sidekiq.configure_client do |config|
   config.redis = ConnectionPool.new(size: 5, &redis_conn)
