@@ -5,7 +5,7 @@ namespace :workers do
       on roles(:app) do
         within release_path do
           with rails_env: fetch(:rails_env) do
-            execute :bundle, :exec, :clockworkd, "-c clockwork.rb --log --pid-dir=#{cw_pid_dir} --log-dir=#{cw_log_dir} stop"
+            execute :bundle, :exec, :clockworkd, "-c clock.rb --log --pid-dir=#{cw_pid_dir} --log-dir=#{cw_log_dir} stop"
           end
         end
       end
@@ -16,7 +16,7 @@ namespace :workers do
       on roles(:app) do
         within release_path do
           with rails_env: fetch(:rails_env) do
-            execute :bundle, :exec, :clockworkd, "-c clockwork.rb --log --pid-dir=#{cw_pid_dir} --log-dir=#{cw_log_dir} status"
+            execute :bundle, :exec, :clockworkd, "-c clock.rb --log --pid-dir=#{cw_pid_dir} --log-dir=#{cw_log_dir} status"
           end
         end
       end
@@ -27,7 +27,7 @@ namespace :workers do
       on roles(:app) do
         within release_path do
           with rails_env: fetch(:rails_env) do
-            execute :bundle, :exec, :clockworkd, "-c clockwork.rb --log --pid-dir=#{cw_pid_dir} --log-dir=#{cw_log_dir} start"
+            execute :bundle, :exec, :clockworkd, "-c clock.rb --log --pid-dir=#{cw_pid_dir} --log-dir=#{cw_log_dir} start"
           end
         end
       end
@@ -38,7 +38,7 @@ namespace :workers do
       on roles(:app) do
         within release_path do
           with rails_env: fetch(:rails_env) do
-            execute :bundle, :exec, :clockworkd, "-c clockwork.rb --log --pid-dir=#{cw_pid_dir} --log-dir=#{cw_log_dir} restart"
+            execute :bundle, :exec, :clockworkd, "-c clock.rb --log --pid-dir=#{cw_pid_dir} --log-dir=#{cw_log_dir} restart"
           end
         end
       end
