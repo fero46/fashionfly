@@ -38,6 +38,8 @@ gem 'puma'
 gem 'acts_as_commentable'
 gem 'auto_html',  :git => "https://github.com/fero46/auto_html.git"
 gem 'fog'
+gem 'redis'
+gem 'redis-namespace'
 #gem 'lit'
 group :doc do
   gem 'sdoc', require: false

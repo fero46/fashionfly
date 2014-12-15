@@ -389,6 +389,8 @@ DEPENDENCIES
   rails (= 4.0.9)
   rails-i18n
   ratyrate
+  redis
+  redis-namespace
   sass-rails (~> 4.0.2)
   sdoc
   settingslogic
