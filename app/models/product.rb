@@ -54,9 +54,9 @@ class Product < ActiveRecord::Base
     image_path = image.url if image.present? && image_path.blank?
     if image_path.present?
       if  image_path.start_with?('http://') || image_path.image_path('https://')
-        img = Magick::Image::from_blob open('image_url').read
+        img = Magick::Image::from_blob open(image_path).read
       else
-        img =  Magick::Image.read(image.path).first
+        img =  Magick::Image.read(image_path).first
       end
       pix = img.scale(1, 1)
       @avg_color_hex = pix.to_color(pix.pixel_color(0,0))
