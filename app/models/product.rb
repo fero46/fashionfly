@@ -53,7 +53,7 @@ class Product < ActiveRecord::Base
     image_path = my_image_path if my_image_path.present?
     image_path = image.url if image.present? && image_path.blank?
     if image_path.present?
-      if  image_path.start_with?('http://') || image_path.image_path('https://')
+      if  image_path.start_with?('http://') || image_path.start_with?('https://')
         img = Magick::Image::from_blob open(image_path).read
       else
         img =  Magick::Image.read(image_path).first
