@@ -2,7 +2,7 @@
 <html ng-app="FashionFly">
 <head>
   <title>Fashionfly</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all"%>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -21,6 +21,6 @@
 
 <%= render 'shared/email_enter_form' if (current_user.present? && current_user.email_has_to_change? || @show_form) %>
 
-<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "application" %>
 </body>
 </html>
