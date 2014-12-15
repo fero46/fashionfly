@@ -19,6 +19,7 @@ gem 'web-app-theme'
 gem 'rails-i18n'
 gem 'tokenizer'
 gem 'unicode'
+gem 'daemons'
 gem 'clockwork'
 gem 'sinatra', require: false
 gem 'kaminari'
