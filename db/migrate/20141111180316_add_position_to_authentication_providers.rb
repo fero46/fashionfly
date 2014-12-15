@@ -8,8 +8,8 @@ class AddPositionToAuthenticationProviders < ActiveRecord::Migration
 
     list.each_with_index do |provider ,index|
       auth = AuthenticationProvider.where(name: provider).first
-      auth.position = index + 1
-      auth.save
+      auth.position = index + 1 if auth.present?
+      auth.save if auth.present?
     end
   end
 
