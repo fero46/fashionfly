@@ -4,7 +4,7 @@ class AddPositionToAuthenticationProviders < ActiveRecord::Migration
     add_index :authentication_providers, :position
     AuthenticationProvider.reset_column_information
 
-    list = ['facebook', 'tumblr', 'twitter', 'google']
+    list = ['facebook', 'tumblr', 'twitter', 'google_oauth2']
 
     list.each_with_index do |provider ,index|
       auth = AuthenticationProvider.where(name: provider).first
