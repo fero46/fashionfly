@@ -55,6 +55,7 @@ class Product < ActiveRecord::Base
     if image_path.present?
       if  image_path.start_with?('http://') || image_path.start_with?('https://')
         img = Magick::Image::from_blob open(image_path).read
+        img = img[0] if img.kind_of?(Array)
       else
         img =  Magick::Image.read(image_path).first
       end
