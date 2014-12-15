@@ -47,10 +47,17 @@ class Product < ActiveRecord::Base
     collections.order('created_at DESC').limit(4)
   end
 
-  def maincolor
+  def maincolor my_image_path=nil
     return @avg_color_hex if @avg_color_hex
-    if image.present? && File.exist?(image.path)
-      img =  Magick::Image.read(image.path).first
+    image_path = nil
+    image_path = my_image_path if my_image_path.present?
+    image_path = image.url if image.present? && image_path.blank?
+    if image_path.present?
+      if  image_path.start_with?('http://') || image_path.image_path('https://')
+        img = Magick::Image::from_blob open('image_url').read
+      else
+        img =  Magick::Image.read(image.path).first
+      end
       pix = img.scale(1, 1)
       @avg_color_hex = pix.to_color(pix.pixel_color(0,0))
       @avg_color_hex = @avg_color_hex[0...(7-@avg_color_hex.length)] if @avg_color_hex.length > 7
@@ -60,13 +67,13 @@ class Product < ActiveRecord::Base
     return @avg_color_hex
   end
 
-  def match_color
+  def match_color image=nil
     colors = Colorization.colorhex
 
     nearest = colors[0]
-    mindist = distance(colors[0])
+    mindist = distance(colors[0], image)
     for color in colors
-      dist = distance(color)
+      dist = distance(color, image)
       if dist < mindist
         nearest = color
         mindist = dist
@@ -78,8 +85,8 @@ class Product < ActiveRecord::Base
     nearest
   end
 
-  def distance color
-    0 if maincolor.blank?
+  def distance color, image=nil
+    0 if maincolor(image).blank?
     yuv_1 = convert_to_yuv(maincolor)
     yuv_2 = convert_to_yuv(color)
     delta_y = yuv_1[0] - yuv_2[0]

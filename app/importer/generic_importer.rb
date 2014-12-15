@@ -137,6 +137,9 @@ protected
 
     product.image = File.open(trimmed_out)
     product.save
+
+    #colormatch
+    product.match_color(trimmed_out)
     
     #cleanup
     File.delete(image_path) if File.exist?(image_path)
@@ -145,9 +148,6 @@ protected
     File.delete(output_path) if File.exist?(output_path)
     File.delete(with_border) if File.exist?(with_border)
     File.delete(trimmed_out) if File.exist?(trimmed_out)
-
-    #colormatch
-    product.match_color
 
   end
 
