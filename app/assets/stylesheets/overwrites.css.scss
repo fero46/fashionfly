@@ -1,1 +1,31 @@
+@import "font";
 @import "color";
+
+body{
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+header{
+  height: 31px;
+  margin-bottom: 5px;
+  #logo{
+    height: 12px;
+    margin-top: 10px;
+    margin-left: 15px;
+  }
+  border:none;
+  border-bottom: 1px solid $border-color;
+  .ffe-categories, .ffe-navigation {
+    li{
+      .ffe-category__name, a{
+        padding: 5px 8px 6px 8px;
+        &:hover{
+          background: $red;
+        }
+      }
+    }
+  }
+  .ffe-navigation{
+    margin-right: 15px;
+  }
+}

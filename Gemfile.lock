@@ -1,11 +1,12 @@
 GIT
   remote: git@bitbucket.org:fashionfly/fashion-fly-editor.git
-  revision: 46e26521cf66a5127810462d7644cc6697208a6c
+  revision: 7fa413f3a9df1857ac9b99f8ad4e658046a59a5b
   specs:
     fashion_fly_editor (0.0.1)
       carrierwave (= 0.9.0)
       coffee-rails (~> 4.0.0)
       haml
+      i18n
       jquery-ui-rails (~> 4.0.0)
       rails (~> 4.0.9)
       rmagick (= 2.13.2)

@@ -1,0 +1,10 @@
+%ul.ffe-navigation
+  %li
+    %a.item{href: "#{main_app.root_path}", title:"#{I18n.t('.main')}"}=t('.main')
+    %a.item{href: "#{main_app.root_path}", title:"#{t('.help')}", target: '_blank'}=t('.help')
+    - if scoped_current_user
+      %a.item{href: "#{main_app.profile_path(id: scoped_current_user.slug)}", title:"#{scoped_current_user.name}", target: '_blank'}=scoped_current_user.name
+    - else
+      %a.item{href: "#{main_app.new_user_session_path}", title:"#{t('.sign_or_register')}"}=t('.sign_or_register')
+
+     
