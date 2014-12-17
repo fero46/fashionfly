@@ -10,7 +10,11 @@ json.products @products do |json, product|
   json.id product.id
   json.price product.price
   json.name product.name
-  json.image request.protocol + request.host_with_port + product.image.url
+  if Rails.env.development? || Rails.env.test?
+    json.image request.protocol + request.host_with_port + product.image.url
+  else
+    json.image product.image.url
+  end
   json.width product.width
   json.height product.height
   json.url product.deepLink
