@@ -39,6 +39,20 @@
 .product_show{
   .image_container{
     width: 550px;
+    min-height: 650px;
+    img{
+      border:0px;
+      display: none;
+      &.spinner{
+        display: block;
+        position: absolute;
+        left: 259px;
+        top: 309px;
+      }
+      &.image{
+        display: inline-block;
+      }
+    }
     text-align: center;
     float:left;
     position: relative;
