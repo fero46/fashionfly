@@ -1,7 +1,10 @@
 <div class="collection">
   <div class="image_container">
     <%=link_to collection_path(assigned_locale, collection) do %>
-      <%= image_tag(collection.image.preview.url, class: 'collection_image') %>
+      <%= image_tag(collection.image.preview.url, 
+                    class: 'collection_image',
+                    alt: collection.title,
+                    title: collection.title) %>
     <% end %>
     <a  class="love_button <%= favorite(collection) %>" 
         ng-click="clickFavorite('col',<%= collection.id %>)" 

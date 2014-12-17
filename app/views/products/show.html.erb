@@ -1,6 +1,42 @@
+<% content_for :title do "#{@product.name} |  #{product_brand(@product)} | #{Settings.app.name}"; end %>
+
+<% content_for :meta do %>
+
+<meta property="og:title" content="<%= @product.name %> | <%= product_brand(@product) %> | <%= Settings.app.name %>"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="<%=product_url(assigned_locale, @product) %>"/>
+<meta property="og:image" content="<%=@product.original.detail_view.url %>"/>
+<meta property="og:image:width" content="566" />
+<meta property="og:image:height" content="442" />
+<meta property="og:locale" content="<%=assigned_locale%>" />
+<meta property="og:description" content="<%= @product.description %>" />
+
+<!--
+<PageMap>
+   <DataObject type="document">
+      <Attribute name="title"><%= @product.name %></Attribute>
+      <Attribute name="brand"><%= product_brand(@product) %></Attribute>
+      <Attribute name="color"><%= product_color(@product) %></Attribute>
+      <Attribute name="description"><%= @product.description %></Attribute>
+      <Attribute name="category"><%= breadcrumb_product_text @product %></Attribute>
+      <Attribute name="likes"><%= @product.favorites_count %></Attribute>
+      <Attribute name="rating">
+          <%= @product.rate_average.try(:avg) %>
+      </Attribute>
+      <Attribute name="last_update"><%= @product.updated_at %></Attribute>
+   </DataObject>
+   <DataObject type="thumbnail">
+      <Attribute name="src" value="<%= @product.original.detail_view.url %>" />
+      <Attribute name="width" value="566" />
+      <Attribute name="height" value="442" />
+   </DataObject>
+</PageMap>
+-->
+<% end %>
+
 <div class="product_show" ng-controller="FavoriteController">
   <div class="image_container">
-    <%= image_tag @product.original.detail_view %>
+    <%= image_tag @product.original.detail_view, alt: @product.name, name: @product.name %>
     <a class="love_button <%= favorite(@product) %>" ng-click="clickFavorite('prod',<%= @product.id %>)" 
               id="prod<%= @product.id %>"
               path="<%= product_favorites_path(assigned_locale, @product) %>"></a>

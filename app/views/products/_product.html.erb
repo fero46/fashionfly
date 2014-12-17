@@ -1,6 +1,9 @@
 <div class="product">
   <div class="image_container">
-    <%=link_to image_tag(product.original.url, class: 'product_image'), product_path(assigned_locale, product) %>
+    <%=link_to image_tag(product.original.smaller.url, 
+                         class: 'product_image',
+                         alt: product.name,
+                         title: product.name), product_path(assigned_locale, product) %>
     <a class="love_button <%= favorite(product) %>" ng-click="clickFavorite('prod',<%= product.id %>)" 
                            id="prod<%= product.id %>"
                            path="<%= product_favorites_path(assigned_locale, product) %>"></a>

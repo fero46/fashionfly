@@ -21,6 +21,20 @@ module ProductsHelper
     return prefix + '/' + link
   end
 
+  def breadcrumb_product_text product
+    category = product.categories.where(leaf: true).first
+    category_breadcrumb_text category
+  end
+
+  def category_breadcrumb_text category
+    if category.blank?
+      return ''
+    else
+      prefix = category_breadcrumb_text category.category
+    end
+    return (prefix.present? ? prefix + "/" : '' ) + category.name 
+  end
+
   def favorite(markable)
     markable_key = markable.class.name + markable.id.to_s
     favorite_cache[markable_key] if favorite_cache[markable_key].present? 

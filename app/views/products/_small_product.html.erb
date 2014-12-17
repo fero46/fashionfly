@@ -1,13 +1,16 @@
 <div class="small_product">
   <div class="image">
-    <%= image_tag product.original.smaller %>
+    <%= image_tag product.original.smaller,
+        alt: product.name,
+        title: product.name %>
   </div>
   <div class="product_info">
-    <h4><%= product.name %></h4>
+    <h4 title="<%=product.name%>"><%= truncate product.name, length: 40 %></h4>
     <%= rating_for product, "rate", :star => 5 %> 
 
     <%= image_tag product.affiliate.logo, 
-                  title: product.affiliate.name, 
+                  title: product.affiliate.name,
+                  alt: product.name,
                   'ng-click' => "callForm(#{product.id})",
                   class: 'affilogo' %>
     <h5><%= product.categories.last.name %></h5>
