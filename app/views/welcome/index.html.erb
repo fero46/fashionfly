@@ -6,13 +6,13 @@
 
   <div class="trendbox">
     <h2><%= t('.trends_outfits') %></h2>
-    <%= render @scope.collections.trends.limit(8) %>
+    <%= render @scope.collections.trends.limit(32) %>
     <div class="clear"></div>
   </div>
 
-<div class="trendbox" ng-controller="FavoriteController">
+  <div class="trendbox" ng-controller="FavoriteController">
     <h2><%= t('.trends_products') %></h2>
-    <%= render @scope.products.trends.limit(8) %>
+    <%= render @scope.products.trends.limit(32) %>
     <div class="clear"></div>
   </div>
 

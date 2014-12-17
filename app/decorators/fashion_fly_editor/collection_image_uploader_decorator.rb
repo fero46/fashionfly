@@ -2,6 +2,13 @@ FashionFlyEditor::CollectionImageUploader.class_eval do
 
   include CarrierWave::RMagick
 
+  if Rails.env.development? || Rails.env.test?
+    storage :file
+  else
+    storage :fog
+  end
+
+
   version :original do
     process :resize_to_fit => [566, 442]
   end

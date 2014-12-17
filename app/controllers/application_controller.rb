@@ -39,6 +39,16 @@ class ApplicationController < ActionController::Base
     cookies
   end
 
+  def self.facebook_button url
+    locale = url.gsub!('/combine/', "").gsub!("/", "")
+    scope = Scope.where(locale: locale).first
+    if scope.present? &&  scope.facebook.present?
+      '<div class="fb-like-box" data-href="'+scope.facebook+'" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>'
+    else
+      ""
+    end
+  end
+
 protected
   def request_ip
     if Rails.env.development?

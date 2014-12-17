@@ -1,6 +1,6 @@
 FashionFlyEditor::Engine.configure do |config|
-  config.categories_endpoint = "/de/api/categories"
-  config.startup_category_id = 487
+  config.categories_endpoint = "api/categories"
+  config.products_endpoint      = "api/products"
   config.callbacks << :assign_collection
   config.current_user = :current_user
 end

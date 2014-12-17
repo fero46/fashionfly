@@ -21,6 +21,7 @@ header{
         padding: 5px 8px 6px 8px;
         &:hover{
           background: $red;
+          color: white;
         }
       }
     }
@@ -29,3 +30,46 @@ header{
     margin-right: 15px;
   }
 }
+
+
+header .ffe-categories li .ffe-category__name.active, header .ffe-categories li a.active, header .ffe-navigation li .ffe-category__name.active, header .ffe-navigation li a.active{
+  background: $red;
+  color: white;
+}
+
+
+.ff-tab_categories .ffe-categories .ffe-category.active{
+    background: lighten($red,30%);
+    border-color: $red;
+}
+
+.navigation_tab li a{
+  background: lighten($red,30%);
+  &:hover{
+    background: $red;
+    color: white;
+  }
+}
+
+footer{
+  height:70px;
+  left:0px;
+  right:0px;
+  .btn{
+    position: absolute;
+    background: $red;
+    padding: 5px;
+    text-align: center;
+    min-width: 250px;
+    color:white;
+    text-decoration: none;
+    left:10px;
+    top:20px;
+  }
+  .fb-like-box{
+    position: absolute;
+    right:20px;
+    top:0px;
+  }
+}
+

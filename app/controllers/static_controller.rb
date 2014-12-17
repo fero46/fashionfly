@@ -4,11 +4,11 @@ class StaticController < ScopeController
   end
 
   def privacy
-    render 'static', locals: {name: '__faq__page__'}
+    render 'static', locals: {name: '__privacy__page__'}
   end
 
   def disclaimer
-    render 'static', locals: {name: '__faq__page__'}
+    render 'static', locals: {name: '__disclaimer__page__'}
   end
 
   def impress

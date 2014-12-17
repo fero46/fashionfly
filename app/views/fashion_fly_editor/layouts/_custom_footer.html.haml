@@ -1,3 +1,4 @@
 %footer
   .ffe-editor__actions{ 'ng-controller' => 'ActionsController'}
-  = link_to "Kollektion speichern", '#', class: 'btn btn-save', 'ng-click' => 'presaveCollection()'
+    = link_to "Kollektion speichern", '#', class: 'btn btn-save', 'ng-click' => 'presaveCollection()'
+  = raw call_in_mainapp :facebook_button, request.fullpath

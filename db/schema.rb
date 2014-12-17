@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125161111) do
+ActiveRecord::Schema.define(version: 20141216195741) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -206,6 +206,7 @@ ActiveRecord::Schema.define(version: 20141125161111) do
     t.string   "image"
     t.integer  "scale_x"
     t.integer  "scale_y"
+    t.integer  "order",         default: 0
   end
 
   create_table "fashion_fly_editor_collections", force: true do |t|
@@ -221,6 +222,8 @@ ActiveRecord::Schema.define(version: 20141125161111) do
     t.integer  "favorites_count"
     t.boolean  "published",       default: false
     t.integer  "visits_count",    default: 0
+    t.integer  "height"
+    t.integer  "width"
   end
 
   add_index "fashion_fly_editor_collections", ["actual_trend"], name: "index_fashion_fly_editor_collections_on_actual_trend", using: :btree
