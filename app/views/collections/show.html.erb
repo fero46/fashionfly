@@ -35,7 +35,9 @@
 <div class="collection_show" ng-controller="FavoriteController">
   <div class="leftside">
     <h2><%= @collection.title %></h2>
-    <%= image_tag @collection.image.original, title: @collection.title, alt: @collection.title %>
+    <div class="image_wrapper">
+      <%= image_tag '', "my-src" =>@collection.image.original, title: @collection.title, alt: @collection.title %>
+    </div>
     <a  class="love_button <%= favorite(@collection) %>" 
         ng-click="clickFavorite('col',<%= @collection.id %>)" 
         id="col<%= @collection.id %>"

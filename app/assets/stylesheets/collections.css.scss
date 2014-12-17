@@ -5,8 +5,24 @@
   width: 272px;
   margin: 0px 5px;
   margin-bottom: 35px;
-  img{
+  .image_container{
     width: 272px;
+    height: 215px;
+    background: white;
+    img{
+      border:0px;
+      display: none;
+      &.spinner{
+        display: block;
+        position: absolute;
+        left: 120px;
+        top: 92px;
+      }
+      &.image{
+        display: inline-block;
+        width: 272px;        
+      }
+    }
   }
   a{
     display: block;
@@ -137,6 +153,26 @@
     }
     .comment_form_box, .comment_edit_cancel{
       display: none;
+    }
+  }
+}
+
+.image_wrapper{
+  width: 566px;
+  height: 442px;
+  background: white;
+  position: relative;
+  img{
+    border:0px;
+    display: none;
+    &.spinner{
+      display: block;
+      position: absolute;
+      left: 267px;
+      top: 205px;
+    }
+    &.image{
+      display: inline-block;
     }
   }
 }

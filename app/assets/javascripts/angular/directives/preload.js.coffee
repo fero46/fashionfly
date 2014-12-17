@@ -9,8 +9,8 @@ window.App.directive "mySrc", ->
       img = new Image()
       img.src = attrs.mySrc
       img.onload = ->
-        $(element).removeClass('spinner');
         $(element).addClass('image');
+        $(element).removeClass('spinner');
 
         element[0].src = attrs.mySrc
         return

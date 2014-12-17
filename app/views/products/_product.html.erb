@@ -1,6 +1,6 @@
 <div class="product">
   <div class="image_container">
-    <%=link_to image_tag(product.original.smaller.url, 
+    <%=link_to image_tag('', "my-src" => product.original.smaller.url, 
                          class: 'product_image',
                          alt: product.name,
                          title: product.name), product_path(assigned_locale, product) %>
