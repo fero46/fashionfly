@@ -32,7 +32,7 @@ gem 'bourbon'
 gem 'countries'
 gem 'country_select'
 gem 'i18n-country-translations'
-gem 'ratyrate'
+gem 'ratyrate',  :git => "https://github.com/fero46/ratyrate.git"
 gem 'social-share-button'
 gem 'puma'
 gem 'acts_as_commentable'
