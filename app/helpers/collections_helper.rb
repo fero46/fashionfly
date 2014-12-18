@@ -10,7 +10,7 @@ module CollectionsHelper
     if category.parent_type == 'Scope'
       prefix = nil
     else
-      prefix = category_breadcrumb_text category.parent
+      prefix = collection_category_breadcrumb_text category.parent
     end
     return (prefix.present? ? prefix + "/" : '' ) + category.name 
   end
