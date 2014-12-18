@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
     end
     t_name = myname
 
-    mail = params['info']['email'].present? ? params['info']['mail'] : TEMP_EMAIL
+    mail = params['info']['email'].present? ? params['info']['email'] : TEMP_EMAIL
 
     if mail == TEMP_EMAIL
       numb = 1
