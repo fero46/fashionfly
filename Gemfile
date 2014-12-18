@@ -45,6 +45,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+
 gem 'capistrano'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'

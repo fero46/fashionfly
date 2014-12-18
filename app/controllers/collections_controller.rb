@@ -7,6 +7,10 @@ class CollectionsController < ScopeController
   end
 
   def show
+    # Hack for some reason i got an alert user allready signed in notice
+    # I think it is a timing issue. Check Collection is called before the call back
+    # assign_collection saved the collection to the user
+    flash.delete(:alert)
   end
 
   def check_collection
