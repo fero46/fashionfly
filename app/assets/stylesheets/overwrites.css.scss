@@ -74,16 +74,25 @@ footer{
 }
 
 #ngdialog1 > div.ngdialog-content > h1{
-  font-size: 18px;
+  font-size: 16px;
   margin:0px;
 }
-#ngdialog1 > div.ngdialog-content > p{
+#ngdialog1 > div.ngdialog-content > p, #formular > p{
   font-size: 14px;
   margin: 0px;
 }
 
-.ngdialog-content form .field label{
+#formular > h1{
+  font-size: 16px;
+  margin:0px;
+}
+
+.ngdialog-content form .field label, #formular > p{
   font-size: 12px;
+}
+
+#formular textarea{
+  height: 100px;
 }
 
 .ngdialog-content form .field input[type="text"],
