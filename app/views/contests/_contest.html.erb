@@ -3,9 +3,11 @@
     <%= image_tag @contest.banner %>
   </div>
   <div class="right_side">
+    <% if can? :edit, @contest %>
     <%= link_to t('action.edit'), 
                 edit_contest_path(locale: assigned_locale, id: @contest.slug),
                 class: 'button'%>
+    <% end %>
   </div>
   <h1><%= @contest.title %></h1>
   <div class="text_container">

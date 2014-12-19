@@ -49,6 +49,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url(locale: assigned_locale, :alert => exception.message)
+  end
+
 protected
   def request_ip
     if Rails.env.development?

@@ -40,6 +40,7 @@ gem 'auto_html',  :git => "https://github.com/fero46/auto_html.git"
 gem 'fog'
 gem 'redis'
 gem 'redis-namespace'
+gem "cancan"
 #gem 'lit'
 group :doc do
   gem 'sdoc', require: false

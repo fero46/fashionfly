@@ -1,8 +1,10 @@
 <%= render 'contests/sidebar' %>
 <div class="contests">
-  <div class="right_side">
-    <%= link_to t('.new'), new_contest_path(locale:assigned_locale), class:'button' %>
-  </div>
+  <% if can? :create, Contest %>
+    <div class="right_side">
+      <%= link_to t('.new'), new_contest_path(locale:assigned_locale), class:'button' %>
+    </div>
+  <% end %>
   <% if @contest.present? %>
     <%= render @contest %>
   <% end %>

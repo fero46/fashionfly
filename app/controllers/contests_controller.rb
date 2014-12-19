@@ -2,7 +2,8 @@ class ContestsController < ScopeController
 
   before_action :contests
   before_action :find_contest, only: [:show, :edit, :update, :destroy]
-
+  
+  load_and_authorize_resource
   def index
     @contest = @contests.first
   end
