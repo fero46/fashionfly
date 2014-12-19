@@ -3,10 +3,10 @@
   <div class="inner">
     <div class="description comment_content_box" id="comment<%= comment.id %>">
       <strong><%= raw t('.comment_from',  user: comment.user.name, 
-                                  url: user_profile(comment.user)) %> <br />
+                                  url: user_profile(comment.user)) %></strong> <br />
       <%= raw t('collections.show.created_at', 
                                   date: l(comment.created_at, 
-                                  format: :short)) %> :</strong>
+                                  format: :short)) %> :<br /><br />
       <%= comment.comment %>
     </div>
     <% if current_user.present?  && comment.user_id == current_user.id %>
