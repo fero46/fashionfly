@@ -75,7 +75,7 @@
     <div class="description">
       <%= simple_format raw @product.description %>
       <br />
-      <a href="#" ng-click="callForm()"><%= t('.more') %></a>
+      <a href="#" ng-click="callForm(<%= @product.id %>)"><%= t('.more') %></a>
     </div>
     <div class="description">
       <strong><%= t('.brand') %> :</strong> <%= product_brand(@product) %><br />
