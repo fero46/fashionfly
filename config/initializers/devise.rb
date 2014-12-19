@@ -195,7 +195,7 @@ Devise.setup do |config|
   # up on your models and hooks.
 
 
-   config.omniauth :facebook, Settings.oauth.facebook.id, Settings.oauth.facebook.secret
+   config.omniauth :facebook, Settings.oauth.facebook.id, Settings.oauth.facebook.secret, :scope => 'email, user_likes'
    config.omniauth :twitter, Settings.oauth.twitter.id, Settings.oauth.twitter.secret
    # config.omniauth :pinterest, 'APP_ID', 'APP_SECRET'
    config.omniauth :tumblr, Settings.oauth.tumblr.id, Settings.oauth.tumblr.secret
