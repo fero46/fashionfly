@@ -4,6 +4,7 @@ class WidgetsController < ApplicationController
 
   def show 
     @collection = FashionFlyEditor::Collection.find(params[:id])
+    @widget = true
     render @collection
   end
 

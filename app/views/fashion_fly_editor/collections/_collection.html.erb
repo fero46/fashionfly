@@ -1,17 +1,35 @@
-<div class="collection">
-  <div class="image_container">
-    <%=link_to collection_path(assigned_locale, collection) do %>
-      <%= image_tag('', "my-src" => collection.image.preview.url, 
-                    class: 'collection_image',
-                    alt: collection.title,
-                    title: collection.title) %>
-    <% end %>
-    <a  class="love_button <%= favorite(collection) %>" 
-        ng-click="clickFavorite('col',<%= collection.id %>)" 
-        id="col<%= collection.id %>"
-        path="<%= collection_favorites_path(assigned_locale, collection) %>"></a>
+<% unless @widget.present? %>
+  <div class="collection">
+    <div class="image_container">
+      <%=link_to collection_path(assigned_locale, collection) do %>
+        <%= image_tag('', "my-src" => collection.image.preview.url, 
+                      class: 'collection_image',
+                      alt: collection.title,
+                      title: collection.title) %>
+      <% end %>
+      <a  class="love_button <%= favorite(collection) %>" 
+          ng-click="clickFavorite('col',<%= collection.id %>)" 
+          id="col<%= collection.id %>"
+          path="<%= collection_favorites_path(assigned_locale, collection) %>"></a>
+    </div>
+    <h3><%=  collection.title %></h3>
+    <h4><%= raw t('.from_user', user: user_name(collection.user), 
+                            url: user_profile(collection.user)) %></h4>
   </div>
-  <h3><%=  collection.title %></h3>
-  <h4><%= raw t('.from_user', user: user_name(collection.user), 
-                          url: user_profile(collection.user)) %></h4>
-</div>
+<% else %>
+  <div class="collection">
+    <%= image_tag image_url('logo.png'), class: 'fashion_logo' %>
+    <div class="image_container">
+      <%=link_to collection_path(assigned_locale, collection) do %>
+        <%= widget_collection_image_tag(collection) %>
+      <% end %>
+      <a  class="love_button <%= favorite(collection) %>" 
+          ng-click="clickFavorite('col',<%= collection.id %>)" 
+          id="col<%= collection.id %>"
+          path="<%= collection_favorites_path(assigned_locale, collection) %>"></a>
+    </div>
+    <h3><%=  collection.title %></h3>
+    <h4><%= raw t('.from_user', user: user_name(collection.user), 
+                            url: user_profile(collection.user)) %></h4>
+  </div>
+<% end %>

@@ -1,3 +1,37 @@
-div{
+@import "color";
+
+.fashionfly-widget{
+  font-family: 'Source Sans Pro', sans-serif;
+  width: 281px;
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid $border_color;
+  img{
+    border: 1px solid $border_color;
+    padding: 5px;
+  }
+  a{
+    color: $red;
+    text-decoration: none;
+  }
+  a#nolink{
+    visibility: hidden;
+  }
+  h3{
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  h4{
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+  }
+  .fashion_logo{
+    height: 16px;
+    border:0px;
+    margin-bottom: 10px;
+  }
 
 }

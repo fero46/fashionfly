@@ -51,7 +51,9 @@
 <h3><%= t('.embedd_to') %></h3>
 <textarea readonly>
 <%= javascript_include_tag javascript_url("widget"), type:'text/javascript' %>
-<div class='fashionfly-widget' data='<%=@collection.id %>' host="<%= request.host_with_port %>"></div>
+<div class='fashionfly-widget' data='<%=@collection.id %>' host="<%= request.host_with_port %>">
+  <%= link_to @collection.title, collection_url(assigned_locale, @collection), title: @collection.title, alt: @collection.title %> 
+</div>
 
 </textarea>
     </div>

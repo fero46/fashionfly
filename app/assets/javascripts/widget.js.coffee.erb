@@ -6,22 +6,28 @@
 $j = jQuery.noConflict();
 $j(document).ready ($) ->
   prefix = "http://"
-
+  window.widget_is_added = false
   if window.fashion_fly_is_inside == true
     return
   window.fashion_fly_is_inside = true
   $j('.fashionfly-widget').each (index, value) ->
     host = $j(value).attr('host')
     data_id = $j(value).attr('data')
-    css_link = $("<link>",
-      rel: "stylesheet"
-      type: "text/css"
-      href: prefix+host+'<%= stylesheet_path("widget.css", only_path: false) %>'
-    )
-    css_link.appendTo "head"
+
+    if window.widget_is_added == false
+      css_link = $("<link>",
+        rel: "stylesheet"
+        type: "text/css"
+        href: prefix+host+'<%= stylesheet_path("widget.css", only_path: false) %>'
+      )
+      css_link.appendTo "head"
+      $("<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>").appendTo "head"
+
+    window.widget_is_added = true
+
     jsonp_url= prefix+host+'<%= widgets_path() %>'+'/'+data_id
     console.log(jsonp_url)
     $j.ajax
       url: jsonp_url
       success: (data) ->
-        $j(value).append data
+        $j(value).html data

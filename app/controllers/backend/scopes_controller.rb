@@ -50,6 +50,14 @@ protected
 
 
   def scope_attributes
-    params.require(:scope).permit(:country_code, :locale)
+    params.require(:scope).permit(:country_code, 
+                                  :locale,
+                                  :facebook,
+                                  :twitter,
+                                  :google,
+                                  :pinterest,
+                                  :instagram,
+                                  :youtube,
+                                  :published)
   end
 end
