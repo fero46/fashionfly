@@ -44,7 +44,7 @@ class Product < ActiveRecord::Base
 
 
   def used_in_collections
-    collections.order('created_at DESC').limit(4)
+    collections.where(published: true).order('created_at DESC').limit(4)
   end
 
   def maincolor my_image_path=nil
