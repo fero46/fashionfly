@@ -122,6 +122,14 @@ class User < ActiveRecord::Base
     user
   end
 
+  def is_admin?
+    self.role == "ADMIN"
+  end
+
+  def is_team?
+    self.role == "TEAM"
+  end
+
 private
 
   def clean_name
