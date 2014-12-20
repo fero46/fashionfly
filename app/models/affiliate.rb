@@ -29,7 +29,7 @@ class Affiliate < ActiveRecord::Base
       self.start_from_id
       # Destroy all Products where image is nil
       products.where('image = ?', nil).destroy_all
-      products.where('id > ?', self.start_from_id).where(published: true).find_in_batches(batch_size: 500) do |group|
+      products.where('id > ?', self.start_from_id).where(published: true).order(:id).find_in_batches(batch_size: 500) do |group|
         group.each do |product|
           remote_image  = product.original.url
           if Rails.env.development? || Rails.env.test?
