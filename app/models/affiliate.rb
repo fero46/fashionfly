@@ -26,9 +26,10 @@ class Affiliate < ActiveRecord::Base
       total_counter = products.where(published: true).count
       self.percent = 0
       self.save
+      self.start_from_id
       # Destroy all Products where image is nil
       products.where('image = ?', nil).destroy_all
-      products.where(published: true).find_in_batches(batch_size: 500) do |group|
+      products.where('id > ?', self.start_from_id).where(published: true).find_in_batches(batch_size: 500) do |group|
         group.each do |product|
           remote_image  = product.original.url
           if Rails.env.development? || Rails.env.test?
@@ -38,11 +39,12 @@ class Affiliate < ActiveRecord::Base
           product.collections.each do |col|
             Rebuilder.where(collection_id: col.id).first_or_create
           end
+          self.start_from_id = product.id
           actual_counter+=1
           if actual_counter % 20 == 0
             self.percent = ((actual_counter.to_f/total_counter.to_f).to_f * 100).to_i
-            self.save
           end
+          self.save
         end
       end
       Rebuilder.find_in_batches(batch_size: 500) do |group|

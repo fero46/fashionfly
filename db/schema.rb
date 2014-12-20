@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220160648) do
+ActiveRecord::Schema.define(version: 20141220204300) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20141220160648) do
     t.boolean  "pay_invoice",         default: false
     t.boolean  "premium",             default: false
     t.boolean  "replace_only_images", default: false
+    t.integer  "start_from_id",       default: 0
   end
 
   add_index "affiliates", ["importing"], name: "index_affiliates_on_importing", using: :btree
