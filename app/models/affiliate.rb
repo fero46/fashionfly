@@ -21,9 +21,40 @@ class Affiliate < ActiveRecord::Base
 
 
   def start_import
-    importer.constantize.new(self).import
-    products.where('image = ?', nil).destroy_all
-    products.where(published: false).update_all( "published = 1" )
+    if self.replace_only_images
+      actual_counter = 0
+      total_counter = products.where(published: true).count
+      self.percent = 0
+      self.save
+      # Destroy all Products where image is nil
+      products.where('image = ?', nil).destroy_all
+      products.where(published: true).find_in_batches(batch_size: 500) do |group|
+        group.each do |product|
+          remote_image  = product.original.url
+          if Rails.env.development? || Rails.env.test?
+            remote_image = "http://localhost:3000/#{remote_image}"
+          end
+          ImageCropService.new(product, remote_image).image_cut_out(false)
+          product.collections.each do |col|
+            Rebuilder.where(collection_id: col.id).first_or_create
+          end
+          actual_counter+=1
+          if actual_counter % 20 == 0
+            self.percent = ((actual_counter.to_f/total_counter.to_f).to_f * 100).to_i
+            self.save
+          end
+        end
+      end
+      Rebuilder.find_in_batches(batch_size: 500) do |group|
+        group.each {|rebuilder| rebuilder.retouch}
+      end
+      self.replace_only_images = false
+      save
+    else
+      importer.constantize.new(self).import
+      products.where('image = ?', nil).destroy_all
+      products.where(published: false).update_all( "published = 1" )
+    end
   end
 
   def categories

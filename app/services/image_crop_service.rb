@@ -13,11 +13,35 @@ class ImageCropService
     @product
   end
 
-  def image_cut_out
-    cut_out_with_mask
+  def image_cut_out(save_original = true)
+    cut_out_without_mask(save_original)
   end
 
-  def cut_out_without_mask
+  def cut_out_without_mask(save_original=true)
+    full_path_to_tmp = Rails.root.to_s + "/tmp/"   
+    image_path = full_path_to_tmp+"#{product.id}_image.png"
+    output_path = full_path_to_tmp+"#{product.id}_out.png"
+
+    download_image(image_path)
+
+    if save_original
+      product.original = File.open(image_path)
+      product.save      
+    end
+
+    remove_background_cmd = "convert #{image_path} -fill none -fuzz 4% -draw 'matte 0,0 floodfill' -flop  -draw 'matte 0,0 floodfill' -flop #{output_path}"
+
+    system remove_background_cmd
+    crop_image(output_path, output_path)
+    dimension(output_path)
+    product.match_color(output_path)
+
+    product.image = File.open(output_path)
+    product.save
+
+    File.delete(image_path) if File.exist?(image_path)
+    File.delete(output_path) if File.exist?(output_path)
+
   end
 
 
@@ -84,6 +108,33 @@ class ImageCropService
     File.delete(output_path) if File.exist?(output_path)
     File.delete(with_border) if File.exist?(with_border)
     File.delete(trimmed_out) if File.exist?(trimmed_out)
+  end
+
+private 
+
+  def download_image image_path 
+    open(image_path, 'wb') do |dest|
+      open(remote_image_path, 'rb') do |src|
+        dest.write(src.read)
+      end
+    end
+  end
+
+  def crop_image(src, output)
+    full_path_to_tmp = Rails.root.to_s + "/tmp/"   
+    with_border =  full_path_to_tmp+"#{product.id}_bordered.png"
+    border_command = "convert #{src} -bordercolor none -border 3x3 #{with_border}"
+    trim_command = "convert #{with_border} -trim +repage #{output}"
+    system border_command
+    system trim_command
+    File.delete(with_border) if File.exist?(with_border)
+  end
+
+  def dimension(image)
+    img = MiniMagick::Image.open(image)
+    product.width  = img['width']
+    product.height = img['height']
+    product.save
   end
 
 end

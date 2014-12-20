@@ -137,6 +137,12 @@
     <span class="description">Auswählen wenn der Shop nur Premiumprodukte anbietet.</span>
   </div>
 
+  <div class="group">
+    <%= f.label :replace_only_images, t("activerecord.attributes.affilate.replace_only_images", :default => "Bilder ersetzen"), :class => :label %>
+    <%= f.check_box :replace_only_images, :class => 'file_field' %><br />
+    <span class="description">Auswählen wenn die Transparenten Bilder ersetzt werden sollen. Achtung nur anklicken wenn man weiß was man tut.</span>
+  </div>
+
 
 <div class="group navform wat-cf">
   <button class="button" type="submit">

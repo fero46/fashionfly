@@ -14,4 +14,9 @@ FashionFlyEditor::Collection.class_eval do
   def scope
     Scope.where('id in (?)', subscriptions.where('subscriber_type = ?', ::Scope).select(:subscriber_id)).first
   end
+
+  def rebuild_image
+    build_image
+  end
+
 end

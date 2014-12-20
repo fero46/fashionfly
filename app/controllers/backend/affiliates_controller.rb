@@ -86,6 +86,7 @@ protected
                                       :pay_invoice,
                                       :free_shipping,
                                       :premium,
+                                      :replace_only_images,
                                       :mappings_attributes => [:id ,:name, :category_id])
   end
 

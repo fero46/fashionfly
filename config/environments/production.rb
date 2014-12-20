@@ -77,7 +77,7 @@ Fashionfly::Application.configure do
     :address => "localhost",
     :port => 25,
     :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE, 
-    :domain => "staging.fashionfly.de",
+    :domain => "fashionfly.de",
   }
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false

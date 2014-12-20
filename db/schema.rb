@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216195741) do
+ActiveRecord::Schema.define(version: 20141220160648) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20141216195741) do
     t.boolean  "free_shipping",       default: false
     t.boolean  "pay_invoice",         default: false
     t.boolean  "premium",             default: false
+    t.boolean  "replace_only_images", default: false
   end
 
   add_index "affiliates", ["importing"], name: "index_affiliates_on_importing", using: :btree
@@ -429,6 +430,12 @@ ActiveRecord::Schema.define(version: 20141216195741) do
   end
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
+
+  create_table "rebuilders", force: true do |t|
+    t.integer "collection_id", null: false
+  end
+
+  add_index "rebuilders", ["collection_id"], name: "index_rebuilders_on_collection_id", unique: true, using: :btree
 
   create_table "scopes", force: true do |t|
     t.string   "country_code"
