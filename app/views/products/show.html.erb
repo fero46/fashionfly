@@ -1,4 +1,4 @@
-<% content_for :title do "#{@product.name} |  #{product_brand(@product)} | #{Settings.app.name}"; end %>
+<% content_for :title do "#{@product.name} | #{product_brand(@product)} | #{Settings.app.name}"; end %>
 
 <% content_for :meta do %>
 
@@ -82,7 +82,10 @@
       <strong><%= t('.color') %> :</strong> <%= product_color(@product) %><br />
     </div>
     <div class="description">
-      <%= social_share_button_tag(@product.name, :popup => "true") %>
+     <%= render_shareable  :static_link => true, 
+                            :title=> "#{@product.name} | #{product_brand(@product)} | #{Settings.app.name}",
+                            :button_caption => t('.share_now'),
+                            :buttons=> ['twitter', 'facebook', 'tumblr', 'google_plus', 'pinterest']  %>
       <br />
       <strong><%= t('.like_count') %> :</strong>
       <%= t('.likes', count:@product.favorites_count) %>
@@ -90,15 +93,15 @@
   </div>
   <div class="clear"></div>
 </div>
-
-<div class="similar" ng-controller="FavoriteController">
-  <h2><%= t('.used_in_collections') %></h2>
-  <% for collection in @product.used_in_collections %>
-    <%= render collection %>
-  <% end %>
-  <div class="clear"></div>
-</div>
-
+<% if @product.used_in_collections.present? %>
+  <div class="similar" ng-controller="FavoriteController">
+    <h2><%= t('.used_in_collections') %></h2>
+    <% for collection in @product.used_in_collections %>
+      <%= render collection %>
+    <% end %>
+    <div class="clear"></div>
+  </div>
+<% end %>
 
 <div class="similar" ng-controller="FavoriteController">
   <h2><%= t('.similar_products') %></h2>

@@ -8,6 +8,6 @@
                            id="prod<%= product.id %>"
                            path="<%= product_favorites_path(assigned_locale, product) %>"></a>
   </div>
-  <h3><%= link_to product.name, product_path(assigned_locale, product) %></h3>
+  <h3><%= link_to truncate(product.name, length: 100), product_path(assigned_locale, product) %></h3>
   <h4><%= number_to_currency product.price, unit: product.currencyCode %></h4>
 </div>

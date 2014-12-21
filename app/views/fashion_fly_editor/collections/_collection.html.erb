@@ -12,7 +12,9 @@
           id="col<%= collection.id %>"
           path="<%= collection_favorites_path(assigned_locale, collection) %>"></a>
     </div>
-    <h3><%=  collection.title %></h3>
+    <h3><%= link_to(truncate(collection.title, length: 100), 
+                    collection_path(assigned_locale, collection), 
+                    title: collection.title)%></h3>
     <h4><%= raw t('.from_user', user: user_name(collection.user), 
                             url: user_profile(collection.user)) %></h4>
   </div>
