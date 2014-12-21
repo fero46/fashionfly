@@ -20,7 +20,8 @@ Fashionfly::Application.routes.draw do
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
-                                    confirmations: 'users/confirmations' }
+                                    confirmations: 'users/confirmations',
+                                    :registrations => "users/registrations"}
 
   resources :widgets
 

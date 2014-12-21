@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :collections, class_name: 'FashionFlyEditor::Collection'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :omniauthable, :database_authenticatable, :registerable,
+  devise :omniauthable, :database_authenticatable, :registerable,:async,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   ratyrate_rater
