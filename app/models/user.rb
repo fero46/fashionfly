@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def make_secret
-    self.secret = self.id.to_s+SecureRandom.hex(64)
+    self.secret = SecureRandom.hex(64)
     save
   end
 
