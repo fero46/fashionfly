@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   validate :name, presence: true
 
   before_save  :update_slug
-  after_create :make_secret
+  before_create :make_secret
 
   def email_has_to_be_validated
     errors.add(:email_confirmation, I18n.t("user.identical")) if email_confirmation != email
