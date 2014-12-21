@@ -16,6 +16,7 @@ de:
     required_to_signed_in: 'Du musst dich Anmelden um das Outfit abzuspeichern.'
     edit_resource: Email und Password bearbeitet
     edit_email: 'Email wurde aktualisiert'
+    confirmation_send: "Eine Mail mit eine Anleitung zur Bestätigung wurde an %{mail} geschickt."
   user:
     identical: muss eingegeben werden
   activerecord:
@@ -224,6 +225,7 @@ de:
     registrations:
       new:
         title: Kostenlos Registrieren
+        placeholder_name: Dein Benutzername
         placeholder_email: Deine E-Mail Adresse
         placeholder_email_confirmation: E-Mail Adresse wiederholen
         placeholder_password: Dein Passwort
