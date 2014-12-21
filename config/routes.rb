@@ -19,7 +19,8 @@ Fashionfly::Application.routes.draw do
     end
   end
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'confirmations' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
+                                    confirmations: 'users/confirmations' }
 
   resources :widgets
 
