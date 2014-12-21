@@ -115,7 +115,8 @@ de:
       embedd_to: "html-Code zum Einbetten in Blogs und Homepages:" 
       create_comment: "Jetzt dieses Outfit kommentieren"
       save_comment: "Jetzt kommentieren"
-      your_comment: "Ihr Kommentar" 
+      your_comment: "Ihr Kommentar"
+      share_now: Jetzt Teilen
   breadcrumb:
     you_are_here: Du bist Hier
   link:

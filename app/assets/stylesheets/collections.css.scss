@@ -79,18 +79,22 @@
     width: 570px;
     float:left;
     margin-right: 10px;
-    position: relative; 
+    position: relative;
+    .titleize{
+      width: 535px;
+    }
   }
   .productviews{
     margin-left: 600px; 
     margin-right: 0px;
     width: 570px;
   }
-  .share{
+  .myshare{
     background: white;
-    padding: 15px;
-    margin-top: 20px;
+    margin-top: 10px;
+    padding-top: 10px;
     position: relative;
+    border-top: 1px solid $border_color;
     span{
       text-transform: uppercase;
       font-weight: 400;
@@ -104,10 +108,10 @@
     h3{
       margin: 15px 0px
     }
-    textarea{
+    textarea#codeshare{
       border:1px solid $border_color;
       width:518px;
-      height:110px;
+      height:80px;
       padding:10px;
     }
   }
@@ -116,6 +120,7 @@
     margin-top: 20px;
     position: relative;
     padding: 15px;
+    padding-top: 18px;
     a{
       color:$red;
       text-decoration: none;

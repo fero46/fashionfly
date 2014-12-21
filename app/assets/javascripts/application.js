@@ -16,7 +16,6 @@
 //= require jquerybbq_min
 //= require datetimepicker.js
 //= require ratyrate
-//= require social-share-button
 //= require tinymce-jquery
 //= require angular
 //= require angular-resource
