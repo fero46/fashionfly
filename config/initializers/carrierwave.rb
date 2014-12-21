@@ -9,7 +9,7 @@ CarrierWave.configure do |config|
       :aws_access_key_id      =>  'x',
       :aws_secret_access_key  => 'x',
     }
-    config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
+    #config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
     config.fog_directory = 'fashionfly'
   end
 end
