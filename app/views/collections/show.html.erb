@@ -55,7 +55,7 @@
                           url: user_profile(@collection.user)) %> <br />
         <%= raw t('.created_at', date: l(@collection.created_at, format: :short)) %><br /><br />
         <div class="description">
-          <%= simple_format @collection.description %>
+          <%= linked_description @collection %>
         </div>       
       </div>
       <div class="myshare">

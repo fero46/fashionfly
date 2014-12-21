@@ -22,5 +22,12 @@ module CollectionsHelper
     end
   end
 
+  def linked_description collection
+    content = collection.description
+    for hashtag in collection.hashtags 
+      content.gsub!("##{hashtag.name}", link_to("##{hashtag.name}", hashtag_path(locale: assigned_locale, hashtag: hashtag.name)).to_s)
+    end
+    simple_format content
+  end
 
 end

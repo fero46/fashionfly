@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220204300) do
+ActiveRecord::Schema.define(version: 20141221164238) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -455,6 +455,24 @@ ActiveRecord::Schema.define(version: 20141220204300) do
   add_index "scopes", ["country_code"], name: "index_scopes_on_country_code", length: {"country_code"=>10}, using: :btree
   add_index "scopes", ["locale"], name: "index_scopes_on_locale", length: {"locale"=>10}, using: :btree
   add_index "scopes", ["published"], name: "index_scopes_on_published", using: :btree
+
+  create_table "simple_hashtag_hashtaggings", force: true do |t|
+    t.integer "hashtag_id"
+    t.integer "hashtaggable_id"
+    t.string  "hashtaggable_type"
+  end
+
+  add_index "simple_hashtag_hashtaggings", ["hashtag_id"], name: "index_simple_hashtag_hashtaggings_on_hashtag_id", using: :btree
+  add_index "simple_hashtag_hashtaggings", ["hashtaggable_id", "hashtaggable_type"], name: "index_hashtaggings_hashtaggable_id_hashtaggable_type", using: :btree
+
+  create_table "simple_hashtag_hashtags", force: true do |t|
+    t.string   "name"
+    t.string   "scope_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "simple_hashtag_hashtags", ["name", "scope_id"], name: "index_simple_hashtag_hashtags_on_name_and_scope_id", unique: true, using: :btree
 
   create_table "synonyms", force: true do |t|
   end

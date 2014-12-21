@@ -1,0 +1,15 @@
+<div class="container" ng-controller="FavoriteController">
+<h1>#<%= params[:hashtag] %></h1>
+<br />
+<% if @hashtagged %>
+  <% @hashtagged.each do |hashtagged| %>
+    <%= render hashtagged.hashtaggable %>
+  <% end -%>
+  <div class="clear"></div>
+  <%= paginate @hashtagged %>
+<% else -%>
+<div class="whitebox index">
+  <p><%=raw t('.no_hashtag', tag: params[:hashtag])%></p>
+</div>
+<% end -%>
+</div>

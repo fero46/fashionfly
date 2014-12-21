@@ -71,6 +71,9 @@ de:
           other: "Zeige <b>alle %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Zeige <b>%{first}&nbsp;-&nbsp;%{last}</b> von <b>%{total}</b> in total %{entry_name}"
+  hashtags:
+    show:
+      no_hashtag: "Es wurden keine Einträge für den Hashtag <span class='red'>#%{tag}</span> gefunden"
   social_share_button:
     share_to: Auf %{name} teilen
     weibo: Sina Weibo

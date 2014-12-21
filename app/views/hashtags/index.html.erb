@@ -1,0 +1,11 @@
+<div class="container" ng-controller="FavoriteController">
+<h1>Hashtags</h1><p>
+<div class="whitebox index">
+
+<% @hashtags.each do |hashtag| %>
+  <span><%= link_to hashtag.name, hashtag_path(assigned_locale, hashtag.name) %></span>
+<% end -%>
+</p>
+</div>
+<%= paginate @hashtags %>
+</div>

@@ -26,6 +26,8 @@ Fashionfly::Application.routes.draw do
   resources :widgets
 
   scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
+    get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
+    get "hashtags",            to: "hashtags#index",     as: :hashtags  
     resources :contests
     resources :styles, only: [:show, :index]
     resources :profiles, only:[:show, :update, :edit]

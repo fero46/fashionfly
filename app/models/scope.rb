@@ -9,6 +9,7 @@ class Scope < ActiveRecord::Base
   has_many :subscriptions, class_name: 'FashionFlyEditor::Subscription', as: :subscriber
   has_many :collections, through: :subscriptions, class_name: 'FashionFlyEditor::Collection'
   has_many :pages
+  has_many :hashtags, class_name: 'SimpleHashtag::Hashtag'
 
   validates :country_code, presence: true, uniqueness: true
   validates :locale, presence: true
