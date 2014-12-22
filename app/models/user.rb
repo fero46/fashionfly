@@ -60,7 +60,6 @@ class User < ActiveRecord::Base
 
   def make_secret
     self.secret = SecureRandom.hex(64)
-    save
   end
 
   def create_slug
