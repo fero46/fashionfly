@@ -43,7 +43,7 @@ gem 'fog'
 gem 'redis'
 gem 'redis-namespace'
 gem "cancan"
-#gem 'lit'
+gem 'lit'
 group :doc do
   gem 'sdoc', require: false
 end

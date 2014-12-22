@@ -203,6 +203,9 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     libxml-ruby (2.7.0)
+    lit (0.2.4)
+      jquery-rails
+      rails (> 3.1.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -389,6 +392,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   libxml-ruby
+  lit
   mini_magick
   mysql2
   omniauth
