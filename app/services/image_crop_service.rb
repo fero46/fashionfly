@@ -18,7 +18,7 @@ class ImageCropService
   end
 
   def cut_out_without_mask(save_original=true)
-    full_path_to_tmp = Rails.root.to_s + "/tmp/"   
+    full_path_to_tmp = Rails.root.to_s + "/tmp/"
     image_path = full_path_to_tmp+"#{product.id}_image.png"
     output_path = full_path_to_tmp+"#{product.id}_out.png"
 
@@ -29,8 +29,10 @@ class ImageCropService
       product.save      
     end
 
+    add_white_border = "convert #{image_path} -bordercolor white -border 3x3 #{image_path}"
     remove_background_cmd = "convert #{image_path} -fill none -fuzz 4% -draw 'matte 0,0 floodfill' -flop  -draw 'matte 0,0 floodfill' -flop #{output_path}"
 
+    system add_white_border
     system remove_background_cmd
     crop_image(output_path, output_path)
     dimension(output_path)
