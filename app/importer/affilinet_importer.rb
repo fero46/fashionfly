@@ -38,6 +38,7 @@ class AffilinetImporter < GenericImporter
           @affiliate.percent = ((actual_counter.to_f/total_counter.to_f).to_f * 100).to_i
           @affiliate.save
       end
+      next if @affiliate.skip_items > actual_counter
       values = {}
       id = nil
       node.attributes.each do |a|
@@ -98,9 +99,14 @@ class AffilinetImporter < GenericImporter
             product.save
           end
         end
-
+        @affiliate.skip_items = actual_counter
+        @affiliate.save
       end
     end
+    @affiliate.skip_items = 0
+    @affiliate.percent = 100
+    @affiliate.save
+    true
   end
 
 

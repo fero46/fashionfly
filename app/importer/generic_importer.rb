@@ -32,6 +32,7 @@ class GenericImporter
           @affiliate.percent = ((actual_counter.to_f/total_counter.to_f).to_f * 100).to_i
           @affiliate.save
         end
+        next if @affiliate.skip_items > actual_counter
         id = nil
         tag.attributes.each do |a|
           id = a.value if a.name == 'id' || a.name == 'zupid'
@@ -62,8 +63,11 @@ class GenericImporter
             product.save
           end
         end
+        @affiliate.skip_items = actual_counter
+        @affiliate.save
       end
     end
+    @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save
     true
