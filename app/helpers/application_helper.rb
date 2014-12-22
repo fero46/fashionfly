@@ -24,7 +24,7 @@ module ApplicationHelper
 
   def like_url
     require 'uri'
-    URI.escape("http://crocodealia.de/")
+    URI.escape(Settings.app.website)
   end
 
   def scope

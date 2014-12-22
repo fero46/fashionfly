@@ -1,6 +1,7 @@
 defaults: &defaults
   app:
-    name: FashionFly 
+    name: FashionFly
+    website: http://fashionfly.co
   company:
     name: FashionFly GmbH
     street: Eckermann str. 4
