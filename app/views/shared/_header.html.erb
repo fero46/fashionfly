@@ -18,8 +18,10 @@
 
           <% end %>
              <li><%= link_to t('.faq'), faq_path(assigned_locale) %></li>
+           <% if false %>
             <li><%= link_to generate_name_and_flag(@scope.country_code),'#', 
-            class: 'flag', 'ng-click' => 'selectCountry()' %></li>
+                    class: 'flag', 'ng-click' => 'selectCountry()' %></li>
+          <% end %>
         </ul>
         <div class="clear"></div>
         <ul class="bottom">
