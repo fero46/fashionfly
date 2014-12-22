@@ -1,11 +1,28 @@
 require 'sidekiq/web'
 
 Fashionfly::Application.routes.draw do
-  mount Lit::Engine => '/lit'
+
+  admin_constraint = lambda do |request|
+    current_user = request.env['warden'].user
+    current_user.present? && current_user.respond_to?(:is_admin?) && current_user.is_admin?
+  end
+
+  team_constraint  = lambda do |request|
+    current_user = request.env['warden'].user
+    current_user.present? && current_user.respond_to?(:is_team?) && current_user.is_team?
+  end
+
+
   get "outfit_categories/index"
   post '/rate' => 'rater#create', :as => 'rate'
+  constraints team_constraint do
+      mount Lit::Engine => '/lit'
+  end
+
   namespace :backend do
-    mount Sidekiq::Web => '/sidekiq'
+    constraints admin_constraint do
+      mount Sidekiq::Web => '/sidekiq'
+    end
     root :to => 'dashboards#show'
     resources :configurations
     resources :scopes do

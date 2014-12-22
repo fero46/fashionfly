@@ -126,7 +126,7 @@ class User < ActiveRecord::Base
   end
 
   def is_team?
-    self.role == "TEAM"
+    self.role == "TEAM" || is_admin?
   end
 
 private
