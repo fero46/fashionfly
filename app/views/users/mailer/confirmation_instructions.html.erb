@@ -1,5 +1,12 @@
-<p>Welcome <%= @email %>!</p>
+<p><%= t('.title', username: @resource.name)%>
+<p><%= t('.confirm') %></p>
+<p><%= link_to t('.confirm_link'), confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= t('.notes') %></p>
+<p><strong><%=t('.confirm_link')%></strong>
+  <%= link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token) %>
+</p>
+<p><%= t('.we_are_happy') %></p>
+<p><%= t('.extra_note') %></p>
+<p><%= t('.why_send') %> <%= t('.not_registered_note') %></p>
+<%= render 'users/mailer/footer'%>
 
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>

@@ -4,6 +4,7 @@ defaults: &defaults
     website: http://fashionfly.co
   company:
     name: FashionFly GmbH
+    owner: "Ferhat Ziba, Firat Ziba"
     street: Eckermann str. 4
     city: "21423 Winsen Luhe, Germany" 
   oauth:

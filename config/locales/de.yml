@@ -226,6 +226,27 @@ de:
       trends_products: Die neuesten Produkttrends
       trends_outfits: Die neusten Outfit-Trends
   users:
+    mailer:
+      footer:
+        consult: "Für Rückfragen stehen wir dir gerne unter service@fashionfly.co zur Verfügung."
+        regards: "Mit freundlichen Grüßen"
+        copyright: "Copyright © FashionFly GmbH. Alle Rechte vorbehalten."
+        ceo: "Geschäftsführung:"
+      confirmation_instructions:
+        title: "Willkommen %{username} bei FashionFly"
+        confirm: "Um die Anmeldung abzuschliesen, musst du mit einem Klick auf Link die Anmeldung bestätigen:"
+        notes: "Falls du diesen Link nicht anklicken kannst, kopiere diesen Link in deinem Browser."
+        confirm_link: Bestätigungslink
+        we_are_happy: "Wir freuen uns dich auf FashionFly zu begrüßen."
+        extra_note: "Wenn du nach 7 Tagen deinen Zugang nicht bestätigst, wird dein Zugang gelöscht."
+        why_send: "Du hast diese Mail bekommen, da du duch mit dieser Mail Addresse angemeldtet hast."
+        not_registered_note: "Falls du dich nicht angemeldet hast, kannst du diese Mail ignorieren."
+      reset_password_instructions:
+        greetings: "Hallo %{username}"
+        why_send: "Du bekommst diese Email, weil du dein Passwort zurücksetzen möchtest."
+        what_to_do: "Um dein Passwort zurückzusetzen, klicke bitte auf den folgenden Link."
+        action_link: "Mein Passwort ändern"
+        ignore: "Falls du dein Passwort nicht ändern möchtest, dann ignoriere bitte diese Email."
     registrations:
       new:
         title: Kostenlos Registrieren
