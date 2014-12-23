@@ -13,7 +13,6 @@ Fashionfly::Application.routes.draw do
   end
 
 
-  get "outfit_categories/index"
   post '/rate' => 'rater#create', :as => 'rate'
   constraints team_constraint do
       mount Lit::Engine => '/lit'
@@ -42,7 +41,7 @@ Fashionfly::Application.routes.draw do
 
   resources :widgets
 
-  scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
+  scope "/:locale" do
     get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
     get "hashtags",            to: "hashtags#index",     as: :hashtags  
     resources :contests
