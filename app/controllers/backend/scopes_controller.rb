@@ -52,6 +52,8 @@ protected
   def scope_attributes
     params.require(:scope).permit(:country_code, 
                                   :locale,
+                                  :language,
+                                  :region_code,
                                   :facebook,
                                   :twitter,
                                   :google,
