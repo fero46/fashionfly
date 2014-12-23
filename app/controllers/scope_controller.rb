@@ -8,7 +8,7 @@ protected
   def find_scope
     @scope = Scope.where(locale: params[:locale]).first
     if has_access_to_scope @scope
-      I18n.locale = @scope.locale 
+      I18n.locale = @scope.language 
     else
       alternative_scope = Scope.where(country_code: ::Configuration.where(key: 'default_country_code').first.value).first
       redirect_to root_path(locale: alternative_scope.locale)

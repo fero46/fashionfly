@@ -1,8 +1,15 @@
+<% content_for :title do %>
+  <%= t('.title') %>
+<% end %>
 <% content_for :seo_text do %>
   <%= render_seo_block '__startpage__' %>
 <% end %>
 
 <div class="container" ng-controller="FavoriteController">
+
+  <h1 style="height:0px; width:0px; position:absolute;top:0px; right:0px; display:block; overflow:hidden">
+    <%= t('.title') %>
+  </h1>
 
   <div class="trendbox">
     <h2><%= t('.trends_outfits') %></h2>

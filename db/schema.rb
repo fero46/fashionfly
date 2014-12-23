@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222140505) do
+ActiveRecord::Schema.define(version: 20141223172156) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -442,6 +442,8 @@ ActiveRecord::Schema.define(version: 20141222140505) do
   create_table "scopes", force: true do |t|
     t.string   "country_code"
     t.string   "locale"
+    t.string   "language"
+    t.string   "region_code"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "published",    default: false
