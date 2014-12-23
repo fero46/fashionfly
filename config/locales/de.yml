@@ -33,7 +33,7 @@ de:
         body: Textinhalt
       scope:
         country_code: Ländercode
-        locale: Sprache
+        locale: Lokalisierung
         facebook: Facebook Fanseite
         twitter: Twitter Profil
         google: Google+ Seite
