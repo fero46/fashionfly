@@ -4,7 +4,7 @@
   <title><%= yield(:title).presence || Settings.app.name %></title>
   <%= stylesheet_link_tag    "application", media: "all"%>
   <%= csrf_meta_tags %>
-  <% for scope in Scope.all %>
+  <% for scope in Scope.where(published: true) %>
     <link rel="alternate" href="<%= root_url(locale: scope.locale)%>"  hreflang="<%= scope.region_code %>" />
   <% end %>
   <%= yield :meta %>
