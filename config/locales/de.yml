@@ -34,6 +34,8 @@ de:
       scope:
         country_code: Ländercode
         locale: Lokalisierung
+        language: Sprache
+        region_code: Regional-Code
         facebook: Facebook Fanseite
         twitter: Twitter Profil
         google: Google+ Seite
