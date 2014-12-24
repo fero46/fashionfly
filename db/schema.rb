@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223172156) do
+ActiveRecord::Schema.define(version: 20141224184654) do
 
   create_table "affiliates", force: true do |t|
     t.string   "file"
@@ -127,6 +127,8 @@ ActiveRecord::Schema.define(version: 20141223172156) do
 
   create_table "colorizations", force: true do |t|
     t.string "name"
+    t.string "word"
+    t.string "oposite_color"
   end
 
   add_index "colorizations", ["name"], name: "index_colorizations_on_name", using: :btree

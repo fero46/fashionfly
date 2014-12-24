@@ -1,6 +1,6 @@
 GIT
   remote: git@bitbucket.org:fashionfly/fashion-fly-editor.git
-  revision: d0a8258c8c6c621183804614745181a8067cd254
+  revision: 506b12972600210a3564fc1a42d842a79e1e963d
   specs:
     fashion_fly_editor (0.0.1)
       carrierwave (= 0.9.0)
@@ -183,7 +183,7 @@ GEM
       tilt
     hashie (3.3.1)
     hike (1.2.3)
-    i18n (0.6.11)
+    i18n (0.7.0)
     i18n-country-translations (1.2.1)
       i18n (~> 0.5)
       railties (>= 3.0)

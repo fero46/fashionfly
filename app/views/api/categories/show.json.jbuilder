@@ -17,7 +17,9 @@ else
 
   json.colors Colorization.all do |json, color|
     json.id color.id
-    json.hex color.name    
+    json.hex color.name
+    json.word color.word
+    json.text_color color.oposite_color  
   end
 
   json.price_ranges ['0-50','50-100', '100-250', '250-500', '>500' ] do |json, price|
