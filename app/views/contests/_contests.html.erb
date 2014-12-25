@@ -1,8 +1,6 @@
 <%= render 'contests/sidebar' %>
 <% if @contest.present? %>
   <% content_for :title do t('contests.sidebar.title')+" | #{@contest.title} | #{Settings.app.name}"; end %>
-  <h1 style="text-align:left; padding-top:0px;padding-bottom:20px"><%= @contest.title %></h1>
-
   <% content_for :meta do %>
 
   <meta property="og:title" content="<%= t('contests.sidebar.title') %> | <%= @contest.title %> | <%= Settings.app.name %>"/>
