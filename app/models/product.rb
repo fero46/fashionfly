@@ -107,4 +107,12 @@ class Product < ActiveRecord::Base
     [y,u,v]
   end
 
+   def url_safe url
+     url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '')
+   end
+
+   def to_param
+     "#{id}-#{url_safe(name)}"
+   end
+
 end

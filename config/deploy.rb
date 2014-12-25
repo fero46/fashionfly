@@ -56,6 +56,9 @@ namespace :deploy do
 
   before :restart, :symlink_upload do
     on roles(:app), in: :sequence, wait: 5 do
+      execute :mkdir, "-p #{shared_path}/sitemaps"
+      execute :rm, "-rf","#{release_path}/public/sitemaps" 
+      execute :ln, "-s", "#{shared_path}/sitemaps #{release_path}/public/sitemaps"
       execute :rm, "-rf","#{release_path}/public/uploads" 
       execute :ln, "-s", "#{deploy_to}/shared/uploads #{release_path}/public/uploads"
       execute :rm, "-rf","#{release_path}/log" 

@@ -44,6 +44,7 @@ gem 'redis'
 gem 'redis-namespace'
 gem "cancan"
 gem 'lit'
+gem "dynamic_sitemaps"
 group :doc do
   gem 'sdoc', require: false
 end

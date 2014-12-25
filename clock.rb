@@ -15,5 +15,6 @@ module Clockwork
   sleep(1)
   every(1.minute, 'Import Check') {ImportPrepareWorker.prepare}
   every(1.day, 'Trends Check'){TrendCheckWorker.check}
+  every(1.day, 'Sitemap'){ `rake sitemap:generate`}
   every(1.day, 'Clean Up'){CleanCollectionWorker.run}
 end

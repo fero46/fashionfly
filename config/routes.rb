@@ -73,6 +73,8 @@ Fashionfly::Application.routes.draw do
     get "terms", to: 'static#terms', as: 'terms'
     get "impress", to: 'static#impress', as: 'impress'
     get "privacy", to: 'static#privacy', as: 'privacy'
+    get 'sitemap.xml', to: 'welcome#sitemap', format: :xml, as: 'sitemap', :defaults => { :format => 'xml' }
+    get 'robots.txt', to: 'welcome#robot', format: :text, as: 'robot',:defaults => { :format => 'text' }
     root 'welcome#index'
   end
 

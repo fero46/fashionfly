@@ -48,6 +48,14 @@ FashionFlyEditor::Collection.class_eval do
     build_image
   end
 
+   def url_safe url
+     url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '')
+   end
+
+   def to_param
+     "#{id}-#{url_safe(title)}"
+   end
+
 private
 
   def link_template name, link
