@@ -44,7 +44,10 @@ class Product < ActiveRecord::Base
 
 
   def used_in_collections
-    collections.where(published: true).order('created_at DESC').limit(4)
+    collections.where(published: true).
+                group('fashion_fly_editor_collections.id').
+                order('created_at DESC').
+                limit(4)
   end
 
   def maincolor my_image_path=nil
