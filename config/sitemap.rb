@@ -10,10 +10,10 @@ Scope.where(published: true).each do |scope|
   sitemap :site do
     url root_url(locale: scope.locale), last_mod: Time.now, change_freq: "daily", priority: 1.0
     scope.categories.each do |category|
-      url category_path(scope.locale, category.slug), last_mod: category.updated_at
+      url category_url(scope.locale, category.slug), last_mod: category.updated_at
     end
     scope.outfit_categories.each do |outfit_category|
-      url outfit_category_path(scope.locale,outfit_category.slug), last_mod: outfit_category.updated_at
+      url outfit_category_url(scope.locale,outfit_category.slug), last_mod: outfit_category.updated_at
     end
   end
 
