@@ -1,4 +1,35 @@
 <%= render 'collections/filter' %>
+<% if @category.present? %>
+  <% content_for :title do "#{@category.name} | #{Settings.app.name}"; end %>
+  <h1 style="text-align:left; padding-top:0px;padding-bottom:20px"><%= @category.name %></h1>
+
+  <% content_for :meta do %>
+
+  <meta property="og:title" content="<%= @category.name %> | <%= Settings.app.name %>"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="<%=category_url(assigned_locale, @category.slug)%>"/>
+  <meta property="og:locale" content="<%=assigned_locale%>" />
+  <% if @scope.page("__categories__#{@category.try(:slug)}").present? %>
+    <meta property="og:description" content="<%= @scope.page("__categories__#{@category.try(:slug)}").body %>" />
+  <% end %>
+  <!--
+  <PageMap>
+     <DataObject type="document">
+        <Attribute name="title"><%= @category.name %> | <%= Settings.app.name %></Attribute>
+        <Attribute name="author">FashionFly</Attribute>
+        <% if @scope.page("__categories__#{@category.try(:slug)}").present? %>
+          <Attribute name="description">
+            <%= @scope.page("__categories__#{@category.try(:slug)}").body %>
+          </Attribute>
+        <% end %>
+        <Attribute name="category"><%= @category.name %></Attribute>
+        <Attribute name="last_update"><%= @category.updated_at %></Attribute>
+     </DataObject>
+  </PageMap>
+  -->
+  <% end %>
+<% end %>
+
 <div class="white_box pagination_options" ng-controller="FilterController">
   <%= t('.sort_by') %> 
   <select id="sort_by"  ng-change="changeSelect('sort_by',selectSort)" ng-model="selectSort" ng-options="sort for sort in sortings" values='<%= t('products.products.sorting_values') %>'></select>

@@ -1,4 +1,29 @@
 <%= render 'contests/sidebar' %>
+<% if @contest.present? %>
+  <% content_for :title do t('contests.sidebar.title')+" | #{@contest.title} | #{Settings.app.name}"; end %>
+  <h1 style="text-align:left; padding-top:0px;padding-bottom:20px"><%= @contest.title %></h1>
+
+  <% content_for :meta do %>
+
+  <meta property="og:title" content="<%= t('contests.sidebar.title') %> | <%= @contest.title %> | <%= Settings.app.name %>"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="<%=contest_url(assigned_locale, @contest.slug)%>"/>
+  <meta property="og:locale" content="<%=assigned_locale%>" />
+  <meta property="og:description" content="<%= simple_format @contest.body %>" />
+  <!--
+  <PageMap>
+     <DataObject type="document">
+        <Attribute name="title"><%= t('contests.sidebar.title') %> | <%= @contest.title %> | <%= Settings.app.name %></Attribute>
+        <Attribute name="author">FashionFly Team</Attribute>
+        <Attribute name="description">
+          <%= simple_format @contest.body %>
+        </Attribute>
+        <Attribute name="last_update"><%= @contest.updated_at %></Attribute>
+     </DataObject>
+  </PageMap>
+  -->
+  <% end %>
+<% end %>
 <div class="contests">
   <% if can? :create, Contest %>
     <div class="right_side">
@@ -8,8 +33,12 @@
   <% if @contest.present? %>
     <%= render @contest %>
   <% end %>
-</div>
 <div class="clear"></div>
+<h1 style="text-align:left; padding-top:20px;padding-bottom:20px">
+  <%= t('.stylesin') %>
+</h1>
 <% if @contest.present? %>
   <%= render @contest.collections %>
 <% end %>
+
+</div>

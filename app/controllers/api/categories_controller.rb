@@ -26,7 +26,7 @@ protected
       contest_option = {}
       contest_option[:name]='contest'
       contest_option[:type]='checkbox'
-      contest_option[:value]=false
+      contest_option[:value]=1
       contest_option[:label]= I18n.t('activerecord.attributes.contest.form_label')
       result << contest_option
     end

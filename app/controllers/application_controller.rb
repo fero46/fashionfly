@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
     if options[:scope].present?
       myscope = Scope.find(options["scope"])
       myscope.collections << collection
-      myscope.add_to_contest(collection) if options["contest"].to_s == 'true'
+      puts options.to_yaml
+      myscope.add_to_contest(collection) if options["contest"].to_s == '1'
     end
 
     for collection_item in collection.collection_items
