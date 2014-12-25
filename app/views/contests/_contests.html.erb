@@ -7,14 +7,14 @@
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="<%=contest_url(assigned_locale, @contest.slug)%>"/>
   <meta property="og:locale" content="<%=assigned_locale%>" />
-  <meta property="og:description" content="<%= simple_format @contest.body %>" />
+  <meta property="og:description" content="<%= strip_tags(@contest.body).squish %>" />
   <!--
   <PageMap>
      <DataObject type="document">
         <Attribute name="title"><%= t('contests.sidebar.title') %> | <%= @contest.title %> | <%= Settings.app.name %></Attribute>
         <Attribute name="author">FashionFly Team</Attribute>
         <Attribute name="description">
-          <%= strip_tags @contest.body %>
+          <%= strip_tags strip_tags(@contest.body).squish %>
         </Attribute>
         <Attribute name="last_update"><%= @contest.updated_at %></Attribute>
      </DataObject>
