@@ -14,7 +14,7 @@
         <Attribute name="title"><%= t('contests.sidebar.title') %> | <%= @contest.title %> | <%= Settings.app.name %></Attribute>
         <Attribute name="author">FashionFly Team</Attribute>
         <Attribute name="description">
-          <%= simple_format @contest.body %>
+          <%= strip_tags @contest.body %>
         </Attribute>
         <Attribute name="last_update"><%= @contest.updated_at %></Attribute>
      </DataObject>
