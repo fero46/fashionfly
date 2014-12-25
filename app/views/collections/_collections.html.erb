@@ -10,7 +10,7 @@
   <meta property="og:url" content="<%=category_url(assigned_locale, @category.slug)%>"/>
   <meta property="og:locale" content="<%=assigned_locale%>" />
   <% if @scope.page("__categories__#{@category.try(:slug)}").present? %>
-    <meta property="og:description" content="<%= @scope.page("__categories__#{@category.try(:slug)}").body %>" />
+    <meta property="og:description" content="<%= strip_tags(@scope.page("__categories__#{@category.try(:slug)}").body).squish %>" />
   <% end %>
   <!--
   <PageMap>
@@ -19,7 +19,7 @@
         <Attribute name="author">FashionFly</Attribute>
         <% if @scope.page("__categories__#{@category.try(:slug)}").present? %>
           <Attribute name="description">
-            <%= @scope.page("__categories__#{@category.try(:slug)}").body %>
+            <%= strip_tags(@scope.page("__categories__#{@category.try(:slug)}").body).squish %>
           </Attribute>
         <% end %>
         <Attribute name="category"><%= @category.name %></Attribute>
