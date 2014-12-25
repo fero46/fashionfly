@@ -29,7 +29,7 @@ Scope.where(published: true).each do |scope|
     url hashtag_url(scope.locale, hashtag.name), last_mod: hashtag.updated_at
   end
 
-  ping_with sitemap_url(locale: scope.locale) if Rails.env=='production'
+  ping_with "http://fashionfly.co/#{scope.locale}/sitemap.xml" if Rails.env=='production'
 
 
 end
