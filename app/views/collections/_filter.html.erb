@@ -4,12 +4,12 @@
     <ul>
       <% for category in create_outfit_categories(@category_group) %>
         <li class="<%= 'active' if @main_category.present? && @main_category.id == category.id %>">
-          <%= link_to category.name, outfit_category_path(assigned_locale, category.slug) %>
+          <%= link_to category.name, outfit_category_path(assigned_locale, category.slug), title: category.name %>
           <% if @main_category.present? && @main_category.id == category.id %>
           <ul>
             <% for subcategory in category.categories %>
             <li class="<%= 'active' if @category.present? && @category.id == subcategory.id %>"> 
-              <%= link_to subcategory.name, outfit_category_path(assigned_locale, subcategory.slug) %></li>
+              <%= link_to subcategory.name, outfit_category_path(assigned_locale, subcategory.slug), title: subcategory.name %></li>
             <% end %>
           </ul>
           <% end %>
