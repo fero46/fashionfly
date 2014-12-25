@@ -39,7 +39,7 @@ class Product < ActiveRecord::Base
     category = self.categories.where(leaf: true).first
     products = category.products
     products = products.where(colorization_id: self.colorization_id) if colorization.present?
-    products.where('products.id != ?', self.id).offset(rand(products.count)).limit(4)
+    products.where('products.id != ?', self.id).group('products.id').offset(rand(products.count)).limit(4)
   end
 
 
