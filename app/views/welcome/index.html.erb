@@ -12,6 +12,12 @@
   </h1>
 
   <div class="trendbox">
+    <h2><%= t('.newest_outfits') %></h2>
+    <%= render @scope.collections.order(created_at: :desc).limit(4) %>
+    <div class="clear"></div>
+  </div>
+
+  <div class="trendbox">
     <h2><%= t('.trends_outfits') %></h2>
     <%= render @scope.collections.trends.limit(32) %>
     <div class="clear"></div>

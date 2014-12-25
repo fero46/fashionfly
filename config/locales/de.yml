@@ -227,6 +227,7 @@ de:
   welcome:
     index:
       title: FashionFly | die besten Outfits für deinen Kleiderschrank | fashionfly.co
+      newest_outfits: Die neuesten Outfits
       trends_products: Die neuesten Produkttrends
       trends_outfits: Die neusten Outfit-Trends
   users:
