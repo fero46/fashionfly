@@ -42,7 +42,7 @@ gem 'auto_html',  :git => "https://github.com/fero46/auto_html.git"
 gem 'fog'
 gem 'redis'
 gem 'redis-namespace'
-gem "cancan"
+gem 'cancancan', '~> 1.9'
 gem 'lit'
 gem "dynamic_sitemaps"
 group :doc do
