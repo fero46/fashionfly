@@ -37,7 +37,7 @@ class Product < ActiveRecord::Base
 
   def similar_products
     category = self.categories.where(leaf: true).first
-    products = category.products
+    products = category.products.where(published: true)
     products = products.where(colorization_id: self.colorization_id) if colorization.present?
     products.where('products.id != ?', self.id).group('products.id').offset(rand(products.count)).limit(4)
   end
