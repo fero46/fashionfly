@@ -2,6 +2,8 @@
 <html ng-app="FashionFly" lang="<%=@scope.try(:language)%>">
 <head>
   <title><%= yield(:title).presence || Settings.app.name %></title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <%= stylesheet_link_tag    "application", media: "all"%>
   <%= csrf_meta_tags %>
   <% for scope in Scope.where(published: true) %>
