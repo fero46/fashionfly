@@ -53,7 +53,7 @@ module ApplicationHelper
   def social_footer_link network
     link = @scope.send(network)
     if link.present?
-      link_to '', link, class: 'social', id:network.to_s, title: network.to_s
+      link_to '', link, class: 'social', id:network.to_s, title: network.to_s, rel: 'publisher'
     end
   end
 
