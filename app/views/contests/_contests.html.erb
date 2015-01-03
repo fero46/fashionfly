@@ -32,10 +32,12 @@
     <%= render @contest %>
   <% end %>
 <div class="clear"></div>
-<h1 style="text-align:left; padding-top:20px;padding-bottom:20px">
-  <%= t('.stylesin') %>
-</h1>
 <% if @contest.present? %>
+
+  <h1 style="text-align:left; padding-top:20px;padding-bottom:20px">
+    <%= t('.stylesin') %>
+  </h1>
+  
   <%= render @contest.collections %>
 <% end %>
 
