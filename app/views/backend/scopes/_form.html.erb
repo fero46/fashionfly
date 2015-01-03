@@ -28,7 +28,12 @@
   </div>
  
 <% end %>
-        
+   <div class="group">
+    <%= f.label :hidden, t("activerecord.attributes.scope.hidden", :default => "Versteckt"), :class => :label %>
+    <%= f.text_area :hidden, :class => 'text_area' %>
+  </div>
+
+
 <div class="group navform wat-cf">
   <button class="button" type="submit">
     <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>

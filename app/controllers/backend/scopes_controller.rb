@@ -60,6 +60,7 @@ protected
                                   :pinterest,
                                   :instagram,
                                   :youtube,
-                                  :published)
+                                  :published,
+                                  :hidden)
   end
 end

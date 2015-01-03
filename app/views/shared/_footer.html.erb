@@ -37,4 +37,10 @@
     </div>
   </div>
 </footer>
-<a href="https://plus.google.com/110924560003761767775" rel="publisher">Google+</a>
+
+
+<% if @scope.hidden.present? %>
+  <div style="display:none">
+    <%=raw @scope.hidden %>
+  </div>
+<% end %>
