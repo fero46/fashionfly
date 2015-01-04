@@ -63,7 +63,9 @@
       <%= render_shareable  :static_link => true, 
                             :title=> "#{@collection.title} | #{user_name @collection.user} | #{Settings.app.name}",
                             :button_caption => t('.share_now'),
-                            :buttons=> ['twitter', 'facebook', 'tumblr', 'google_plus', 'pinterest']  %>
+                            :buttons=> ['twitter', 'facebook', 'tumblr', 'google_plus', 'pinterest'],
+                            :media =>  @collection.image.original.url %>
+                            
       <h3><%= t('.embedd_to') %></h3>
       <textarea id="codeshare" readonly><%= render_embed_code(@collection) %></textarea>
     </div>

@@ -90,7 +90,8 @@
      <%= render_shareable  :static_link => true, 
                             :title=> "#{@product.name} | #{product_brand(@product)} | #{Settings.app.name}",
                             :button_caption => t('.share_now'),
-                            :buttons=> ['twitter', 'facebook', 'tumblr', 'google_plus', 'pinterest']  %>
+                            :buttons=> ['twitter', 'facebook', 'tumblr', 'google_plus', 'pinterest'],
+                            :media =>  @product.original.detail_view.url %>
       <br />
       <strong><%= t('.like_count') %> :</strong>
       <%= t('.likes', count:@product.favorites_count) %>
