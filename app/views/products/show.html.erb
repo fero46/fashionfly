@@ -3,14 +3,19 @@
 <% content_for :meta do %>
 
 <meta property="og:title" content="<%= @product.name %> | <%= product_brand(@product) %> | <%= Settings.app.name %>"/>
-<meta property="og:type" content="website"/>
+<meta property="og:type" content="product"/>
 <meta property="og:url" content="<%=product_url(assigned_locale, @product) %>"/>
 <meta property="og:image" content="<%=@product.original.detail_view.url%>"/>
 <meta property="og:image:width" content="566" />
 <meta property="og:image:height" content="442" />
 <meta property="og:locale" content="<%=assigned_locale%>" />
 <meta property="og:description" content="<%= @product.description %>" />
-
+<meta property="og:site_name" content="FashionFly" />
+<meta property="og:price:amount" content="<%= @product.price %>" />
+<meta property="og:price:currency" content="<%= @product.currencyCode %>" />
+<meta property="og:availability" content="instock" />
+<meta property="og:rating" content="<%= @product.rate_average.try(:avg) %>" />
+<meta property="og:rating_scale" content="5" />
 <!--
 <PageMap>
    <DataObject type="document">
