@@ -24,7 +24,11 @@ module ApplicationHelper
 
   def like_url
     require 'uri'
-    URI.escape(Settings.app.website)
+    if @scope.facebook.present?
+      URI.escape(@scope.facebook)
+    else
+      URI.escape(Settings.app.website)
+    end
   end
 
   def scope
