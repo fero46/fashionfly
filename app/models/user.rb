@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_REGEX = /change@mymail.com/
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
-  validates :name, :presence => true,  uniqueness: true
   has_many :authentications, class_name: 'UserAuthentication', dependent: :destroy
   has_many :favorites
   has_many :comments
@@ -32,7 +31,7 @@ class User < ActiveRecord::Base
 
   validate :email_has_to_be_validated, on: :create
   validate :email_has_to_be_validated, if: :should_confirm?
-  validate :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   before_save  :update_slug
   before_create :make_secret
