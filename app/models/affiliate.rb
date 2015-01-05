@@ -63,4 +63,8 @@ class Affiliate < ActiveRecord::Base
     importer.constantize.new(self).categories    
   end
 
+  def leaf_categories
+    @leaf_categories ||= scope.categories.where(leaf: true).order(:slug)
+  end
+
 end
