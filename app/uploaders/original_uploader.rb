@@ -11,11 +11,11 @@ class OriginalUploader < CarrierWave::Uploader::Base
   end
 
   version :detail_view  do
-    process resize_to_fit: [550, 650]
+    process resize_to_limit: [550, 650]
   end
 
   version :smaller do
-    process resize_to_fit: [192, 227]
+    process resize_to_limit: [192, 227]
   end
 
 
