@@ -10,7 +10,7 @@ class ProductSearchService
   end
 
 
-  def products
+  def products random_order=false
     @products = Product.where(scope_id: @scope.id, published: true)
     if params[:category]
       @products = @products.joins(:categorizations).where("categorizations.category_id" => params[:category])
@@ -35,21 +35,25 @@ class ProductSearchService
         query = params[:name]
         @products = @products.where('name like ?',"%#{query}%")      
     end
-
-    type = params[:sort_by].present? ? params[:sort_by] : 0
+    if random_order
+      type = 9000
+    else
+      type = params[:sort_by].present? ? params[:sort_by] : 0
+    end
     @products = order_product(@products, type.to_i)
     @products.page(params[:page]).per(params[:per].present? ? params[:per] : 9)
   end
 
 
   def order_product products, type
-    puts type
     if type == 1
       products = products.order(id: :asc)
     elsif type == 2
       products = products.order(actual_trend: :desc)
     elsif type == 3
-      products = products.order(favorites_count: :desc)      
+      products = products.order(favorites_count: :desc)
+    elsif type == 9000 #SPECIAL RANDOM
+      products = products.order(random_order: :asc)
     else
       products = products.order(id: :desc)
     end

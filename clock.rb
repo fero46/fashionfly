@@ -20,4 +20,5 @@ module Clockwork
     `rake sitemap:generate`
   end
   every(1.day, 'Clean Up'){CleanCollectionWorker.run}
+  every(1.day, 'Random Order'){RandomProductOrderWorker.run}
 end
