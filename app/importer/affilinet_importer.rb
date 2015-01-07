@@ -46,63 +46,38 @@ class AffilinetImporter < GenericImporter
       end
       values[NUMBER] = id
       node.children.each do |first_level|
-        if first_level.name == ITEM_CATEGORY_PATH
-          first_level.children.each do |cat| 
-            values[ITEM_CATEGORY]=cat.content if cat.name == ITEM_CATEGORY
-          end
-        end
-        if first_level.name == PRICE
-          first_level.children.each do |cat| 
-            if cat.name == DISPLAY_PRICE
-              display_price = cat.content.split(' ')
-              values[CURRENCY]=display_price[1]
-              values[PRICE]=display_price[0]
-            end
-          end
-        end
-        if first_level.name == DEEP_LINKS
-          first_level.children.each do |cat| 
-            values[DEEP_LINKS]=cat.content if cat.name == ITEM_ROOT
-          end
-        end
-        if first_level.name == DETAILS
-          first_level.children.each do |cat| 
-            values[MANUFACTURER]=cat.content if cat.name == MANUFACTURER
-            values[DESCRIPTION]=cat.content if cat.name == DESCRIPTION
-            values[TITLE]=cat.content if cat.name == TITLE
-          end
-        end
-        if first_level.name == IMAGES
-          first_level.children.each do |cat| 
-            values[IMAGES]=cat.content if cat.name == IMG
-          end
-        end
-
-        if find_mapping(product_category(values)).present?
-          next if product_remote_image(values).blank?
-          product = Product.where(affiliate_id: @affiliate.id, 
-                                  affi_code: id,
-                                  scope_id: @scope.id).first_or_create
-          product.premium = @affiliate.premium
-          product.save
-          Categorization.where(product_id: product.id).destroy_all
-          update_product_categories(product, values)
-          next if should_not_update(product, values)
-          product = update_product_attributes product, values
-          update_product_images product, values
-        else
-          product = Product.where(affiliate_id: @affiliate.id, 
-                                  affi_code: id,
-                                  scope_id: @scope.id).first
-          if product.present?
-            product.published = false
-            product.save
-          end
-        end
-        @affiliate.skip_items = actual_counter
-        @affiliate.save
+        check_category_node(first_level, values)
+        check_price(first_level, values)
+        check_deeplinks(first_level, values)
+        check_details(first_level, values)
+        check_images(first_level, values)
       end
+
+      if find_mapping(product_category(values)).present?
+        next if product_remote_image(values).blank?
+        product = Product.where(affiliate_id: @affiliate.id, 
+                                affi_code: id,
+                                scope_id: @scope.id).first_or_create
+        product.premium = @affiliate.premium
+        product.save
+        Categorization.where(product_id: product.id).destroy_all
+        update_product_categories(product, values)
+        next if should_not_update(product, values)
+        product = update_product_attributes product, values
+        update_product_images product, values
+      else
+        product = Product.where(affiliate_id: @affiliate.id, 
+                                affi_code: id,
+                                scope_id: @scope.id).first
+        if product.present?
+          product.published = false
+          product.save
+        end
+      end
+      @affiliate.skip_items = actual_counter
+      @affiliate.save
     end
+    
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save
@@ -112,6 +87,52 @@ class AffilinetImporter < GenericImporter
 
 
 protected
+
+  def check_images node, values
+    if node.name == IMAGES
+      node.children.each do |cat| 
+        values[IMAGES]=cat.content if cat.name == IMG
+      end
+    end    
+  end
+
+  def check_details node, values
+    if node.name == DETAILS
+      node.children.each do |cat| 
+        values[MANUFACTURER]=cat.content if cat.name == MANUFACTURER
+        values[DESCRIPTION]=cat.content if cat.name == DESCRIPTION
+        values[TITLE]=cat.content if cat.name == TITLE
+      end
+    end    
+  end
+
+  def check_deeplinks node, values
+    if node.name == DEEP_LINKS
+      node.children.each do |cat| 
+        values[DEEP_LINKS]=cat.content if cat.name == ITEM_ROOT
+      end
+    end
+  end
+
+  def check_price node, values
+    if node.name == PRICE
+      node.children.each do |cat| 
+        if cat.name == DISPLAY_PRICE
+          display_price = cat.content.split(' ')
+          values[CURRENCY]=display_price[1]
+          values[PRICE]=display_price[0]
+        end
+      end
+    end
+  end
+
+  def check_category_node node, values
+    if node.name == ITEM_CATEGORY_PATH
+      node.children.each do |cat| 
+        values[ITEM_CATEGORY]=cat.content if cat.name == ITEM_CATEGORY
+      end
+    end
+  end
 
   def should_not_update product, values
     product.name == product_name(values) || product_remote_image(values).blank?
