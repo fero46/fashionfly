@@ -5,6 +5,14 @@
   <%= render_seo_block '__startpage__' %>
 <% end %>
 
+<% content_for :meta do %>
+  <% for scope in Scope.where(published: true) %>
+    <link rel="alternate"
+          href="<%= root_url(locale: scope.locale)%>"
+          hreflang="<%= scope.region_code %>" />
+  <% end %>
+<% end %>
+
 <div class="container" ng-controller="FavoriteController">
 
   <h1 style="height:0px; width:0px; position:absolute;top:0px; right:0px; display:block; overflow:hidden">

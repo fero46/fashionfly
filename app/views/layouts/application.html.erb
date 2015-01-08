@@ -6,9 +6,6 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <%= stylesheet_link_tag    "application", media: "all"%>
   <%= csrf_meta_tags %>
-  <% for scope in Scope.where(published: true) %>
-    <link rel="alternate" href="<%= root_url(locale: scope.locale)%>"  hreflang="<%= scope.region_code %>" />
-  <% end %>
   <%= yield :meta %>
 </head>
 <body>
