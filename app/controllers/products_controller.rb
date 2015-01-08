@@ -3,10 +3,15 @@ class ProductsController < ScopeController
   end
 
   def show
-    @product = Product.find(params[:id])
-    @category = @product.categories.where(:leaf => true).first
-    @category_group = category_select(@category, true)
-    @main_category  = category_select(@category) 
+    begin
+      @product = Product.find(params[:id])
+      @category = @product.categories.where(:leaf => true).first
+      @category_group = category_select(@category, true)
+      @main_category  = category_select(@category) 
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = I18n.t('action.product_not_found')
+      redirect_to root_path(assigned_locale)
+    end
   end
 
 

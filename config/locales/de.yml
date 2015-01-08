@@ -13,6 +13,7 @@ de:
     destroyed: "%{entity} erfolgreich erstellt." 
     error: "Es sind Fehler vorhanden." 
     collection_not_found: 'Ihr Outfit wurde nicht gefunden'
+    product_not_found: 'Produkt wurde nicht gefunden'
     required_to_signed_in: 'Du musst dich Anmelden um das Outfit abzuspeichern.'
     edit_resource: Email und Password bearbeitet
     edit_email: 'Email wurde aktualisiert'
