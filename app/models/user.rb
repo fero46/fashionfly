@@ -131,6 +131,14 @@ class User < ActiveRecord::Base
 private
 
   def clean_name
-    name.gsub('ö', 'oe').gsub('ü', 'ue').gsub('ä', 'ae').gsub('ß','ss').gsub('%', '').gsub(' ','_')
+    name.gsub('ö', 'oe').
+         gsub('ü', 'ue').
+         gsub('ä', 'ae').
+         gsub('ß', 'ss').
+         gsub('%', '').
+         gsub(' ', '_').
+         gsub('.', '_').
+         gsub(',', '_').
+         gsub(';', '_')
   end
 end
