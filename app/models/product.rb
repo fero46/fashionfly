@@ -15,7 +15,7 @@ class Product < ActiveRecord::Base
   validates :scope, presence: true, if: :published?
   validates :colorization, presence: true, if: :published?
   validates :brand, presence: true, if: :published?
-  validates :description, presence: true, if: :published?
+  # validates :description, presence: true, if: :published?
 
   ratyrate_rateable "rate"
 
