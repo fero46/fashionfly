@@ -17,7 +17,7 @@ module CollectionsHelper
 
   def render_embed_code collection
     content =  javascript_include_tag javascript_url("widget"), type:'text/javascript'
-    content << content_tag(:div, 'data' => collection.id, 'host' => request.host_with_port) do
+    content << content_tag(:div, 'data' => collection.id, 'host' => request.host_with_port, 'class' => "fashionfly-widget") do
       link_to @collection.title, collection_url(assigned_locale, @collection), title: @collection.title, alt: @collection.title
     end
   end
