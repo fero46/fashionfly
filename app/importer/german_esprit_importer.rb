@@ -1,22 +1,19 @@
+require "net/http"
+
 class GermanEspritImporter < GenericImporter
 
 protected 
   
   def product_remote_image values
-    remote_image = find_my_image(values)
+    remote_image = values['largeImage']
     if remote_image.present?
-      remote_image = remote_image.gsub('PicPOV_FlatView', 'PicSPV_ZoomFlat')
+      bigger = remote_image.gsub('PicPOV_FlatView', 'PicSPV_ZoomFlat')
+      url = URI.parse(bigger)
+      req = Net::HTTP.new(url.host, url.port)
+      res = req.request_head(url.path)
+      remote_image = bigger if res.code == "200"
     end
     return remote_image
-  end
-
-  def find_my_image(values) 
-    image_tags = @affiliate.image_tag.split(',')
-    for image_tag in image_tags
-       result = values[image_tag.strip!] 
-       return result if result.present?
-    end
-    nil
   end
 
 end
