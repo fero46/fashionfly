@@ -3,7 +3,7 @@ class Affiliate < ActiveRecord::Base
   has_many :mappings,  :dependent => :destroy
   has_many :products
   def self.IMPORTERS
-    [:GenericImporter, :AffilinetImporter, :GaleriaImporter]
+    [:GenericImporter, :AffilinetImporter, :GaleriaImporter, :GermanEspritImporter]
   end
 
   mount_uploader :file, FileUploader
