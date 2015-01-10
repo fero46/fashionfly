@@ -1,0 +1,33 @@
+<div class="container">
+  <%= render 'navigation',  active: {profile: 'active' } %>
+  <div class="profile_formular">
+    <h1> <%= t '.title' %></h1>
+    <%= link_to t('action.new'), new_shop_path, class: 'button' %>
+    <br />    <br />
+    <br />
+
+    <% if @shops.present? %>
+    <table class="listing">
+      <tr>
+        <th><%= t('.logo') %></th>
+        <th><%= t('.name') %></th>
+        <th class="list_action"><%= t('.actions') %></th>
+      </tr>
+      <% for shop in @shops %>
+        <tr class="inside">
+          <td class="small"><%= image_tag shop.logo %></td>
+          <td><%= shop.name %></td>
+          <td class="list_action">
+            <%= link_to t('action.show'),     shop_path(assigned_locale, shop) %> |
+            <%= link_to t('action.edit'),     edit_shop_path(assigned_locale, shop) %> |
+            <%= link_to t('action.destroy'),  shop_path(assigned_locale, shop), 
+                                              :method => :delete,
+                                              :confirm => t('action.destroy_confirm', entity: Shop.model_name) %>
+          </td>
+        <tr>
+      <% end %>
+    </table>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+</div>

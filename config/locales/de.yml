@@ -2,12 +2,14 @@ de:
   action:
     back: Zurück
     new: Neu
+    show: Zeigen
     cancel: Abbruch
     edit: Bearbeiten
     destroy: Löschen
     update: Aktualisieren
     destroy_confirm: "%{entity} wird entgültig gelöscht"
     edit_profile: Profil bearbeiten
+    new_shop: Neuen Online Shop anlegen
     created: "%{entity} erfolgreich erstellt."
     updated: "%{entity} erfolgreich aktualisiert." 
     destroyed: "%{entity} erfolgreich erstellt." 
@@ -27,7 +29,16 @@ de:
       scope: Länderkontext
       page: Seite
       comment: Kommentar
+      shop: Online Shop
     attributes:
+      shop:
+        name: Name
+        logo: Shoplogo
+        link: Shop-Url
+        body: Beschreibung
+        sidebar_banner: Werbemittel Seite
+        top_banner: Werbemittel Oben
+        bottom_banner: Werbemittel Unten
       page:
         name: Name
         title: Titel
@@ -74,6 +85,14 @@ de:
           other: "Zeige <b>alle %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Zeige <b>%{first}&nbsp;-&nbsp;%{last}</b> von <b>%{total}</b> in total %{entry_name}"
+  shops:
+    list:
+      title: Shops
+      logo: logo
+      name: Name
+      actions: Aktionen
+    form: 
+      save_shop: 'Speichern'
   hashtags:
     show:
       no_hashtag: "Es wurden keine Einträge für den Hashtag <span class='red'>#%{tag}</span> gefunden"
@@ -164,6 +183,8 @@ de:
       disclaimer: Haftungsausschuss
       find_us: Finde uns auf
     header:
+      shoplist: Shopsübersicht
+      shop_settings: Shopeinstellung
       create_outfit: Outfit erstellen
       contest: Wettbewerb
       fashionblog: Fashionblog

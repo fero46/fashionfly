@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="white_box shop">
+    <div class="sidebar">
+      <%=link_to  image_tag(@shop.logo, alt: @shop.name), 
+                  shopref_path(id:@shop.id), 
+                  title: @shop.name,
+                  :rel => 'nofollow'%>
+      <br />
+      <% if @shop.sidebar_banner.present? %>
+      <br />
+        <%= raw @shop.sidebar_banner %>
+      <% end %>
+    </div>
+    <div class="block">
+      <% if can? :edit, Shop %>
+      <%= link_to t('action.edit'),  edit_shop_path(assigned_locale, @shop),
+                                  class: 'button'%>
+      <br /><br />
+      <% end %>
+      <% if @shop.top_banner.present?  %>
+        <%= raw @shop.top_banner %>
+        <br />
+        <br />
+      <% end %>
+      <%= simple_format @shop.body %>
+      <% if @shop.bottom_banner.present? %>
+        <br />
+        <%= raw @shop.bottom_banner %>
+      <% end %>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>

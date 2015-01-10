@@ -494,7 +494,7 @@ body > .content{
   cursor: pointer;
 }
 
-span.red{
+span.red, span.error{
   color: $red;
 }
 

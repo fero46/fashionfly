@@ -93,6 +93,13 @@
           </ul>
         </li>
       <% end %>
+      <% if can? :manage, Shop %>
+        <li>
+          <%= link_to t('.shop_settings'), 
+                      shoplist_path(assigned_locale),
+                      class: 'item' %>
+        </li>
+      <% end %>
     </div>
   </nav>
 </header>

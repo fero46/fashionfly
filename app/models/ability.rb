@@ -13,7 +13,8 @@ class Ability
     else
         can :read, :all
       if user.is_team?
-          can :manage, Contest
+        can :manage, Contest
+        can :manage, Shop
       end
     end
 

@@ -43,7 +43,10 @@ Fashionfly::Application.routes.draw do
 
   scope "/:locale" do
     get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
-    get "hashtags",            to: "hashtags#index",     as: :hashtags  
+    get "hashtags",            to: "hashtags#index",     as: :hashtags
+    resources :shops
+    get 'shoplist', to: 'shops#list', as: :shoplist
+    get 'shopref/:id', to: 'shops#ref', as: :shopref
     resources :contests
     resources :styles, only: [:show, :index]
     resources :profiles, only:[:show, :update, :edit]

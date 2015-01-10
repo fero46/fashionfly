@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107150902) do
+ActiveRecord::Schema.define(version: 20150109134553) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -463,6 +463,23 @@ ActiveRecord::Schema.define(version: 20150107150902) do
   add_index "scopes", ["country_code"], name: "index_scopes_on_country_code", length: {"country_code"=>10}, using: :btree
   add_index "scopes", ["locale"], name: "index_scopes_on_locale", length: {"locale"=>10}, using: :btree
   add_index "scopes", ["published"], name: "index_scopes_on_published", using: :btree
+
+  create_table "shops", force: :cascade do |t|
+    t.string   "name",           limit: 255
+    t.string   "logo",           limit: 255
+    t.text     "link",           limit: 65535
+    t.text     "body",           limit: 65535
+    t.text     "sidebar_banner", limit: 65535
+    t.text     "top_banner",     limit: 65535
+    t.text     "bottom_banner",  limit: 65535
+    t.integer  "scope_id",       limit: 4
+    t.integer  "position",       limit: 4,     default: 0
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "shops", ["position"], name: "index_shops_on_position", using: :btree
+  add_index "shops", ["scope_id"], name: "index_shops_on_scope_id", using: :btree
 
   create_table "simple_hashtag_hashtaggings", force: :cascade do |t|
     t.integer "hashtag_id",        limit: 4
