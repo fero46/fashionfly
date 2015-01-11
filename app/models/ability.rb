@@ -16,6 +16,7 @@ class Ability
         can :manage, Contest
         can :manage, Banner
         can :manage, Shop
+        can :manage, Property
       end
     end
 

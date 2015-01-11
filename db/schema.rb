@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150109134700) do
+ActiveRecord::Schema.define(version: 20150111185444) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -426,6 +426,24 @@ ActiveRecord::Schema.define(version: 20150109134700) do
   add_index "products", ["published"], name: "index_products_on_published", using: :btree
   add_index "products", ["random_order"], name: "index_products_on_random_order", using: :btree
   add_index "products", ["scope_id"], name: "index_products_on_scope_id", using: :btree
+
+  create_table "properties", force: :cascade do |t|
+    t.integer  "scope_id",                   limit: 4
+    t.string   "shop_highlight_title",       limit: 255
+    t.string   "shop_highlight_image",       limit: 255
+    t.text     "shop_highlight_link",        limit: 65535
+    t.string   "collection_highlight_title", limit: 255
+    t.string   "collection_highlight_image", limit: 255
+    t.text     "collection_highlight_link",  limit: 65535
+    t.string   "category_highlight_title",   limit: 255
+    t.string   "category_highlight_image",   limit: 255
+    t.text     "category_highlight_link",    limit: 65535
+    t.boolean  "show_new_startpage",         limit: 1
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "properties", ["scope_id"], name: "index_properties_on_scope_id", unique: true, using: :btree
 
   create_table "rates", force: :cascade do |t|
     t.integer  "rater_id",      limit: 4

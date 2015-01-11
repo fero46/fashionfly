@@ -55,5 +55,9 @@ class Scope < ActiveRecord::Base
     contests.where('startdate <= ?', Date.today).order(startdate: :desc).first
   end
 
+  def property
+    Property.where(scope_id: self.id).first_or_create
+  end
+
 
 end

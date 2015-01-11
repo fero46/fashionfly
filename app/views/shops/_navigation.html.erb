@@ -4,6 +4,9 @@
   <ul>
     <li><%= link_to t('shared.header.shoplist'), shoplist_path(assigned_locale) %></li>
     <li><%= link_to t('shared.header.banners'), banners_path(assigned_locale) %></li>
+    <li><%= link_to t('shared.header.properties'), 
+                    edit_property_path(locale:assigned_locale)%>
+    </li>
   </ul>
 </div>
 </div>

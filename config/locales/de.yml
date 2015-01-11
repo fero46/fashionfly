@@ -32,7 +32,19 @@ de:
       comment: Kommentar
       shop: Online Shop
       banner: Banner
+      Property: Eigenschaft
     attributes:
+      property:
+        shop_highlight_title: Shop Highlight Titel
+        shop_highlight_link: Shop Highlight Link
+        shop_highlight_image: Shop Highlight Bild
+        collection_highlight_title: Outfit Highlight Titel
+        collection_highlight_link: Outfit Highlight Link
+        collection_highlight_image: Outfit Highlight Bild
+        category_highlight_title: Kategorie Highlight Titel
+        category_highlight_link: Kategorie Highlight Link
+        category_highlight_image: Kategorie Highlight Bild
+        show_new_startpage: Sales Seite auf Startseite freischalten.
       banner:
         name: Name
         banner: Bannerbild
@@ -199,6 +211,7 @@ de:
       disclaimer: Haftungsausschuss
       find_us: Finde uns auf
     header:
+      properties: Einstellungen
       shoplist: Shopsübersicht
       banners: Startseite Banners
       shop_settings: Shopeinstellung

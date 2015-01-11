@@ -46,6 +46,7 @@ Fashionfly::Application.routes.draw do
     get "hashtags",            to: "hashtags#index",     as: :hashtags
     resources :shops
     resources :banners
+    resource :property, only: [:edit, :update]
     get 'shoplist', to: 'shops#list', as: :shoplist
     get 'shopref/:id', to: 'shops#ref', as: :shopref
     resources :contests
