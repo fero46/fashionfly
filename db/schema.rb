@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150109134553) do
+ActiveRecord::Schema.define(version: 20150109134700) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -68,6 +68,21 @@ ActiveRecord::Schema.define(version: 20150109134553) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "banners", force: :cascade do |t|
+    t.string   "name",           limit: 255
+    t.string   "banner",         limit: 255
+    t.text     "link",           limit: 65535
+    t.string   "preview_ids",    limit: 255
+    t.string   "previews_model", limit: 255
+    t.integer  "scope_id",       limit: 4
+    t.integer  "position",       limit: 4,     default: 0
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "banners", ["position"], name: "index_banners_on_position", using: :btree
+  add_index "banners", ["scope_id"], name: "index_banners_on_scope_id", using: :btree
 
   create_table "brands", force: :cascade do |t|
     t.string "name", limit: 255

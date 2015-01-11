@@ -7,6 +7,7 @@ de:
     edit: Bearbeiten
     destroy: Löschen
     update: Aktualisieren
+    save: Speichern
     destroy_confirm: "%{entity} wird entgültig gelöscht"
     edit_profile: Profil bearbeiten
     new_shop: Neuen Online Shop anlegen
@@ -30,7 +31,15 @@ de:
       page: Seite
       comment: Kommentar
       shop: Online Shop
+      banner: Banner
     attributes:
+      banner:
+        name: Name
+        banner: Bannerbild
+        link: Bannerlink
+        preview_ids: Vorschau Id's
+        previews_model: Vorschau Typ
+        position: Bannerposition
       shop:
         name: Name
         logo: Shoplogo
@@ -85,6 +94,13 @@ de:
           other: "Zeige <b>alle %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Zeige <b>%{first}&nbsp;-&nbsp;%{last}</b> von <b>%{total}</b> in total %{entry_name}"
+  banners:
+    index:
+      title: Banners
+      name: Name
+      actions: Aktionen
+    form:
+      save_banner:
   shops:
     list:
       title: Shops
@@ -184,6 +200,7 @@ de:
       find_us: Finde uns auf
     header:
       shoplist: Shopsübersicht
+      banners: Startseite Banners
       shop_settings: Shopeinstellung
       create_outfit: Outfit erstellen
       contest: Wettbewerb

@@ -11,6 +11,7 @@ class Scope < ActiveRecord::Base
   has_many :pages
   has_many :hashtags, class_name: 'SimpleHashtag::Hashtag'
   has_many :shops
+  has_many :banners
 
   validates :country_code, presence: true, uniqueness: true
   validates :locale, presence: true

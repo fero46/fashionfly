@@ -1,0 +1,8 @@
+<div class="container">
+  <%= render 'shops/navigation',  active: {profile: 'active' } %>
+  <div class="profile_formular">
+    <h1> <%= t 'action.new_banner' %></h1>
+    <%= render 'form', banner: @banner %>
+  </div>
+  <div class="clear"></div>
+</div>

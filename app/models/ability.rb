@@ -14,6 +14,7 @@ class Ability
         can :read, :all
       if user.is_team?
         can :manage, Contest
+        can :manage, Banner
         can :manage, Shop
       end
     end

@@ -1,0 +1,31 @@
+<div class="container">
+  <%= render 'shops/navigation',  active: {profile: 'active' } %>
+  <div class="profile_formular">
+    <h1> <%= t '.title' %></h1>
+    <%= link_to t('action.new'), new_banner_path, class: 'button' %>
+    <br />    <br />
+    <br />
+
+    <% if @banners.present? %>
+    <table class="listing">
+      <tr>
+        <th><%= t('.name') %></th>
+        <th class="list_action"><%= t('.actions') %></th>
+      </tr>
+      <% for banner in @banners %>
+        <tr class="inside">
+          <td><%= banner.name %></td>
+          <td class="list_action">
+            <%= link_to t('action.show'),     banner_path(assigned_locale, banner) %> |
+            <%= link_to t('action.edit'),     edit_banner_path(assigned_locale, banner) %> |
+            <%= link_to t('action.destroy'),  banner_path(assigned_locale, banner), 
+                                              :method => :delete,
+                                              :confirm => t('action.destroy_confirm', entity: Banner.model_name) %>
+          </td>
+        <tr>
+      <% end %>
+    </table>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+</div>
