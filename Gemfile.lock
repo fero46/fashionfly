@@ -1,6 +1,6 @@
 GIT
   remote: git@bitbucket.org:fashionfly/fashion-fly-editor.git
-  revision: 7b0ca3c55dbf0399f3bb0e07c398de0514460fe1
+  revision: 81c0e7461e25e7a702a4bad68ccc81a25a67f8aa
   specs:
     fashion_fly_editor (0.0.1)
       carrierwave (= 0.9.0)
@@ -226,7 +226,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (4.0.5)
       railties (>= 3.1.0)
-    json (1.8.1)
+    json (1.8.2)
     jwt (1.2.0)
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
@@ -242,7 +242,7 @@ GEM
     mime-types (2.4.3)
     mini_magick (4.0.1)
     mini_portile (0.6.2)
-    minitest (5.5.0)
+    minitest (5.5.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -289,7 +289,7 @@ GEM
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
-    rack-test (0.6.2)
+    rack-test (0.6.3)
       rack (>= 1.0)
     rack-utf8_sanitizer (1.2.4)
       rack (~> 1.0)
