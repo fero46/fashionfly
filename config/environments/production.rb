@@ -71,14 +71,20 @@ Fashionfly::Application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
+  config.action_mailer.default_options = {
+    :from => "service@fashionfly.co"
+  }
   config.action_mailer.default_url_options = { :host => "fashionfly.co" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => "localhost",
-    :port => 25,
-    :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE, 
-    :domain => "fashionfly.de",
+    :address => "email-smtp.eu-west-1.amazonaws.com",
+    :port => 587,
+    :user_name => 'xxxxxxxx',
+    :password => 'xxxxxxxx',
+    :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE,
+    :domain => "fashionfly.co",
   }
+
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 

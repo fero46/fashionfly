@@ -45,6 +45,7 @@ gem 'redis-namespace'
 gem 'cancancan', '~> 1.9'
 gem 'lit'
 gem "dynamic_sitemaps"
+gem "aws-ses", "~> 0.6.0", :require => 'aws/ses'
 group :doc do
   gem 'sdoc', require: false
 end

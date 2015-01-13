@@ -67,6 +67,11 @@ GEM
       tzinfo (~> 1.1)
     acts_as_commentable (4.0.2)
     arel (6.0.0)
+    aws-ses (0.6.0)
+      builder
+      mail (> 2.2.5)
+      mime-types
+      xml-simple
     bcrypt (3.1.9)
     bourbon (3.2.3)
       sass (~> 3.2)
@@ -388,6 +393,7 @@ GEM
     warden (1.2.3)
       rack (>= 1.0)
     web-app-theme (0.7.0)
+    xml-simple (1.1.4)
 
 PLATFORMS
   ruby
@@ -395,6 +401,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_commentable
   auto_html!
+  aws-ses (~> 0.6.0)
   bourbon
   cancancan (~> 1.9)
   capistrano

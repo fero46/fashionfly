@@ -2,7 +2,7 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   config.secret_key = '867cc35ae8b6d02fa4927e68edefb802d5455a07221102d7b1e3f1c4fa11171fcb879e78870831cb6027f08ffacbb297c38311b96a82b636591593fe9f81ec5b'
-  config.mailer_sender = 'team@fashionfly.co'
+  config.mailer_sender = 'service@fashionfly.co'
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
   require 'devise/orm/active_record'
