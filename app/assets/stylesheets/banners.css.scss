@@ -1,3 +1,31 @@
-// Place all the styles related to the banners controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "color";
+.banner{
+  text-align: center;
+  .preview{
+    position: relative;
+    width:1130px;
+    margin:0px auto;
+    margin-top:25px;
+  }
+}
+
+.properties{
+  width:1130px;
+  margin:0px auto;
+  .prop_highlights{
+    h2{
+      a{
+        color: $black;
+        text-decoration: none;
+      }
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 15px;
+    }
+    float:left;
+    &.collection_property{
+      margin:0px 22px;
+    }
+  } 
+  margin-bottom: 25px;
+}

@@ -500,6 +500,8 @@ span.red, span.error{
 
 
 .trendbox{
+  width: 1130px;
+  margin: 0px auto;
   text-align: left;
   h2{
     font-size: 24px;
@@ -507,6 +509,17 @@ span.red, span.error{
     padding-bottom: 20px;
     border-bottom: 1px solid $border_color;
     margin-bottom: 20px;
+    .red{
+      a{
+        color: $red;
+        font-size: 16px;
+        margin-left: 25px;
+        text-decoration: none;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
   }
   padding-bottom: 35px;
 }
@@ -755,6 +768,39 @@ span.red, span.error{
   top:5px;
   right: 10px;
   font-size: 12px;
+}
+
+.notificationbox{
+  width: 1130px;
+  margin:0px auto;
+  background: #404040;
+  color: white;
+  padding: 20px 0px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 100;
+  .bluebutton{
+    margin-left: 15px;
+  }
+  margin-bottom: 55px;
+}
+
+.bluebutton{
+  font-weight: 200;
+  background: #3598dc;
+  border-bottom: 2px solid #2882c0;
+  color: white;
+  text-transform: uppercase;
+  padding: 4px 10px 1px 20px;
+  min-width: 150px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  @include border-top-radius(5px);
+  @include border-bottom-radius(5px);
+  &:hover{
+    background: #2882c0;
+  }
 }
 
 nav.share {display:inline-block;} /* shareable's nav tag */

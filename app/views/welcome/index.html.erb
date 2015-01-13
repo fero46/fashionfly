@@ -13,11 +13,53 @@
   <% end %>
 <% end %>
 
+<h1 style="height:0px; width:0px; position:absolute;top:0px; right:0px; display:block; overflow:hidden">
+  <%= t('.title') %>
+</h1>
+
+<% if @scope.property.show_new_startpage %>
+  <%= render @scope.banners %>
+  <%= render @scope.property %>
+
+  <div class="trendbox">
+    <h2><%= t('.trends_products') %></h2>
+    <%= render @scope.products.trends.limit(4) %>
+    <div class="clear"></div>
+  </div>
+
+  <div class="trendbox">
+    <h2><%= t('.newest_outfits') %></h2>
+    <%= render @scope.collections.where(published: true).order(created_at: :desc).limit(4) %>
+    <div class="clear"></div>
+  </div>
+
+  <div class="notificationbox">
+    <%= t('.create_outfit') %>
+    <a  href="<%= fashion_fly_editor_path(assigned_locale) %>" 
+        class="bluebutton" 
+        title="<%= t('shared.header.create_outfit') %>">
+        <%= t('shared.header.create_outfit') %>
+    </a>
+  </div>
+  
+  <div class="trendbox">
+    <h2><%= t('.trends_outfits') %></h2>
+    <%= render @scope.collections.trends.limit(4) %>
+    <div class="clear"></div>
+  </div>
+
+  <div class="trendbox">
+    <h2><%= t('.favorite_shops') %><span class="red"><%= link_to t('.show_all'), shops_path %></h2>
+    <div class="shops_banners">
+      <%= render @scope.favorite_shops %>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<% else %>
 <div class="container" ng-controller="FavoriteController">
 
-  <h1 style="height:0px; width:0px; position:absolute;top:0px; right:0px; display:block; overflow:hidden">
-    <%= t('.title') %>
-  </h1>
+
 
   <div class="trendbox">
     <h2><%= t('.newest_outfits') %></h2>
@@ -37,5 +79,5 @@
     <div class="clear"></div>
   </div>
 
-
 </div>
+<% end %>

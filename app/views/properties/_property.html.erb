@@ -1,0 +1,13 @@
+<div class="properties">
+  <% ['shop', 'collection', 'category'].each do |x| %>
+    <div class="<%= "#{x}" %>_property prop_highlights">
+      <h2><%=link_to  property.send("#{x}_highlight_title".to_s),
+                      property.send("#{x}_highlight_link".to_s), title: property.send("#{x}_highlight_title".to_s) %></h2>
+      <%= link_to  image_tag( property.send("#{x}_highlight_image".to_s), 
+                            alt: property.send("#{x}_highlight_title".to_s)),
+                  property.send("#{x}_highlight_link".to_s), 
+                  title: property.send("#{x}_highlight_title".to_s) %>
+    </div>
+  <% end %>
+  <div class="clear"></div>
+</div>

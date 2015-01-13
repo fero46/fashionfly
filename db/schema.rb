@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111185444) do
+ActiveRecord::Schema.define(version: 20150113141322) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -509,8 +509,10 @@ ActiveRecord::Schema.define(version: 20150111185444) do
     t.integer  "position",       limit: 4,     default: 0
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.boolean  "favorite",       limit: 1
   end
 
+  add_index "shops", ["favorite"], name: "index_shops_on_favorite", using: :btree
   add_index "shops", ["position"], name: "index_shops_on_position", using: :btree
   add_index "shops", ["scope_id"], name: "index_shops_on_scope_id", using: :btree
 

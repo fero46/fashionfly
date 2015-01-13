@@ -1,4 +1,7 @@
 @import "reset";
+html {  
+    -webkit-font-smoothing: antialiased;
+}
 @import "base";
 @import "product";
 @import "contests";
@@ -7,3 +10,4 @@
 @import "datetimepicker";
 @import "profiles";
 @import "shops";
+@import "banners";

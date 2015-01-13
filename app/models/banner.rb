@@ -10,4 +10,14 @@ class Banner < ActiveRecord::Base
   def self.MODELS
     [:Product, :Collection]
   end
+
+  def items
+    model = nil
+    if previews_model == 'Product'
+      model = scope.products
+    elsif previews_model == 'Collection'
+      model = scope.collections
+    end
+    model.where('id in (?)', preview_ids.split(','))
+  end
 end

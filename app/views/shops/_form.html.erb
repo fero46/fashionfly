@@ -15,6 +15,11 @@
   </div>
 
   <div>
+      <%= f.check_box :favorite %>
+      <%= f.label :favorite %>
+  </div>
+
+  <div>
       <%= f.label :logo, class: 'label' %>
       <div class="upload_box">
         <%= image_tag f.object.logo %><br />

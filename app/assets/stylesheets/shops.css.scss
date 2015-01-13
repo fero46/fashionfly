@@ -44,3 +44,52 @@
     }
   }
 }
+
+.shopwrapper{
+  float:left;
+  width: 170px;
+  .logo_container{
+    background: white;
+    text-align: center;
+    height:40px;
+    padding: 25px 10px;
+    text-align: center;
+    position: relative;
+    a{
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    img{
+      max-width: 140px;
+      max-height: 40px;
+      position: absolute;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  .detail_link{
+    display: block;
+    text-align: center;
+    background: #404040;
+    color: white;
+    text-decoration: none;
+    padding:3px;
+    font-size: 14px;
+  }
+}
+
+.shops_banners{
+  .shopwrapper{
+    margin-right: 22px;
+    &:last-child{
+      margin:0px;
+    }
+  }
+}

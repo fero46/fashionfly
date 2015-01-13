@@ -62,6 +62,7 @@ protected
   def shop_attributes
     params.require(:shop).permit(:name,
                                  :logo,
+                                 :favorite,
                                  :logo_cache,
                                  :body,
                                  :link,

@@ -59,5 +59,9 @@ class Scope < ActiveRecord::Base
     Property.where(scope_id: self.id).first_or_create
   end
 
+  def favorite_shops
+    shops.where(favorite: true).order(:position).limit(6)
+  end
+
 
 end

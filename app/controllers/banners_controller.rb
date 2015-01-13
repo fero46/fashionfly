@@ -31,7 +31,7 @@ class BannersController < ScopeController
   end
 
   def update
-    if @banner.update(shop_attributes)
+    if @banner.update(banner_attributes)
       flash[:notice] = t('action.updated', entity: Banner.model_name.human)
       redirect_to banners_path(assigned_locale)
     else

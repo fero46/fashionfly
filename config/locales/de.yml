@@ -52,6 +52,7 @@ de:
         preview_ids: Vorschau Id's
         previews_model: Vorschau Typ
         position: Bannerposition
+        favorite: Favorite
       shop:
         name: Name
         logo: Shoplogo
@@ -114,6 +115,8 @@ de:
     form:
       save_banner:
   shops:
+    shop:
+      details: Shop Details
     list:
       title: Shops
       logo: logo
@@ -282,6 +285,9 @@ de:
       newest_outfits: Die neuesten Outfits
       trends_products: Die neuesten Produkttrends
       trends_outfits: Die neusten Outfit-Trends
+      create_outfit: Zeige uns dein Style und erstelle dein Outfit
+      favorite_shops: Beliebte Online Shops
+      show_all: "Zeige alle >"
   users:
     mailer:
       footer:
