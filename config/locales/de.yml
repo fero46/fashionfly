@@ -12,15 +12,15 @@ de:
     edit_profile: Profil bearbeiten
     new_shop: Neuen Online Shop anlegen
     created: "%{entity} erfolgreich erstellt."
-    updated: "%{entity} erfolgreich aktualisiert." 
-    destroyed: "%{entity} erfolgreich erstellt." 
-    error: "Es sind Fehler vorhanden." 
+    updated: "%{entity} erfolgreich aktualisiert."
+    destroyed: "%{entity} erfolgreich erstellt."
+    error: "Es sind Fehler vorhanden."
     collection_not_found: 'Ihr Outfit wurde nicht gefunden'
     product_not_found: 'Produkt wurde nicht gefunden'
     required_to_signed_in: 'Du musst dich Anmelden um das Outfit abzuspeichern.'
-    edit_resource: Email und Password bearbeitet
+    edit_resource: Email und Passwort bearbeitet
     edit_email: 'Email wurde aktualisiert'
-    confirmation_send: "Eine Mail mit eine Anleitung zur Bestätigung wurde an %{mail} geschickt."
+    confirmation_send: "Du erhälst in wenigen Minuten eine E-Mail, mit der Du Deine Registrierung bestätigen kannst."
   user:
     identical: muss eingegeben werden
   activerecord:
@@ -82,9 +82,9 @@ de:
         banner: Banner
         form_label: Beim Wettbewerb mitmachen
       user:
-        unknown: Unbekannt 
+        unknown: Unbekannt
         remember_me: Angemeldet bleiben.
-        email: E-mail
+        email: E-Mail
         email_confirmation: E-Mail Bestätigung
         password: Passwort
         password_confirmation: Passwort Bestätigung
@@ -122,7 +122,7 @@ de:
       logo: logo
       name: Name
       actions: Aktionen
-    form: 
+    form:
       save_shop: 'Speichern'
   hashtags:
     show:
@@ -147,9 +147,9 @@ de:
     email: Email
   profiles:
     navigation:
-      title: Bearbeitungsmenu
+      title: Bearbeitungsmenü
       edit_profile: Profil
-      edit_registration: Email und Passwort
+      edit_registration: E-Mail und Passwort
     form:
       remove_image: Anzeigebild entfernen
       update_profile: Profil speichern
@@ -162,13 +162,13 @@ de:
       edit_comment: "Kommentar bearbeiten"
       comment_from: "Kommentar von <a href='%{url}' title='%{user}'>%{user}</a>"
   collections:
-    show: 
+    show:
       used_products: Produkte in diesem Outfit
       created_from: "Erstellt von <a href='%{url}' title='%{user}'>%{user}</a>"
       created_at: "Erstellt am %{date}"
-      share: "Teil diesen Style in deinem Netzwerk"
+      share: "Teile Deinen Style mit Deinen Freunden"
       embedd: "Einbetten"
-      embedd_to: "html-Code zum Einbetten in Blogs und Homepages:" 
+      embedd_to: "html-Code zum Einbetten in Blogs und Homepages:"
       create_comment: "Jetzt dieses Outfit kommentieren"
       save_comment: "Jetzt kommentieren"
       your_comment: "Ihr Kommentar"
@@ -189,12 +189,12 @@ de:
     contests:
       new: Neuen Wettbewerb anlegen
       stylesin: Eingereichte Styles
-    sidebar: 
+    sidebar:
       title: Wettbewerbe
   shared:
     email_enter_form:
       success: Du hast Erfolgreich deine Email eingegeben
-      success_description: Du erhälts in kurze eine E-Mail mit einem Bestätigungslink. Du kannst jederzeit deine E-Mail noch einmal eingeben in dem du diese Seite neu ladest. 
+      success_description: Du erhälst in kurze eine E-Mail mit einem Bestätigungslink. Du kannst jederzeit deine E-Mail noch einmal eingeben in dem du diese Seite neu ladest.
       reload: Seite Neu Laden.
       title: Nur noch deine E-Mail Adresse
       description: Bitte gib deine E-Mail Adresse ins Formular ein.
@@ -222,7 +222,7 @@ de:
       contest: Wettbewerb
       fashionblog: Fashionblog
       my_fashionfly: Mein FashionFly
-      outfit: Outfits
+      outfit: Outfit entdecken
       sign_in: Anmelden
       sign_up: Registrieren
       sign_out: Abmelden
@@ -246,7 +246,7 @@ de:
       more: Mehr Information
       similar_products: Ähnliche Produkte
       used_in_collections: Outfits mit diesem Produkt
-      rates: 
+      rates:
         zero: Keine Bewertung
         one: Eine Bewertung
         other: "%{count} Bertungen"
@@ -298,20 +298,20 @@ de:
         copyright: "Copyright © FashionFly GmbH. Alle Rechte vorbehalten."
         ceo: "Geschäftsführung:"
       confirmation_instructions:
-        title: "Willkommen %{username} bei FashionFly"
-        confirm: "Um die Anmeldung abzuschliesen, musst du mit einem Klick auf Link die Anmeldung bestätigen:"
-        notes: "Falls du diesen Link nicht anklicken kannst, kopiere diesen Link in deinem Browser."
+        title: "Hallo %{username},"
+        confirm: "vielen Dank für Deine Registrierung. Klicke bitte auf diesen Link, um Deinen Account zu bestätigen:"
+        notes: "Falls du diesen Link nicht anklicken kannst, kopiere diesen in Deinen Browser."
         confirm_link: Bestätigungslink
-        we_are_happy: "Wir freuen uns dich auf FashionFly zu begrüßen."
+        we_are_happy: "Wir freuen uns, Dich auf FashionFly zu begrüßen."
         extra_note: "Wenn du nach 7 Tagen deinen Zugang nicht bestätigst, wird dein Zugang gelöscht."
-        why_send: "Du hast diese Mail bekommen, da du duch mit dieser Mail Addresse angemeldtet hast."
-        not_registered_note: "Falls du dich nicht angemeldet hast, kannst du diese Mail ignorieren."
+        why_send: "Du hast diese Mail bekommen, da Du dich mit dieser E-Mail-Adresse bei FashionFly angemeldet hast."
+        not_registered_note: "Bitte ignoriere diese E-Mail, wenn Du Dich nicht selbst angemeldet hast."
       reset_password_instructions:
         greetings: "Hallo %{username}"
-        why_send: "Du bekommst diese Email, weil du dein Passwort zurücksetzen möchtest."
+        why_send: "Du bekommst diese Email, weil Du Dein Passwort zurücksetzen möchtest."
         what_to_do: "Um dein Passwort zurückzusetzen, klicke bitte auf den folgenden Link."
         action_link: "Mein Passwort ändern"
-        ignore: "Falls du dein Passwort nicht ändern möchtest, dann ignoriere bitte diese Email."
+        ignore: "Falls Du Dein Passwort nicht ändern möchtest, dann ignoriere bitte diese Email."
     registrations:
       new:
         title: Kostenlos Registrieren
@@ -325,7 +325,7 @@ de:
         wait_confirmation: Bestätigen Sie bitte %{email}
         leaf_blank: "(wenn du dein Passwort nicht ändern willst, lass das Feld leer.)"
         old_pass: "(dein altes Passwort eingeben um die Änderung zu bestätigen)"
-        unhappy: "Bist du nicht mehr glücklich mit FashionFly und willst dein Account löschen ?"
+        unhappy: "Bist du nicht mehr glücklich mit FashionFly und willst deinen Account löschen?"
         cancel_my_account: "Mein Konto löschen"
         account: Konto
     sessions:
@@ -346,5 +346,5 @@ de:
         signin_text: Du bist schon auf FashionFly registriert ?
       oauth:
         title: Oder ganz einfach und unkompliziert anmelden.
-        description: Melde dich ganz einfach mit einem bestehendem Benutzerzugang an. 
+        description: Melde dich ganz einfach mit einem bestehendem Benutzerzugang an.
         sign_in_with: Mit %{provider} anmelden
