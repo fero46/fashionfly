@@ -1,6 +1,6 @@
 GIT
   remote: git@bitbucket.org:fashionfly/fashion-fly-editor.git
-  revision: 81c0e7461e25e7a702a4bad68ccc81a25a67f8aa
+  revision: d66b918cd2c8369e21fdcb5a22bb4ca47f4ddd84
   specs:
     fashion_fly_editor (0.0.1)
       carrierwave (= 0.9.0)
