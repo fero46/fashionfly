@@ -53,6 +53,7 @@ Fashionfly::Application.routes.draw do
     resources :styles, only: [:show, :index]
     resources :profiles, only:[:show, :update, :edit]
     patch 'email_edit', to: 'profiles#email_edit', as: :email_edit
+    get 'prodref/:id', to: "products#ref", as: :productref
     resources :products, only: [:show, :index] do
       resources :favorites, only: [:create, :destroy]
     end

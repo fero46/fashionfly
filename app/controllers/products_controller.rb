@@ -15,6 +15,20 @@ class ProductsController < ScopeController
   end
 
 
+  def ref
+    begin
+      @product = Product.find(params[:id])
+      if @product.deepLink.blank?
+        redirect_to root_path(@scope)
+      else
+        redirect_to @product.deepLink
+      end
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = I18n.t('action.product_not_found')
+      redirect_to root_path(assigned_locale)
+    end      
+  end
+
   def refshop
     @product = Product.where(id: params[:product_id]).first
     if @product.blank? || @product.deepLink.blank?
