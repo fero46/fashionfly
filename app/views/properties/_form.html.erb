@@ -1,5 +1,5 @@
 <%= form_for @property, url: property_path(assigned_locale), 
-                   html:{class: 'formular profile_edit'} do |f| %>
+                   html:{class: 'formular profile_edit', multipart: true } do |f| %>
 
     <div>
         <%= f.check_box :show_new_startpage %>
