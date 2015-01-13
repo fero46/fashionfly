@@ -2,6 +2,7 @@ class PropertiesController < ScopeController
     load_and_authorize_resource param_method: :property_attributes
 
   def edit
+    @property = @scope.property
   end
 
   def update
