@@ -298,8 +298,9 @@ de:
         copyright: "Copyright © FashionFly GmbH. Alle Rechte vorbehalten."
         ceo: "Geschäftsführung:"
       confirmation_instructions:
+        subject: Anleitung zur Bestätigung Deines Accounts
         title: "Hallo %{username},"
-        confirm: "vielen Dank für Deine Registrierung. Klicke bitte auf diesen Link, um Deinen Account zu bestätigen:"
+        confirm: "vielen Dank für Deine Registrierung und herzlich willkommen bei FashionFly. Klicke bitte auf diesen Link, um Deinen Account zu bestätigen:"
         notes: "Falls du diesen Link nicht anklicken kannst, kopiere diesen in Deinen Browser."
         confirm_link: Bestätigungslink
         we_are_happy: "Wir freuen uns, Dich auf FashionFly zu begrüßen."
