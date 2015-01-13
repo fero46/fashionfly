@@ -5,8 +5,9 @@
                       property.send("#{x}_highlight_link".to_s), title: property.send("#{x}_highlight_title".to_s) %></h2>
       <%= link_to  image_tag( property.send("#{x}_highlight_image".to_s), 
                             alt: property.send("#{x}_highlight_title".to_s)),
-                  property.send("#{x}_highlight_link".to_s), 
-                  title: property.send("#{x}_highlight_title".to_s) %>
+                  send("property_#{x}_link_path".to_s), 
+                  title: property.send("#{x}_highlight_title".to_s),
+                  ref: 'nofollow' %>
     </div>
   <% end %>
   <div class="clear"></div>

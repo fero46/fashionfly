@@ -10,6 +10,19 @@ class PropertiesController < ScopeController
     redirect_to edit_property_path()
   end
 
+  def property_shop_link
+    redirect_to @scope.property.shop_highlight_link
+  end
+
+  def property_collection_link
+    redirect_to @scope.property.collection_highlight_link
+  end
+
+  def property_category_link
+    redirect_to @scope.property.category_highlight_link
+  end
+
+
 
 protected
 
