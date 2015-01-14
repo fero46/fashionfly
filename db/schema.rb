@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113141322) do
+ActiveRecord::Schema.define(version: 20150113180938) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -414,6 +414,8 @@ ActiveRecord::Schema.define(version: 20150113141322) do
     t.integer  "width",                limit: 4,                              default: 0
     t.integer  "height",               limit: 4,                              default: 0
     t.integer  "random_order",         limit: 4,                              default: 0
+    t.decimal  "sale_price",                         precision: 10, scale: 2
+    t.boolean  "sale",                 limit: 1,                              default: false
   end
 
   add_index "products", ["actual_trend"], name: "index_products_on_actual_trend", using: :btree
@@ -425,6 +427,7 @@ ActiveRecord::Schema.define(version: 20150113141322) do
   add_index "products", ["premium"], name: "index_products_on_premium", using: :btree
   add_index "products", ["published"], name: "index_products_on_published", using: :btree
   add_index "products", ["random_order"], name: "index_products_on_random_order", using: :btree
+  add_index "products", ["sale"], name: "index_products_on_sale", using: :btree
   add_index "products", ["scope_id"], name: "index_products_on_scope_id", using: :btree
 
   create_table "properties", force: :cascade do |t|
