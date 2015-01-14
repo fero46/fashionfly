@@ -32,3 +32,36 @@ plugins: "image,link,fullscreen,code,media",
 language: "de"
 });
 //]]>
+
+addSticky = function(){
+  if($('.header').hasClass('sticky')){
+    return;
+  }
+  $('.header').fadeOut(20, function(){
+    $('.header').addClass('sticky');
+    $('.header').fadeIn(500);
+  });
+};
+
+removeSticky = function(){
+  if(!$('.header').hasClass('sticky')){
+    return;
+  }
+  $('.header').removeClass('sticky');
+};
+
+$(document).ready(function(){
+  if( $(window).scrollTop() > $('.header').height() && !($('.header').hasClass('sticky'))){
+      addSticky();
+    } else if ($(window).scrollTop() <= $('.header').height()){
+      removeSticky();
+    }
+  $(window).scroll(function () {
+      if( $(window).scrollTop() > $('.header').height() && !($('.header').hasClass('sticky'))){
+        addSticky();
+      } else if ($(window).scrollTop() <= $('.header').height()){
+        removeSticky();
+      }
+  });
+
+});

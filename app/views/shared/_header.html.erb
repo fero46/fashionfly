@@ -7,41 +7,55 @@
       <div class="right_side_header">
         <ul class="top">
           <% if current_user.present? %>
-            <li><%=link_to "#{current_user.name}", user_profile(current_user) %></li>
-            <li>
-              <%= link_to t('.sign_out'), destroy_user_session_path, :method => :delete, title:  t('.sign_out')%>
+            <li class="dropdownmenu"><%=link_to "#{current_user.name}", user_profile(current_user) %>
+              <ul>
+              <li>
+                  <%= link_to t('.my_fashionfly'), user_profile(current_user), class: 'item', title: t('.my_fashionfly') %>
+              </li>
+              <li>
+                <%= link_to t('.sign_out'), destroy_user_session_path, :method => :delete, title:  t('.sign_out')%>
+              </li>
+              </ul>
             </li>
-
           <% else %>
             <li><%= link_to t('.sign_in'), new_user_session_path(locale:assigned_locale), title: t('.sign_in') %></li>
             <li><%= link_to t('.sign_up'), new_user_registration_path(locale:assigned_locale), title: t('.sign_up') %></li>
 
           <% end %>
-             <li><%= link_to t('.faq'), faq_path(assigned_locale), title: t('.faq') %></li>
-           <% if false %>
-            <li><%= link_to generate_name_and_flag(@scope.country_code),'#', 
-                    class: 'flag', 'ng-click' => 'selectCountry()' %></li>
-          <% end %>
-        </ul>
-        <div class="clear"></div>
-        <ul class="bottom">
-            <nav class="header_navigation">
-              <li><a  href="<%= fashion_fly_editor_path(assigned_locale) %>" 
-                      class="item" 
-                      title="<%= t('.create_outfit') %>">
-                      <%= t('.create_outfit') %>
-                  </a>
-              </li>
-              <li><a  href="<%= contests_path(assigned_locale) %>" 
+            <li class="dropdownmenu">
+              <%= link_to generate_name_and_flag(@scope.country_code),'#', 
+                    class: 'flag'%>
+              <ul>
+                <% Scope.country_codes_mapped_in_region.each do |region,subregion| %>
+                  <% subregion.each do |subregion, countries| %>
+                    <% for country in countries %>
+                      <li>
+                        <%= link_to generate_name_and_flag(country[:code]), 
+                        root_path(locale: country[:locale]) %>
+                      </li>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </ul>
+            </li>
+            <li><a  href="<%= contests_path(assigned_locale) %>" 
                       class="item"
                       title="<%= t('.contest') %>">
                     <%= t('.contest') %>
                   </a>
               </li>
-              <% if current_user %>
-                <li class="last">
-                  <%= link_to t('.my_fashionfly'), user_profile(current_user), class: 'item', title: t('.my_fashionfly') %>
-              <% end %>
+
+             <li><%= link_to t('.faq'), faq_path(assigned_locale), title: t('.faq') %></li>
+        </ul>
+        <div class="clear"></div>
+        <ul class="bottom">
+            <nav class="header_navigation">
+              <li class="last"><a  href="<%= fashion_fly_editor_path(assigned_locale) %>" 
+                      class="item bluebutton" 
+                      title="<%= t('.create_outfit') %>">
+                      <%= t('.create_outfit') %>
+                  </a>
+              </li>
             </nav>
         </ul>
       </div>
@@ -103,5 +117,3 @@
     </div>
   </nav>
 </header>
-
-<%= render 'shared/select_popup' %>

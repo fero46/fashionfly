@@ -1,8 +1,8 @@
 @import "color";
 @import "bourbon";
 body{
-  background: $footer_bg;
-  color: $footer_font;
+  background: #f4f4f4;
+  color: $black;
   font-family: 'Source Sans Pro', sans-serif;
   min-width: 1170px;
 }
@@ -43,9 +43,16 @@ body{
 }
 
 .footer{
+  display: inline-block;
+  background: $footer_bg;
+  color: $footer_font;
   padding: 20px 0px;
   font-weight: 300;
+    width: 100%;
   line-height: 18px;
+  .footer_inner{
+    display: block;
+  }
   h2{
     line-height: 22px;
     text-transform: uppercase;
@@ -194,35 +201,96 @@ header{
         list-style: none;
         li{
           float:left;
-          margin-left: 10px;
+          margin-left: 5px;
+
           a{
             color:$black;
             text-decoration: none;
             font-size: 12px;
+            padding: 5px;
             img{
               height: 12px;
               position: relative;
               top:2px;
               margin-right: 5px;
             }
+            &:hover{
+              background: $red;
+              color: white;
+            }
+          }
+          &.dropdownmenu{
+            padding-right: 16px;
+            background: image-url('menu/down.png') no-repeat right 2px;
+            position: relative;
+            ul{
+              display: none;
+              position: absolute;
+              background: white !important;
+              list-style: none;
+              border-top: 3px solid $red;
+              background: white;
+              padding: 0px;
+              margin: 0px;
+              z-index: 500000;
+              li{
+                clear: both;
+                float: none;
+                margin: 0px;
+                a{
+                  display: block;
+                  background: white;
+                  min-width: 150px;
+                  padding: 5px;
+                }
+              }
+            }
+            &:hover{
+              a{
+                color: white;
+                background: $red;
+              }
+              ul{
+                display: block;
+                li{
+                  display: block;
+                  background: white;
+                  a{
+                    background: white;
+                    color:$black;
+                    &:hover{
+                      background: $red;
+                      color: white;
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
       .bottom{
         float:right;
-        padding-top: 15px;
+        padding-top: 8px;
         .header_navigation{
           border-bottom: none;
           li{
-            a{
+            .bluebutton{
+              font-weight: 400;
+              background: #3598dc;
+              border-bottom: 2px solid #2882c0;
+              color: white;
+              padding: 9px 10px 6px 20px;
+              min-width: 150px;
+              text-align: center;
+              text-decoration: none;
+              font-size: 14px;
+              @include border-top-radius(5px);
+              @include border-bottom-radius(5px);
               &:hover{
-                background: none;
-                color: $red;
+                background: #2882c0;
               }
             }
-            &.last a{
-                padding-right: 0px;
-              }
           }
         }
       }
@@ -292,7 +360,22 @@ header{
     }
 
   }
-
+  &.sticky{
+    position: fixed;
+    top:0;
+    z-index: 2000;
+    width: 100%;
+    .top{
+      display: none;
+    }
+    &> .header_navigation{
+      display: none;
+    }
+    .right_side_header .bottom{
+      padding-top:15px;
+    }
+    border-bottom: 1px solid #e4e4e4;
+  }
 }
 
 body > .content{
@@ -810,6 +893,7 @@ span.red, span.error{
     background: #2882c0;
   }
 }
+
 
 nav.share {display:inline-block;} /* shareable's nav tag */
 nav.share div {float:left;}
