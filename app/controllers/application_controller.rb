@@ -135,7 +135,7 @@ protected
 
   def find_scope
     @scope = Scope.where(locale: assigned_locale).first
-    I18n.locale = @scope.locale if @scope.present?
+    I18n.locale = @scope.language if @scope.present?
   end
 
 end
