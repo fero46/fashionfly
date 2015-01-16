@@ -15,7 +15,12 @@ class WelcomeController < ScopeController
   end
 
   def language
-    @translation = current_translations['fashion_fly_editor']
+    keys = Lit::LocalizationKey.where('localization_key like ?', 'fashion_fly_editor.%')
+    map = {}
+    for key in keys
+      map[key.localization_key] = I18n.t(key.localization_key)
+    end
+    @translation = deflate_map(map)['fashion_fly_editor']
   end
 
   def robots
@@ -23,8 +28,25 @@ class WelcomeController < ScopeController
   end
 
 private
-  def current_translations
-    @translations ||= I18n.backend.send(:translations)
-    @translations[I18n.locale].with_indifferent_access
+  
+  def deflate_map map
+    new_map = {}
+    for key in map.keys
+      puts key
+      value = map[key]
+      list = key.split('.')
+      temporary = new_map
+      list.each_with_index do |item, index|
+        if index == list.size - 1
+          temporary[item] = value
+        else
+          temporary[item] = {} if temporary[item].blank?
+        end
+        temporary = temporary[item]
+      end
+    end
+    puts new_map
+    new_map
   end
+
 end
