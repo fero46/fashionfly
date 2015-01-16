@@ -1,0 +1,17 @@
+(function() {
+  window.translations = <%= raw @translation %>;
+
+  window.translate = function(key) {
+    var result, splittet_key, splittet_keys, _i, _len;
+    result = window.translations;
+    splittet_keys = key.split('.');
+    for (_i = 0, _len = splittet_keys.length; _i < _len; _i++) {
+      splittet_key = splittet_keys[_i];
+      result = result[splittet_key];
+    }
+    return result;
+  };
+
+  document.title = window.translations.editor.title;
+
+}).call(this);

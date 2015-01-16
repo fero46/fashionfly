@@ -54,6 +54,7 @@ Fashionfly::Application.routes.draw do
     resource :property, only: [:edit, :update]
     get 'shoplist', to: 'shops#list', as: :shoplist
     get 'shopref/:id', to: 'shops#ref', as: :shopref
+    get 'language', to: 'welcome#language'
     resources :contests
     resources :styles, only: [:show, :index]
     resources :profiles, only:[:show, :update, :edit]

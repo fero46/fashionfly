@@ -1,4 +1,7 @@
 class WelcomeController < ScopeController
+
+  protect_from_forgery with: :exception, except: 'language'
+
   def index
   end
 
@@ -9,6 +12,10 @@ class WelcomeController < ScopeController
     else
       render text: "Sitemap not found.", status: :not_found
     end
+  end
+
+  def language
+    @translation = I18n.t('fashion_fly_editor.').to_json()
   end
 
   def robots
