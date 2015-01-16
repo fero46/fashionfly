@@ -1,5 +1,5 @@
 (function() {
-  window.translations = <%= raw @translation %>;
+  window.translations = <%= raw @translation.to_json %>;
 
   window.translate = function(key) {
     var result, splittet_key, splittet_keys, _i, _len;

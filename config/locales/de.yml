@@ -352,6 +352,7 @@ de:
       custom_navigation:
         help: Hilfe
         main: Startseite
+        sign_or_register: Anmelden oder Registrieren
     information:
       at_least_one_product: 'Bitte fügen Sie mindestens ein Element der Kollektion hinzu.'
       could_not_saved: "Kollektion konnte nicht gespeichert werden."
