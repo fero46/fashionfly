@@ -17,7 +17,7 @@ module Clockwork
   every(1.day, 'Trends Check'){TrendCheckWorker.check}
   every(1.day, 'Sitemap') do 
     Dir.chdir Rails.root
-    `rake sitemap:generate`
+    `RAILS_ENV=#{Rails.env} bundle exec rake sitemap:generate`
   end
   every(1.day, 'Clean Up'){CleanCollectionWorker.run}
   every(1.day, 'Random Order'){RandomProductOrderWorker.run}
