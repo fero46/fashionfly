@@ -15,7 +15,7 @@ class WelcomeController < ScopeController
   end
 
   def language
-    @translation = current_translations
+    @translation = current_translations['fashion_fly_editor']
   end
 
   def robots
