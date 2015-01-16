@@ -15,7 +15,7 @@ class WelcomeController < ScopeController
   end
 
   def language
-    @translation = I18n.t('fashion_fly_editor.').to_json()
+    @translation = I18n.t(['fashion_fly_editor', 'fashion_fly_editor.'].sample).to_json()
   end
 
   def robots
