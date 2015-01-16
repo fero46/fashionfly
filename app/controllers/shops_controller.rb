@@ -1,7 +1,7 @@
 class ShopsController < ScopeController
 
   before_action :find_shop, only: [:show, :edit, :update, :destroy, :ref]
-  load_and_authorize_resource param_method: :shop_attributes
+  load_and_authorize_resource param_method: :shop_attributes, except: :ref
 
   def index
     @shops = @scope.shops
