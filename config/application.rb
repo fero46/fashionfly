@@ -19,7 +19,7 @@ module Fashionfly
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths << Rails.root.join('lib')
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
-    config.assets.precompile += ['backend.css','backend.js', 'widget.js', 'widget.css', 'overwrites.css', 'style.css']
+    config.assets.precompile += ['backend.css','backend.js', 'widget.js', 'widget.css', 'overwrites.css', 'style.css', 'language.js']
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.available_locales = [:de, :en, :tr]
     config.i18n.default_locale = :de

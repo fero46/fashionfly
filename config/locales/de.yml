@@ -153,10 +153,6 @@ de:
     form:
       remove_image: Anzeigebild entfernen
       update_profile: Profil speichern
-  fashion_fly_editor:
-    collections:
-      collection:
-        from_user: "von <a href='%{url}' title='%{user}'>%{user}</a>"
   comments:
     comment:
       edit_comment: "Kommentar bearbeiten"
@@ -349,3 +345,38 @@ de:
         title: Oder ganz einfach und unkompliziert anmelden.
         description: Melde dich ganz einfach mit einem bestehendem Benutzerzugang an.
         sign_in_with: Mit %{provider} anmelden
+  fashion_fly_editor:
+    editor:
+      title: FashionFly Style Editor
+    information:
+      at_least_one_product: 'Bitte fügen Sie mindestens ein Element der Kollektion hinzu.'
+      could_not_saved: "Kollektion konnte nicht gespeichert werden."
+      save_collection: "Kollektion speichern"
+      easy_steps: "Nur noch wenige Schritte."
+    collections:
+      collection:
+        from_user: "von <a href='%{url}' title='%{user}'>%{user}</a>"
+      currency: €
+      new:
+        title_label: Geben Sie ihre Kollektion einen Titel
+        description_label: Geben Sie ihre Kollektion eine Beschreibung
+        category_label: "Zu welcher Kategory gehört diese Kollektion"
+        one_second: Ein Augenblick
+        now_creating: "Dein Outfit wird gerade erstellt..."
+      navigation_tab_categories:
+        filter_subcategory: Unterkategorie
+        filter_brand: Marke
+        filter_color: Farbe
+        filter_priceRange: Preis
+      editor_pane:
+        categories: Kategorien
+        search: Suche
+      navigation_tab_search:
+        go: Los
+      editor:
+        meta_information: Der Preis für die gesamte Kollektion beträgt
+        add_product: Füge Produkte zur Kollektion hinzu.
+        counting:
+          0: ''
+          'one': '(1 Produkt)'
+          'other': '({} Produkte)'
