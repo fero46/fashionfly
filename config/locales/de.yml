@@ -348,6 +348,10 @@ de:
   fashion_fly_editor:
     editor:
       title: FashionFly Style Editor
+    shared:
+      custom_navigation:
+        help: Hilfe
+        main: Startseite
     information:
       at_least_one_product: 'Bitte fügen Sie mindestens ein Element der Kollektion hinzu.'
       could_not_saved: "Kollektion konnte nicht gespeichert werden."

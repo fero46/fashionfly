@@ -15,10 +15,16 @@ class WelcomeController < ScopeController
   end
 
   def language
-    @translation = I18n.t(['fashion_fly_editor', 'fashion_fly_editor.'].sample).to_json()
+    @translation = current_translations
   end
 
   def robots
     respond_to :text
+  end
+
+private
+  def current_translations
+    @translations ||= I18n.backend.send(:translations)
+    @translations[I18n.locale].with_indifferent_access
   end
 end
