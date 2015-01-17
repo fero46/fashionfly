@@ -1,5 +1,7 @@
 class PropertiesController < ScopeController
-    load_and_authorize_resource param_method: :property_attributes
+    load_and_authorize_resource param_method: :property_attributes, 
+                                except:[:property_shop_link, :property_collection_link,
+                                        :property_category_link]
 
   def edit
     @property = @scope.property
