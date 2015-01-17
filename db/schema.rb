@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113180938) do
+ActiveRecord::Schema.define(version: 20150117155504) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -89,6 +89,15 @@ ActiveRecord::Schema.define(version: 20150113180938) do
   end
 
   add_index "brands", ["name"], name: "index_brands_on_name", using: :btree
+
+  create_table "brands_categories", force: :cascade do |t|
+    t.integer "brand_id",    limit: 4
+    t.integer "category_id", limit: 4
+  end
+
+  add_index "brands_categories", ["brand_id", "category_id"], name: "by_brand_category", unique: true, using: :btree
+  add_index "brands_categories", ["brand_id"], name: "index_brands_categories_on_brand_id", using: :btree
+  add_index "brands_categories", ["category_id"], name: "index_brands_categories_on_category_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",        limit: 255

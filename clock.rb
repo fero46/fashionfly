@@ -15,6 +15,7 @@ module Clockwork
   sleep(1)
   every(1.minute, 'Import Check') {ImportPrepareWorker.prepare}
   every(1.day, 'Trends Check'){TrendCheckWorker.check}
+  every(1.day, 'Brand Category'){BrandCategoryWorker.run}
   every(1.day, 'Sitemap') do 
     Dir.chdir Rails.root
     `RAILS_ENV=#{Rails.env} bundle exec rake sitemap:generate`

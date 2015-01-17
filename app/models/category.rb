@@ -6,6 +6,7 @@ class Category < ActiveRecord::Base
     belongs_to :category
     belongs_to :scope
     has_and_belongs_to_many :icons
+    has_and_belongs_to_many :brands, :uniq => true
 
     validates :name, presence: true
     validates :scope_id, presence: true

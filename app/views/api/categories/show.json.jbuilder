@@ -10,7 +10,7 @@ else
     json.name category.name
   end
 
-  json.brands Brand.all do |json, brand|
+  json.brands @category.brands do |json, brand|
     json.id brand.id
     json.name brand.name
   end
