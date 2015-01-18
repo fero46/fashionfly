@@ -32,9 +32,10 @@ module CollectionsHelper
 
   def information_span item, collection
     product = collection_products(collection)[item]
+    return if product.blank?
     content_tag(:span, class: 'information_span', id: "#{item}infobox") do
       inner = content_tag(:span, class: 'information_left') do
-        right = content_tag(:span , product.affiliate.name)
+        right = content_tag(:span , product.brand.name)
         right << content_tag(:span, '/')
         right << content_tag(:span, product.categories.last.name)
       end

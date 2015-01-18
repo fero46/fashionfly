@@ -36,7 +36,7 @@
   <div class="leftside">
     <h2 class="titleize"><%= @collection.title %></h2>
     <div class="image_wrapper">
-      <% for item in @collection.collection_items.order(order: :asc) %>
+      <% for item in @collection.collection_items.order(order: :desc) %>
         <a class='area' style="<%= css_calculate_dimension(item, @collection)%>" 
                                 ng-click="callForm(<%= item.item_id %>)" 
                                 data-information='<%= item.item_id %>infobox'>
