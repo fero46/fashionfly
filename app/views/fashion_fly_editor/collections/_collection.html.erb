@@ -20,7 +20,9 @@
   </div>
 <% else %>
   <div class="collection">
-    <%= image_tag image_url('logo.png'), class: 'fashion_logo' %>
+    <%=link_to collection_url(assigned_locale, collection) do %>
+      <%= image_tag image_url('logo.png'), class: 'fashion_logo', alt: 'FashionFly' %>
+    <% end %>    
     <div class="image_container">
       <%=link_to collection_url(assigned_locale, collection) do %>
         <%= widget_collection_image_tag(collection) %>
