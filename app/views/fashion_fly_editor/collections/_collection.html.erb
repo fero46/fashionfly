@@ -22,13 +22,9 @@
   <div class="collection">
     <%= image_tag image_url('logo.png'), class: 'fashion_logo' %>
     <div class="image_container">
-      <%=link_to collection_path(assigned_locale, collection) do %>
+      <%=link_to collection_url(assigned_locale, collection) do %>
         <%= widget_collection_image_tag(collection) %>
       <% end %>
-      <a  class="love_button <%= favorite(collection) %>" 
-          ng-click="clickFavorite('col',<%= collection.id %>)" 
-          id="col<%= collection.id %>"
-          path="<%= collection_favorites_path(assigned_locale, collection) %>"></a>
     </div>
     <h3><%=  collection.title %></h3>
     <h4><%= raw t('.from_user', user: user_name(collection.user), 
