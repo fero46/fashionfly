@@ -38,7 +38,7 @@
     <%= t('.stylesin') %>
   </h1>
   
-  <%= render @contest.collections %>
+  <%= render @contest.collections.where(published: true) %>
 <% end %>
 
 </div>
