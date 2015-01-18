@@ -5,7 +5,7 @@
         <%= image_tag('', "my-src" => collection.image.preview.url, 
                       class: 'collection_image',
                       alt: collection.title,
-                      title: collection.title) %>
+                      title: collection.title)%>
       <% end %>
       <a  class="love_button <%= favorite(collection) %>" 
           ng-click="clickFavorite('col',<%= collection.id %>)" 

@@ -1,3 +1,14 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$('.area').hover(->
+  infobox = $(this).attr('data-information')
+  $('#'+infobox).show()
+
+).mouseout(->
+  infobox = $(this).attr('data-information')
+  $('#'+infobox).hide()
+).mousemove( (event)->
+  x = event.pageX;
+  y = event.pageY;
+  infobox = $(this).attr('data-information')
+  $('#'+infobox).css('left', x)
+  $('#'+infobox).css('top', y)
+)

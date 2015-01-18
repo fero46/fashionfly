@@ -19,7 +19,7 @@
                   class: 'affilogo' %>
     <h5><%= product.categories.last.name %></h5>
     <h6><%= product.brand.name %></h6>
-    <h6><%= number_to_currency product.price %></h6>
+    <h6><%= number_to_currency product.price, unit: product.currencyCode%></h6>
 
       <%= form_tag refshop_path(assigned_locale), method: 'post', id: "callForm#{product.id}" , target: "_blank" do %>
       <%= hidden_field_tag 'product_id', product.id %>

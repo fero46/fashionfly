@@ -30,4 +30,38 @@ module CollectionsHelper
     simple_format content
   end
 
+  def information_span item, collection
+    product = collection_products(collection)[item]
+    content_tag(:span, class: 'information_span', id: "#{item}infobox") do
+      inner = content_tag(:span, class: 'information_left') do
+        right = content_tag(:span , product.affiliate.name)
+        right << content_tag(:span, '/')
+        right << content_tag(:span, product.categories.last.name)
+      end
+      inner << content_tag(:span, class: 'information_right') do
+        number_to_currency(product.price, unit: product.currencyCode)
+      end
+      content_tag(:span, class: :inner) do
+        inner
+      end
+    end
+  end
+
+  def collection_products collection
+    return @collection_products if @collection_products.present? 
+    @collection_products = {}
+    for product in collection.products
+      @collection_products[product.id] = product
+    end
+    return @collection_products
+  end
+
+  def css_calculate_dimension item, collection
+    left    = 566.0 * (item.position_x.to_f / @collection.width.to_f)
+    top     = 442.0 * (item.position_y.to_f / @collection.height.to_f)
+    width   = 566.0 * (item.width.to_f / @collection.width.to_f)
+    height  = 442.0 * (item.height.to_f / @collection.height.to_f)
+    "left:#{left}px;top:#{top}px;height:#{height}px;width:#{width}px;transform: rotate(#{item.rotation}deg)"
+  end
+
 end
