@@ -1,5 +1,8 @@
 <div class="banner">
-  <%= link_to image_tag(banner.banner), banner_path(assigned_locale, banner), :rel => 'nofollow' %>
+  <%= link_to image_tag(banner.banner), 
+              banner_path(assigned_locale, banner), 
+              :rel => 'nofollow',
+              :target => '_blank' %>
   <div class="preview" ng-controller="FavoriteController">
     <%= render banner.items %>
     <div class="clear"></div>
