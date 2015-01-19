@@ -41,9 +41,12 @@
 
 <div class="product_show" ng-controller="FavoriteController">
   <div class="image_container">
-    <%= image_tag '', "my-src" => @product.original.detail_view, 
+    <%=link_to image_tag('', "my-src" => @product.original.detail_view, 
                       alt: @product.name, 
-                      name: @product.name %>
+                      name: @product.name),
+                      productref_path(assigned_locale, @product),
+                          :rel => 'nofollow',
+                          :target => '_blank' %>
     <a class="love_button <%= favorite(@product) %>" ng-click="clickFavorite('prod',<%= @product.id %>)" 
               id="prod<%= @product.id %>"
               path="<%= product_favorites_path(assigned_locale, @product) %>"></a>
