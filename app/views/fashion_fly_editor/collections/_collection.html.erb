@@ -27,6 +27,14 @@
       <%=link_to collection_url(assigned_locale, collection) do %>
         <%= widget_collection_image_tag(collection) %>
       <% end %>
+      <% for item in collection.collection_items.order(order: :asc) %>
+        <a class='area' style="<%= css_calculate_dimension(item, @collection)%>" 
+                                href="<%= productref_url(assigned_locale,item.item_id) %>" 
+                                data-information='<%= item.item_id %>infobox'
+                                target="_blank">
+        </a>
+        <%= information_span(item.item_id, collection) %>
+      <% end %>
     </div>
     <h3><%=  collection.title %></h3>
     <h4><%= raw t('.from_user', user: user_name(collection.user), 

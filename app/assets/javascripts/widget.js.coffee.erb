@@ -31,3 +31,16 @@ $j(document).ready ($) ->
       url: jsonp_url
       success: (data) ->
         $j(value).html data
+        $j('.area').hover(->
+          infobox = $j(this).attr('data-information')
+          $j('#'+infobox).show()
+        ).mouseout(->
+          infobox = $j(this).attr('data-information')
+          $j('#'+infobox).hide()
+        ).mousemove( (event)->
+          x = event.clientX + 10;
+          y = event.clientY + 10;
+          infobox = $j(this).attr('data-information')
+          $j('#'+infobox).css('left', x + "px")
+          $j('#'+infobox).css('top', y + "px")
+        )
