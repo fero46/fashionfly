@@ -24,6 +24,7 @@ class ReklamActionImporter < AffilinetImporter
     nodes = children_from_tag(nodes, ITEM_ROOT)
     total_counter = nodes.length
     actual_counter = 0
+    @affiliate.products.update_all(dirty: true)
     for node in nodes
 
       next if node.name != ITEM_ROOT
@@ -46,9 +47,7 @@ class ReklamActionImporter < AffilinetImporter
       end
       id = values[NUMBER]
       puts values
-      puts "CREATE PRODUCT"
       if find_mapping(product_category(values)).present?
-        puts "CHECK IMAGE"
         next if product_remote_image(values).blank?
         product = Product.where(affiliate_id: @affiliate.id, 
                                 affi_code: id,
@@ -57,14 +56,16 @@ class ReklamActionImporter < AffilinetImporter
         product.save
         Categorization.where(product_id: product.id).destroy_all
         update_product_categories(product, values)
-        next if should_not_update(product, values)
+        go = should_not_update(product, values)
         product = update_product_attributes product, values
+        next if go
         update_product_images product, values
       else
         product = Product.where(affiliate_id: @affiliate.id, 
                                 affi_code: id,
                                 scope_id: @scope.id).first
         if product.present?
+          product.dirty = false
           product.published = false
           product.save
         end
@@ -72,6 +73,11 @@ class ReklamActionImporter < AffilinetImporter
       @affiliate.skip_items = actual_counter
       @affiliate.save
     end
+    @affiliate.products.where(dirty: true).update_all(published: false)
+    @affiliate.products.where(dirty: true).update_all(dirty: false)    
+    @affiliate.skip_items = 0
+    @affiliate.percent = 100
+    @affiliate.save    
   end
 
   def should_not_update product, values

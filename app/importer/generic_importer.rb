@@ -25,6 +25,7 @@ class GenericImporter
   def import
     total_counter = total_count
     actual_counter = 0
+    @affiliate.products.update_all(dirty: true)
     document.root.children.each do |tag|
       if tag.name == @affiliate.item_tag
         actual_counter+=1
@@ -51,14 +52,16 @@ class GenericImporter
           product.save
           Categorization.where(product_id: product.id).destroy_all
           update_product_categories(product, values)
-          next if product.lastModified==product_last_modified(values)
+          go = product.lastModified==product_last_modified(values)
           product = update_product_attributes product, values
+          next if go
           update_product_images product, values
         else
           product = Product.where(affiliate_id: @affiliate.id, 
                         affi_code: id,
                         scope_id: @scope.id).first
           if product.present?
+            product.dirty = false
             product.published = false
             product.save
           end
@@ -67,6 +70,8 @@ class GenericImporter
         @affiliate.save
       end
     end
+    @affiliate.products.where(dirty: true).update_all(published: false)
+    @affiliate.products.where(dirty: true).update_all(dirty: false)        
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save
@@ -108,6 +113,8 @@ protected
     product.deliveryTime=product_delivery_time(values)
     product.currencyCode=product_currency(values)
     product.deepLink=product_link(values)
+    product.dirty = false
+    product.save
     product
   end
 
