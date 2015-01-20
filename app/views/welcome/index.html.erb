@@ -21,13 +21,13 @@
   <%= render @scope.banners %>
   <%= render @scope.property %>
 
-  <div class="trendbox">
+  <div class="trendbox" ng-controller="FavoriteController">
     <h2><%= t('.trends_products') %></h2>
     <%= render @scope.products.trends.limit(4) %>
     <div class="clear"></div>
   </div>
 
-  <div class="trendbox">
+  <div class="trendbox" ng-controller="FavoriteController">
     <h2><%= t('.newest_outfits') %></h2>
     <%= render @scope.collections.where(published: true).order(created_at: :desc).limit(4) %>
     <div class="clear"></div>
@@ -42,7 +42,7 @@
     </a>
   </div>
   
-  <div class="trendbox">
+  <div class="trendbox" ng-controller="FavoriteController">
     <h2><%= t('.trends_outfits') %></h2>
     <%= render @scope.collections.trends.limit(4) %>
     <div class="clear"></div>
