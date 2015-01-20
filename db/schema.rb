@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150117155504) do
+ActiveRecord::Schema.define(version: 20150120025344) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255

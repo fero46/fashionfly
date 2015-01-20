@@ -20,7 +20,7 @@ gem 'tokenizer'
 gem 'unicode'
 gem 'daemons'
 gem 'clockwork'
-gem 'simple_hashtag'
+gem 'simple_hashtag', :git => "https://github.com/fero46/simple_hashtag"
 gem 'sinatra', require: false
 gem 'kaminari'
 gem 'tinymce-rails'
