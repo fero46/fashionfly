@@ -169,6 +169,21 @@ class ReklamActionImporter < AffilinetImporter
     cat
   end
 
+  def sale_price(values)
+    values[SALE]
+  end
+
+  def is_sale?(values)
+    begin
+      if values[PRICE].present? && values[SALE].present?
+        return values[PRICE].to_f != values[SALE].to_f
+      end
+    rescue
+      return false
+    end
+  end
+
+
   def product_link values
     values[DEEP_LINKS]
   end

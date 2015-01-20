@@ -101,6 +101,8 @@ protected
     product.brand_id = brand.id
     product.ean=product_ean(values)
     product.price=product_price(values)
+    product.sale_price=sale_price(values)
+    product.sale=is_sale?(values)
     product.shippingHandlingCost=product_shipment_cost(values)
     product.lastModified=product_last_modified(values)
     product.deliveryTime=product_delivery_time(values)
@@ -126,6 +128,15 @@ protected
        return result if result.present?
     end
     nil
+  end
+
+
+  def sale_price(values)
+    nil
+  end
+
+  def is_sale?(values)
+    false
   end
 
   def product_link values
