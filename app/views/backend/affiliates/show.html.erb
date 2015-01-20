@@ -13,16 +13,12 @@
         <h2>Mappings</h2>
           <%= form_for @affiliate, :url => backend_scope_affiliate_path(@scope, @affiliate), :html => { :class => :form } do |f| -%>
           <table>
-            <% cache(affiliate_key(@affiliate)) do %>
-              <%= f.fields_for :mappings do |builder| %>
-                <% cache(affiliate_mapping(@affiliate, builder.object)) do %> 
-                  <tr>
-                    <td><%= builder.object.try(:name) %></td>
-                    <%= builder.hidden_field :name %>
-                    <td><%= builder.select :category_id, @affiliate.leaf_categories.collect{|p| [ p.name_with_parent, p.id ] }, { include_blank: true } %></td>
-                  </tr>
-                <% end %>
-              <% end %>
+            <%= f.fields_for :mappings do |builder| %>
+              <tr>
+                <td><%= builder.object.try(:name) %></td>
+                <%= builder.hidden_field :name %>
+                <td><%= builder.select :category_id, @affiliate.leaf_categories.collect{|p| [ p.name_with_parent, p.id ] }, { include_blank: true } %></td>
+              </tr>
             <% end %>
           </table>
 
