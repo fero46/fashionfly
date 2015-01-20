@@ -150,7 +150,6 @@ class ReklamActionImporter < AffilinetImporter
   def find_category node
     sexes = nil
     cat = ""
-    extra = ""
     for subnode in node.children
       if subnode.name ==  MAIN_CAT || subnode.name == SUBCAT
         cat = "#{cat} - " if cat != ""
@@ -167,10 +166,15 @@ class ReklamActionImporter < AffilinetImporter
         end
       end
       if subnode.name = GENDER
-        extra = subnode.content
+        content = subnode.content
+        if content == "M" || content == "m"
+          sexes = "ERKEK"
+        elsif content == "F" || content == "f"
+          sexes = "BAYAN"
+        end
       end
     end
-    cat = "#{extra} - #{sexes} - #{cat}" if sexes.present?
+    cat = "#{sexes} - #{cat}" if sexes.present?
     cat
   end
 
