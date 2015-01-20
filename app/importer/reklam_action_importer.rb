@@ -17,6 +17,7 @@ class ReklamActionImporter < AffilinetImporter
   DESCRIPTION = "FullDesc"
   NAME = "Title"
   DEEP_LINKS = "URL"
+  GENDER = 'Gender'
 
   def import
     nodes = children_from_tag([document.root], MAIN_ROOT)
@@ -149,6 +150,7 @@ class ReklamActionImporter < AffilinetImporter
   def find_category node
     sexes = nil
     cat = ""
+    extra = ""
     for subnode in node.children
       if subnode.name ==  MAIN_CAT || subnode.name == SUBCAT
         cat = "#{cat} - " if cat != ""
@@ -164,8 +166,11 @@ class ReklamActionImporter < AffilinetImporter
           sexes = nil
         end
       end
+      if subnode.name = GENDER
+        extra = subnode.content
+      end
     end
-    cat = "#{sexes} - #{cat}" if sexes.present?
+    cat = "#{extra} - #{sexes} - #{cat}" if sexes.present?
     cat
   end
 
