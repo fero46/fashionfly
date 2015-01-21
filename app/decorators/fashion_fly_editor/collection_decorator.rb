@@ -1,6 +1,7 @@
 FashionFlyEditor::Collection.class_eval do
   include SimpleHashtag::Hashtaggable
   has_many :favorites, as: :markable, dependent: :destroy
+  has_many :visits, as: :visitable, dependent: :destroy, counter_cache: true
   acts_as_commentable
   ratyrate_rateable "rate"
   hashtaggable_attribute :description

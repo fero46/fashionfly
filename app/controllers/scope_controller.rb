@@ -22,4 +22,19 @@ protected
     current_user && current_user.is_team?)
   end
 
+  def visit_me visitable
+    ua = AgentOrange::UserAgent.new(request.user_agent)
+    device = ua.device
+    return if device.is_bot?
+    Visit.run(visitable, current_user, visitor_cookie)
+    cookies[:visit_cookie] = nil if current_user.present?
+  end
+
+  def visitor_cookie
+    if current_user.blank? && cookies[:visit_cookie].blank?
+      cookies[:visit_cookie] = (0...30).map { ('a'..'z').to_a[rand(26)] }.join
+    end
+    cookies[:visit_cookie]
+  end
+
 end

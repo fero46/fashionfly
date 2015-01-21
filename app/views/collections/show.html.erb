@@ -50,6 +50,10 @@
         id="col<%= @collection.id %>"
         path="<%= collection_favorites_path(assigned_locale, @collection) %>"></a>
 
+    <div class="visits">
+      <%=t('action.viewed', count: @collection.visits_count) %>
+    </div>
+
     <div class="details">
       <%= link_to t('.create_comment'), '#comment_now', id: 'call_to_action' %>
       <%= image_tag user_image(@collection.user, :smaller), alt: user_name(@collection.user), title: user_name(@collection.user)  %>

@@ -21,6 +21,10 @@ de:
     edit_resource: Email und Passwort bearbeitet
     edit_email: 'Email wurde aktualisiert'
     confirmation_send: "Du erhälst in wenigen Minuten eine E-Mail, mit der Du Deine Registrierung bestätigen kannst."
+    viewed:
+      zero: Kein Aufruf
+      one: 1 Aufruf
+      other: "%{count} Aufrufe"
   user:
     identical: muss eingegeben werden
   activerecord:

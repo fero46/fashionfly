@@ -11,6 +11,7 @@ class CollectionsController < ScopeController
     # I think it is a timing issue. Check Collection is called before the call back
     # assign_collection saved the collection to the user
     flash.delete(:alert)
+    visit_me @collection
   end
 
   def check_collection
@@ -29,5 +30,6 @@ class CollectionsController < ScopeController
       end
     end
   end
+
 
 end

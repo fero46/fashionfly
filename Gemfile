@@ -19,6 +19,7 @@ gem 'rails-i18n'
 gem 'tokenizer'
 gem 'unicode'
 gem 'daemons'
+gem 'agent_orange'
 gem 'clockwork'
 gem 'simple_hashtag', :git => "https://github.com/fero46/simple_hashtag"
 gem 'sinatra', require: false

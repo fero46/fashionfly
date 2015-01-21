@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120123347) do
+ActiveRecord::Schema.define(version: 20150121122955) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -612,6 +612,20 @@ ActiveRecord::Schema.define(version: 20150120123347) do
   add_index "users", ["role"], name: "index_users_on_role", using: :btree
   add_index "users", ["secret"], name: "index_users_on_secret", using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
+
+  create_table "visits", force: :cascade do |t|
+    t.integer  "user_id",        limit: 4
+    t.string   "cookie",         limit: 255
+    t.integer  "visitable_id",   limit: 4
+    t.string   "visitable_type", limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "visits", ["cookie"], name: "index_visits_on_cookie", using: :btree
+  add_index "visits", ["user_id", "cookie", "visitable_id", "visitable_type"], name: "visitings", unique: true, using: :btree
+  add_index "visits", ["user_id"], name: "index_visits_on_user_id", using: :btree
+  add_index "visits", ["visitable_id", "visitable_type"], name: "index_visits_on_visitable_id_and_visitable_type", using: :btree
 
   create_table "words", force: :cascade do |t|
     t.integer "scope_id", limit: 4

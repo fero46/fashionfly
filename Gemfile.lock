@@ -73,6 +73,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     acts_as_commentable (4.0.2)
+    agent_orange (0.1.6)
     arel (6.0.0)
     aws-ses (0.6.0)
       builder
@@ -405,6 +406,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_commentable
+  agent_orange
   auto_html!
   aws-ses (~> 0.6.0)
   bourbon
