@@ -1,113 +1,125 @@
-<% content_for :title do "#{@collection.title} | #{user_name @collection.user} | #{Settings.app.name}"; end %>
+<% content_for :title do %>
+  <% cache ['title', @scope , @collection] do %>
+<%= "#{@collection.title} | #{user_name @collection.user} | #{Settings.app.name}" %>
+  <% end %>
+<% end %>
 
 <% content_for :meta do %>
+    <% cache ['meta', @scope ,@collection] do %>
+      <meta property="og:title" content="<%= @collection.title %> | <%= user_name @collection.user %> | <%= Settings.app.name %>"/>
+      <meta property="og:type" content="website"/>
+      <meta property="og:url" content="<%=collection_url(assigned_locale, @collection)%>"/>
+      <meta property="og:image" content="<%=@collection.image.original.url%>"/>
+      <meta property="og:image:width" content="550" />
+      <meta property="og:image:height" content="650" />
+      <meta property="og:locale" content="<%=assigned_locale%>" />
+      <meta property="og:description" content="<%= @collection.description %>" />
+      <!--
+      <PageMap>
+         <DataObject type="document">
+            <Attribute name="title"><%= @collection.title %></Attribute>
+            <Attribute name="author"><%= user_name(@collection.user) %></Attribute>
+            <Attribute name="description"><%= @collection.description %></Attribute>
+            <Attribute name="category"><%= breadcrumb_collection_text @collection%></Attribute>
+            <Attribute name="likes"><%= @collection.favorites_count %></Attribute>
+            <Attribute name="rating">
+                <%= @collection.rate_average.try(:avg) %>
+            </Attribute>
+            <Attribute name="last_update"><%= @collection.updated_at %></Attribute>
+         </DataObject>
+         <DataObject type="thumbnail">
+            <Attribute name="src" value="<%= @collection.image.original.url %>" />
+            <Attribute name="width" value="550" />
+            <Attribute name="height" value="650" />
+         </DataObject>
+      </PageMap>
+      -->
+  <% end %>
 
-<meta property="og:title" content="<%= @collection.title %> | <%= user_name @collection.user %> | <%= Settings.app.name %>"/>
-<meta property="og:type" content="website"/>
-<meta property="og:url" content="<%=collection_url(assigned_locale, @collection)%>"/>
-<meta property="og:image" content="<%=@collection.image.original.url%>"/>
-<meta property="og:image:width" content="550" />
-<meta property="og:image:height" content="650" />
-<meta property="og:locale" content="<%=assigned_locale%>" />
-<meta property="og:description" content="<%= @collection.description %>" />
-<!--
-<PageMap>
-   <DataObject type="document">
-      <Attribute name="title"><%= @collection.title %></Attribute>
-      <Attribute name="author"><%= user_name(@collection.user) %></Attribute>
-      <Attribute name="description"><%= @collection.description %></Attribute>
-      <Attribute name="category"><%= breadcrumb_collection_text @collection%></Attribute>
-      <Attribute name="likes"><%= @collection.favorites_count %></Attribute>
-      <Attribute name="rating">
-          <%= @collection.rate_average.try(:avg) %>
-      </Attribute>
-      <Attribute name="last_update"><%= @collection.updated_at %></Attribute>
-   </DataObject>
-   <DataObject type="thumbnail">
-      <Attribute name="src" value="<%= @collection.image.original.url %>" />
-      <Attribute name="width" value="550" />
-      <Attribute name="height" value="650" />
-   </DataObject>
-</PageMap>
--->
 <% end %>
 
 <div class="collection_show" ng-controller="FavoriteController">
   <div class="leftside">
-    <h2 class="titleize"><%= @collection.title %></h2>
-    <div class="image_wrapper">
-      <% for item in @collection.collection_items.order(order: :asc) %>
-        <a class='area' style="<%= css_calculate_dimension(item, @collection)%>" 
-                                ng-click="callForm(<%= item.item_id %>)" 
-                                data-information='<%= item.item_id %>infobox'>
-        </a>
-        <%= information_span(item.item_id, @collection) %>
-      <% end %>
-      <%= image_tag '', "my-src" =>@collection.image.original, title: @collection.title, alt: @collection.title %>
-    </div>
-    <a  class="love_button <%= favorite(@collection) %>" 
-        ng-click="clickFavorite('col',<%= @collection.id %>)" 
-        id="col<%= @collection.id %>"
-        path="<%= collection_favorites_path(assigned_locale, @collection) %>"></a>
+    <% cache ['content', @scope , @collection] do %>
 
-    <div class="visits">
-      <%=t('action.viewed', count: @collection.visits_count) %>
-    </div>
-
-    <div class="details">
-      <%= link_to t('.create_comment'), '#comment_now', id: 'call_to_action' %>
-      <%= image_tag user_image(@collection.user, :smaller), alt: user_name(@collection.user), title: user_name(@collection.user)  %>
-      <div class="inner">
-        <h3><%= @collection.title %></h3>
-        <div class="ratable">
-          <%= rating_for @collection, "rate", :star => 5 %> 
-        </div><br />
-        <%= raw t('.created_from', user: user_name(@collection.user),
-                          url: user_profile(@collection.user)) %> <br />
-        <%= raw t('.created_at', date: l(@collection.created_at, format: :short)) %><br /><br />
-        <div class="description">
-          <%= linked_description @collection %>
-        </div>       
+      <h2 class="titleize"><%= @collection.title %></h2>
+      <div class="image_wrapper">
+        <% for item in @collection.collection_items.order(order: :asc) %>
+          <a class='area' style="<%= css_calculate_dimension(item, @collection)%>" 
+                                  ng-click="callForm(<%= item.item_id %>)" 
+                                  data-information='<%= item.item_id %>infobox'>
+          </a>
+          <%= information_span(item.item_id, @collection) %>
+        <% end %>
+        <%= image_tag '', "my-src" =>@collection.image.original, title: @collection.title, alt: @collection.title %>
       </div>
-      <div class="clear"></div>
-      <div class="myshare">
-      <span><%= t('.share') %></span>
-      <%= render_shareable  :static_link => true, 
-                            :title=> "#{@collection.title} | #{user_name @collection.user} | #{Settings.app.name}",
-                            :button_caption => t('.share_now'),
-                            :buttons=> ['twitter', 'facebook', 'tumblr', 'google_plus', 'pinterest'],
-                            :media =>  @collection.image.original.url %>
-                            
-      <h3><%= t('.embedd_to') %></h3>
-      <textarea id="codeshare" readonly><%= render_embed_code(@collection) %></textarea>
-    </div>
-      <div style="clear:both"></div>
-    </div>
+      <a  class="love_button <%= favorite(@collection) %>" 
+          ng-click="clickFavorite('col',<%= @collection.id %>)" 
+          id="col<%= @collection.id %>"
+          path="<%= collection_favorites_path(assigned_locale, @collection) %>"></a>
 
-    <% if current_user.present? %>
-    <div class="commenting_box" id="comment_now">
-      <h3><%= t('.create_comment') %></h3>
-      <%= form_for :comment, 
-                  url: collection_comments_path(locale: assigned_locale, collection_id:@collection),
-                  html:{class: 'formular'} do |f| %>
-        <%= f.text_area :comment, placeholder: t('.your_comment') %>
+      <div class="visits">
+        <%=t('action.viewed', count: @collection.visits_count) %>
+      </div>
 
-        <%= f.submit t('.save_comment') ,class: 'button' %>
-      <% end %>
-    </div>
+      <div class="details">
+        <%= link_to t('.create_comment'), '#comment_now', id: 'call_to_action' %>
+        <%= image_tag user_image(@collection.user, :smaller), alt: user_name(@collection.user), title: user_name(@collection.user)  %>
+        <div class="inner">
+          <h3><%= @collection.title %></h3>
+          <div class="ratable">
+            <%= rating_for @collection, "rate", :star => 5 %> 
+          </div><br />
+          <%= raw t('.created_from', user: user_name(@collection.user),
+                            url: user_profile(@collection.user)) %> <br />
+          <%= raw t('.created_at', date: l(@collection.created_at, format: :short)) %><br /><br />
+          <div class="description">
+            <%= linked_description @collection %>
+          </div>       
+        </div>
+        <div class="clear"></div>
+        <div class="myshare">
+        <span><%= t('.share') %></span>
+        <%= render_shareable  :static_link => true, 
+                              :title=> "#{@collection.title} | #{user_name @collection.user} | #{Settings.app.name}",
+                              :button_caption => t('.share_now'),
+                              :buttons=> ['twitter', 'facebook', 'tumblr', 'google_plus', 'pinterest'],
+                              :media =>  @collection.image.original.url %>
+                              
+        <h3><%= t('.embedd_to') %></h3>
+        <textarea id="codeshare" readonly><%= render_embed_code(@collection) %></textarea>
+      </div>
+        <div style="clear:both"></div>
+      </div>
     <% end %>
 
+    <%= cache ['comment_box', current_user, @scope ,@collection] do %>
+      <% if current_user.present? %>
+      <div class="commenting_box" id="comment_now">
+        <h3><%= t('.create_comment') %></h3>
+        <%= form_for :comment, 
+                    url: collection_comments_path(locale: assigned_locale, collection_id:@collection),
+                    html:{class: 'formular'} do |f| %>
+          <%= f.text_area :comment, placeholder: t('.your_comment') %>
 
-    <%= render @collection.comments %>
+          <%= f.submit t('.save_comment') ,class: 'button' %>
+        <% end %>
+      </div>
+      <% end %>
+    <% end %>
 
-
+    <%= cache ['comments', current_user, @scope ,@collection.updated_at] do %>
+      <%= render @collection.comments %>
+    <% end %>
 
   </div>
   <div class="productviews">
     <h2><%= t('.used_products') %></h2>
-  <% for product in @collection.products %>
-    <%= render 'products/small_product', product: product %>
-  <% end %>
+      <%= cache ['product_list', @scope ,@collection] do %>
+        <% for product in @collection.products %>
+          <%= render 'products/small_product', product: product %>
+        <% end %>
+      <% end %>
   </div>
   <div style="clear:both"></div>
 </div>
