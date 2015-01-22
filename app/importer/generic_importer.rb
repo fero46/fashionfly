@@ -56,6 +56,7 @@ class GenericImporter
           product = update_product_attributes product, values
           next if go
           update_product_images product, values
+          product.update(published: true)
         else
           product = Product.where(affiliate_id: @affiliate.id, 
                         affi_code: id,
