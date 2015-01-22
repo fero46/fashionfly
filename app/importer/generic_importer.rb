@@ -132,8 +132,8 @@ protected
   def product_remote_image values
     image_tags = @affiliate.image_tag.split(',')
     for image_tag in image_tags
-       result = values[image_tag.strip!] 
-       return result if result.present?
+      result = values[image_tag.strip] 
+      return result if result.present?
     end
     nil
   end
