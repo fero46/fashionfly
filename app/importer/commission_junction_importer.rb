@@ -84,8 +84,9 @@ class CommissionJunctionImporter < GenericImporter
 
   def filter_category node
     node.children.each do |tag|
-      return tag.content if tag.name == CATEGORY
+      return tag.content if tag.name == @affiliate.category_tag
     end
+    'IGNORED'
   end
 
 
