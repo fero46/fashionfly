@@ -33,7 +33,7 @@ class CommissionJunctionImporter < GenericImporter
         end
       end
 
-      id = values[UPC]
+      id = values[@affiliate.ean_tag.strip]
       if find_mapping(product_category(values)).present?
         next if product_remote_image(values).blank?
         product = Product.where(affiliate_id: @affiliate.id, 
