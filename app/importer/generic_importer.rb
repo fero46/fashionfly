@@ -91,6 +91,7 @@ protected
 
   def update_product_images product, values
     remote_image_path = product_remote_image(values)
+    raise "Remote Image ist Leer #{values}" if remote_image_path.blank?
     import_product_image(product, values, remote_image_path)
   end
 
