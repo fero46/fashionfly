@@ -4,7 +4,8 @@ class Affiliate < ActiveRecord::Base
   has_many :products
   def self.IMPORTERS
     [ :GenericImporter, :AffilinetImporter, :GaleriaImporter, 
-      :GermanEspritImporter, :ReklamActionImporter, :MomodaImporter]
+      :GermanEspritImporter, :ReklamActionImporter, :MomodaImporter,
+      :CommissionJunctionImporter].sort
   end
 
   mount_uploader :file, FileUploader

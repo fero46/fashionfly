@@ -114,7 +114,7 @@ protected
     product.currencyCode=product_currency(values)
     product.deepLink=product_link(values)
     product.dirty = false
-    product.save
+    product.save!
     product
   end
 
