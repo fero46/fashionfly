@@ -14,12 +14,12 @@ module Clockwork
   # end
   sleep(1)
   every(1.minute, 'Import Check') {ImportPrepareWorker.prepare}
-  every(1.day, 'Trends Check'){TrendCheckWorker.check}
-  every(1.day, 'Brand Category'){BrandCategoryWorker.run}
-  every(1.day, 'Sitemap') do 
+  every(1.day, 'Trends Check', at: '06:00'){TrendCheckWorker.check}
+  every(1.day, 'Brand Category', at: '00:00'){BrandCategoryWorker.run}
+  every(1.day, 'Sitemap', at: '05:00') do 
     Dir.chdir Rails.root
     `RAILS_ENV=#{Rails.env} bundle exec rake sitemap:generate`
   end
-  every(1.day, 'Clean Up'){CleanCollectionWorker.run}
-  every(1.day, 'Random Order'){RandomProductOrderWorker.run}
+  every(1.day, 'Clean Up', at: '01:00'){CleanCollectionWorker.run}
+  every(1.day, 'Random Order', at: '03:00'){RandomProductOrderWorker.run}
 end
