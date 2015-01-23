@@ -115,13 +115,16 @@ class ImageCropService
 private 
 
   def download_image image_path 
-    open(image_path, 'wb') do |dest|
-      open(remote_image_path, 'rb') do |src|
-        dest.write(src.read)
+    begin
+      open(image_path, 'wb') do |dest|
+        open(remote_image_path, 'rb') do |src|
+          dest.write(src.read)
+        end
       end
-    end
     rescue
+      puts "UNABLE TO LOAD IMAGE  #{image_path}"
       raise "UNABLE TO LOAD IMAGE #{image_path}"
+    end
   end
 
   def crop_image(src, output)
