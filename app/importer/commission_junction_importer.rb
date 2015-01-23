@@ -31,11 +31,11 @@ class CommissionJunctionImporter < GenericImporter
         tag.children.each do |t|
           values[t.name] = t.content
         end
+        id = values[@affiliate.ean_tag.strip]
+        insert_values(id, values)
+        @affiliate.skip_items = actual_counter
+        @affiliate.save        
       end
-      id = values[@affiliate.ean_tag.strip]
-      insert_values(id, values)
-      @affiliate.skip_items = actual_counter
-      @affiliate.save
     end
     @affiliate.products.where(dirty: true).update_all(published: false)
     @affiliate.products.where(dirty: true).update_all(dirty: false)        
