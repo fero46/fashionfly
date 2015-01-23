@@ -28,14 +28,11 @@ class Scope < ActiveRecord::Base
     nil
   end
 
-  def self.country_codes_mapped_in_region
+  def self.countries
     return @region if @region.present?
-    @region = {}
+    @region = []
     for scope in Scope.where(published: true)
-      co = Country.new(scope.country_code)
-      @region[co.region] = {} if @region[co.region].blank?
-      @region[co.region][co.subregion] = [] if @region[co.region][co.subregion].blank?
-      @region[co.region][co.subregion] << {locale: scope.locale, code: scope.country_code}
+      @region << {locale: scope.locale, code: scope.country_code}
     end
     @region
   end

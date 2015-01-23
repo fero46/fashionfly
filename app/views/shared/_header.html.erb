@@ -26,15 +26,11 @@
               <%= link_to generate_name_and_flag(@scope.country_code),'#', 
                     class: 'flag'%>
               <ul>
-                <% Scope.country_codes_mapped_in_region.each do |region,subregion| %>
-                  <% subregion.each do |subregion, countries| %>
-                    <% for country in countries %>
-                      <li>
-                        <%= link_to generate_name_and_flag(country[:code]), 
-                        root_path(locale: country[:locale]) %>
-                      </li>
-                    <% end %>
-                  <% end %>
+                <% for country in Scope.countries %>
+                  <li>
+                    <%= link_to generate_name_and_flag(country[:code]), 
+                    root_path(locale: country[:locale]) %>
+                  </li>
                 <% end %>
               </ul>
             </li>
