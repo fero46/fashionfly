@@ -122,8 +122,8 @@ private
         end
       end
     rescue
-      puts "UNABLE TO LOAD IMAGE  #{image_path}"
-      raise "UNABLE TO LOAD IMAGE #{image_path}"
+      puts "UNABLE TO LOAD IMAGE  #{remote_image_path}"
+      raise "UNABLE TO LOAD IMAGE #{remote_image_path}"
     end
   end
 
