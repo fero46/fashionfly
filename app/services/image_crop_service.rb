@@ -120,6 +120,8 @@ private
         dest.write(src.read)
       end
     end
+    rescue
+      raise "UNABLE TO LOAD IMAGE #{image_path}"
   end
 
   def crop_image(src, output)
