@@ -66,7 +66,12 @@ class GenericImporter
       Categorization.where(product_id: product.id).destroy_all
       update_product_categories(product, values)
       product = update_product_attributes product, values
-      update_product_images(product, values) if (product.image.blank? || product.original.blank?)
+      begin
+        update_product_images(product, values) if (product.image.blank? || product.original.blank?)
+      rescue
+        product.destroy
+        return
+      end
       product.update(published: true)
     else
       product = Product.where(affiliate_id: @affiliate.id, 
