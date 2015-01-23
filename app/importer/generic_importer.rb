@@ -57,7 +57,7 @@ class GenericImporter
 
   def insert_values id, values
     if find_mapping(product_category(values)).present?
-      next if product_remote_image(values).blank?
+      return if product_remote_image(values).blank?
       product = Product.where(affiliate_id: @affiliate.id, 
                               affi_code: id,
                               scope_id: @scope.id).first_or_create
