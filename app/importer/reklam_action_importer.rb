@@ -46,30 +46,7 @@ class ReklamActionImporter < AffilinetImporter
         check_images(first_level, values)
       end
       id = values[NUMBER]
-      puts values
-      if find_mapping(product_category(values)).present?
-        next if product_remote_image(values).blank?
-        product = Product.where(affiliate_id: @affiliate.id, 
-                                affi_code: id,
-                                scope_id: @scope.id).first_or_create
-        product.premium = @affiliate.premium
-        product.save
-        Categorization.where(product_id: product.id).destroy_all
-        update_product_categories(product, values)
-        go = should_not_update(product, values)
-        product = update_product_attributes product, values
-        next if go
-        update_product_images product, values
-      else
-        product = Product.where(affiliate_id: @affiliate.id, 
-                                affi_code: id,
-                                scope_id: @scope.id).first
-        if product.present?
-          product.dirty = false
-          product.published = false
-          product.save
-        end
-      end
+      insert_values(id, values)
       @affiliate.skip_items = actual_counter
       @affiliate.save
     end

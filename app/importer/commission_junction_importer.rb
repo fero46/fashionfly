@@ -32,33 +32,8 @@ class CommissionJunctionImporter < GenericImporter
           values[t.name] = t.content
         end
       end
-
       id = values[@affiliate.ean_tag.strip]
-      if find_mapping(product_category(values)).present?
-        next if product_remote_image(values).blank?
-        product = Product.where(affiliate_id: @affiliate.id, 
-                                affi_code: id,
-                                scope_id: @scope.id).first_or_create
-        product.premium = @affiliate.premium
-        product.save
-        Categorization.where(product_id: product.id).destroy_all
-        update_product_categories(product, values)
-        go = product.lastModified==product_last_modified(values)
-        puts "soll ich springen ? #{go}" 
-        product = update_product_attributes product, values
-        next if go
-        update_product_images product, values
-        product.update(published: true)
-      else
-        product = Product.where(affiliate_id: @affiliate.id, 
-                      affi_code: id,
-                      scope_id: @scope.id).first
-        if product.present?
-          product.dirty = false
-          product.published = false
-          product.save
-        end
-      end
+      insert_values(id, values)
       @affiliate.skip_items = actual_counter
       @affiliate.save
     end
