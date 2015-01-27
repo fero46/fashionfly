@@ -32,7 +32,6 @@ class Visit < ActiveRecord::Base
                                     model.visitable_type] }
     grouped.values.each do |duplicates|
       duplicates.shift
-      puts duplicates      
       duplicates.each{|double| double.destroy}
     end
   end
