@@ -59,6 +59,7 @@ class Affiliate < ActiveRecord::Base
       products.where('image = ?', nil).destroy_all
       products.where(published: false).update_all( "published = 1" )
     end
+    Product.dedupe(self.id)
   end
 
   def categories

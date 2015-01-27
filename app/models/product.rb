@@ -21,7 +21,7 @@ class Product < ActiveRecord::Base
 
 
   def self.trends
-    where(published: true).order('actual_trend DESC')
+    where(published: true).order('actual_trend ASC')
   end
 
   def self.recolor
@@ -110,12 +110,27 @@ class Product < ActiveRecord::Base
     [y,u,v]
   end
 
-   def url_safe url
-     url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '')
-   end
+  def self.dedupe affiliate_id
+    counter = 0
+    grouped = where(affiliate_id: affiliate_id).
+              group_by{|model|     [model.name,
+                                    model.price,
+                                    model.colorization_id]}
+    grouped.values.each do |duplicates|
+      check = duplicates.shift
+      check.update(published: true) unless check.published
+      counter+=1 if duplicates.length > 0
+      duplicates.each{|double| double.update(published: false)} # duplicates can now be destroyed
+    end
+    counter
+  end
 
-   def to_param
-     "#{id}-#{url_safe(name)}"
-   end
+  def url_safe url
+    url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '')
+  end
+
+  def to_param
+    "#{id}-#{url_safe(name)}"
+  end
 
 end
