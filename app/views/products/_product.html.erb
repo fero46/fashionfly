@@ -4,9 +4,7 @@
                           class: 'product_image',
                           alt: product.name,
                           title: product.name),
-                          productref_path(assigned_locale, product),
-                          :rel => 'nofollow',
-                          :target => '_blank' %>
+                          product_path(assigned_locale, product) %>
     <a class="love_button <%= favorite(product) %>" ng-click="clickFavorite('prod',<%= product.id %>)" 
                            id="prod<%= product.id %>"
                            path="<%= product_favorites_path(assigned_locale, product) %>"></a>
