@@ -37,7 +37,8 @@ protected
 
   def email_attributes
     params.require(:user).permit(:email,
-                                :email_confirmation)
+                                :email_confirmation,
+                                :scope_id)
   end
 
   def user_attributes

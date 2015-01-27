@@ -10,6 +10,7 @@
           <h3><%= t('.title') %></h3>
           <p><%= t('.description') %></p>
           <%= form_for current_user, url: email_edit_path(assigned_locale, id:current_user.id), html:{class: 'formular profile_edit'} do |f| %>
+          <%= f.hidden_field :scope_id, value: @scope.id %>
           <div>
             <%= f.label :email, class:'label' %>
               <%= f.email_field :email, autofocus: true, 

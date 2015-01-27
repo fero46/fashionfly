@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121122955) do
+ActiveRecord::Schema.define(version: 20150127123554) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -603,6 +603,7 @@ ActiveRecord::Schema.define(version: 20150121122955) do
     t.integer  "visitors",                             limit: 4,     default: 0
     t.integer  "max_single_collection_share",          limit: 4,     default: 0
     t.integer  "visits_count",                         limit: 4,     default: 0
+    t.integer  "scope_id",                             limit: 4
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -610,6 +611,7 @@ ActiveRecord::Schema.define(version: 20150121122955) do
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role"], name: "index_users_on_role", using: :btree
+  add_index "users", ["scope_id"], name: "index_users_on_scope_id", using: :btree
   add_index "users", ["secret"], name: "index_users_on_secret", using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
 

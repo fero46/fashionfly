@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :favorites
   has_many :comments
   has_many :collections, class_name: 'FashionFlyEditor::Collection'
+  belongs_to :scope
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :omniauthable, :database_authenticatable, :registerable,:async,
