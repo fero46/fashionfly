@@ -121,8 +121,9 @@ protected
     product.deliveryTime=product_delivery_time(values)
     product.currencyCode=product_currency(values)
     product.deepLink=product_link(values)
+    product.colorization_id=1 if product.colorization_id.blank?
     product.dirty = false
-    product.save!
+    product.save
     product
   end
 
