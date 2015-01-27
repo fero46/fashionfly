@@ -117,7 +117,7 @@ private
   def download_image image_path 
     begin
       open(image_path, 'wb') do |dest|
-        open(remote_image_path, 'rb') do |src|
+        open(remote_image_path, 'rb', 'User-Agent' => 'firefox') do |src|
           dest.write(src.read)
         end
       end
