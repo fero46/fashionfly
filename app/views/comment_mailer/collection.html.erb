@@ -1,0 +1,4 @@
+<p><%= t('users.mailer.confirmation_instructions.title', username: @user.name)%>
+<p><%= t('.commented_on', commenter: @commenter) %></p>
+<p><%= link_to t('.view_comment'), collection_url(@locale, @collection) %></p>
+<%= render 'users/mailer/footer'%>

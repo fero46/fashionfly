@@ -111,6 +111,11 @@ de:
           other: "Zeige <b>alle %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Zeige <b>%{first}&nbsp;-&nbsp;%{last}</b> von <b>%{total}</b> in total %{entry_name}"
+  comment_mailer:
+    collection:
+      subject: Dein Outfit wurde kommentiert.
+      commented_on: "%{commenter} hat etwas zu deinem Outfit gesagt."
+      view_comment: Jetzt den Kommentar auf FashionFly lesen.
   banners:
     index:
       title: Banners
