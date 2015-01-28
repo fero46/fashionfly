@@ -17,18 +17,24 @@ Scope.where(published: true).each do |scope|
     end
   end
 
-  sitemap_for scope.products.where(published: true), name: :published_products do |product|
-    url product_url(scope.locale,product), last_mod: product.updated_at
+  if scope.products.where(published: true).present?
+    sitemap_for scope.products.where(published: true), name: :published_products do |product|
+      url product_url(scope.locale,product), last_mod: product.updated_at
+    end
   end
 
-  sitemap_for scope.collections.where(published: true), name: :published_collections do |collection|
-    url collection_url(scope.locale,collection), last_mod: collection.updated_at
+  if scope.collections.where(published: true).present?
+    sitemap_for scope.collections.where(published: true), name: :published_collections do |collection|
+      url collection_url(scope.locale,collection), last_mod: collection.updated_at
+    end
   end
 
-  sitemap_for scope.hashtags, name: :hashtags do |hashtag|
-    url hashtag_url(scope.locale, hashtag.name), last_mod: hashtag.updated_at
+  if scope.hashtags.present?
+    sitemap_for scope.hashtags, name: :hashtags do |hashtag|
+      url hashtag_url(scope.locale, hashtag.name), last_mod: hashtag.updated_at
+    end
   end
-
+  
   ping_with "http://fashionfly.co/#{scope.locale}/sitemap.xml" if Rails.env=='production'
 
 
