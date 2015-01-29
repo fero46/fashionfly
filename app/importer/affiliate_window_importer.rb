@@ -16,6 +16,10 @@ class AffiliateWindowImporter < AffilinetImporter
   MERCHANT_LINK = 'mLink'
   DEEP_LINKING = 'awLink'
   CURRENCY_TAG = 'curr'
+  DETAIL_TAG = 'text'
+  BRAND_TAG = 'mBrand'
+  DESCRIPTION_TAG = 'desc'
+  NAME_TAG = 'name'
 
   def categories
     nodes = children_from_tag [document.root], ITEM_ROOT
@@ -31,7 +35,6 @@ class AffiliateWindowImporter < AffilinetImporter
         child.children.each do |cati|
           cat+=cati.content + ' ' if cati.name == MAIN_CAT || cati.name == SUB_CAT
         end
-        puts cat
         return cat
       end
     end
@@ -40,7 +43,7 @@ class AffiliateWindowImporter < AffilinetImporter
 
   def import
     nodes = children_from_tag [document.root], ITEM_ROOT
-
+    default_brand_name = nil
     nodes.first.attributes.each do |a|
       default_brand_name = a.value if a.name == 'name'
     end
@@ -62,15 +65,21 @@ class AffiliateWindowImporter < AffilinetImporter
       check_category_node(node, values)
 
       node.children.each do |first_level|
-        id = get_id(first_level)
+        id = get_id(first_level) if id.blank?
         check_price(first_level, values)
-        check_deeplinks(first_level, values)
+        begin
+          check_deeplinks(first_level, values)
+        rescue
+        end
         check_details(first_level, values)
       end
-
+      values[MANUFACTURER]=default_brand_name if values[MANUFACTURER].blank?
       values[NUMBER] = id
 
-      puts values
+      insert_values id, values
+      
+      @affiliate.skip_items = actual_counter
+      @affiliate.save
 
     end
     @affiliate.products.where(dirty: true).update_all(published: false)
@@ -82,7 +91,13 @@ class AffiliateWindowImporter < AffilinetImporter
   end
 
   def check_details node, values
-
+    values[MANUFACTURER]=node.content if node.name == BRAND_TAG
+    if node.name == DETAIL_TAG
+      node.children.each do |cat|
+        values[DESCRIPTION]=cat.content if cat.name == DESCRIPTION_TAG
+        values[TITLE]=cat.content if cat.name == NAME_TAG
+      end
+    end
   end
 
   def check_deeplinks node, values
@@ -118,7 +133,7 @@ class AffiliateWindowImporter < AffilinetImporter
         values[CURRENCY] = a.value if a.name == self.class::CURRENCY_TAG
       end
       node.children.each do |cat| 
-        values[PRICE]=cat.contentif cat.name == self.class::PRICE_VALUE_TAG
+        values[PRICE]=cat.content if cat.name == self.class::PRICE_VALUE_TAG
       end
     end
   end
