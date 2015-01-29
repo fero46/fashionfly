@@ -142,5 +142,12 @@ class AffiliateWindowImporter < AffilinetImporter
     values[ITEM_CATEGORY] = category_name node
   end
 
+  def product_remote_image values
+    if values[IMAGES].present?
+      return values[IMAGES].gsub('130/130', '600/600').gsub('300/300', '600/600')
+    end
+    nil
+  end
+
 
 end
