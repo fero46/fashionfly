@@ -23,5 +23,14 @@ module Fashionfly
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.available_locales = [:de, :en, :tr]
     config.i18n.default_locale = :de
+
+    config.middleware.use Rack::Attack
+    config.middleware.use ExceptionNotification::Rack,
+      :email => {
+          :email_prefix => "[Fehlermeldung] ",
+          :sender_address => %{"Fehler auf FashionFly" <fehler@fashionfly.de>},
+          :exception_recipients => %w{ferhat@hansehype.de}
+        }
+
   end
 end

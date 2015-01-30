@@ -145,6 +145,9 @@ GEM
     domp (0.0.7)
     dynamic_sitemaps (2.0.0)
     erubis (2.7.0)
+    exception_notification (4.0.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     excon (0.42.1)
     execjs (2.2.2)
     faraday (0.9.0)
@@ -301,6 +304,8 @@ GEM
     puma (2.10.2)
       rack (>= 1.1, < 2.0)
     rack (1.6.0)
+    rack-attack (4.2.0)
+      rack
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -431,6 +436,7 @@ DEPENDENCIES
   devise-i18n
   domp
   dynamic_sitemaps
+  exception_notification
   fashion_fly_editor!
   fog
   geocoder
@@ -449,6 +455,7 @@ DEPENDENCIES
   omniauth-tumblr
   omniauth-twitter
   puma
+  rack-attack
   rack-utf8_sanitizer
   rails (= 4.2.0)
   rails-i18n

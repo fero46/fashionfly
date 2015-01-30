@@ -52,6 +52,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'exception_notification'
+gem 'rack-attack'
 
 gem 'capistrano'
 gem 'capistrano-rails'
