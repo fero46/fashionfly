@@ -66,7 +66,11 @@
     <div class="price_info">
       <span class="red"><%=number_to_currency @product.price %></span>
       <span><%= t('.at') %></span>
-      <%= image_tag @product.affiliate.logo, title: @product.affiliate.name, 'ng-click' => "callForm(#{@product.id})" %>
+      <%= image_tag @product.affiliate.logo, 
+                    title: @product.affiliate.name, 
+                    'ng-click' => "callForm(#{@product.id})",
+                    alt: @product.affiliate.name,
+                    class: 'shop_button' %>
 
       <%= form_tag refshop_path(assigned_locale), method: 'post', id: "callForm#{@product.id}" , target: "_blank" do %>
         <%= hidden_field_tag 'product_id', @product.id %>
