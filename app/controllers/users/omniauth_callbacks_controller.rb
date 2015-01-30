@@ -38,6 +38,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     def sign_in_with_existing_authentication(authentication)
+      user = authentication.user
+      user.confirm! if !user.confirmed? && user.mail.present?
       sign_in_and_redirect(:user, authentication.user)
     end
 

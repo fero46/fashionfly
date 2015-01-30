@@ -28,7 +28,7 @@ module Fashionfly
     config.middleware.use ExceptionNotification::Rack,
       :email => {
           :email_prefix => "[Fehlermeldung] ",
-          :sender_address => %{"Fehler auf FashionFly" <fehler@fashionfly.de>},
+          :sender_address => %{"FashionFly Team" <service@fashionfly.de>},
           :exception_recipients => %w{ferhat@hansehype.de}
         }
 
