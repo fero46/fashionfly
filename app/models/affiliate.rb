@@ -5,7 +5,8 @@ class Affiliate < ActiveRecord::Base
   def self.IMPORTERS
     [ :GenericImporter, :AffilinetImporter, :GaleriaImporter, 
       :GermanEspritImporter, :ReklamActionImporter, :MomodaImporter,
-      :CommissionJunctionImporter, :AffiliateWindowImporter, :WConceptImporter, :CsvToXmlAffiliateWindowImporter].sort
+      :CommissionJunctionImporter, :AffiliateWindowImporter, :WConceptImporter, 
+      :MyBagImporter].sort
   end
 
   mount_uploader :file, FileUploader
