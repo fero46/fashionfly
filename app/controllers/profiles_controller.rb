@@ -4,6 +4,10 @@ class ProfilesController < ScopeController
 
   def show
     @user = User.where(slug: params[:id]).first
+    if @user.blank?
+      flash['alert'] = t('action.not_found', entity: User.model_name.human)
+      redirect_to root_path
+    end
   end
 
   def edit

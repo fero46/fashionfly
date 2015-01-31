@@ -10,6 +10,7 @@ de:
     save: Speichern
     destroy_confirm: "%{entity} wird entgültig gelöscht"
     edit_profile: Profil bearbeiten
+    not_found: "%{entity} wurde nicht gefunden"
     new_shop: Neuen Online Shop anlegen
     created: "%{entity} erfolgreich erstellt."
     updated: "%{entity} erfolgreich aktualisiert."
