@@ -115,11 +115,12 @@
     <div class="clear"></div>
   </div>
 <% end %>
-
-<div class="similar" ng-controller="FavoriteController">
-  <h2><%= t('.similar_products') %></h2>
-  <% for product in @product.similar_products %>
-    <%= render product %>
-  <% end %>
-  <div class="clear"></div>
-</div>
+<% if @product.similar_products.any? %>
+  <div class="similar" ng-controller="FavoriteController">
+    <h2><%= t('.similar_products') %></h2>
+    <% for product in @product.similar_products %>
+      <%= render product %>
+    <% end %>
+    <div class="clear"></div>
+  </div>
+<% end %>
