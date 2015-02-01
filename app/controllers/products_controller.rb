@@ -1,5 +1,6 @@
 class ProductsController < ScopeController
   def index
+    @products = ProductSearchService.new(@scope, params).products
   end
 
   def show
