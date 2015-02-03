@@ -15,13 +15,15 @@ class Banner < ActiveRecord::Base
     model = nil
     if previews_model == 'Product'
       model = scope.products
+      model.where('id in (?)', preview_ids.split(','))
     elsif previews_model == 'Collection'
       model = scope.collections
+      model.where('collection_id in (?)', preview_ids.split(','))
     end
     if model.blank?
       Banner.none
     else
-      model.where('id in (?)', preview_ids.split(','))
+      model
     end
   end
 end
