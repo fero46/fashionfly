@@ -11,6 +11,14 @@
           href="<%= root_url(locale: scope.locale)%>"
           hreflang="<%= scope.region_code %>" />
   <% end %>
+
+  <% if @scope.meta_keywords.present? %>
+    <meta name="keywords" content="<%= @scope.meta_keywords%>">
+  <% end %> 
+  <% if @scope.meta_description.present? %>
+    <meta name="description" content="<%= @scope.meta_description%>">
+  <% end %> 
+  
 <% end %>
 
 <h1 style="height:0px; width:0px; position:absolute;top:0px; right:0px; display:block; overflow:hidden">

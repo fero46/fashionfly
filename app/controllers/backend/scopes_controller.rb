@@ -61,6 +61,8 @@ protected
                                   :instagram,
                                   :youtube,
                                   :published,
+                                  :meta_keywords,
+                                  :meta_description,
                                   :hidden)
   end
 end

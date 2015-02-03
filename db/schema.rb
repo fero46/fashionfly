@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127123554) do
+ActiveRecord::Schema.define(version: 20150203150209) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -491,20 +491,22 @@ ActiveRecord::Schema.define(version: 20150127123554) do
   add_index "rebuilders", ["collection_id"], name: "index_rebuilders_on_collection_id", unique: true, using: :btree
 
   create_table "scopes", force: :cascade do |t|
-    t.string   "country_code", limit: 255
-    t.string   "locale",       limit: 255
-    t.string   "language",     limit: 255
-    t.string   "region_code",  limit: 255
+    t.string   "country_code",     limit: 255
+    t.string   "locale",           limit: 255
+    t.string   "language",         limit: 255
+    t.string   "region_code",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "published",    limit: 1,     default: false
-    t.string   "facebook",     limit: 255
-    t.string   "twitter",      limit: 255
-    t.string   "google",       limit: 255
-    t.string   "pinterest",    limit: 255
-    t.string   "instagram",    limit: 255
-    t.string   "youtube",      limit: 255
-    t.text     "hidden",       limit: 65535
+    t.boolean  "published",        limit: 1,     default: false
+    t.string   "facebook",         limit: 255
+    t.string   "twitter",          limit: 255
+    t.string   "google",           limit: 255
+    t.string   "pinterest",        limit: 255
+    t.string   "instagram",        limit: 255
+    t.string   "youtube",          limit: 255
+    t.text     "hidden",           limit: 65535
+    t.string   "meta_keywords",    limit: 255
+    t.text     "meta_description", limit: 65535
   end
 
   add_index "scopes", ["country_code"], name: "index_scopes_on_country_code", length: {"country_code"=>10}, using: :btree
