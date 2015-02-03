@@ -15,9 +15,13 @@ class Banner < ActiveRecord::Base
     model = nil
     if previews_model == 'Product'
       model = scope.products
-    elsif previews_model == 'FashionFlyEditor::Collection'
+    elsif previews_model == 'Collection'
       model = scope.collections
     end
-    model.where('id in (?)', preview_ids.split(','))
+    if model.blank?
+      Banner.none
+    else
+      model.where('id in (?)', preview_ids.split(','))
+    end
   end
 end
