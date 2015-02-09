@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.raty
 //= require jquerybbq_min
+//= require masonry
 //= require datetimepicker.js
 //= require ratyrate
 //= require tinymce-jquery
@@ -64,5 +65,12 @@ $(document).ready(function(){
         removeSticky();
       }
   });
-
 });
+
+var $container = $('.pinstyle');
+options = {itemSelector: '.item'};
+$container.masonry(options);
+$container.imagesLoaded( function() {
+  $container.masonry(options);
+});
+

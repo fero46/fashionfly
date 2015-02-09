@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203150209) do
+ActiveRecord::Schema.define(version: 20150205163909) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -208,6 +208,26 @@ ActiveRecord::Schema.define(version: 20150203150209) do
   add_index "contests", ["slug"], name: "index_contests_on_slug", using: :btree
   add_index "contests", ["startdate"], name: "index_contests_on_startdate", using: :btree
 
+  create_table "entries", force: :cascade do |t|
+    t.string   "title",            limit: 255
+    t.text     "url",              limit: 65535
+    t.date     "published"
+    t.string   "author",           limit: 255
+    t.string   "entry_identifier", limit: 255
+    t.text     "summary",          limit: 65535
+    t.binary   "content",          limit: 16777215
+    t.integer  "scope_id",         limit: 4
+    t.integer  "user_id",          limit: 4
+    t.integer  "feed_id",          limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "entries", ["feed_id"], name: "index_entries_on_feed_id", using: :btree
+  add_index "entries", ["published"], name: "index_entries_on_published", using: :btree
+  add_index "entries", ["scope_id"], name: "index_entries_on_scope_id", using: :btree
+  add_index "entries", ["user_id"], name: "index_entries_on_user_id", using: :btree
+
   create_table "fashion_fly_editor_categories", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "slug",        limit: 255
@@ -287,6 +307,15 @@ ActiveRecord::Schema.define(version: 20150203150209) do
   add_index "favorites", ["markable_id"], name: "index_favorites_on_markable_id", using: :btree
   add_index "favorites", ["markable_type"], name: "index_favorites_on_markable_type", using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
+
+  create_table "feeds", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.binary   "value",      limit: 16777215
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "feeds", ["user_id"], name: "index_feeds_on_user_id", using: :btree
 
   create_table "icons", force: :cascade do |t|
     t.string "name",  limit: 255
@@ -561,6 +590,26 @@ ActiveRecord::Schema.define(version: 20150203150209) do
   add_index "synonyms_words", ["synonym_id"], name: "index_synonyms_words_on_synonym_id", using: :btree
   add_index "synonyms_words", ["word_id"], name: "index_synonyms_words_on_word_id", using: :btree
 
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id",        limit: 4
+    t.integer  "taggable_id",   limit: 4
+    t.string   "taggable_type", limit: 255
+    t.integer  "tagger_id",     limit: 4
+    t.string   "tagger_type",   limit: 255
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string  "name",           limit: 255
+    t.integer "taggings_count", limit: 4,   default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
   create_table "user_authentications", force: :cascade do |t|
     t.integer  "user_id",                    limit: 4
     t.integer  "authentication_provider_id", limit: 4
@@ -606,10 +655,16 @@ ActiveRecord::Schema.define(version: 20150203150209) do
     t.integer  "max_single_collection_share",          limit: 4,     default: 0
     t.integer  "visits_count",                         limit: 4,     default: 0
     t.integer  "scope_id",                             limit: 4
+    t.string   "blog_status",                          limit: 255,   default: "NONE"
+    t.boolean  "is_blogger",                           limit: 1,     default: false
+    t.string   "blog_title",                           limit: 255
+    t.text     "blog_feed",                            limit: 65535
+    t.string   "blog_url",                             limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["is_blogger"], name: "index_users_on_is_blogger", using: :btree
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role"], name: "index_users_on_role", using: :btree

@@ -14,6 +14,17 @@ module ApplicationHelper
     end
   end
 
+  def render_seo_blog user
+    if user.is_blogger.present?
+      content_tag 'section', class: 's_textblock' do 
+        content_tag 'div', class: 'container' do
+          concat content_tag('h1', user.blogging_feed.title) if user.blogging_feed.title.present?
+          concat simple_format user.blogging_feed.description
+        end
+      end
+    end
+  end
+
   def field_class(resource, field_name)
     if resource.errors[field_name].present?
       return "error".html_safe

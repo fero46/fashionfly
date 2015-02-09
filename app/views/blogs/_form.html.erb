@@ -1,0 +1,41 @@
+<%= form_for current_user,  url: profile_blog_path(assigned_locale, 
+                            profile_id:current_user.slug), html:{class: 'formular profile_edit'} do |f| %>
+
+
+  <div>
+      <%= f.label :blog_status, class: 'label' %>
+      <% if current_user.is_admin? %>
+        <%= f.select  :blog_status, User::BLOG_STATUS.map{|x| [t(".#{x.downcase}"), x]} %>
+      <% else %>
+        <%= t(".#{f.object.blog_status}") %>
+      <% end %>
+  </div>
+
+  <div>
+      <%= f.label :blog_title, class: 'label' %>
+      <%= f.text_field :blog_title %>
+  </div>
+
+  <div>
+      <%= f.label :blog_url, class: 'label' %>
+      <%= f.text_field :blog_url %>
+  </div>
+  
+  <div>
+      <%= f.label :blog_feed, class: 'label' %>
+      <%= f.text_field :blog_feed %>
+  </div>
+
+  <% if f.object.blog_status == 'NONE' %>
+    <div>
+        <%= f.check_box :blog_apply %>
+        <%= f.label :blog_apply, t('.blog_apply') %>
+    </div>
+  <% end %>
+  <div class="action">
+    <%= f.submit t('.update_profile'), class: 'button' %>
+  </div>
+
+
+  <div class="clear"></div>
+<% end %>

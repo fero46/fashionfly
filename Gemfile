@@ -21,6 +21,7 @@ gem 'unicode'
 gem 'daemons'
 gem 'dalli'
 gem 'agent_orange'
+gem 'acts-as-taggable-on', '~> 3.4'
 gem 'clockwork'
 gem 'simple_hashtag', :git => "https://github.com/fero46/simple_hashtag"
 gem 'sinatra', require: false
@@ -48,6 +49,8 @@ gem 'cancancan', '~> 1.9'
 gem 'lit'
 gem "dynamic_sitemaps"
 gem "aws-ses", "~> 0.6.0", :require => 'aws/ses'
+gem "feedjira"
+
 group :doc do
   gem 'sdoc', require: false
 end

@@ -21,6 +21,7 @@ de:
     required_to_signed_in: 'Du musst dich Anmelden um das Outfit abzuspeichern.'
     edit_resource: Email und Passwort bearbeitet
     edit_email: 'Email wurde aktualisiert'
+    edit_profile: 'Blog einrichten'
     confirmation_send: "Du erhälst in wenigen Minuten eine E-Mail, mit der Du Deine Registrierung bestätigen kannst."
     viewed:
       zero: Kein Aufruf
@@ -96,6 +97,12 @@ de:
         current_password: Altes Passwort
         name: Benutzername
         avatar: Anzeigebild
+        blog_status: Blog Status
+        is_blogger: Blogger
+        blog_title: 'Blog Titel'
+        blog_url: 'Webseite zum Blog'
+        blog_apply: Als Blog bewerben
+        blog_status: Blogger Status
   views:
     pagination:
       first: "&laquo;"
@@ -164,6 +171,12 @@ de:
     form:
       remove_image: Anzeigebild entfernen
       update_profile: Profil speichern
+    profile_tabs:
+      info: Information
+      outfits: Outfits
+      favorites: Favoriten
+      looks: Lookbook
+      blog: Blog
   comments:
     comment:
       edit_comment: "Kommentar bearbeiten"
@@ -180,6 +193,14 @@ de:
       save_comment: "Jetzt kommentieren"
       your_comment: "Ihr Kommentar"
       share_now: Jetzt Teilen
+  blogs:
+    form:
+      update_profile: Blog Aktualisieren
+      none: Kein Blogger
+      accepted: Blogger
+      applied: 'Beworben'
+      rejected: Abgelehnt
+      blog_apply: 'Als Blog bewerben'
   breadcrumb:
     you_are_here: Du bist Hier
   link:

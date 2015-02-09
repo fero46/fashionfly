@@ -9,7 +9,7 @@
   </div>
   <div class="detail">
     <%= profile_edit(@user) %>
-    <h2><%= t('.info') %></h2>
+    <%= render 'profile_tabs', user: @user, active: {info:'active'} %>
     <div class="clear"></div>
     <div class="info">
       <%= @user.info_html %>

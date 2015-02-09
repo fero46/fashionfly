@@ -13,6 +13,7 @@ class Scope < ActiveRecord::Base
   has_many :shops
   has_many :banners
   has_many :users
+  has_many :entries
 
   validates :country_code, presence: true, uniqueness: true
   validates :locale, presence: true

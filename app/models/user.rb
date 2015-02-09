@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   TEMP_EMAIL = 'change@mymail.com'
   TEMP_EMAIL_REGEX = /change@mymail.com/
+  BLOG_STATUS = ['NONE', 'APPLIED', 'ACCEPTED', 'REJECTED']
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
   has_many :authentications, class_name: 'UserAuthentication', dependent: :destroy
@@ -8,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :collections, class_name: 'FashionFlyEditor::Collection'
   belongs_to :scope
+  has_one :feed
+  has_many :entries
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :omniauthable, :database_authenticatable, :registerable,:async,
@@ -28,7 +31,7 @@ class User < ActiveRecord::Base
     simple_format
   end
 
-  attr_accessor :email_confirmation
+  attr_accessor :email_confirmation, :blog_apply
 
   validate :email_has_to_be_validated, on: :create
   validate :email_has_to_be_validated, if: :should_confirm?
@@ -36,6 +39,38 @@ class User < ActiveRecord::Base
 
   before_save  :update_slug
   before_create :make_secret
+  before_save :check_blog_status
+
+  def check_blog_status
+    puts "NEW #{self.blog_apply}"
+    return true if id.blank? || !(valid?)
+    old_value = User.find(id)
+    puts "OLD #{old_value.blog_status}" 
+    if self.blog_apply == "1" && old_value.blog_status == 'NONE'
+      self.blog_status = 'APPLIED'
+      puts "#{self.blog_status}"
+      BloggerMailer.apply(self.id).deliver_later
+    elsif old_value.blog_status == 'APPLIED'
+      if self.blog_status == 'ACCEPTED'
+        BloggerMailer.accept(self.id).deliver_later 
+        self.is_blogger = true
+      end
+      BloggerMailer.denied(self.id).deliver_later if self.blog_status == 'REJECTED'
+    end
+  end
+
+  def blogging_feed
+    return @feed if @feed.present?
+    feed = Feed.where(user_id: self.id).first_or_initialize
+    if feed.value.blank?
+      puts "BLANK"
+      urls = [self.blog_feed]
+      feeds = Feedjira::Feed.fetch_and_parse urls
+      feed.value = feeds[self.blog_feed]
+      feed.save
+    end
+    @feed = feed.value
+  end
 
   def email_has_to_be_validated
     errors.add(:email_confirmation, I18n.t("user.identical")) if email_confirmation != email

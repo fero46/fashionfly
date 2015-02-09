@@ -1,0 +1,17 @@
+<div class="entry item">
+  <% html = Nokogiri::HTML.fragment(entry.content)
+    images = html.css('img').collect(&:to_s) #=> ["<img src=\"example.jpg\">"] 
+  %>
+  <%= images.first.html_safe if images.any? %>
+  <div class="inner">
+    <h2><%= link_to entry.title, entry.url, target: '_blank' %></h2>
+    <div class="author">
+      <%= entry.author %>, <%= l entry.published %>
+    </div>
+    <p><%= sanitize entry.summary %></p>
+    <div class="author" style="padding-top:10px;">
+      <%= entry.tags.join(', ') %> 
+    </div>
+    <p><%= link_to t('.show'), entry_path(entry.scope.locale, entry) %></p>
+  </div>
+</div>

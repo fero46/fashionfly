@@ -2,6 +2,10 @@ require 'sidekiq/web'
 
 Fashionfly::Application.routes.draw do
 
+  get 'blogs/edit'
+
+  get 'blogs/show'
+
   admin_constraint = lambda do |request|
     current_user = request.env['warden'].user
     current_user.present? && current_user.respond_to?(:is_admin?) && current_user.is_admin?
@@ -46,7 +50,7 @@ Fashionfly::Application.routes.draw do
     get "hashtags",            to: "hashtags#index",     as: :hashtags
     resources :shops
     resources :banners
-
+    resources :entries
     get 'property_shop_link', to: 'properties#property_shop_link', as: :property_shop_link
     get 'property_collection_link', to: 'properties#property_collection_link', as: :property_collection_link
     get 'property_category_link', to: 'properties#property_category_link', as: :property_category_link
@@ -57,7 +61,11 @@ Fashionfly::Application.routes.draw do
     get 'language', to: 'welcome#language'
     resources :contests
     resources :styles, only: [:show, :index]
-    resources :profiles, only:[:show, :update, :edit]
+    resources :profiles, only:[:show, :update, :edit] do
+      get 'outfits', to: "profiles#outfits"
+      get 'favorites', to: "profiles#favorites"
+      resource :blog
+    end
     patch 'email_edit', to: 'profiles#email_edit', as: :email_edit
     get 'prodref/:id', to: "products#ref", as: :productref
     resources :products, only: [:show, :index] do

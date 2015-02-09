@@ -1,0 +1,42 @@
+<% content_for :title do %>
+  FashionFly.co || <%= @user.blogging_feed.title %>
+<% end %>
+<% content_for :seo_text do %>
+  <%= render_seo_blog @user %>
+<% end %>
+
+<% content_for :meta do %>
+
+  <% if @scope.meta_keywords.present? %>
+    <meta name="keywords" content="<%= @scope.meta_keywords%>">
+  <% end %> 
+
+  <% if @scope.meta_description.present? %>
+    <meta name="description" content="<%= @user.blogging_feed.description%>">
+  <% end %> 
+  
+<% end %>
+
+<div class="profile container" ng-controller="ProfileController">
+  <div class="profiles_header" data="<%= @user.banner %>">
+    <div class="profile_image">
+      <%= image_tag @user.avatar.smaller %>
+    </div>
+    <span class="name">
+        <%= @user.name %>
+    </span>
+  </div>
+  <div class="detail">
+    <%= profile_edit(@user) %>
+    <%= render 'profiles/profile_tabs', user: @user, active: {blog:'active'} %>
+    <div class="clear"></div> 
+  </div>
+  <div class="banner">
+    <h1><%=link_to @user.blogging_feed.title, @user.blogging_feed.url %></h1>
+    <div class="preview pinstyle" ng-controller="FavoriteController">
+      <% for entry in @user.feed.entries %>
+        <%= render 'entry', entry: entry %>
+      <% end %>
+    </div>
+  </div>
+</div>

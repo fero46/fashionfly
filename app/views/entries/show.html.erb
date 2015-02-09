@@ -1,0 +1,21 @@
+<div class="collection_show" ng-controller="FavoriteController">
+  <div class="leftside">
+    <%= cache ['entry', @entry.products.first.updated_at] do %>
+      <h2><%= @entry.title %></h2>
+      <div class="white_box entry_show">
+        <strong><%= @entry.feed.value.title %> - <%= @entry.author %> : <%= l @entry.published %></strong> <br /><br />
+        <%= raw @entry.content %>
+        </br />
+        <br />
+       <%= link_to @entry.title, @entry.url, target: '_blank' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="productviews">
+    <h2><%= t('.products') %></h2>
+      <%= cache ['product_list', @entry.products.first.updated_at] do %>
+        <% for product in @entry.products %>
+          <%= render 'products/small_product', product: product %>
+        <% end %>
+      <% end %>
+  </div>

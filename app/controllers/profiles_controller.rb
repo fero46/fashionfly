@@ -1,13 +1,17 @@
 class ProfilesController < ScopeController
 
-  before_action :authenticate_user!, except: :show
+  before_action :authenticate_user!, except: [:show, :outfits, :favorites]
+  before_action :find_user, only: [:show, :outfits, :favorites]
 
   def show
-    @user = User.where(slug: params[:id]).first
-    if @user.blank?
-      flash['alert'] = t('action.not_found', entity: User.model_name.human)
-      redirect_to root_path
-    end
+  end
+
+  def outfits
+    @outfits = @user.collections
+  end
+
+  def favorites
+    @favorites = @user.favorites
   end
 
   def edit
@@ -38,6 +42,15 @@ class ProfilesController < ScopeController
   end
 
 protected 
+
+  def find_user
+    slug = params[:id] || params[:profile_id]
+    @user = User.where(slug: slug).first
+    if @user.blank?
+      flash['alert'] = t('action.not_found', entity: User.model_name.human)
+      redirect_to root_path
+    end    
+  end
 
   def email_attributes
     params.require(:user).permit(:email,

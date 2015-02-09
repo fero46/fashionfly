@@ -1,0 +1,13 @@
+<ul class="tabs">
+  <li class="<%= active[:info]%>"><%= link_to t('.info'), profile_path(assigned_locale, user.slug) %></li>
+  <li class="<%= active[:outfits]%>"><%= link_to t('.outfits'),  profile_outfits_path(assigned_locale, user.slug) %></li>
+  <li class="<%= active[:favorites]%>"><%= link_to t('.favorites'), profile_favorites_path(assigned_locale, user.slug) %></li>
+  <% if false %>
+  <li class="<%= active[:looks]%>"><%= link_to t('.looks'), profile_path(assigned_locale, user.slug) %></li>
+  <% end %>
+  <% if user.is_blogger.present? %>
+    <li class="<%= active[:blog]%>">
+      <%= link_to t('.blog'), profile_blog_path(assigned_locale, user.slug) %>
+    </li>
+  <% end %>
+</ul>

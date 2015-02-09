@@ -1,0 +1,22 @@
+<div class="profile container" ng-controller="ProfileController">
+  <div class="profiles_header" data="<%= @user.banner %>">
+    <div class="profile_image">
+      <%= image_tag @user.avatar.smaller %>
+    </div>
+    <span class="name">
+        <%= @user.name %>
+    </span>
+  </div>
+  <div class="detail">
+    <%= profile_edit(@user) %>
+    <%= render 'profile_tabs', user: @user, active: {favorites:'active'} %>
+    <div class="clear"></div> 
+  </div>
+  <div class="banner">
+    <div class="preview pinstyle" ng-controller="FavoriteController">
+      <% for favorite in @favorites %>
+        <%= render favorite.markable %>
+      <% end %>
+    </div>
+  </div>
+</div>

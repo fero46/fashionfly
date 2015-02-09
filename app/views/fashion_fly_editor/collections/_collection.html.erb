@@ -1,5 +1,5 @@
 <% unless @widget.present? %>
-  <div class="collection">
+  <div class="collection item">
     <div class="image_container">
       <%=link_to collection_path(assigned_locale, collection) do %>
         <%= image_tag('', "my-src" => collection.image.preview.url, 
@@ -19,7 +19,7 @@
                             url: user_profile(collection.user)) %></h4>
   </div>
 <% else %>
-  <div class="collection">
+  <div class="collection item">
     <%=link_to collection_url(assigned_locale, collection) do %>
       <%= image_tag image_url('logo.png'), class: 'fashion_logo', alt: 'FashionFly' %>
     <% end %>    
