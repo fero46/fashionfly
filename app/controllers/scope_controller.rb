@@ -25,11 +25,14 @@ protected
   end
 
   def visit_me visitable
-    ua = AgentOrange::UserAgent.new(request.user_agent)
-    device = ua.device
-    return if device.is_bot?
-    Visit.run(visitable, current_user, visitor_cookie)
-    cookies[:visit_cookie] = nil if current_user.present?
+    begin
+      ua = AgentOrange::UserAgent.new(request.user_agent)
+      device = ua.device
+      return if device.is_bot?
+      Visit.run(visitable, current_user, visitor_cookie)
+      cookies[:visit_cookie] = nil if current_user.present?
+    rescue
+    end
   end
 
   def visitor_cookie
