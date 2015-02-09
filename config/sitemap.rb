@@ -23,6 +23,23 @@ Scope.where(published: true).each do |scope|
     end
   end
 
+  if scope.users.present?
+    sitemap_for scope.users, name:  :users do |user|
+      url profile_url(scope.locale, user.slug), last_mod: user.try(:updated_at)
+      url profile_outfits_url(scope.locale, user.slug), last_mod: user.try(:collections).try(:last).try(:updated_at)
+      url profile_favorites_url(scope.locale, user.slug), last_mod: user.try(:favorites).try(:last).try(:updated_at)
+      if user.is_blogger.present?
+        url profile_blog_url(scope.locale, user.slug), last_mod: user.try(:feed).try(:updated_at)
+      end
+    end
+  end
+
+  if scope.entries.present?
+    sitemap_for scope.entries, name:  :entries do |entry|
+      url entry_url(scope.locale, entry), last_mod: entry.try(:updated_at)      
+    end
+  end
+
   if scope.collections.where(published: true).present?
     sitemap_for scope.collections.where(published: true), name: :published_collections do |collection|
       url collection_url(scope.locale,collection), last_mod: collection.updated_at

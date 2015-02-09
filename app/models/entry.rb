@@ -2,6 +2,9 @@ class Entry < ActiveRecord::Base
   belongs_to :feed
   belongs_to :scope
   serialize :content
+
+  default_scope {order(:published => :desc)}
+
   acts_as_taggable
 
 

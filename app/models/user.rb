@@ -63,12 +63,19 @@ class User < ActiveRecord::Base
     return @feed if @feed.present?
     feed = Feed.where(user_id: self.id).first_or_initialize
     if feed.value.blank?
-      puts "BLANK"
       urls = [self.blog_feed]
       feeds = Feedjira::Feed.fetch_and_parse urls
       feed.value = feeds[self.blog_feed]
       feed.save
     end
+    @feed = feed.value
+  end
+
+  def update_blogging_feed
+    urls = [self.blog_feed]
+    feeds = Feedjira::Feed.fetch_and_parse urls
+    feed.value = feeds[self.blog_feed]
+    feed.save
     @feed = feed.value
   end
 
