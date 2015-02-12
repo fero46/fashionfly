@@ -1,5 +1,5 @@
-<%= form_for current_user,  url: profile_blog_path(assigned_locale, 
-                            profile_id:current_user.slug), html:{class: 'formular profile_edit'} do |f| %>
+<%= form_for @user,  url: profile_blog_path(assigned_locale, 
+                            profile_id:@user.slug), html:{class: 'formular profile_edit'} do |f| %>
 
 
   <div>

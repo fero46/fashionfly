@@ -15,7 +15,6 @@ class BlogsController < ApplicationController
   def show
     @user = User.where(slug: params[:profile_id]).first
     redirect_to profile_path(@scope.locale, params[:profile_id]) if @user.is_blogger.blank?
-
   end
 
 
