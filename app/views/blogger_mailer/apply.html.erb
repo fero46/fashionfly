@@ -1,1 +1,6 @@
-APPLY 
+
+<%= t('.info', user:  @user.name) %> <br />
+<br />
+<%= t('.profile', url: profile_url(@user.scope.locale, @user.slug)) %><br />
+<br />
+<%= render 'users/mailer/footer'%>

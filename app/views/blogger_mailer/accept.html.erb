@@ -1,1 +1,10 @@
-accept
+<%= t('blogger_mailer.default.greeting', user: @user.name) %>,<br />
+<br />
+<%= t('.congrats', user: @user.name) %>,<br />
+<%= t('.more_readers', user: @user.name) %>,<br />
+<br />
+<%= t('.extras', user: @user.name) %>,<br />
+<br />
+<%= t('blogger_mailer.default.ending', user: @user.name) %>,<br /><br />
+<%= render 'users/mailer/footer'%>
+

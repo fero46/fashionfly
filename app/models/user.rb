@@ -42,13 +42,11 @@ class User < ActiveRecord::Base
   before_save :check_blog_status
 
   def check_blog_status
-    puts "NEW #{self.blog_apply}"
     return true if id.blank? || !(valid?)
     old_value = User.find(id)
-    puts "OLD #{old_value.blog_status}" 
     if self.blog_apply == "1" && old_value.blog_status == 'NONE'
       self.blog_status = 'APPLIED'
-      puts "#{self.blog_status}"
+      BloggerMailer.information(self.id).deliver_later
       BloggerMailer.apply(self.id).deliver_later
     elsif old_value.blog_status == 'APPLIED'
       if self.blog_status == 'ACCEPTED'

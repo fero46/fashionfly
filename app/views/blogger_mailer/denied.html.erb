@@ -1,1 +1,14 @@
-denied.html.erb
+<%= t('blogger_mailer.default.greeting', user: @user.name) %>,<br />
+<br />
+<%= t('.intro', user: @user.name) %>,<br />
+<br />
+<%= t('.reasons', user: @user.name) %>,<br />
+<br />
+- <%= t('.not_a_fashionblog', user: @user.name) %>,<br />
+- <%= t('.quality', user: @user.name) %>,<br />
+- <%= t('.content', user: @user.name) %>,<br />
+<br />
+<%= t('blogger_mailer.default.ending', user: @user.name) %>,<br /><br />
+<%= render 'users/mailer/footer'%>
+
+

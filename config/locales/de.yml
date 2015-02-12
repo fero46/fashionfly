@@ -119,6 +119,28 @@ de:
           other: "Zeige <b>alle %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Zeige <b>%{first}&nbsp;-&nbsp;%{last}</b> von <b>%{total}</b> in total %{entry_name}"
+  blogger_mailer:
+    default:
+      greeting: "Hallo %{user}"
+      subject: "Deine Bewerbung für die Blogger Alliance auf FashionFly"
+      ending: Dein FashionFly Team
+    information:
+      thanks: Vielen dank für deine Bewerbung zur Blogger Alliance auf FashionFly.co.
+      details: Deine Bewerbung ist grad in der Prüfung. In der Regel erhältst du innerhalb 48 Stunden eine Antwort von uns.
+    accept:
+      congrats: "herzlich willkommen zur Blogger Alliance auf FashionFly.co."
+      more_readers: "Von nun an kannst du deine Blog-Einträge auf FashionFly anzeigen lassen und noch mehr Leser erreichen."
+      extras: "Außerdem erwarten dich exklusive Fashion Angebote über die wir dich per Mail benachrichtigen."
+    apply:
+      subject: Blogger Bewerbung
+      info: "Der Benutzer %{user} hat sich als Blogger auf FashionFly beworben"
+      profile: "Profile aufrufen <a href='%{url}'>%{url}</a>"
+    denied:
+      intro: "leider müssen wir deine Bewerbung zur FashionFly Blogger Alliance ablehnen."
+      reasons: "Gründe dafür können sein:"
+      not_a_fashionblog: "Dein Blog ist kein Fashionblog."
+      quality: "Dein Blog entspricht nicht unseren Erwartungen."
+      content: "Deine Bloginhalte sind nicht von dir."
   comment_mailer:
     collection:
       subject: Dein Outfit wurde kommentiert.
