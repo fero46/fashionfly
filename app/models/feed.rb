@@ -6,7 +6,6 @@ class Feed < ActiveRecord::Base
   after_save :recreate_entries
 
   def recreate_entries
-    puts value.entries.to_yaml
     my_entries = value.entries
     for my_entry in my_entries
       entry = Entry.where(feed_id: self.id, entry_identifier: my_entry.entry_id).first_or_initialize
