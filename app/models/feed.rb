@@ -6,6 +6,7 @@ class Feed < ActiveRecord::Base
   after_save :recreate_entries
 
   def recreate_entries
+    puts value.entries.to_yaml
     my_entries = value.entries
     for my_entry in my_entries
       entry = Entry.where(feed_id: self.id, entry_identifier: my_entry.entry_id).first_or_initialize
@@ -17,7 +18,7 @@ class Feed < ActiveRecord::Base
         entry.entry_identifier=my_entry.entry_id
         entry.summary=my_entry.summary
         entry.content=my_entry.content
-        entry.tag_list = my_entry.categories.join(',')
+        entry.tag_list = my_entry.categories.map{|x| x.downcase}.uniq.join(',')
         entry.scope_id = self.user.scope_id
         entry.user_id = self.user.id
         entry.save
