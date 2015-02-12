@@ -7,7 +7,7 @@
       <% if current_user.is_admin? %>
         <%= f.select  :blog_status, User::BLOG_STATUS.map{|x| [t(".#{x.downcase}"), x]} %>
       <% else %>
-        <%= t(".#{f.object.blog_status}") %>
+        <%= t(".#{f.object.blog_status}".downcase) %>
       <% end %>
   </div>
 
