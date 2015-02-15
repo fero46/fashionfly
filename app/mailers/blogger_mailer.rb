@@ -10,7 +10,7 @@ class BloggerMailer < ApplicationMailer
   def information user_id
     @user = User.find(user_id)
     if @user.present?
-      @locale = @user.try(:scope).try(:locale)
+      @locale = @user.try(:scope).try(:language)
       @locale = 'en' if locale.blank?
       I18n.with_locale(@locale) do
         mail(to: @user.email, subject: t('blogger_mailer.default.subject'))
@@ -21,7 +21,7 @@ class BloggerMailer < ApplicationMailer
   def accept user_id
     @user = User.find(user_id)
     if @user.present?
-      @locale = @user.try(:scope).try(:locale)
+      @locale = @user.try(:scope).try(:language)
       @locale = 'en' if locale.blank?
       I18n.with_locale(@locale) do
         mail(to: @user.email, subject: t('blogger_mailer.default.subject'))
@@ -32,7 +32,7 @@ class BloggerMailer < ApplicationMailer
   def denied user_id
     @user = User.find(user_id)
     if @user.present?
-      @locale = @user.try(:scope).try(:locale)
+      @locale = @user.try(:scope).try(:language)
       @locale = 'en' if locale.blank?
       I18n.with_locale(@locale) do
         mail(to: @user.email, subject: t('blogger_mailer.default.subject'))
