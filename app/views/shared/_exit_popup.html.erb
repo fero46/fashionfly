@@ -1,22 +1,24 @@
 <% if show_exit_popup %>
-  <div class="exit_popup">
-    <div class="inner" tabindex="-1">
-      <%= image_tag 'logo.png', class: 'inner_id' %>
-          <h2><%= t('.title') %></h2>
+  <% cache ['exit_popup', @scope , products] do %>
+    <div class="exit_popup">
+      <div class="inner" tabindex="-1">
+        <%= image_tag 'logo.png', class: 'inner_id' %>
+        <h2><%= t('.title') %></h2>
 
-      <div class="clear"></div>
-      <div class="text-wrapper">
-        <% for product in products %>
-        <%=link_to image_tag(product.original.smaller, class: 'product_image'), product_path(@scope.locale, product) %>
-        <% end %>
+        <div class="clear"></div>
+        <div class="text-wrapper">
+          <% for product in products %>
+          <%=link_to image_tag(product.original.smaller, class: 'product_image'), product_path(@scope.locale, product) %>
+          <% end %>
 
-        <div class="">
+          <div class="">
+          </div>
+         <div class="clear">
+            <h3><%= t('.slogan', number: @scope.products.count) %></h3>
+
         </div>
-       <div class="clear">
-          <h3><%= t('.slogan', number: @scope.products.count) %></h3>
-
+        <%= link_to t('.button'), path_to_intent, class: 'button' %>
       </div>
-      <%= link_to t('.button'), path_to_intent, class: 'button' %>
     </div>
-  </div>
+  <% end %>
 <% end %>
