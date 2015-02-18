@@ -1,5 +1,9 @@
 module ApplicationHelper
   
+  def show_exit_popup
+    cookies['exit_popup'].blank?
+  end
+
 
   def render_seo_block name
     if @scope.page(name).present?

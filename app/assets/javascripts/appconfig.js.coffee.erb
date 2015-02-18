@@ -1,5 +1,13 @@
 $(document).ready(() ->
   $('.datepicker').datetimepicker(timepicker:false)
+
+  if($('.exit_popup'))
+    $('.exit_popup .inner').blur( ->
+      $('.exit_popup').fadeOut() 
+    )
+    $('form').submit(->
+      window.show_exit()
+    )
 )
 
 <%
@@ -9,6 +17,22 @@ Dir.chdir("#{Rails.root}/app/assets/images/") do
 end
 
 %>
+
+
+window.createCookie =(name, value, days) ->
+    expires = ''
+    if (days)
+      date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = "; expires=" + date.toGMTString();
+    document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+
+window.show_exit = ->
+  if($('.exit_popup'))
+    $('.exit_popup').fadeIn(->
+      $('.exit_popup .inner').focus()
+      window.createCookie('exit_popup', 1, 1)
+    )
 
 window.image_path = (name) ->
   <%= imgs.to_json %>[name]

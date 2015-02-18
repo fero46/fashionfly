@@ -242,6 +242,10 @@ de:
     sidebar:
       title: Wettbewerbe
   shared:
+    exit_popup:
+      title: Nicht das Gefunden was dir gefällt ?
+      slogan: "Stöber durch %{number} Produkte"
+      button: "Jetzt weitere Produkte entdecken"
     email_enter_form:
       success: Du hast Erfolgreich deine Email eingegeben
       success_description: Du erhälst in kurze eine E-Mail mit einem Bestätigungslink. Du kannst jederzeit deine E-Mail noch einmal eingeben in dem du diese Seite neu ladest.

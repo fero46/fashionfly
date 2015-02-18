@@ -17,4 +17,5 @@ App.controller 'FavoriteController', ['$scope',($scope) ->
       fav.addClass(active)
   $scope.callForm = (id) ->
     $('#callForm'+id).submit()
+    window.show_exit()
 ]

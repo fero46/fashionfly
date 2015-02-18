@@ -124,3 +124,5 @@
     <div class="clear"></div>
   </div>
 <% end %>
+
+<%= render 'shared/exit_popup', path_to_intent:  category_path(@product.scope.locale, @product.categories.last.slug) %>
