@@ -124,4 +124,4 @@
   <div style="clear:both"></div>
 </div>
 
-<%= render 'shared/exit_popup', path_to_intent: outfit_category_path(@collection.scope.locale, @collection.category.slug) %>
+<%= render 'shared/exit_popup', path_to_intent: outfit_category_path(@collection.scope.locale, @collection.category.slug), products: @collection.products.first.similar_products.limit(3) %>

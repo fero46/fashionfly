@@ -6,7 +6,7 @@
 
       <div class="clear"></div>
       <div class="text-wrapper">
-        <% for product in @scope.products.order('rand()').limit(3) %>
+        <% for product in products %>
         <%=link_to image_tag(product.original.smaller, class: 'product_image'), product_path(@scope.locale, product) %>
         <% end %>
 

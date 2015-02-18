@@ -125,4 +125,4 @@
   </div>
 <% end %>
 
-<%= render 'shared/exit_popup', path_to_intent:  category_path(@product.scope.locale, @product.categories.last.slug) %>
+<%= render 'shared/exit_popup', path_to_intent:  category_path(@product.scope.locale, @product.categories.last.slug), products: @product.similar_products.limit(3) %>
