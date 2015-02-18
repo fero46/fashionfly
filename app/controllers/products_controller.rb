@@ -22,6 +22,7 @@ class ProductsController < ScopeController
       if @product.deepLink.blank?
         redirect_to root_path(@scope)
       else
+        visit_me @product
         redirect_to @product.deepLink
       end
     rescue ActiveRecord::RecordNotFound
@@ -35,6 +36,7 @@ class ProductsController < ScopeController
     if @product.blank? || @product.deepLink.blank?
       redirect_to root_path(@scope)
     else
+      visit_me @product
       redirect_to @product.deepLink
     end
   end

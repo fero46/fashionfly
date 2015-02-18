@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   has_many :favorites, as: :markable, dependent: :destroy
   has_many :subscriptions, class_name: 'FashionFlyEditor::Subscription', as: :subscriber
   has_many :collections, through: :subscriptions, class_name: 'FashionFlyEditor::Collection'
+  has_many :visits, as: :visitable, dependent: :destroy, counter_cache: true
   belongs_to :brand
   belongs_to :colorization
   belongs_to :scope

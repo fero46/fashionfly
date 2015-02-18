@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205163909) do
+ActiveRecord::Schema.define(version: 20150217234130) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -455,6 +455,7 @@ ActiveRecord::Schema.define(version: 20150205163909) do
     t.decimal  "sale_price",                         precision: 10, scale: 2
     t.boolean  "sale",                 limit: 1,                              default: false
     t.boolean  "dirty",                limit: 1,                              default: false
+    t.integer  "visits_count",         limit: 4,                              default: 0
   end
 
   add_index "products", ["actual_trend"], name: "index_products_on_actual_trend", using: :btree
