@@ -281,6 +281,7 @@ de:
       sign_up: Registrieren
       sign_out: Abmelden
       faq: FAQ
+      blogs: Blogger
     select_popup:
       title: Wähle dein Land aus.
       description: Wir sind in sehr vielen Ländern vertretten und wir erweitern immer unser Angebot
@@ -335,6 +336,11 @@ de:
       _ffdfef: hell rosa
       _ffff02: gelb
       _ffffff: weiß
+  entries:
+    index:
+      title: FashionFly Blogger Netzwerk
+    show:
+      products: Produkte
   welcome:
     index:
       title: FashionFly | die besten Outfits für deinen Kleiderschrank | fashionfly.co

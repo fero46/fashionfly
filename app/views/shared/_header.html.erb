@@ -103,6 +103,7 @@
           </ul>
         </li>
       <% end %>
+      <li><%= link_to t('.blogs'), entries_path(assigned_locale), class: 'item' %></li>
       <% if can? :manage, Shop %>
         <li>
           <%= link_to t('.shop_settings'), 

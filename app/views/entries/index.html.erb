@@ -1,0 +1,13 @@
+<div class="profile container" ng-controller="ProfileController">
+  <div class="banner">
+    <h1><%= t('.title') %></h1>
+    <div class="preview pinstyle" ng-controller="FavoriteController">
+      <% for entry in @entries %>
+        <%= render 'blogs/entry', entry: entry %>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <%= paginate @entries %>
+  </div>
+</div>
