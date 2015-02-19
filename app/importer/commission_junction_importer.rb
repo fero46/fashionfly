@@ -56,6 +56,9 @@ class CommissionJunctionImporter < GenericImporter
     counter
   end
 
+  def product_name values
+    super.split(' ').map{|w| w.gsub(/(\W|\d)/, "")}.reject! { |c| c.empty? }.join(' ')
+  end
 
   def filter_category node
     node.children.each do |tag|
