@@ -35,6 +35,10 @@ class Product < ActiveRecord::Base
     self.published
   end
 
+  def locale
+    scope.locale
+  end
+
 
   def similar_products
     category = self.categories.where(leaf: true).first

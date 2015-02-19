@@ -26,10 +26,12 @@ FashionFlyEditor::Collection.class_eval do
     end
   end
 
-
-
   def self.trends
     where(published: true).order('actual_trend DESC')
+  end
+
+  def locale
+    scope.locale
   end
 
   def products
