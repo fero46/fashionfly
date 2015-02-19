@@ -57,7 +57,21 @@ class CommissionJunctionImporter < GenericImporter
   end
 
   def product_name values
-    super.split(' ').map{|w| w.gsub(/(\W|\d)/, "")}.reject! { |c| c.empty? }.join(' ')
+    name = super.split(' ').map{|w| w.gsub(/(\W|\d)/, "")}.reject! { |c| c.empty? }.join(' ')
+    remove_size_from_name(name)
+  end
+
+
+  def remove_size_from_name string
+    array = string.split(' ')
+    new_array = []
+    for item in array
+      item = item.gsub('L', '').gsub('M', '').gsub('S', '') if item.length == 1
+      item = item.gsub('XL', '').gsub('XS', '') if item.length == 2
+      item = item.gsub('XXL', '') if item.length == 3
+      new_array << item
+    end
+    new_array.reject! { |c| c.empty? }.join(' ')
   end
 
   def filter_category node
