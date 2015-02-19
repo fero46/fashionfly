@@ -69,9 +69,9 @@ class CommissionJunctionImporter < GenericImporter
       item = item.gsub('L', '').gsub('M', '').gsub('S', '') if item.length == 1
       item = item.gsub('XL', '').gsub('XS', '') if item.length == 2
       item = item.gsub('XXL', '') if item.length == 3
-      new_array << item
+      new_array << item if item.length < 0
     end
-    new_array.reject! { |c| c.empty? }.join(' ')
+    new_array.join(' ')
   end
 
   def filter_category node
