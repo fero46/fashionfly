@@ -63,13 +63,13 @@ class CommissionJunctionImporter < GenericImporter
 
 
   def remove_size_from_name string
-    array = string.split(' ')
+    my_array = string.split(' ')
     new_array = []
-    for item in array
+    for item in my_array
       item = item.gsub('L', '').gsub('M', '').gsub('S', '') if item.length == 1
       item = item.gsub('XL', '').gsub('XS', '') if item.length == 2
       item = item.gsub('XXL', '') if item.length == 3
-      new_array << item if item.length < 0
+      new_array << item if item.length > 0
     end
     new_array.join(' ')
   end
