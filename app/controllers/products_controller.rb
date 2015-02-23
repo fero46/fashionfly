@@ -1,4 +1,7 @@
 class ProductsController < ScopeController
+
+  skip_before_filter :verify_authenticity_token
+
   def index
     @products = ProductSearchService.new(@scope, params).products
   end
