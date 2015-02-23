@@ -9,6 +9,17 @@ class ProductSearchService
     @params
   end
 
+  def index_title category
+    color = ''
+    if params[:color].present?
+      color = I18n.t('products.show._'+params[:color])
+    end
+    name = "#{color} #{category.name} #{params[:page]}"
+    name = name.split.map{|i| i.capitalize}.join(' ')
+    name.strip!
+    name
+  end
+
 
   def products random_order=false
     @products = Product.where(scope_id: @scope.id, published: true)

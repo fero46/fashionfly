@@ -6,12 +6,12 @@
 
 <%= render 'products/filter' %>
 <% if @category.present? %>
-  <% content_for :title do "#{@category.name} | #{Settings.app.name}"; end %>
-  <h1 style="text-align:left; padding-top:0px;padding-bottom:20px"><%= @category.name %></h1>
+  <% content_for :title do "#{@title} | #{Settings.app.name}"; end %>
+  <h1 style="text-align:left; padding-top:0px;padding-bottom:20px"><%= @title %></h1>
 
   <% content_for :meta do %>
 
-  <meta property="og:title" content="<%= @category.name %> | <%= Settings.app.name %>"/>
+  <meta property="og:title" content="<%= @title %> | <%= Settings.app.name %>"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="<%=category_url(assigned_locale, @category.slug)%>"/>
   <meta property="og:locale" content="<%=assigned_locale%>" />
@@ -21,7 +21,7 @@
   <!--
   <PageMap>
      <DataObject type="document">
-        <Attribute name="title"><%= @category.name %> | <%= Settings.app.name %></Attribute>
+        <Attribute name="title"><%= @title %> | <%= Settings.app.name %></Attribute>
         <Attribute name="author">FashionFly</Attribute>
         <% if @scope.page("__categories__#{@category.try(:slug)}").present? %>
           <Attribute name="description">

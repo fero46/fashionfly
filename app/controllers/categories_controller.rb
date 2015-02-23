@@ -14,7 +14,9 @@ class CategoriesController < ScopeController
     @main_category  = category_select(@category)  
     if @category.present?
       params[:category] = @category.id
-      @products = ProductSearchService.new(@scope, params).products
+      pss = ProductSearchService.new(@scope, params)
+      @products = pss.products
+      @title = pss.index_title(@category)
     else
       @products = Product.none.page()
     end
