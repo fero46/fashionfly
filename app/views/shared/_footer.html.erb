@@ -10,13 +10,13 @@
     <div class="second_column">
       <h2><%= t('.information') %></h2>
       <ul>
-        <li><%= link_to raw(t('.about')), main_app.about_path(assigned_locale) %></li>
-        <li><%= link_to raw(t('.team')), main_app.team_path(assigned_locale) %></li>
-        <li><%= link_to raw(t('.faq')), main_app.faq_path(assigned_locale) %></li>
-        <li><%= link_to raw(t('.impress')), main_app.impress_path(assigned_locale) %></li>
-        <li><%= link_to raw(t('.terms')), main_app.terms_path(assigned_locale) %></li>
-        <li><%= link_to raw(t('.privacy')), main_app.privacy_path(assigned_locale) %></li>
-        <li><%= link_to raw(t('.disclaimer')), main_app.disclaimer_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.about')), about_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.team')), team_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.faq')), faq_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.impress')), impress_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.terms')), terms_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.privacy')), privacy_path(assigned_locale) %></li>
+        <li><%= link_to raw(t('.disclaimer')), disclaimer_path(assigned_locale) %></li>
       </ul>
     </div>
     <div class="first_column">
