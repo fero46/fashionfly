@@ -29,7 +29,9 @@ class ImageCropService
       product.save      
     end
 
-    add_white_border = "convert #{image_path} -bordercolor white -border 3x3 #{image_path}"
+    color = first_color(image_path)
+
+    add_white_border = "convert #{image_path} -bordercolor #{color} -border 3x3 #{image_path}"
     remove_background_cmd = "convert #{image_path} -fill none -fuzz 4% -draw 'matte 0,0 floodfill' -flop  -draw 'matte 0,0 floodfill' -flop #{output_path}"
 
     system add_white_border
@@ -113,6 +115,19 @@ class ImageCropService
   end
 
 private 
+
+  def first_color image_path
+    begin
+      img =  Magick::Image.read(image_path).first
+      pix = img.scale(1, 1)
+      first_color_hex = pix.to_color(pix.pixel_color(0,0))
+      first_color_hex = first_color_hex[0...(7-first_color_hex.length)] if first_color_hex.length > 7
+      return first_color_hex
+    rescue => e
+      puts e
+      return "white"
+    end
+  end
 
   def download_image image_path 
     begin
