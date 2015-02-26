@@ -1,4 +1,3 @@
-require 'uri'
 FashionFlyEditor::Collection.class_eval do
   include SimpleHashtag::Hashtaggable
   has_many :favorites, as: :markable, dependent: :destroy
@@ -53,9 +52,7 @@ FashionFlyEditor::Collection.class_eval do
   end
 
    def url_safe url
-     URI.escape(url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').
-                  gsub(/-{2,}/, '-').
-                  gsub(/^-|-$/, '').gsub('.',''))
+     url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '')
    end
 
    def to_param
