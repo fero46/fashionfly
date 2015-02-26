@@ -25,7 +25,7 @@ class ProfilesController < ScopeController
   def email_edit
     @user = current_user
     @user.confirm_email
-    if @user.update!(email_attributes)
+    if @user.update(email_attributes)
       @mail_send = true
     end
     @show_form = true
