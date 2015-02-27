@@ -5,7 +5,7 @@ class CommentMailer < ApplicationMailer
     @collection = comment.commentable
     @user = @collection.user
     if @user.present?
-      @locale = @user.try(:scope).try(:locale)
+      @locale = @user.try(:scope).try(:language)
       @locale = 'en' if locale.blank?
       I18n.with_locale(@locale) do
         mail(to: @user.email, subject: t('comment_mailer.collection.subject'))
