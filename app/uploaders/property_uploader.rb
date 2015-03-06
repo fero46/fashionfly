@@ -10,9 +10,6 @@ class PropertyUploader < CarrierWave::Uploader::Base
     storage :fog
   end
 
-  
-  process resize_to_fill: [360, 300]
-
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
