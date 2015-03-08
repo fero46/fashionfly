@@ -3,7 +3,7 @@ class TrendCheckWorker
 
   def perform
 
-    config = ::Configuration.where(name: 'trend_check_worker').first_or_create
+    config = ::Configuration.where(key: 'trend_check_worker').first_or_create
     return if config.value == 'running'
     begin
       config.value = 'running'

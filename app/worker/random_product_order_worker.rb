@@ -2,7 +2,7 @@ class RandomProductOrderWorker
   include Sidekiq::Worker
 
   def perform
-    config = ::Configuration.where(name: 'random_product_order_worker').first_or_create
+    config = ::Configuration.where(key: 'random_product_order_worker').first_or_create
     return if config.value == 'running'
     begin
       config.value = 'running'

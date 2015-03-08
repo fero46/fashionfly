@@ -2,7 +2,7 @@ class BrandCategoryWorker
   include Sidekiq::Worker
 
   def perform
-    config = ::Configuration.where(name: 'brand_category_worker').first_or_create
+    config = ::Configuration.where(key: 'brand_category_worker').first_or_create
     return if config.value == 'running'
     begin
       config.value = 'running'
