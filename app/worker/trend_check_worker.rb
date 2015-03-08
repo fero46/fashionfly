@@ -2,30 +2,40 @@ class TrendCheckWorker
   include Sidekiq::Worker
 
   def perform
-    
-    Product.where(published: true).find_in_batches(batch_size: 500) do |group|
-      group.each { |product| copy_trend(product) }
+
+    config = ::Configuration.where(name: 'trend_check_worker').first_or_create
+    return if config.value == 'running'
+    begin
+      config.value = 'running'
+      config.save
+      Product.where(published: true).find_in_batches(batch_size: 500) do |group|
+        group.each { |product| copy_trend(product) }
+      end
+
+      FashionFlyEditor::Collection.where(published: true).find_in_batches(batch_size: 500) do |group|
+        group.each { |collection| copy_trend(collection) }
+      end
+
+      end_week =  Date.today.beginning_of_week.to_datetime
+      start_week = end_week - 7.days
+
+      Favorite.where('created_at >= ?', start_week).where('created_at < ?', end_week).find_in_batches(batch_size: 500) do |group|
+        group.each { |favorite| increase_trend(favorite) }
+      end
+
+      Product.where(published: true).find_in_batches(batch_size: 500) do |group|
+        group.each { |product| recalculate_trend(product) }
+      end
+
+      FashionFlyEditor::Collection.where(published: true).find_in_batches(batch_size: 500) do |group|
+        group.each { |collection| recalculate_trend(collection) }
+      end
+    rescue Exception => e
+      puts e
+    ensure
+      config.value = 'not_running'
+      config.save
     end
-
-    FashionFlyEditor::Collection.where(published: true).find_in_batches(batch_size: 500) do |group|
-      group.each { |collection| copy_trend(collection) }
-    end
-
-    end_week =  Date.today.beginning_of_week.to_datetime
-    start_week = end_week - 7.days
-
-    Favorite.where('created_at >= ?', start_week).where('created_at < ?', end_week).find_in_batches(batch_size: 500) do |group|
-      group.each { |favorite| increase_trend(favorite) }
-    end
-
-    Product.where(published: true).find_in_batches(batch_size: 500) do |group|
-      group.each { |product| recalculate_trend(product) }
-    end
-
-    FashionFlyEditor::Collection.where(published: true).find_in_batches(batch_size: 500) do |group|
-      group.each { |collection| recalculate_trend(collection) }
-    end
-
   end
 
   def self.check
