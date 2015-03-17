@@ -25,12 +25,12 @@ module Fashionfly
     config.i18n.default_locale = :de
 
     config.middleware.use Rack::Attack
-    config.middleware.use ExceptionNotification::Rack,
-      :email => {
-          :email_prefix => "[Fehlermeldung] ",
-          :sender_address => %{"FashionFly Team" <service@fashionfly.de>},
-          :exception_recipients => %w{ferhat@hansehype.de}
-        }
+    # config.middleware.use ExceptionNotification::Rack,
+    #   :email => {
+    #       :email_prefix => "[Fehlermeldung] ",
+    #       :sender_address => %{"FashionFly Team" <service@fashionfly.de>},
+    #       :exception_recipients => %w{ferhat@hansehype.de}
+    #     }
 
   end
 end
