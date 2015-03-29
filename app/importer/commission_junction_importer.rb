@@ -57,7 +57,11 @@ class CommissionJunctionImporter < GenericImporter
   end
 
   def product_name values
-    name = super.split(' ').map{|w| w.gsub(/(\W|\d)/, "")}.reject! { |c| c.empty? }.join(' ')
+    begin
+      name = super.split(' ').map{|w| w.gsub(/(\W|\d)/, "")}.reject! { |c| c.empty? }.join(' ')
+    rescue
+      name = super
+    end
     remove_size_from_name(name)
   end
 
