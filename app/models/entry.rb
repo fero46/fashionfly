@@ -2,11 +2,19 @@ class Entry < ActiveRecord::Base
   belongs_to :feed
   belongs_to :scope
   serialize :content
+  mount_uploader :image, BlogUploader
 
   default_scope {order(:published => :desc)}
 
   acts_as_taggable
 
+
+  after_create :check_image
+
+
+  def check_image
+    EntryImageCacheWorker.run(self.id)
+  end
 
    def url_safe url
      url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '')
@@ -14,6 +22,21 @@ class Entry < ActiveRecord::Base
 
    def to_param
      "#{id}-#{url_safe(title)}"
+   end
+
+
+   def cache_remote_image
+    html = Nokogiri::HTML.fragment(self.content)
+    images = html.css('img')
+    if images.any? && self.image.blank?
+      src = images.attr('src').value()
+      self.remote_image_url = src
+      ActiveRecord::Base.connection_pool.with_connection do
+        save
+      end
+    else
+      nil
+    end
    end
 
    def products

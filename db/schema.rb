@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225220104) do
+ActiveRecord::Schema.define(version: 20150405152657) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -221,6 +221,7 @@ ActiveRecord::Schema.define(version: 20150225220104) do
     t.integer  "feed_id",          limit: 4
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.string   "image",            limit: 255
   end
 
   add_index "entries", ["feed_id"], name: "index_entries_on_feed_id", using: :btree

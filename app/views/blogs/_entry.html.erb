@@ -1,8 +1,5 @@
 <div class="entry item">
-  <% html = Nokogiri::HTML.fragment(entry.content)
-    images = html.css('img').collect(&:to_s) #=> ["<img src=\"example.jpg\">"] 
-  %>
-  <%= images.first.html_safe if images.any? %>
+  <%= image_tag(entry.image, alt: entry.title) if entry.image.present? %>
   <div class="inner">
     <h2><%= link_to entry.title, entry.url, target: '_blank' %></h2>
     <div class="author">
