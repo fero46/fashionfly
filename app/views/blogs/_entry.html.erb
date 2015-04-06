@@ -5,7 +5,7 @@
     <div class="author">
       <%= entry.author %>, <%= l entry.published %>
     </div>
-    <p><%= truncate_html(sanitize(entry.summary, :elements => ['b']), length: 150) %></p>
+    <p><%= truncate(sanitize(entry.summary, tags: []), length: 150) %></p>a
     <div class="author" style="padding-top:10px;">
       <%= entry.tags.join(', ') %> 
     </div>
