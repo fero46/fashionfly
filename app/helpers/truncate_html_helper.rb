@@ -1,4 +1,5 @@
 require "rexml/parsers/pullparser"
+require 'htmlentities'
 
 module TruncateHtmlHelper
   # raised when tags could not be fixed up by nokogiri
