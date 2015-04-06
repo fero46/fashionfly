@@ -20,7 +20,9 @@ gem 'tokenizer'
 gem 'unicode'
 gem 'daemons'
 gem 'dalli'
-gem 'truncate_html'
+gem "nokogiri"
+
+gem "htmlentities"
 gem 'agent_orange'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'clockwork'
