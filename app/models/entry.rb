@@ -26,7 +26,11 @@ class Entry < ActiveRecord::Base
 
 
    def cache_remote_image
-    html = Nokogiri::HTML.fragment(self.content)
+
+    inner = self.content if self.content.present?
+    inner = self.summary if inner.blank?
+
+    html = Nokogiri::HTML.fragment(inner)
     images = html.css('img')
     if images.any? && self.image.blank?
       src = images.attr('src').value()
