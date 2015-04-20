@@ -1,0 +1,38 @@
+<div class="small-12 medium-6 mobile-small_view columns">
+  <div class="small-12">
+      <h2 class="small-10 small-push-1"><%=link_to truncate(collection.title, length: 30), collection_path(assigned_locale, collection) %></h2>
+      <div class="image_wrapper">
+        <%=link_to collection_path(assigned_locale, collection) do %>
+          <%= image_tag('', "my-src" => collection.image.preview.url,
+                class: 'collection_image',
+                alt: collection.title,
+                title: collection.title)%>
+          <% end %>
+      </div>
+  </div>
+  <div class="like_box">
+    <a  class="love_button <%= favorite(collection) %>"
+        ng-click="clickFavorite('col',<%= collection.id %>)"
+        id="col<%= collection.id %>"
+        path="<%= collection_favorites_path(assigned_locale, collection) %>"></a>
+    <span class="number"><%= collection.favorites_count %></span>
+    <div class="right">
+            <%= render_shareable  :static_link => true,
+                              :title=> "#{collection.title} | #{user_name collection.user} | #{Settings.app.name}",
+                              :button_caption => t('.share_now'),
+                              :buttons=> ['twitter', 'facebook', 'tumblr', 'google_plus', 'pinterest'],
+                              :media =>  collection.image.original.url,
+                              format: :html %>
+    </div>
+  </div>
+  <div class="profile_box">
+      <span class="image"><%= image_tag collection.user.avatar %></span>
+
+      <span class="create_from">
+<%= raw t('collections.show.created_from', user: user_name(collection.user),
+                            url: user_profile(collection.user)) %> <br />
+
+      </span>
+  </div>
+
+</div>

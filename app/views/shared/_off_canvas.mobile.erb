@@ -1,0 +1,59 @@
+<aside class="left-off-canvas-menu">
+<ul class="off-canvas-list">
+<li><label>FashionFly</label></li>
+
+<% if @category.present? || @outfit_category %>
+    <% if @outfit_category %>
+        <% for category in create_outfit_categories(@category_group) %>
+            <li class="<%= 'active' if @main_category.present? && @main_category.id == category.id %>">
+              <%= link_to category.name, outfit_category_path(assigned_locale, category.slug), title: category.name %>
+            </li>
+        <% end %>
+    <% else %>
+        <% for category in create_categories(@category_group) %>
+            <li class="<%= 'active' if @main_category.present? && @main_category.id == category.id %>">
+              <%= link_to category.name, category_path(assigned_locale, category.slug), title: category.name %>
+            </li>
+        <% end %>
+    <% end %>
+<% else %>
+  <li class="<%= 'selected' if @outfit_category.present?%>">
+      <a  href="<%= outfit_categories_path(assigned_locale) %>"
+          class="item"
+          title="<%= t('shared.header.outfit') %>">
+        <%= t('shared.header.outfit') %>
+    </a>
+  </li>
+
+    <% for category in category_groups %>
+    <li class="<%= 'selected' if @category_group.present? && category.id == @category_group.id %>">
+      <a  href="<%= category_path(assigned_locale, category.slug) %>"
+          class="item"
+          title="<%= category.name %>">
+          <%= category.name %>
+      </a>
+    </li>
+    <% end %>
+
+<% end %>
+<li><label><%= t('.country') %></label></li>
+<% for country in Scope.countries %>
+  <li>
+    <%= link_to generate_name(country[:code]),
+    root_path(locale: country[:locale]) %>
+  </li>
+<% end %>
+
+
+<li><label><%= t('profiles.profile_tabs.information') %></label></li>
+
+<li><%= link_to raw(t('shared.footer.about')), about_path(assigned_locale) %></li>
+<li><%= link_to raw(t('shared.footer.team')), team_path(assigned_locale) %></li>
+<li><%= link_to raw(t('shared.footer.faq')), faq_path(assigned_locale) %></li>
+<li><%= link_to raw(t('shared.footer.impress')), impress_path(assigned_locale) %></li>
+<li><%= link_to raw(t('shared.footer.terms')), terms_path(assigned_locale) %></li>
+<li><%= link_to raw(t('shared.footer.privacy')), privacy_path(assigned_locale) %></li>
+<li><%= link_to raw(t('shared.footer.disclaimer')), disclaimer_path(assigned_locale) %></li>
+
+</ul>
+</aside>

@@ -1,0 +1,185 @@
+<% content_for :title do "#{@product.name} | #{product_brand(@product)} | #{Settings.app.name}"; end %>
+
+<% content_for :meta do %>
+
+<meta property="og:title" content="<%= @product.name %> | <%= product_brand(@product) %> | <%= Settings.app.name %>"/>
+<meta property="og:type" content="product"/>
+<meta property="og:url" content="<%=product_url(@product.locale, @product) %>"/>
+<meta property="og:image" content="<%=@product.original.detail_view.url%>"/>
+<meta property="og:image:width" content="566" />
+<meta property="og:image:height" content="442" />
+<meta property="og:locale" content="<%=assigned_locale%>" />
+<meta property="og:description" content="<%= @product.description %>" />
+<meta property="og:site_name" content="FashionFly" />
+<meta property="og:price:amount" content="<%= @product.price %>" />
+<meta property="og:price:currency" content="<%= @product.currencyCode %>" />
+<meta property="og:availability" content="instock" />
+<meta property="og:rating" content="<%= @product.rate_average.try(:avg) %>" />
+<meta property="og:rating_scale" content="5" />
+<link rel="canonical" href="<%=product_url(@product.locale, @product) %>"/>
+<!--
+<PageMap>
+   <DataObject type="document">
+      <Attribute name="title"><%= @product.name %></Attribute>
+      <Attribute name="brand"><%= product_brand(@product) %></Attribute>
+      <Attribute name="color"><%= product_color(@product) %></Attribute>
+      <Attribute name="description"><%= @product.description %></Attribute>
+      <Attribute name="category"><%= breadcrumb_product_text @product %></Attribute>
+      <Attribute name="likes"><%= @product.favorites_count %></Attribute>
+      <Attribute name="rating">
+          <%= @product.rate_average.try(:avg) %>
+      </Attribute>
+      <Attribute name="last_update"><%= @product.updated_at %></Attribute>
+   </DataObject>
+   <DataObject type="thumbnail">
+      <Attribute name="src" value="<%= @product.original.detail_view.url %>" />
+      <Attribute name="width" value="566" />
+      <Attribute name="height" value="442" />
+   </DataObject>
+</PageMap>
+-->
+<% end %>
+
+<div class="row product_detail_wrapper">
+   <div class="small-10 small-push-1">
+
+      <div class="small_product">
+            <a class="love_button <%= favorite(@product) %>" ng-click="clickFavorite('prod',<%= @product.id %>)"
+                                 id="prod<%= @product.id %>"
+                                 path="<%= product_favorites_path(assigned_locale, @product) %>"></a>
+        <div class="myimage">
+          <%= image_tag '', "my-src" => @product.original.smaller,
+              alt: @product.name,
+              title: @product.name,
+              "ng-click" => "callForm(#{@product.id})" %>
+        </div>
+        <div class="product_info">
+          <h4 title="<%=@product.name%>" ng-click="callForm(<%= @product.id %>)"><%= truncate @product.name, length: 40 %></h4>
+         <p><%= @product.description %></p>
+          <h5><%= @product.categories.last.name %></h5>
+          <h6><%= @product.brand.name %></h6>
+          <h4><%= number_to_currency @product.price, unit: @product.currencyCode%></h4>
+
+            <%= form_tag refshop_path(assigned_locale), method: 'post', id: "callForm#{@product.id}" , target: "_blank" do %>
+            <%= hidden_field_tag 'product_id', @product.id %>
+            <%= button_tag t('products.show.to_shop'), class: 'button' %>
+          <% end %>
+        </div>
+      </div>
+
+
+
+   </div>
+</div>
+<br />
+<br />
+<% if @product.used_in_collections.present? %>
+<div class="detail_wrapper">
+
+  <div class="row" ng-controller="FavoriteController">
+      <h2 class="small-10 small-push-1" style="text-align:center; font-size:1.3rem;
+                                             border-bottom:1px solid black">
+         <%= t('.used_in_collections') %>
+      </h2>
+    <% for collection in @product.used_in_collections %>
+<!-- collection -->
+
+<div class="small-12 medium-6 mobile-small_view columns">
+  <div class="small-12">
+      <h2 class="small-10 small-push-1"><%=link_to truncate(collection.title, length: 30), collection_path(assigned_locale, collection) %></h2>
+      <div class="image_wrapper">
+        <%=link_to collection_path(assigned_locale, collection) do %>
+          <%= image_tag('', "my-src" => collection.image.preview.url,
+                class: 'collection_image',
+                alt: collection.title,
+                title: collection.title)%>
+          <% end %>
+      </div>
+  </div>
+  <div class="like_box">
+    <a  class="love_button <%= favorite(collection) %>"
+        ng-click="clickFavorite('col',<%= collection.id %>)"
+        id="col<%= collection.id %>"
+        path="<%= collection_favorites_path(assigned_locale, collection) %>"></a>
+    <span class="number"><%= collection.favorites_count %></span>
+    <div class="right">
+            <%= render_shareable  :static_link => true,
+                              :title=> "#{collection.title} | #{user_name collection.user} | #{Settings.app.name}",
+                              :button_caption => t('.share_now'),
+                              :buttons=> ['twitter', 'facebook', 'tumblr', 'google_plus', 'pinterest'],
+                              :media =>  collection.image.original.url,
+                              format: :html %>
+    </div>
+  </div>
+  <div class="profile_box">
+      <span class="image"><%= image_tag collection.user.avatar %></span>
+
+      <span class="create_from">
+<%= raw t('collections.show.created_from', user: user_name(collection.user),
+                            url: user_profile(collection.user)) %> <br />
+
+      </span>
+  </div>
+
+</div>
+
+
+<!-- collection end -->
+    <% end %>
+  </div>
+</div>
+<br />
+<br />
+<% end %>
+
+<div class="detail_wrapper">
+
+  <div class="row" ng-controller="FavoriteController">
+   <h2 class="small-10 small-push-1" style="text-align:center; font-size:1.3rem; border-bottom:1px solid black"><%= t('.similar_products') %></h2>
+
+    <% for product in @product.similar_products %>
+      <div class="small-5 small-push-1 columns product_preview">
+
+<!-- ---- -->
+<div class="small_product">
+      <a class="love_button <%= favorite(product) %>" ng-click="clickFavorite('prod',<%= product.id %>)"
+                           id="prod<%= product.id %>"
+                           path="<%= product_favorites_path(assigned_locale, product) %>"></a>
+  <div class="myimage">
+    <%= image_tag '', "my-src" => product.original.smaller,
+        alt: product.name,
+        title: product.name,
+        "ng-click" => "callForm(#{product.id})" %>
+  </div>
+  <div class="product_info">
+    <h4 title="<%=product.name%>" ng-click="callForm(<%= product.id %>)"><%= truncate product.name, length: 40 %></h4>
+    <%= rating_for product, "rate", :star => 5 %>
+
+    <%= image_tag product.affiliate.logo,
+                  title: product.affiliate.name,
+                  alt: product.name,
+                  'ng-click' => "callForm(#{product.id})",
+                  class: 'affilogo' %>
+    <h5><%= product.categories.last.name %></h5>
+    <h6><%= product.brand.name %></h6>
+    <h4><%= number_to_currency product.price, unit: product.currencyCode%></h4>
+
+      <%= form_tag refshop_path(assigned_locale), method: 'post', id: "callForm#{product.id}" , target: "_blank" do %>
+      <%= hidden_field_tag 'product_id', product.id %>
+      <%= button_tag t('products.show.to_shop'), class: 'button' %>
+    <% end %>
+    <br />
+    <strong><%= link_to t('.details'), product_path(assigned_locale, product) %></strong>
+    <br />
+  </div>
+</div>
+<!-- ---- -->
+
+
+      </div>
+    <% end %>
+
+    <div class="small-5 small-push-1 columns">
+    </div>
+
+</div></div>
