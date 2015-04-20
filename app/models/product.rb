@@ -132,6 +132,7 @@ class Product < ActiveRecord::Base
   end
 
   def url_safe url
+    return '' if url.blank?
     url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '')
   end
 

@@ -1,0 +1,122 @@
+@import "../color";
+.custom_topbar{
+  text-align: center;
+  padding: 0rem 0.5rem;
+  a{
+    color:white;
+    font-size: 1.4rem;
+    img{
+      height: 1.5rem;
+      position: relative;
+      top:-2px;
+    }
+    text-transform: uppercase;
+  }
+}
+
+.product_info{
+  h5,h6{
+    font-size: 0.8rem;
+    line-height: 1rem;
+    height: 1rem;
+    text-align: center;
+  }
+  h4{
+    font-size: 1rem;
+    line-height: 1.1rem;
+    height: 4.4rem;
+    text-align: center;
+  }
+  .button{
+    margin-top: 10px;
+    background: $green;
+    font-size: 1rem;
+    padding: 0.4rem 0.1rem;
+    text-align: center;
+    width: 100%;
+  }
+  a{
+    position: relative;
+    top:-1rem;
+    font-size: 1rem;
+  }
+  text-align: center;
+  img{
+    display: inline-block;
+  }
+}
+
+  .myimage{
+    text-align: center;
+  }
+
+
+
+.product_preview{
+  .myimage{
+    height: 140px;
+    img{
+      max-height: 140px;
+    }
+  }
+      .affilogo{
+      display: none;
+    }
+}
+
+.product_detail_wrapper{
+  .product_info h4{
+    height: auto;
+    font-weight: bold;
+  }
+}
+
+.pagination_wrapper{
+  .pagination{
+    padding: 2rem 0rem;
+    font-size: 1rem;
+  }
+  span{
+    a{
+      background: $blue;
+      color: white;
+      padding: 0.2rem 0.4rem;
+    }
+  }
+}
+
+.product_overview_item{
+  .myimage{
+    height: 140px;
+    margin-top: 1rem;
+    img{
+      max-height: 140px;
+    }
+  }
+      .affilogo{
+      display: none;
+    }
+    button{
+      display: none
+    }
+    strong{
+      a{
+      padding: 0.5rem 1rem;
+      background: $green;
+      color: white;
+      }
+    }
+
+}
+
+.affilogo, .star{display: none;}
+
+nav.share {display:inline-block;} /* shareable's nav tag */
+nav.share div {float:left;}
+nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium sized buttons */
+#___plusone_0 {font-size: default !important;}
+.fb_iframe_widget span { vertical-align: top; }
+.fb_edge_widget_with_comment { vertical-align: top;}
+.fb-like{display:inline-block}
+* html .fb-like{display:inline}/* ie6 inline block fix*/
+*+html .fb-like{display:inline}/* ie7 inline block fix*/

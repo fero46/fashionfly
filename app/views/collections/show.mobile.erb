@@ -1,0 +1,60 @@
+<% content_for :title do %>
+  <% cache ['title', @scope , @collection] do %>
+<%= "#{@collection.title} | #{user_name @collection.user} | #{Settings.app.name}" %>
+  <% end %>
+<% end %>
+
+<% content_for :meta do %>
+    <% cache ['meta', @scope ,@collection] do %>
+      <meta property="og:title" content="<%= @collection.title %> | <%= user_name @collection.user %> | <%= Settings.app.name %>"/>
+      <meta property="og:type" content="website"/>
+      <meta property="og:url" content="<%=collection_url(@collection.locale, @collection)%>"/>
+      <meta property="og:image" content="<%=@collection.image.original.url%>"/>
+      <meta property="og:image:width" content="550" />
+      <meta property="og:image:height" content="650" />
+      <meta property="og:locale" content="<%=assigned_locale%>" />
+      <meta property="og:description" content="<%= @collection.description %>" />
+      <link rel="canonical" href="<%= collection_url(@collection.locale, @collection)%>"/>
+
+      <!--
+      <PageMap>
+         <DataObject type="document">
+            <Attribute name="title"><%= @collection.title %></Attribute>
+            <Attribute name="author"><%= user_name(@collection.user) %></Attribute>
+            <Attribute name="description"><%= @collection.description %></Attribute>
+            <Attribute name="category"><%= breadcrumb_collection_text @collection%></Attribute>
+            <Attribute name="likes"><%= @collection.favorites_count %></Attribute>
+            <Attribute name="rating">
+                <%= @collection.rate_average.try(:avg) %>
+            </Attribute>
+            <Attribute name="last_update"><%= @collection.updated_at %></Attribute>
+         </DataObject>
+         <DataObject type="thumbnail">
+            <Attribute name="src" value="<%= @collection.image.original.url %>" />
+            <Attribute name="width" value="550" />
+            <Attribute name="height" value="650" />
+         </DataObject>
+      </PageMap>
+      -->
+  <% end %>
+
+<% end %>
+<div class="detail_wrapper">
+  <%= render @collection %>
+  <div class="small-10 small-push-1">
+    <%= @collection.description %>
+    <br />
+    <%=t('action.viewed', count: @collection.visits_count) %>
+    <h2><%= t('.used_products') %></h2>
+  </div>
+  <div class"row" ng-controller="FavoriteController">
+
+    <% for product in @collection.products %>
+      <div class="small-5 small-push-1 columns product_preview">
+        <%= render 'products/small_product', product: product, formats: [:mobile]%>
+      </div>
+    <% end %>
+    <div class="small-5 small-push-1 columns">
+    </div>
+  </div>
+</div>

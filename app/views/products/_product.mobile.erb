@@ -1,0 +1,35 @@
+<div class="small-5 small-push-1 columns">
+
+<div class="small_product">
+      <a class="love_button <%= favorite(product) %>" ng-click="clickFavorite('prod',<%= product.id %>)"
+                           id="prod<%= product.id %>"
+                           path="<%= product_favorites_path(assigned_locale, product) %>"></a>
+  <div class="myimage">
+    <%= image_tag '', "my-src" => product.original.smaller,
+        alt: product.name,
+        title: product.name,
+        "ng-click" => "callForm(#{product.id})" %>
+  </div>
+  <div class="product_info">
+    <h4 title="<%=product.name%>" ng-click="callForm(<%= product.id %>)"><%= truncate product.name, length: 40 %></h4>
+    <%= rating_for product, "rate", :star => 5 %>
+
+    <%= image_tag product.affiliate.logo,
+                  title: product.affiliate.name,
+                  alt: product.name,
+                  'ng-click' => "callForm(#{product.id})",
+                  class: 'affilogo' %>
+    <h5><%= product.categories.last.name %></h5>
+    <h6><%= product.brand.name %></h6>
+    <h4><%= number_to_currency product.price, unit: product.currencyCode%></h4>
+
+      <%= form_tag refshop_path(assigned_locale), method: 'post', id: "callForm#{product.id}" , target: "_blank" do %>
+      <%= hidden_field_tag 'product_id', product.id %>
+      <%= button_tag t('products.show.to_shop'), class: 'button' %>
+    <% end %>
+    <br />
+    <strong><%= link_to t('.details'), product_path(assigned_locale, product) %></strong>
+    <br />
+  </div>
+</div>
+</div>

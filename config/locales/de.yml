@@ -242,6 +242,8 @@ de:
     sidebar:
       title: Wettbewerbe
   shared:
+    off_canvas:
+      country: Land
     exit_popup:
       title: Nicht das Gefunden was dir gefällt ?
       slogan: "Stöber durch %{number} Produkte"

@@ -30,6 +30,10 @@ FashionFlyEditor::Collection.class_eval do
     where(published: true).order('actual_trend DESC')
   end
 
+  def self.newest
+    where(published: true).order('created_at DESC')
+  end
+
   def locale
     scope.locale
   end
@@ -52,6 +56,7 @@ FashionFlyEditor::Collection.class_eval do
   end
 
    def url_safe url
+      return '' if url.blank?
      url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '')
    end
 
