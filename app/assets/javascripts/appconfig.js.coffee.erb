@@ -6,7 +6,8 @@ $(document).ready(() ->
       $('.exit_popup').fadeOut() 
     )
     $('form').submit(->
-      window.show_exit()
+      if(!$(this).hasClass('no_exit_popup'))
+        window.show_exit()
     )
 )
 

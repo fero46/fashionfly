@@ -101,7 +101,7 @@
         <h3><%= t('.create_comment') %></h3>
         <%= form_for :comment, 
                     url: collection_comments_path(locale: assigned_locale, collection_id:@collection),
-                    html:{class: 'formular'} do |f| %>
+                    html:{class: 'formular no_exit_popup'} do |f| %>
           <%= f.text_area :comment, placeholder: t('.your_comment') %>
 
           <%= f.submit t('.save_comment') ,class: 'button' %>
