@@ -55,15 +55,18 @@ FashionFlyEditor::Collection.class_eval do
     build_image
   end
 
-   def url_safe url
+  def url_safe url
       return '' if url.blank?
      url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '')
-   end
+  end
 
-   def to_param
+  def to_param
      "#{id}-#{url_safe(title)}"
-   end
+  end
 
+  def price
+    products.map{|p| p.price }.reduce(:+)
+  end
 private
 
   def link_template name, link

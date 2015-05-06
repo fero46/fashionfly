@@ -45,6 +45,23 @@ Fashionfly::Application.routes.draw do
 
   resources :widgets
 
+  namespace :endpoint do
+    namespace :v1 do
+      scope :defaults => { :format => 'json' } do
+        resources :scopes, only: [:index, :show] do
+          resources :categories, only: [:index, :show]
+          resources :products, only: [:index, :show]
+          resources :collections_categories, only: [:index, :show]
+          resources :collections, except: :destroy do
+            resources :comments
+          end
+          resources :users
+          resources :session
+        end
+      end
+    end
+  end
+
   scope "/:locale" do
     get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
     get "hashtags",            to: "hashtags#index",     as: :hashtags
