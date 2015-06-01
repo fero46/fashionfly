@@ -17,7 +17,7 @@ class Entry < ActiveRecord::Base
   end
 
    def url_safe url
-     url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '')
+     url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '') if url.exists
    end
 
    def to_param
@@ -44,7 +44,9 @@ class Entry < ActiveRecord::Base
    end
 
    def products
-    analyze_text = self.content.downcase
+    analyze_text = self.content if self.content.present?
+    analyze_text = self.summary if analyze_text.blank?
+    analyze_text = analyze_text.downcase if analyze_text.present?
     categories = scope.categories.map {|n| [n.id , n.name.downcase]}
     colors = Colorization.all.map{ |c| c.name }
     color_map = {}
@@ -52,12 +54,14 @@ class Entry < ActiveRecord::Base
     cat = nil
     col = nil
 
-    for category in categories
-      cat = category[0] if analyze_text[category[1]]
-    end
+    if analyze_text.present?
+      for category in categories
+        cat = category[0] if analyze_text[category[1]]
+      end
 
-    for key in color_map.keys
-      col = color_map[key] if analyze_text[key]
+      for key in color_map.keys
+        col = color_map[key] if analyze_text[key]
+      end
     end
 
     params = {}
