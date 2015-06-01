@@ -17,7 +17,7 @@ class Entry < ActiveRecord::Base
   end
 
    def url_safe url
-     url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '') if url.exists
+     url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '') if url.present?
    end
 
    def to_param
