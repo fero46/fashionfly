@@ -5,6 +5,10 @@ class EntriesController < ApplicationController
   end
 
   def show
-    @entry = @scope.entries.find(params[:id])
+    begin
+      @entry = @scope.entries.find(params[:id])
+    rescue
+      redirect_to root_path
+    end
   end
 end
