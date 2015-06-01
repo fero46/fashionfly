@@ -55,7 +55,7 @@ class Entry < ActiveRecord::Base
     col = nil
 
     if analyze_text.present?
-      analyze_text = analyze_text.encode("iso-8859-1").force_encoding("utf-8")
+      analyze_text = analyze_text.force_encoding("utf-8")
       for category in categories
         cat = category[0] if analyze_text[category[1]]
       end
