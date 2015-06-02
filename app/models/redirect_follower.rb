@@ -1,5 +1,6 @@
 require 'logger'
 require 'net/http'
+require  'open-uri'
 
 class RedirectFollower
   class TooManyRedirects < StandardError; end
@@ -18,7 +19,11 @@ class RedirectFollower
   def resolve
     raise TooManyRedirects if redirect_limit < 0
     
-    self.response = Net::HTTP.get_response(URI.parse(url))
+
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri, {"User-Agent" => "firefox"})
+    self.response = http.request(request)
 
     logger.info "redirect limit: #{redirect_limit}"
     logger.info "response code: #{response.code}"
@@ -37,6 +42,7 @@ class RedirectFollower
   end
 
   def redirect_url
+    puts response
     if response['location'].nil?
       response.body.match(/<a href=\"([^>]+)\">/i)[1]
     else

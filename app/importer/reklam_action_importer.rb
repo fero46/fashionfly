@@ -42,10 +42,14 @@ class ReklamActionImporter < AffilinetImporter
       check_price(node, values)
       check_details(node, values)
       check_deeplinks(node, values)
-      node.children.each do |first_level|
-        check_images(first_level, values)
+      if find_mapping(product_category(values)).present?
+        node.children.each do |first_level|
+          check_images(first_level, values)
+        end
       end
       id = values[NUMBER]
+
+
       insert_values(id, values)
       @affiliate.skip_items = actual_counter
       @affiliate.save
@@ -148,7 +152,7 @@ class ReklamActionImporter < AffilinetImporter
           sexes = nil
         end
       end
-      if subnode.name = GENDER
+      if subnode.name == GENDER
         content = subnode.content
         if content == "M" || content == "m"
           sexes = "ERKEK"

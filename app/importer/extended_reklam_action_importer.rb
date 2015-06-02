@@ -8,14 +8,14 @@ class ExtendedReklamActionImporter < ReklamActionImporter
     for subnode in node.children
       if subnode.name ==  MAIN_CAT || subnode.name == SUBCAT
         cat = "#{cat} - " if cat != ""
-        cat = "#{cat}#{subnode.content}"
+        cat = "#{cat}#{subnode.content}".strip
         switch_to_detail = true
       end
       if subnode.name == "Categories"
         for catigo_node in subnode.children
           cat = "" if switch_to_detail
           cat = "#{cat} - " if cat != ""
-          cat = "#{cat}#{catigo_node.content}"
+          cat = "#{cat}#{catigo_node.content}".strip
           switch_to_detail = false
         end
       end
@@ -29,7 +29,7 @@ class ExtendedReklamActionImporter < ReklamActionImporter
           sexes = nil
         end
       end
-      if subnode.name = GENDER
+      if subnode.name == GENDER
         content = subnode.content
         if content == "M" || content == "m"
           sexes = "ERKEK"
@@ -39,7 +39,7 @@ class ExtendedReklamActionImporter < ReklamActionImporter
       end
     end
     cat = "#{sexes} - #{cat}" if sexes.present?
-    cat
+    cat.strip
   end
 
 

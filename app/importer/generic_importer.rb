@@ -80,7 +80,7 @@ class GenericImporter
       if product.present?
         product.dirty = false
         product.published = false
-        product.save
+        product.save!
       end
     end    
   end
