@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .entry_show{
+  img{
+    max-width: 530px !important;
+  }
   p{
     margin-bottom: 20px;
   }
