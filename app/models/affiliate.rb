@@ -4,7 +4,7 @@ class Affiliate < ActiveRecord::Base
   has_many :products
   def self.IMPORTERS
     [ :GenericImporter, :AffilinetImporter, :GaleriaImporter, 
-      :GermanEspritImporter, :ReklamActionImporter, :MomodaImporter,
+      :GermanEspritImporter, :ReklamActionImporter, :MomodaImporter,:ExtendedReklamActionImporter,
       :CommissionJunctionImporter, :AffiliateWindowImporter, :WConceptImporter, 
       :MyBagImporter].sort
   end
