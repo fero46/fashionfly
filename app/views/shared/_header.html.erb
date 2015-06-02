@@ -9,6 +9,11 @@
           <% if current_user.present? %>
             <li class="dropdownmenu"><%=link_to "#{current_user.name}", user_profile(current_user) %>
               <ul>
+              <% if current_user.is_admin? %>
+              <li>
+                <%= link_to t('.backend'), backend_root_path %>
+              </li>
+              <% end %>
               <li>
                   <%= link_to t('.my_fashionfly'), user_profile(current_user), class: 'item', title: t('.my_fashionfly') %>
               </li>
