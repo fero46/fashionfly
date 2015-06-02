@@ -8,7 +8,7 @@ class MomodaImporter < ReklamActionImporter
                   gsub('500/500', '1000/1000').
                   gsub('600/500', '1000/1000').
                   gsub('700/500', '1000/1000').
-                  gsub('800/800', '1000/1000')
+                  gsub('800/800', '1000/1000') if values[IMAGES].present?
   end 
 
 end
