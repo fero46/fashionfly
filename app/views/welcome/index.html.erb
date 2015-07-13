@@ -7,9 +7,11 @@
 
 <% content_for :meta do %>
   <% for scope in Scope.where(published: true) %>
+    <% if scope.id != @scope.id %>
     <link rel="alternate"
           href="<%= root_url(locale: scope.locale)%>"
           hreflang="<%= scope.region_code %>" />
+    <% end %>
   <% end %>
 
   <% if @scope.meta_keywords.present? %>
