@@ -49,7 +49,21 @@
   </div>
 </div>
 
-<%= javascript_include_tag "mobile", async: true %>
+<script async type="text/javascript">
+  function loadJS( src, cb ){
+    "use strict";
+    var ref = window.document.getElementsByTagName( "script" )[ 0 ];
+    var script = window.document.createElement( "script" );
+    script.src = src;
+    script.async = true;
+    ref.parentNode.insertBefore( script, ref );
+    if (cb && typeof(cb) === "function") {
+      script.onload = cb;
+    }
+    return script;
+  }
+  loadJS('<%= asset_path  "mobile.js" %>');
+</script>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
