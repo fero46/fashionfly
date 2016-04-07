@@ -521,48 +521,6 @@ ActiveRecord::Schema.define(version: 20150524083146) do
 
   add_index "rebuilders", ["collection_id"], name: "index_rebuilders_on_collection_id", unique: true, using: :btree
 
-  create_table "s_articles_details", force: :cascade do |t|
-    t.integer "articleID",      limit: 4,                            default: 0, null: false
-    t.string  "ordernumber",    limit: 40,                                       null: false
-    t.string  "suppliernumber", limit: 255
-    t.integer "kind",           limit: 4,                            default: 0, null: false
-    t.string  "additionaltext", limit: 255
-    t.integer "impressions",    limit: 4,                            default: 0, null: false
-    t.integer "sales",          limit: 4,                            default: 0, null: false
-    t.integer "active",         limit: 4,                            default: 0, null: false
-    t.integer "instock",        limit: 4
-    t.integer "stockmin",       limit: 4
-    t.decimal "weight",                     precision: 10, scale: 3
-    t.integer "position",       limit: 4,                                        null: false
-    t.decimal "width",                      precision: 10, scale: 3
-    t.decimal "height",                     precision: 10, scale: 3
-    t.decimal "length",                     precision: 10, scale: 3
-    t.string  "ean",            limit: 255
-    t.integer "unitID",         limit: 4
-    t.integer "purchasesteps",  limit: 4
-    t.integer "maxpurchase",    limit: 4
-    t.integer "minpurchase",    limit: 4
-    t.decimal "purchaseunit",               precision: 11, scale: 4
-    t.decimal "referenceunit",              precision: 10, scale: 3
-    t.string  "packunit",       limit: 255
-    t.date    "releasedate"
-    t.integer "shippingfree",   limit: 4,                            default: 0, null: false
-    t.string  "shippingtime",   limit: 11
-  end
-
-  add_index "s_articles_details", ["articleID"], name: "articleID", using: :btree
-  add_index "s_articles_details", ["kind", "sales"], name: "get_similar_articles", using: :btree
-  add_index "s_articles_details", ["ordernumber"], name: "ordernumber", unique: true, using: :btree
-  add_index "s_articles_details", ["releasedate"], name: "releasedate", using: :btree
-  add_index "s_articles_details", ["sales", "impressions", "articleID"], name: "articles_by_category_sort_popularity", using: :btree
-
-  create_table "s_core_states", force: :cascade do |t|
-    t.string  "description", limit: 255, null: false
-    t.integer "position",    limit: 4,   null: false
-    t.string  "group",       limit: 25,  null: false
-    t.integer "mail",        limit: 4,   null: false
-  end
-
   create_table "scopes", force: :cascade do |t|
     t.string   "country_code",     limit: 255
     t.string   "locale",           limit: 255
@@ -622,6 +580,8 @@ ActiveRecord::Schema.define(version: 20150524083146) do
   end
 
   add_index "simple_hashtag_hashtags", ["name", "scope_id"], name: "index_simple_hashtag_hashtags_on_name_and_scope_id", unique: true, using: :btree
+  add_index "simple_hashtag_hashtags", ["name"], name: "index_simple_hashtag_hashtags_on_name", using: :btree
+  add_index "simple_hashtag_hashtags", ["scope_id"], name: "index_simple_hashtag_hashtags_on_scope_id", using: :btree
 
   create_table "synonyms", force: :cascade do |t|
   end

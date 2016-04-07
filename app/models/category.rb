@@ -30,7 +30,7 @@ class Category < ActiveRecord::Base
     end
 
     def create_slug category
-      return scope.locale if category.blank?
+      return '' if category.blank?
       parent = category.category
       parent_slug = create_slug(parent) + "_"
       return parent_slug + clean_name(category.name).try(:downcase)

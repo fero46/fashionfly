@@ -21,6 +21,7 @@ gem 'unicode'
 gem 'daemons'
 gem 'dalli'
 gem "nokogiri"
+gem "rubyzip"
 
 
 gem "htmlentities"

@@ -3,6 +3,6 @@ class AddScopeToUsers < ActiveRecord::Migration
     add_column :users, :scope_id, :integer
     add_index :users, :scope_id
     scope = Scope.first
-    User.update_all(scope_id: scope.id)
+    User.update_all(scope_id: scope.id) if scope != nil
   end
 end
