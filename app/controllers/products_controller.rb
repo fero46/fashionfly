@@ -2,20 +2,20 @@ class ProductsController < ScopeController
 
   skip_before_filter :verify_authenticity_token
 
+  before_action :find_product, only: [:show, :clicked]
+
+
   def index
     @products = ProductSearchService.new(@scope, params).products
   end
 
   def show
-    begin
-      @product = Product.find(params[:id])
-      @category = @product.categories.where(:leaf => true).first
-      @category_group = category_select(@category, true)
-      @main_category  = category_select(@category) 
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = I18n.t('action.product_not_found')
-      redirect_to root_path(assigned_locale)
-    end
+    @show_popup_link = false
+  end
+
+  def clicked
+    @show_popup_link = true
+    render 'show'
   end
 
 
@@ -31,7 +31,7 @@ class ProductsController < ScopeController
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = I18n.t('action.product_not_found')
       redirect_to root_path(assigned_locale)
-    end      
+    end
   end
 
   def refshop
@@ -46,6 +46,19 @@ class ProductsController < ScopeController
 
 
 protected
+
+  def find_product
+    begin
+      @product = Product.find(params[:id])
+      @category = @product.categories.where(:leaf => true).first
+      @category_group = category_select(@category, true)
+      @main_category  = category_select(@category)
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = I18n.t('action.product_not_found')
+      redirect_to root_path(assigned_locale)
+    end
+  end
+
 
   def category_select category, group = false
     if category.blank? || category.main_taxon && !group

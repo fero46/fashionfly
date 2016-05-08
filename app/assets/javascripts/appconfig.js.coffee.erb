@@ -3,11 +3,18 @@ $(document).ready(() ->
 
   if($('.exit_popup'))
     $('.exit_popup .inner').blur( ->
-      $('.exit_popup').fadeOut() 
+      $('.exit_popup').fadeOut()
     )
     $('form').submit(->
       if(!$(this).hasClass('no_exit_popup'))
         window.show_exit()
+      if($(this).hasClass('relink'))
+        t =  $(this).attr('relink')
+        setTimeout( ->
+          console.log(t)
+          window.location.pathname=t
+        , 200)
+
     )
 )
 

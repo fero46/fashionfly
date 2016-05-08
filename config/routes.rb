@@ -83,6 +83,7 @@ Fashionfly::Application.routes.draw do
       get 'favorites', to: "profiles#favorites"
       resource :blog
     end
+    get '/product_clicked/:id', to: 'products#clicked', as: :prodclick
     patch 'email_edit', to: 'profiles#email_edit', as: :email_edit
     get 'prodref/:id', to: "products#ref", as: :productref
     resources :products, only: [:show, :index] do

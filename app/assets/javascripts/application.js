@@ -74,3 +74,11 @@ $container.imagesLoaded( function() {
   $container.masonry(options);
 });
 
+
+$(document).ready(function(){
+  if($('#show_popup_js_popup').length > 0){
+    setTimeout(function(){
+      window.show_exit();
+    },1000);    
+  }
+});

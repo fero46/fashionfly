@@ -42,13 +42,13 @@
 
 <div class="product_show" ng-controller="FavoriteController">
   <div class="image_container">
-    <%=link_to image_tag('', "my-src" => @product.original.detail_view, 
-                      alt: @product.name, 
+    <%=link_to image_tag('', "my-src" => @product.original.detail_view,
+                      alt: @product.name,
                       name: @product.name),
                       productref_path(assigned_locale, @product),
                           :rel => 'nofollow',
                           :target => '_blank' %>
-    <a class="love_button <%= favorite(@product) %>" ng-click="clickFavorite('prod',<%= @product.id %>)" 
+    <a class="love_button <%= favorite(@product) %>" ng-click="clickFavorite('prod',<%= @product.id %>)"
               id="prod<%= @product.id %>"
               path="<%= product_favorites_path(assigned_locale, @product) %>"></a>
   </div>
@@ -57,7 +57,7 @@
     <div class="top_info">
       <h1><%= @product.name %></h1>
       <div class="ratable">
-        <%= rating_for @product, "rate", :star => 5 %> 
+        <%= rating_for @product, "rate", :star => 5 %>
         <div class="rate_text">
           <%= t '.rates', count: @product.rates("rate").count %> / <strong><%= t'.rate_now' %></strong>
          </div>
@@ -67,13 +67,16 @@
     <div class="price_info">
       <span class="red"><%=number_to_currency @product.price %></span>
       <span><%= t('.at') %></span>
-      <%= image_tag @product.affiliate.logo, 
-                    title: @product.affiliate.name, 
+      <%= image_tag @product.affiliate.logo,
+                    title: @product.affiliate.name,
                     'ng-click' => "callForm(#{@product.id})",
                     alt: @product.affiliate.name,
-                    class: 'shop_button' %>
-
-      <%= form_tag refshop_path(assigned_locale), method: 'post', id: "callForm#{@product.id}" , target: "_blank" do %>
+                    class: 'shop_button no_exit_popup' %>
+      <%= form_tag refshop_path(assigned_locale), method: 'post',
+                                                  id: "callForm#{@product.id}" ,
+                                                  target: "_blank",
+                                                  class: 'relink',
+                                                  relink: prodclick_path(  @product.locale, @product) do %>
         <%= hidden_field_tag 'product_id', @product.id %>
         <%= button_tag t('.to_shop'), class: 'button' %>
       <% end %>
@@ -95,7 +98,7 @@
       <strong><%= t('.color') %> :</strong> <%= product_color(@product) %><br />
     </div>
     <div class="description">
-     <%= render_shareable  :static_link => true, 
+     <%= render_shareable  :static_link => true,
                             :title=> "#{@product.name} | #{product_brand(@product)} | #{Settings.app.name}",
                             :button_caption => t('.share_now'),
                             :buttons=> ['twitter', 'facebook', 'tumblr', 'google_plus', 'pinterest'],
