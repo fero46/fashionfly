@@ -2,7 +2,7 @@
 # for examples of multiple hosts and folders.
 require "net/http"
 
-host "fashionfly.co"
+host "www.fashionfly.co"
 
 Scope.where(published: true).each do |scope|
   folder "sitemaps/#{scope.locale}"
