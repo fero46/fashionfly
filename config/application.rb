@@ -25,12 +25,12 @@ module Fashionfly
 
     config.assets.initialize_on_precompile = false
     config.middleware.use Rack::Attack
-    # config.middleware.use ExceptionNotification::Rack,
-    #   :email => {
-    #       :email_prefix => "[Fehlermeldung] ",
-    #       :sender_address => %{"FashionFly Team" <service@fashionfly.de>},
-    #       :exception_recipients => %w{ferhat@hansehype.de}
-    #     }
+    config.middleware.use ExceptionNotification::Rack,
+      :email => {
+          :email_prefix => "[Fehlermeldung] ",
+          :sender_address => %{"FashionFly Team" <service@fashionfly.de>},
+          :exception_recipients => %w{ferhat@hansehype.de}
+        }
 
   end
 end
