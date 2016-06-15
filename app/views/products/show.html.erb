@@ -56,8 +56,8 @@
   },
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "<%= @product.rate_average.try(:avg) %>",
-    "reviewCount": "<%= product.rates("rate").count %>"
+    "ratingValue": "<%= @product.rate_average.try(:avg) || 1 %>",
+    "reviewCount": "<%= @product.rates("rate").count %>"
   },
   "offers": {
     "@type": "Offer",
