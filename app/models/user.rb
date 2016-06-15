@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
       BloggerMailer.apply(self.id).deliver_later
     elsif old_value.blog_status == 'APPLIED'
       if self.blog_status == 'ACCEPTED'
-        BloggerMailer.accept(self.id).deliver_later 
+        BloggerMailer.accept(self.id).deliver_later
         self.is_blogger = true
       end
       BloggerMailer.denied(self.id).deliver_later if self.blog_status == 'REJECTED'
@@ -89,11 +89,11 @@ class User < ActiveRecord::Base
     default = create_slug
     myslug = default
     counter = 0
-    other_category = User.where(slug: myslug).first 
+    other_category = User.where(slug: myslug).first
     while other_category.present? && other_category.id != self.id
       counter+=1
       myslug = "#{default}_#{counter}"
-      other_category = User.where(slug: myslug).first 
+      other_category = User.where(slug: myslug).first
     end
     self.slug=myslug
   end
@@ -125,7 +125,7 @@ class User < ActiveRecord::Base
     elsif params['provider'] == 'twitter'
       image = image.sub("_normal", "")
     end
-    
+
     t_name = params['info']['name'] || params['info']['nickname']  || auth.uid
     myname = t_name
     numb = 0
@@ -139,7 +139,7 @@ class User < ActiveRecord::Base
 
     if mail == TEMP_EMAIL
       numb = 1
-      while User.where(email: mail).present? 
+      while User.where(email: mail).present?
         mail = numb.to_s + TEMP_EMAIL
         numb = numb + 1
       end

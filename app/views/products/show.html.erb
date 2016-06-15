@@ -38,7 +38,42 @@
    </DataObject>
 </PageMap>
 -->
+
 <% end %>
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": "<%= @product.name %>",
+  "image": "<%= @product.original.detail_view.url %>",
+  "description": "<%= @product.description %>",
+  "mpn": "925872",
+  "brand": {
+    "@type": "Thing",
+    "name": "<%= product_brand(@product) %>"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "<%= @product.rate_average.try(:avg) %>",
+    "reviewCount": "<%= product.rates("rate").count %>"
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "<%= @product.currencyCode %>",
+    "price": "<%= @product.price %>",
+    "priceValidUntil": "2020-11-05",
+    "itemCondition": "http://schema.org/UsedCondition",
+    "availability": "http://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "FashionFly"
+    }
+  }
+}
+</script>
+
 
 <div class="product_show" ng-controller="FavoriteController">
   <div class="image_container">

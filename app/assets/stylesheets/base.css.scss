@@ -66,7 +66,7 @@ body{
     font-size: 14px;
     line-height: 18px;
     padding:10px 0px;
-    display: block; 
+    display: block;
     padding-bottom: 0px;
   }
   .first_column,.second_column{
@@ -91,7 +91,7 @@ body{
     list-style: none;
     li{
     font-size: 14px;
-    line-height: 18px;      
+    line-height: 18px;
     }
   }
   a.social{
@@ -298,7 +298,7 @@ header{
   .header_navigation{
     height: 45px;
     list-style: none;
-    border-bottom: 1px solid $border_color;    
+    border-bottom: 1px solid $border_color;
     li{
       float:left;
       text-transform: uppercase;
@@ -340,14 +340,14 @@ header{
             text-decoration: none;
             text-align: left;
             font-size:14px;
-            color: $content_font_color;            
+            color: $content_font_color;
             font-weight: normal;
             padding:7px;
             width: 200px;
             &:hover{
               background: $red;
               color: white;
-            }            
+            }
           }
         }
       }
@@ -505,7 +505,7 @@ body > .content{
     padding: 10px;
     color: $black;
     @include border-top-radius(5px);
-    @include border-bottom-radius(5px);    
+    @include border-bottom-radius(5px);
   }
 }
 
@@ -557,7 +557,7 @@ body > .content{
   background: image-url("likeoff.png") no-repeat center center;
   cursor: pointer;
   &:hover{
-    background: image-url("likeon.png") no-repeat center center;        
+    background: image-url("likeon.png") no-repeat center center;
   }
   &.likeon{
     background: image-url("likeon.png") no-repeat center center;
@@ -764,7 +764,7 @@ span.red, span.error{
         color: $red;
       }
       span{
-        margin-right: 5px; 
+        margin-right: 5px;
       }
     }
 
@@ -799,9 +799,9 @@ span.red, span.error{
     .socialbuttons{
       padding-top: 49px;
     }
-    .socialbutton{      
+    .socialbutton{
       height: 36px;
-      float:left;
+      width: 100%
       display: block;
       padding: 0px;
       padding-left: 85px;
@@ -833,7 +833,7 @@ span.red, span.error{
       }
       &.google_oauth2{
         background: #e84c3d image-url('social/button_google.jpg') no-repeat;
-      }      
+      }
     }
   }
 }
@@ -928,7 +928,7 @@ span.red, span.error{
     h3{
       font-size: 25px;
       font-weight: 900;
-      text-transform: uppercase;      
+      text-transform: uppercase;
       color: $blue;
       margin-bottom: 15px;
     }
