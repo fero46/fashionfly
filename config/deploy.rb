@@ -1,4 +1,4 @@
-lock '3.3.5'
+lock '3.5.0'
 
 set :application, 'fashionfly'
 set :repo_url, 'git@bitbucket.org:fashionfly/fashionfly.git'
@@ -57,13 +57,13 @@ namespace :deploy do
   before :restart, :symlink_upload do
     on roles(:app), in: :sequence, wait: 5 do
       execute :mkdir, "-p #{shared_path}/sitemaps"
-      execute :rm, "-rf","#{release_path}/public/sitemaps" 
+      execute :rm, "-rf","#{release_path}/public/sitemaps"
       execute :ln, "-s", "#{shared_path}/sitemaps #{release_path}/public/sitemaps"
-      execute :rm, "-rf","#{release_path}/public/uploads" 
+      execute :rm, "-rf","#{release_path}/public/uploads"
       execute :ln, "-s", "#{deploy_to}/shared/uploads #{release_path}/public/uploads"
-      execute :rm, "-rf","#{release_path}/log" 
+      execute :rm, "-rf","#{release_path}/log"
       execute :ln, "-s", "#{deploy_to}/shared/log #{release_path}/log"
-      execute :rm, "-rf","#{release_path}/tmp" 
+      execute :rm, "-rf","#{release_path}/tmp"
       execute :ln, "-s", "#{deploy_to}/shared/tmp #{release_path}/tmp"
     end
   end
