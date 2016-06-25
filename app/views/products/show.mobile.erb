@@ -112,7 +112,7 @@
     </div>
   </div>
   <div class="profile_box">
-      <span class="image"><%= image_tag collection.user.avatar %></span>
+      <span class="image"><%= image_tag collection.tra(:user).tra(:avatar) %></span>
 
       <span class="create_from">
 <%= raw t('collections.show.created_from', user: user_name(collection.user),
