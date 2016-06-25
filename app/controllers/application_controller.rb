@@ -51,6 +51,13 @@ class ApplicationController < ActionController::Base
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
     request.format = :mobile if mobile_device?
+    set_format_fallbacks
+  end
+
+  def set_format_fallbacks
+    if request.format == :mobile
+      request.formats = [:mobile, :html]
+    end
   end
 
 
