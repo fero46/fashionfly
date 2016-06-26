@@ -3,7 +3,7 @@
     <%= cache ['entry', @entry.title] do %>
       <h2><%= @entry.title %></h2>
       <div class="white_box entry_show">
-        <strong><%= @entry.feed.value.title %> - <%= @entry.author %> : <%= l @entry.published %></strong> <br /><br />
+        <strong><%= @entry.try(:feed).try(:value).try(:title) %> - <%= @entry.author %> : <%= l @entry.published %></strong> <br /><br />
         <%= raw @entry.content %>
         </br />
         <br />
