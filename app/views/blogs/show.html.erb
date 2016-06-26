@@ -38,8 +38,9 @@
         <% for entry in @entries %>
           <%= render 'entry', entry: entry %>
         <% end %>
-        <%= paginate @entries %>
       </div>
     <% end %>
+    <div class="clear"></div>
+    <%= paginate @entries %>
   </div>
 </div>
