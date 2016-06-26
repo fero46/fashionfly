@@ -32,11 +32,13 @@
     <div class="clear"></div>
   </div>
   <div class="banner">
-    <h1><%=link_to @user.blogging_feed.title, @user.blogging_feed.url %></h1>
-    <div class="preview pinstyle" ng-controller="FavoriteController">
-      <% for entry in @user.feed.entries %>
-        <%= render 'entry', entry: entry %>
-      <% end %>
-    </div>
+    <h1><%=link_to @user.try(:blogging_feed).try(:title), @user.try(:blogging_feed).try(:url) %></h1>
+    <% if  @user.try(:feed).try(:entries).present? %>
+      <div class="preview pinstyle" ng-controller="FavoriteController">
+        <% for entry in @user.try(:feed).try(:entries) %>
+          <%= render 'entry', entry: entry %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
