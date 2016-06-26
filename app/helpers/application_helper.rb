@@ -1,5 +1,5 @@
 module ApplicationHelper
-  
+
   def show_exit_popup
     cookies['exit_popup'].blank?
   end
@@ -7,7 +7,7 @@ module ApplicationHelper
 
   def render_seo_block name
     if @scope.page(name).present?
-      content_tag 'section', class: 's_textblock' do 
+      content_tag 'section', class: 's_textblock' do
         content_tag 'div', class: 'container' do
           concat content_tag('h1', @scope.page(name).title) if @scope.page(name).title.present?
           concat simple_format @scope.page(name).body
@@ -20,10 +20,10 @@ module ApplicationHelper
 
   def render_seo_blog user
     if user.is_blogger.present?
-      content_tag 'section', class: 's_textblock' do 
+      content_tag 'section', class: 's_textblock' do
         content_tag 'div', class: 'container' do
-          concat content_tag('h1', user.blogging_feed.title) if user.blogging_feed.title.present?
-          concat simple_format user.blogging_feed.description
+          concat content_tag('h1', user.try(:blogging_feed).try(:title)) if user.try(:blogging_feed).try(:title).present?
+          concat simple_format user.try(:blogging_feed).try(:description)
         end
       end
     end
