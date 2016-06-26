@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  FashionFly.co || <%= @user.blogging_feed.title %>
+  FashionFly.co || <%= @user.try(:blogging_feed).try(:title) %>
 <% end %>
 <% content_for :seo_text do %>
   <%= render_seo_blog @user %>
@@ -9,12 +9,12 @@
 
   <% if @scope.meta_keywords.present? %>
     <meta name="keywords" content="<%= @scope.meta_keywords%>">
-  <% end %> 
+  <% end %>
 
   <% if @scope.meta_description.present? %>
     <meta name="description" content="<%= @user.blogging_feed.description%>">
-  <% end %> 
-  
+  <% end %>
+
 <% end %>
 
 <div class="profile container" ng-controller="ProfileController">
@@ -29,7 +29,7 @@
   <div class="detail">
     <%= profile_edit(@user) %>
     <%= render 'profiles/profile_tabs', user: @user, active: {blog:'active'} %>
-    <div class="clear"></div> 
+    <div class="clear"></div>
   </div>
   <div class="banner">
     <h1><%=link_to @user.blogging_feed.title, @user.blogging_feed.url %></h1>
