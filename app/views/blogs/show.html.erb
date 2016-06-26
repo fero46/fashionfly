@@ -33,11 +33,12 @@
   </div>
   <div class="banner">
     <h1><%=link_to @user.try(:blogging_feed).try(:title), @user.try(:blogging_feed).try(:url) %></h1>
-    <% if  @user.try(:feed).try(:entries).present? %>
+    <% if  @entries.present? %>
       <div class="preview pinstyle" ng-controller="FavoriteController">
-        <% for entry in @user.try(:feed).try(:entries) %>
+        <% for entry in @entries %>
           <%= render 'entry', entry: entry %>
         <% end %>
+        <%= paginate @entries %>
       </div>
     <% end %>
   </div>
