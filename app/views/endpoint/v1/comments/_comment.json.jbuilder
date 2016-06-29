@@ -27,4 +27,3 @@ json.comment do |json|
   json.body comment.comment
   json.date comment.created_at
 end
-
