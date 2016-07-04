@@ -415,7 +415,7 @@ GEM
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
-    tinymce-rails (4.1.6)
+    tinymce-rails (4.4.0)
       railties (>= 3.1.1)
     tinymce-rails-langs (4.20140129)
       tinymce-rails (~> 4.0)
