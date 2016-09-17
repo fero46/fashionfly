@@ -12,7 +12,7 @@
   <% end %>
 
   <% if @scope.meta_description.present? %>
-    <meta name="description" content="<%= @user.blogging_feed.description%>">
+    <meta name="description" content="<%= @user.blogging_feed.description if @user.blogging_feed.respond_to?(:description) %>">
   <% end %>
 
 <% end %>
