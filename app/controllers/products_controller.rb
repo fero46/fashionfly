@@ -51,6 +51,14 @@ protected
     begin
       @product = Product.find(params[:id])
       @category = @product.categories.where(:leaf => true).first
+      if @product.removed
+        if @category.present?
+          redirect_to(category_path(assigned_locale, @category.slug) , alert: I18n.t('action.product_not_found'))
+        else
+          redirect_to(root_path(assigned_locale), alert: I18n.t('action.product_not_found'))
+        end
+        return
+      end
       @category_group = category_select(@category, true)
       @main_category  = category_select(@category)
     rescue ActiveRecord::RecordNotFound

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150524083146) do
+ActiveRecord::Schema.define(version: 20160929154047) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -457,6 +457,7 @@ ActiveRecord::Schema.define(version: 20150524083146) do
     t.boolean  "sale",                 limit: 1,                              default: false
     t.boolean  "dirty",                limit: 1,                              default: false
     t.integer  "visits_count",         limit: 4,                              default: 0
+    t.boolean  "removed",              limit: 1,                              default: false
   end
 
   add_index "products", ["actual_trend"], name: "index_products_on_actual_trend", using: :btree
@@ -469,6 +470,7 @@ ActiveRecord::Schema.define(version: 20150524083146) do
   add_index "products", ["premium"], name: "index_products_on_premium", using: :btree
   add_index "products", ["published"], name: "index_products_on_published", using: :btree
   add_index "products", ["random_order"], name: "index_products_on_random_order", using: :btree
+  add_index "products", ["removed"], name: "index_products_on_removed", using: :btree
   add_index "products", ["sale"], name: "index_products_on_sale", using: :btree
   add_index "products", ["scope_id"], name: "index_products_on_scope_id", using: :btree
 

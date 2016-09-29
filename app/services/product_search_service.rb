@@ -22,19 +22,19 @@ class ProductSearchService
 
 
   def products random_order=false
-    @products = Product.where(scope_id: @scope.id, published: true)
+    @products = Product.where(scope_id: @scope.id, published: true, removed: false)
     if params[:category]
       @products = @products.joins(:categorizations).where("categorizations.category_id" => params[:category])
     end
     if params[:brand]
-      @products = @products.where("products.brand_id" => params[:brand])      
+      @products = @products.where("products.brand_id" => params[:brand])
     end
     if params[:color]
       color = Colorization.where(name: "##{params[:color]}").first
       @products = @products.where("products.colorization_id" => color.id) if color.present?
-    end    
+    end
     if params[:price].present?
-      range = params[:price].split("-").map(&:to_i) 
+      range = params[:price].split("-").map(&:to_i)
       if range.length == 2
         @products = @products.where('price BETWEEN ? AND ?',range[0],range[1])
       else
@@ -44,7 +44,7 @@ class ProductSearchService
     end
     if params[:name].present?
         query = params[:name]
-        @products = @products.where('name like ?',"%#{query}%")      
+        @products = @products.where('name like ?',"%#{query}%")
     end
     if random_order
       type = 9000
