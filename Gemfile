@@ -23,7 +23,7 @@ gem 'dalli'
 gem "nokogiri"
 gem "rubyzip"
 gem 'rack-cors', :require => 'rack/cors'
-
+gem "skylight"
 
 gem "htmlentities"
 gem 'agent_orange'
