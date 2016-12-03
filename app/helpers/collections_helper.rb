@@ -12,7 +12,7 @@ module CollectionsHelper
     else
       prefix = collection_category_breadcrumb_text category.parent
     end
-    return (prefix.present? ? prefix + "/" : '' ) + category.name 
+    return (prefix.present? ? prefix + "/" : '' ) + category.name
   end
 
   def render_embed_code collection
@@ -24,7 +24,7 @@ module CollectionsHelper
 
   def linked_description collection
     content = collection.description
-    for hashtag in collection.hashtags 
+    for hashtag in collection.hashtags
       content.gsub!("##{hashtag.name}", link_to("##{hashtag.name}", hashtag_path(locale: assigned_locale, hashtag: hashtag.name)).to_s)
     end
     simple_format content
@@ -35,7 +35,7 @@ module CollectionsHelper
     return if product.blank?
     content_tag(:span, class: 'information_span', id: "#{item}infobox") do
       inner = content_tag(:span, class: 'information_left') do
-        right = content_tag(:span , product.brand.name)
+        right = content_tag(:span , product.try(:brand).try(:name))
         right << content_tag(:span, '/')
         right << content_tag(:span, product.categories.last.name)
       end
@@ -49,7 +49,7 @@ module CollectionsHelper
   end
 
   def collection_products collection
-    return @collection_products if @collection_products.present? 
+    return @collection_products if @collection_products.present?
     @collection_products = {}
     for product in collection.products
       @collection_products[product.id] = product
