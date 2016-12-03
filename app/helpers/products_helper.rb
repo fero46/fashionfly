@@ -4,7 +4,7 @@ module ProductsHelper
     link =raw category_breadcrumb product.categories.where(leaf: true).first
     link[0] =''
     pre = raw content_tag(:span, I18n.t('breadcrumb.you_are_here') + ": ")
-    container = content_tag(:div, class: 'breadcrumb') do 
+    container = content_tag(:div, class: 'breadcrumb') do
       pre+link
     end
     return container
@@ -32,12 +32,12 @@ module ProductsHelper
     else
       prefix = category_breadcrumb_text category.category
     end
-    return (prefix.present? ? prefix + "/" : '' ) + category.name 
+    return (prefix.present? ? prefix + "/" : '' ) + category.name
   end
 
   def favorite(markable)
     markable_key = markable.class.name + markable.id.to_s
-    favorite_cache[markable_key] if favorite_cache[markable_key].present? 
+    favorite_cache[markable_key] if favorite_cache[markable_key].present?
     if favorites[markable_key].present?
       favorite_cache[markable_key] = "likeon"
     else
@@ -69,7 +69,7 @@ module ProductsHelper
   end
 
   def product_color product
-    if product.blank? || product.colorization.blank? 
+    if product.blank? || product.colorization.blank?
       t 'products.show.unknown'
     else
       t 'products.show.' + product.colorization.try(:name).gsub('#','_')
@@ -77,7 +77,7 @@ module ProductsHelper
   end
 
   def product_color_hex product
-    if product.blank? || product.colorization.blank? 
+    if product.blank? || product.colorization.blank?
       'none'
     else
        product.colorization.try(:name)
@@ -89,7 +89,7 @@ module ProductsHelper
       t 'products.show.unknown'
     else
       product.try(:brand).try(:name)
-    end    
+    end
   end
 
 
