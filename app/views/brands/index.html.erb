@@ -2,7 +2,7 @@
   <h1><%= t('brands.index.title') %></h1>
   <ul>
     <% for brand in @brands %>
-      <li class="overview_list"><%= link_to brand.name, brand_path(@scope.locale, brand.slug) %></li>
+      <li class="overview_list"><%= link_to brand.name, brand_path(@scope.locale, brand.slug.present? ? brand.slug : brand.id ) %></li>
     <% end %>
   </ul>
   <div class="clear"></div>
