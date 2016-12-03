@@ -56,8 +56,8 @@
         <div class="product_info">
           <h4 title="<%=@product.name%>" ng-click="callForm(<%= @product.id %>)"><%= truncate @product.name, length: 40 %></h4>
          <p><%= @product.description %></p>
-          <h5><%= @product.categories.last.name %></h5>
-          <h6><%= @product.brand.name %></h6>
+          <h5><%= @product.try(:categories).try(:last).try(:name) %></h5>
+          <h6><%= @product.try(:brand).try(:name) %></h6>
           <h4><%= number_to_currency @product.price, unit: @product.currencyCode%></h4>
 
             <%= form_tag refshop_path(assigned_locale), method: 'post', id: "callForm#{@product.id}" , target: "_blank" do %>
