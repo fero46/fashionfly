@@ -1,0 +1,12 @@
+<div class="whitebox index">
+  <h1><%= t('brands.index.title') %></h1>
+  <ul>
+    <% for brand in @brands %>
+      <li class="overview_list"><%= link_to brand.name, brand_path(@scope.locale, brand.slug) %></li>
+    <% end %>
+  </ul>
+  <div class="clear"></div>
+  <div style="text-align:center; margin-top: 50px;">
+    <%= paginate @brands %>
+  </div>
+</div>

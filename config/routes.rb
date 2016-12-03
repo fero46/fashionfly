@@ -70,6 +70,7 @@ Fashionfly::Application.routes.draw do
     resources :shops
     resources :banners
     resources :entries
+    resources :brands, only: [:show, :index]
     get 'property_shop_link', to: 'properties#property_shop_link', as: :property_shop_link
     get 'property_collection_link', to: 'properties#property_collection_link', as: :property_collection_link
     get 'property_category_link', to: 'properties#property_category_link', as: :property_category_link

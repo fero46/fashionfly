@@ -119,6 +119,9 @@ de:
           other: "Zeige <b>alle %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Zeige <b>%{first}&nbsp;-&nbsp;%{last}</b> von <b>%{total}</b> in total %{entry_name}"
+  brands:
+    index:
+      title: Alle Marken
   brandet_categories:
     show:
       title: '%{current_year} - Alle %{category} von %{brand}'
@@ -272,6 +275,7 @@ de:
       privacy: Datenschutzerklärung
       disclaimer: Haftungsausschuss
       find_us: Finde uns auf
+      brands: Marken
     header:
       properties: Einstellungen
       shoplist: Shopsübersicht

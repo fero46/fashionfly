@@ -1,0 +1,13 @@
+// Place all the styles related to the brands controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.overview_list{
+  float:left;
+  width: 31%;
+  height: 20px;
+  a{
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
