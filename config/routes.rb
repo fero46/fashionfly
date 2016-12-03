@@ -2,6 +2,8 @@ require 'sidekiq/web'
 
 Fashionfly::Application.routes.draw do
 
+  get 'brandet_categories/show'
+
   get 'blogs/edit'
 
   get 'blogs/show'
@@ -114,6 +116,7 @@ Fashionfly::Application.routes.draw do
     get 'sitemap.xml', to: 'welcome#sitemap', format: :xml, as: 'sitemap', :defaults => { :format => 'xml' }
     get 'robots.txt', to: 'welcome#robot', format: :text, as: 'robot',:defaults => { :format => 'text' }
     root 'welcome#index'
+    get ':brand/:category', to: 'brandet_categories#show', as: 'brand_category'
   end
 
   #Parameter constraint checks if path does not begin with locale and only in that case redirects to localized version. This way we will avoid infinite redirects for non-existing urls.

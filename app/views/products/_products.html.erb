@@ -6,6 +6,37 @@
 
 <%= render 'products/filter' %>
 <% if @category.present? %>
+  <% if @brandet_categories %>
+  <% content_for :title do I18n.t('brandet_categories.show.title', brand: @brand.name, category: @category.name, current_year: @current_year); end %>
+  <h1 style="text-align:left; padding-top:0px;padding-bottom:20px"><%=I18n.t('brandet_categories.show.title', brand: @brand.name, category: @category.name, current_year: @current_year)  %></h1>
+
+  <% content_for :meta do %>
+
+  <meta property="og:title" content="<%= I18n.t('brandet_categories.show.title', brand: @brand.name, category: @category.name, current_year: @current_year) %>"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="<%= brand_category_url(assigned_locale, @brand.slug, @category.slug)%>"/>
+  <meta property="og:locale" content="<%=assigned_locale%>" />
+    <% if @scope.page("__categories__#{@category.try(:slug)}").present? %>
+      <meta property="og:description" content="<%= strip_tags(@scope.page("__categories__#{@category.try(:slug)}").body).squish %>" />
+    <% end %>
+  <!--
+  <PageMap>
+     <DataObject type="document">
+        <Attribute name="title"><%= I18n.t('brandet_categories.show.title', brand: @brand.name, category: @category.name, current_year: @current_year) %></Attribute>
+        <Attribute name="author"><%= @brand.name %></Attribute>
+        <% if @scope.page("__categories__#{@category.try(:slug)}").present? %>
+          <Attribute name="description">
+            <%= strip_tags(@scope.page("__categories__#{@category.try(:slug)}").body).squish %>
+          </Attribute>
+        <% end %>
+        <Attribute name="category"><%= @category.name %></Attribute>
+        <Attribute name="last_update"><%= @category.updated_at %></Attribute>
+     </DataObject>
+  </PageMap>
+  -->
+  <% end %>
+
+  <% else %>
   <% content_for :title do "#{@title} | #{Settings.app.name}"; end %>
   <h1 style="text-align:left; padding-top:0px;padding-bottom:20px"><%= @title %></h1>
 
@@ -34,17 +65,18 @@
   </PageMap>
   -->
   <% end %>
+  <% end %>
 <% end %>
 <div class="white_box pagination_options" ng-controller="FilterController">
-  <%= t('.sort_by') %> 
+  <%= t('.sort_by') %>
   <select id="sort_by"  ng-change="changeSelect('sort_by',selectSort)" ng-model="selectSort" ng-options="sort for sort in sortings" values='<%= t('.sorting_values') %>'></select>
-  <%= t('.select_per') %> 
+  <%= t('.select_per') %>
   <select id="per"  ng-change="changeSelect('per',selectPer)" ng-model="selectPer" ng-options="per for per in pers" ></select>
 
 </div>
 <div class="products" ng-controller="FavoriteController">
   <%= render @products %>
-  <div class="clear"></div>  
+  <div class="clear"></div>
   <%= paginate @products %>
 </div>
 <div class="clear"></div>

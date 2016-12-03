@@ -1,25 +1,25 @@
 # Change this to your host. See the readme at https://github.com/lassebunk/dynamic_sitemaps
 # for examples of multiple hosts and folders.
-require "net/http"
+require 'net/http'
 
-host "www.fashionfly.co"
+host 'www.fashionfly.co'
 
 Scope.where(published: true).each do |scope|
   folder "sitemaps/#{scope.locale}"
 
   sitemap :site do
-    url root_url(locale: scope.locale), last_mod: Time.now, change_freq: "daily", priority: 1.0
+    url root_url(locale: scope.locale), last_mod: Time.now, change_freq: 'daily', priority: 1.0
     scope.categories.each do |category|
       url category_url(scope.locale, category.slug), last_mod: category.updated_at
     end
     scope.outfit_categories.each do |outfit_category|
-      url outfit_category_url(scope.locale,outfit_category.slug), last_mod: outfit_category.updated_at
+      url outfit_category_url(scope.locale, outfit_category.slug), last_mod: outfit_category.updated_at
     end
   end
 
   if scope.products.where(published: true).present?
     sitemap_for scope.products.where(published: true), name: :published_products do |product|
-      url product_url(scope.locale,product), last_mod: product.updated_at
+      url product_url(scope.locale, product), last_mod: product.updated_at
     end
   end
 
@@ -36,13 +36,13 @@ Scope.where(published: true).each do |scope|
 
   if scope.entries.present?
     sitemap_for scope.entries, name:  :entries do |entry|
-      url entry_url(scope.locale, entry), last_mod: entry.try(:updated_at)      
+      url entry_url(scope.locale, entry), last_mod: entry.try(:updated_at)
     end
   end
 
   if scope.collections.where(published: true).present?
     sitemap_for scope.collections.where(published: true), name: :published_collections do |collection|
-      url collection_url(scope.locale,collection), last_mod: collection.updated_at
+      url collection_url(scope.locale, collection), last_mod: collection.updated_at
     end
   end
 
@@ -51,12 +51,22 @@ Scope.where(published: true).each do |scope|
       url hashtag_url(scope.locale, hashtag.name), last_mod: hashtag.updated_at
     end
   end
+
+  brand_ids = scope.products.group('brand_id').map(&:brand_id)
+
+  brands = Brand.where('id in (?)', brand_ids)
   
-  ping_with "http://fashionfly.co/#{scope.locale}/sitemap.xml" if Rails.env=='production'
+  sitemap :brands do
+  for brand in brands
+      for category in scope.categories.all
+        category.touch
+        url brand_category_url(scope.locale, brand.slug, category.slug), last_mod: category.updated_at
+        end
+    end
+  end
 
-
+  ping_with "http://fashionfly.co/#{scope.locale}/sitemap.xml" if Rails.env == 'production'
 end
-
 
 # You can have multiple sitemaps like the above – just make sure their names are different.
 
@@ -75,15 +85,15 @@ end
 
 # If you want to generate multiple sitemaps in different folders (for example if you have
 # more than one domain, you can specify a folder before the sitemap definitions:
-# 
+#
 #   Site.all.each do |site|
 #     folder "sitemaps/#{site.domain}"
 #     host site.domain
-#     
+#
 #     sitemap :site do
 #       url root_url
 #     end
-# 
+#
 #     sitemap_for site.products.scoped
 #   end
 

@@ -119,6 +119,9 @@ de:
           other: "Zeige <b>alle %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Zeige <b>%{first}&nbsp;-&nbsp;%{last}</b> von <b>%{total}</b> in total %{entry_name}"
+  brandet_categories:
+    show:
+      title: '%{current_year} - Alle %{category} von %{brand}'
   blogger_mailer:
     default:
       greeting: "Hallo %{user}"
