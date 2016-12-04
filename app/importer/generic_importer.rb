@@ -1,4 +1,4 @@
- #encoding: utf-8 
+ #encoding: utf-8
 require 'xml'
 require 'fileutils'
 require 'open-uri'
@@ -47,8 +47,7 @@ class GenericImporter
         @affiliate.save
       end
     end
-    @affiliate.products.where(dirty: true).update_all(published: false)
-    @affiliate.products.where(dirty: true).update_all(dirty: false)        
+    @affiliate.products.where(dirty: true).destroy_all
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save
@@ -58,7 +57,7 @@ class GenericImporter
   def insert_values id, values
     if find_mapping(product_category(values)).present?
       return if product_remote_image(values).blank?
-      product = Product.where(affiliate_id: @affiliate.id, 
+      product = Product.where(affiliate_id: @affiliate.id,
                               affi_code: id,
                               scope_id: @scope.id).first_or_create
       product.premium = @affiliate.premium
@@ -73,16 +72,18 @@ class GenericImporter
         return
       end
       product.update(published: true)
+      product.dirty = false
+      product.save!
     else
-      product = Product.where(affiliate_id: @affiliate.id, 
+      product = Product.where(affiliate_id: @affiliate.id,
                     affi_code: id,
                     scope_id: @scope.id).first
       if product.present?
-        product.dirty = false
+        product.dirty = true
         product.published = false
         product.save!
       end
-    end    
+    end
   end
 
   def total_count
@@ -113,9 +114,15 @@ protected
     brand = Brand.where(name: product_brand(values)).first_or_create
     product.brand_id = brand.id
     product.ean=product_ean(values)
-    product.price=product_price(values)
-    product.sale_price=sale_price(values)
-    product.sale=is_sale?(values)
+
+    if !product.new_record? && product.price > product_price(values) && !sale_price(values)
+      product.sale_price = product_price(values)
+      product.is_sale=true
+    else
+      product.price=product_price(values)
+      product.sale_price=sale_price(values)
+      product.sale=is_sale?(values)
+    end
     product.shippingHandlingCost=product_shipment_cost(values)
     product.lastModified=product_last_modified(values)
     product.deliveryTime=product_delivery_time(values)
@@ -131,7 +138,7 @@ protected
   def update_product_categories(product, values)
     category = find_mapping(product_category(values))
     while category.present? do
-      next if category.blank? 
+      next if category.blank?
       Categorization.where(product_id: product.id, category_id: category.id).first_or_create
       category = category.category
     end
@@ -140,7 +147,7 @@ protected
   def product_remote_image values
     image_tags = @affiliate.image_tag.split(',')
     for image_tag in image_tags
-      result = values[image_tag.strip] 
+      result = values[image_tag.strip]
       return result if result.present?
     end
     nil
@@ -161,7 +168,7 @@ protected
 
   def product_currency values
     values[@affiliate.currency_code_tag]
-  end    
+  end
 
   def product_delivery_time values
     values[@affiliate.delivery_time_tag]
@@ -231,7 +238,7 @@ protected
       result[mapping.name] = mapping.category
     end
     result
-  end 
+  end
 
   def document
     @document if @document.present?

@@ -36,7 +36,7 @@ class ReklamActionImporter < AffilinetImporter
       end
       next if @affiliate.skip_items > actual_counter
       values = {}
-      
+
       chack_article_number(node, values)
       check_category_node(node, values)
       check_price(node, values)
@@ -54,11 +54,10 @@ class ReklamActionImporter < AffilinetImporter
       @affiliate.skip_items = actual_counter
       @affiliate.save
     end
-    @affiliate.products.where(dirty: true).update_all(published: false)
-    @affiliate.products.where(dirty: true).update_all(dirty: false)    
+    @affiliate.products.where(dirty: true).destroy_all 
     @affiliate.skip_items = 0
     @affiliate.percent = 100
-    @affiliate.save    
+    @affiliate.save
   end
 
   def should_not_update product, values
@@ -82,7 +81,7 @@ class ReklamActionImporter < AffilinetImporter
 
   def check_images node, values
     if node.name == IMAGES
-      node.children.each do |cat| 
+      node.children.each do |cat|
         values[IMAGES]=cat.content if cat.name == IMG && cat.content.present?
       end
     end
@@ -93,11 +92,11 @@ class ReklamActionImporter < AffilinetImporter
   end
 
   def check_details node, values
-    node.children.each do |cat| 
+    node.children.each do |cat|
       values[MANUFACTURER]=strip_tags(cat.content) if cat.name == MANUFACTURER
       values[DESCRIPTION]=strip_tags(cat.content) if cat.name == DESCRIPTION
       values[TITLE]= strip_tags(cat.content) if cat.name == TITLE
-    end  
+    end
   end
 
   def check_deeplinks node, values
@@ -144,7 +143,7 @@ class ReklamActionImporter < AffilinetImporter
       end
       if subnode.name == FullDesc
         content = subnode.content
-        if content.include? "bayan" 
+        if content.include? "bayan"
           sexes = "BAYAN"
         elsif content.include? "erkek"
           sexes = "ERKEK"
@@ -186,7 +185,7 @@ class ReklamActionImporter < AffilinetImporter
 
   def product_currency values
     values[CURRENCY]
-  end    
+  end
 
   def product_remote_image values
     values[IMAGES]

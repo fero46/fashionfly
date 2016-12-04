@@ -16,7 +16,7 @@ class AffilinetImporter < GenericImporter
   MANUFACTURER = 'Manufacturer'
   DESCRIPTION = 'DescriptionShort'
   TITLE = 'Title'
-  IMAGES = 'Images' 
+  IMAGES = 'Images'
   IMG = 'Img'
   NUMBER = 'ArticleNumber'
 
@@ -32,7 +32,7 @@ class AffilinetImporter < GenericImporter
     nodes = children_from_tag [document.root], ITEM_ROOT
     total_counter = nodes.length
     actual_counter = 0
-    @affiliate.products.update_all(dirty: true)    
+    @affiliate.products.update_all(dirty: true)
     for node in nodes
       actual_counter += 1
       if actual_counter % 20 == 0
@@ -55,12 +55,11 @@ class AffilinetImporter < GenericImporter
       end
 
       insert_values(id, values)
-      
+
       @affiliate.skip_items = actual_counter
       @affiliate.save
     end
-    @affiliate.products.where(dirty: true).update_all(published: false)
-    @affiliate.products.where(dirty: true).update_all(dirty: false)    
+    @affiliate.products.where(dirty: true).destroy_all
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save
@@ -73,25 +72,25 @@ protected
 
   def check_images node, values
     if node.name == IMAGES
-      node.children.each do |cat| 
+      node.children.each do |cat|
         values[IMAGES]=cat.content if cat.name == IMG
       end
-    end    
+    end
   end
 
   def check_details node, values
     if node.name == DETAILS
-      node.children.each do |cat| 
+      node.children.each do |cat|
         values[MANUFACTURER]=cat.content if cat.name == MANUFACTURER
         values[DESCRIPTION]=cat.content if cat.name == DESCRIPTION
         values[TITLE]=cat.content if cat.name == TITLE
       end
-    end    
+    end
   end
 
   def check_deeplinks node, values
     if node.name == DEEP_LINKS
-      node.children.each do |cat| 
+      node.children.each do |cat|
         values[DEEP_LINKS]=cat.content if cat.name == ITEM_ROOT
       end
     end
@@ -99,7 +98,7 @@ protected
 
   def check_price node, values
     if node.name == PRICE
-      node.children.each do |cat| 
+      node.children.each do |cat|
         if cat.name == DISPLAY_PRICE
           display_price = cat.content.split(' ')
           values[CURRENCY]=display_price[1]
@@ -111,7 +110,7 @@ protected
 
   def check_category_node node, values
     if node.name == ITEM_CATEGORY_PATH
-      node.children.each do |cat| 
+      node.children.each do |cat|
         values[ITEM_CATEGORY]=cat.content if cat.name == ITEM_CATEGORY
       end
     end
@@ -119,14 +118,14 @@ protected
 
   def should_not_update product, values
     product.name == product_name(values) || product_remote_image(values).blank?
-  end 
+  end
 
   def children_from_tag parents, name
     collect = []
     for parent in parents
       parent.children.each do |child|
         if child.name == name
-          collect << child 
+          collect << child
         end
       end
     end
@@ -140,7 +139,7 @@ protected
 
   def product_currency values
     values[CURRENCY]
-  end    
+  end
 
   def product_remote_image values
     values[IMAGES]

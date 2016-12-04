@@ -2,7 +2,7 @@
 class AffiliateWindowImporter < AffilinetImporter
   require "erb"
   include ERB::Util
-  
+
   ITEM_ROOT = 'merchant'
   ITEM = 'prod'
   MAIN_CAT = 'awCat'
@@ -24,7 +24,7 @@ class AffiliateWindowImporter < AffilinetImporter
   def categories
     nodes = children_from_tag [document.root], ITEM_ROOT
     nodes = children_from_tag [nodes.first], ITEM
-    nodes.map{|i| category_name(i)}.uniq.sort 
+    nodes.map{|i| category_name(i)}.uniq.sort
   end
 
 
@@ -51,7 +51,7 @@ class AffiliateWindowImporter < AffilinetImporter
     nodes = children_from_tag [nodes.first], ITEM
     total_counter = nodes.length
     actual_counter = 0
-    @affiliate.products.update_all(dirty: true)    
+    @affiliate.products.update_all(dirty: true)
     for node in nodes
       actual_counter += 1
       if actual_counter % 20 == 0
@@ -77,13 +77,12 @@ class AffiliateWindowImporter < AffilinetImporter
       values[NUMBER] = id
 
       insert_values id, values
-      
+
       @affiliate.skip_items = actual_counter
       @affiliate.save
 
     end
-    @affiliate.products.where(dirty: true).update_all(published: false)
-    @affiliate.products.where(dirty: true).update_all(dirty: false)    
+    @affiliate.products.where(dirty: true).destroy_all
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save
@@ -132,7 +131,7 @@ class AffiliateWindowImporter < AffilinetImporter
       node.attributes.each do |a|
         values[CURRENCY] = a.value if a.name == self.class::CURRENCY_TAG
       end
-      node.children.each do |cat| 
+      node.children.each do |cat|
         values[PRICE]=cat.content if cat.name == self.class::PRICE_VALUE_TAG
       end
     end
