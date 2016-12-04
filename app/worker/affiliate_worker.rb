@@ -5,7 +5,7 @@ class AffiliateWorker
     ZalandoPremium.run
     ZalandoSchuhe.run
     ZalandoMode.run
-    StyleBop.run
+    Stylebop.run
     Jades.run
   end
 
