@@ -1,11 +1,11 @@
 class Affiliate < ActiveRecord::Base
   belongs_to :scope
   has_many :mappings,  :dependent => :destroy
-  has_many :products
+  has_many :products,  :dependent => :destroy
   def self.IMPORTERS
-    [ :GenericImporter, :AffilinetImporter, :GaleriaImporter, 
+    [ :GenericImporter, :AffilinetImporter, :GaleriaImporter,
       :GermanEspritImporter, :ReklamActionImporter, :MomodaImporter,:ExtendedReklamActionImporter,
-      :CommissionJunctionImporter, :AffiliateWindowImporter, :WConceptImporter, 
+      :CommissionJunctionImporter, :AffiliateWindowImporter, :WConceptImporter,
       :MyBagImporter].sort
   end
 
@@ -64,7 +64,7 @@ class Affiliate < ActiveRecord::Base
   end
 
   def categories
-    importer.constantize.new(self).categories    
+    importer.constantize.new(self).categories
   end
 
   def leaf_categories
