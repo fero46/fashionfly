@@ -110,11 +110,16 @@ class GenericImporter
     brand = Brand.where(name: product_brand(values)).first_or_create
     product.brand_id = brand.id
     product.ean = product_ean(values)
-
-    if !product.new_record? && product.price > product_price(values) && !sale_price(values)
-      product.sale_price = product_price(values)
-      product.is_sale = true
-    else
+    begin
+      if !product.new_record? && product.price.to_f > product_price(values).to_f && !sale_price(values)
+        product.sale_price = product_price(values)
+        product.is_sale = true
+      else
+        product.price = product_price(values)
+        product.sale_price = sale_price(values)
+        product.sale = is_sale?(values)
+      end
+    rescue
       product.price = product_price(values)
       product.sale_price = sale_price(values)
       product.sale = is_sale?(values)
