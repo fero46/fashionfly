@@ -8,7 +8,7 @@ class RemoverWorker
     end
   end
 
-  def self.run_importer product
+  def self.run product
     return if product.blank?
     perform_async(product.id)
   end
