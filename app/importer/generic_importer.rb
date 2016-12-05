@@ -44,7 +44,7 @@ class GenericImporter
       @affiliate.skip_items = actual_counter
       @affiliate.save
     end
-    @affiliate.products.where(dirty: true).map{|x| RemoverWorker.run(x)}
+    @affiliate.products.where(dirty: true).where(published: false).map{|x| RemoverWorker.run(x)}
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save
@@ -71,17 +71,7 @@ class GenericImporter
         return
       end
       product.update(published: true)
-      product.dirty = false
       product.save!
-    else
-      product = Product.where(affiliate_id: @affiliate.id,
-                              affi_code: id,
-                              scope_id: @scope.id).first
-      if product.present?
-        product.dirty = true
-        product.published = false
-        product.save!
-      end
     end
   rescue Exception => e
     puts e

@@ -7,5 +7,5 @@ DynamicSitemaps.configure do |config|
                                        # (e.g. site.xml) when only one sitemap
                                        #  file has been generated
   config.config_path = Rails.root.join("config", "sitemap.rb")
-  config.per_page = 50000
+  config.per_page = 10000
 end

@@ -18,8 +18,12 @@ Scope.where(published: true).each do |scope|
   end
 
   if scope.products.where(dirty: false).present?
-    sitemap_for scope.products.where(dirty: false), name: :published_products do |product|
-      url product_url(scope.locale, product), last_mod: product.updated_at
+    sitemap :products do
+      scope.products.where(dirty: false).find_in_batches(batch_size: 1000) do |group|
+        for product in group
+          url product_url(scope.locale, product), last_mod: product.updated_at
+        end
+      end
     end
   end
 
@@ -57,12 +61,12 @@ Scope.where(published: true).each do |scope|
   brands = Brand.where('id in (?)', brand_ids)
 
   sitemap :brands do
-  for brand in brands
+    for brand in brands
       for category in scope.categories.all
         category.touch
         url brand_category_url(scope.locale, brand.slug, category.slug), last_mod: category.updated_at
         end
-    end
+      end
   end
 
   ping_with "http://fashionfly.co/#{scope.locale}/sitemap.xml" if Rails.env == 'production'

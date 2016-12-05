@@ -7,6 +7,7 @@ class ImporterWorker
       affiliate.start_import
       affiliate.ready = false
       affiliate.importing = false
+      affiliate.skip_items = 0
       affiliate.percent = 100
       affiliate.save
     end
@@ -14,6 +15,7 @@ class ImporterWorker
 
   def self.run_importer affiliate
     return if affiliate.blank?
+    puts affiliate.ready  && affiliate.importing
     perform_async(affiliate.id)
   end
 

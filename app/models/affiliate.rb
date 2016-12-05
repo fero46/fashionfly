@@ -14,7 +14,7 @@ class Affiliate < ActiveRecord::Base
 
 
   validates :file, :presence  => true
-  validates :logo, :presence => true
+#  validates :logo, :presence => true
   validates :name, :presence  => true
   validates :importer, :presence  => true
   validates :category_tag, :presence  => true
