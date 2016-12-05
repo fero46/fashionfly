@@ -7,6 +7,7 @@ class AffiliateWorker
     ZalandoMode.run
     Stylebop.run
     Jades.run
+    Aboutyou.run
   end
 
   def self.run
