@@ -34,11 +34,10 @@ class CommissionJunctionImporter < GenericImporter
         id = values[@affiliate.ean_tag.strip]
         insert_values(id, values)
         @affiliate.skip_items = actual_counter
-        @affiliate.save        
+        @affiliate.save
       end
     end
-    @affiliate.products.where(dirty: true).update_all(published: false)
-    @affiliate.products.where(dirty: true).update_all(dirty: false)        
+    @affiliate.products.where(dirty: true).map{|x| RemoverWorker.run(x)}     
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save

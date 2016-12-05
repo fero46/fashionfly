@@ -17,8 +17,8 @@ Scope.where(published: true).each do |scope|
     end
   end
 
-  if scope.products.where(published: true).present?
-    sitemap_for scope.products.where(published: true), name: :published_products do |product|
+  if scope.products.where(dirty: false).present?
+    sitemap_for scope.products.where(dirty: false), name: :published_products do |product|
       url product_url(scope.locale, product), last_mod: product.updated_at
     end
   end
@@ -55,7 +55,7 @@ Scope.where(published: true).each do |scope|
   brand_ids = scope.products.group('brand_id').map(&:brand_id)
 
   brands = Brand.where('id in (?)', brand_ids)
-  
+
   sitemap :brands do
   for brand in brands
       for category in scope.categories.all

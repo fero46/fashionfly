@@ -59,7 +59,7 @@ class AffilinetImporter < GenericImporter
       @affiliate.skip_items = actual_counter
       @affiliate.save
     end
-    @affiliate.products.where(dirty: true).destroy_all
+    @affiliate.products.where(dirty: true).map{|x| RemoverWorker.run(x)}
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save

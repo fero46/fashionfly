@@ -54,8 +54,7 @@ class CsvToXmlAffiliateWindowImporter < AffiliateWindowImporter
       @affiliate.skip_items = actual_counter
       @affiliate.save
     end
-    @affiliate.products.where(dirty: true).update_all(published: false)
-    @affiliate.products.where(dirty: true).update_all(dirty: false)    
+    @affiliate.products.where(dirty: true).map{|x| RemoverWorker.run(x)}   
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save
@@ -70,7 +69,7 @@ class CsvToXmlAffiliateWindowImporter < AffiliateWindowImporter
   end
 
   def check_details node, values
-    node.children.each do |cat| 
+    node.children.each do |cat|
       values[MANUFACTURER]=cat.content if cat.name == BRAND_TAG
       values[DESCRIPTION]=cat.content if cat.name == DESCRIPTION_TAG
       values[TITLE]=cat.content if cat.name == NAME_TAG

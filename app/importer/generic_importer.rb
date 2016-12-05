@@ -44,7 +44,7 @@ class GenericImporter
       @affiliate.skip_items = actual_counter
       @affiliate.save
     end
-    @affiliate.products.where(dirty: true).destroy_all
+    @affiliate.products.where(dirty: true).map{|x| RemoverWorker.run(x)}
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save
@@ -52,6 +52,8 @@ class GenericImporter
   end
 
   def insert_values(id, values)
+    product = nil
+    begin
     if find_mapping(product_category(values)).present?
       return if product_remote_image(values).blank?
       product = Product.where(affiliate_id: @affiliate.id,
@@ -81,6 +83,10 @@ class GenericImporter
         product.save!
       end
     end
+  rescue Exception => e
+    puts e
+    product.destroy if product.present?
+  end
   end
 
   def total_count
