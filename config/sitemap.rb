@@ -7,7 +7,7 @@ host 'www.fashionfly.co'
 Scope.where(published: true).each do |scope|
   folder "sitemaps/#{scope.locale}"
 
-  puts "Seiten start"
+  puts 'Seiten start'
   sitemap :site do
     url root_url(locale: scope.locale), last_mod: Time.now, change_freq: 'daily', priority: 1.0
     scope.categories.each do |category|
@@ -17,9 +17,9 @@ Scope.where(published: true).each do |scope|
       url outfit_category_url(scope.locale, outfit_category.slug), last_mod: outfit_category.updated_at
     end
   end
-  puts "Seiten ende"
+  puts 'Seiten ende'
 
-  puts "Produkte start"
+  puts 'Produkte start'
   if scope.products.where(dirty: false).present?
     sitemap :products do
       scope.products.where(dirty: false).find_in_batches(batch_size: 1000) do |group|
@@ -29,9 +29,9 @@ Scope.where(published: true).each do |scope|
       end
     end
   end
-  puts "Produkte ende"
+  puts 'Produkte ende'
 
-  puts "Benutzer start"
+  puts 'Benutzer start'
   if scope.users.present?
     sitemap_for scope.users, name:  :users do |user|
       url profile_url(scope.locale, user.slug), last_mod: user.try(:updated_at)
@@ -42,46 +42,49 @@ Scope.where(published: true).each do |scope|
       end
     end
   end
-  puts "Benutzer ende"
+  puts 'Benutzer ende'
 
-  puts "Blog start"
+  puts 'Blog start'
   if scope.entries.present?
     sitemap_for scope.entries, name:  :entries do |entry|
       url entry_url(scope.locale, entry), last_mod: entry.try(:updated_at)
     end
   end
-  puts "Blog Ende"
+  puts 'Blog Ende'
 
-  puts "Kollektionen start"
+  puts 'Kollektionen start'
   if scope.collections.where(published: true).present?
     sitemap_for scope.collections.where(published: true), name: :published_collections do |collection|
       url collection_url(scope.locale, collection), last_mod: collection.updated_at
     end
   end
-  puts "Kollektionen ende"
+  puts 'Kollektionen ende'
 
-  puts "Hashtags start"
+  puts 'Hashtags start'
   if scope.hashtags.present?
     sitemap_for scope.hashtags, name: :hashtags do |hashtag|
       url hashtag_url(scope.locale, hashtag.name), last_mod: hashtag.updated_at
     end
   end
-  puts "Hastags ende"
+  puts 'Hastags ende'
 
   brand_ids = scope.products.group('brand_id').map(&:brand_id)
 
   brands = Brand.where('id in (?)', brand_ids)
+  puts "update date in category"
+  for category in scope.categories.all
+    category.touch
+  end
 
-  puts "Marken start"
+  puts 'Marken start'
   sitemap :brands do
     for brand in brands
       for category in scope.categories.all
-        category.touch
         url brand_category_url(scope.locale, brand.slug, category.slug), last_mod: category.updated_at
         end
       end
   end
-  puts "Marken ende"
+  puts 'Marken ende'
 
   ping_with "http://fashionfly.co/#{scope.locale}/sitemap.xml" if Rails.env == 'production'
 end
