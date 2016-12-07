@@ -11,11 +11,14 @@ class GenericImporter
 
   def categories
     categories = []
+    begin
     document.root.children.each do |tag|
       next unless tag.name == @affiliate.item_tag
       tag.children.each do |t|
         categories << t.content if t.name == @affiliate.category_tag
       end
+    end
+    rescue
     end
     categories.uniq
   end

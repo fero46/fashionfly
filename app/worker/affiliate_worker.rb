@@ -8,6 +8,8 @@ class AffiliateWorker
     Stylebop.run
     Jades.run
     Aboutyou.run
+    Topshop.run
+    Fashionette.run
   end
 
   def self.run
