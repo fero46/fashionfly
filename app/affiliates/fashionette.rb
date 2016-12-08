@@ -1,7 +1,7 @@
 class Fashionette < ZanoxDownloader
 
   def name
-    "TopShop"
+    "Fashionette DE"
   end
 
   def path

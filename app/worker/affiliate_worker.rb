@@ -12,6 +12,9 @@ class AffiliateWorker
     Fashionette.run
     Tibi.run
     Billabong.run
+    Zappos.run
+    Romwe.run
+    Jimmy.run
   end
 
   def self.run
