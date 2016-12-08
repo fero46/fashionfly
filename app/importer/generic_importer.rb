@@ -99,7 +99,11 @@ class GenericImporter
   end
 
   def import_product_image(product, _values, remote_image_path)
-    ImageCropService.new(product, remote_image_path).image_cut_out
+    begin
+      ImageCropService.new(product, remote_image_path).image_cut_out
+    rescue
+      puts "Feher beim Bild download: pfad : " + remote_image_path
+    end
   end
 
   def update_product_attributes(product, values)

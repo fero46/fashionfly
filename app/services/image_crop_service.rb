@@ -26,7 +26,7 @@ class ImageCropService
 
     if save_original
       product.original = File.open(image_path)
-      product.save      
+      product.save
     end
 
     color = first_color(image_path)
@@ -50,7 +50,7 @@ class ImageCropService
 
 
   def cut_out_with_mask
-    full_path_to_tmp = Rails.root.to_s + "/tmp/"   
+    full_path_to_tmp = Rails.root.to_s + "/tmp/"
     image_path = full_path_to_tmp+"#{product.id}_image.png"
     difference_path = full_path_to_tmp+"#{product.id}_difference.png"
     halo_mask = full_path_to_tmp + "#{product.id}_halo.png"
@@ -87,7 +87,6 @@ class ImageCropService
 
     trim_command = "convert #{with_border} -trim +repage #{trimmed_out}"
 
-
     system alpha_command
     system halo_command
     system result_command
@@ -95,7 +94,7 @@ class ImageCropService
     system trim_command
 
     img = MiniMagick::Image.open(trimmed_out)
-    
+
     product.width  = img['width']
     product.height = img['height']
 
@@ -104,7 +103,7 @@ class ImageCropService
 
     #colormatch
     product.match_color(trimmed_out)
-    
+
     #cleanup
     File.delete(image_path) if File.exist?(image_path)
     File.delete(difference_path) if File.exist?(difference_path)
@@ -114,7 +113,7 @@ class ImageCropService
     File.delete(trimmed_out) if File.exist?(trimmed_out)
   end
 
-private 
+private
 
   def first_color image_path
     begin
@@ -129,7 +128,7 @@ private
     end
   end
 
-  def download_image image_path 
+  def download_image image_path
     begin
       open(image_path, 'wb') do |dest|
         open(remote_image_path, 'rb', 'User-Agent' => 'firefox') do |src|
@@ -142,7 +141,7 @@ private
   end
 
   def crop_image(src, output)
-    full_path_to_tmp = Rails.root.to_s + "/tmp/"   
+    full_path_to_tmp = Rails.root.to_s + "/tmp/"
     with_border =  full_path_to_tmp+"#{product.id}_bordered.png"
     border_command = "convert #{src} -bordercolor none -border 3x3 #{with_border}"
     trim_command = "convert #{with_border} -trim +repage #{output}"

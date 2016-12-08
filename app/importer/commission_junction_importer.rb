@@ -37,7 +37,7 @@ class CommissionJunctionImporter < GenericImporter
         @affiliate.save
       end
     end
-    @affiliate.products.where(dirty: true).map{|x| RemoverWorker.run(x)}     
+    @affiliate.products.where(dirty: true).where(published: false).map{|x| RemoverWorker.run(x)}
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save
