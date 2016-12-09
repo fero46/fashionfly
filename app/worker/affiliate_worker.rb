@@ -15,6 +15,8 @@ class AffiliateWorker
     Zappos.run
     Romwe.run
     Jimmy.run
+    Mytheresa.run
+    Breuninger.run
   end
 
   def self.run
