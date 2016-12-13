@@ -59,6 +59,14 @@ class GenericImporter
     begin
     if find_mapping(product_category(values)).present?
       return if product_remote_image(values).blank?
+      new_product = false
+      begin
+        new_product = Product.where(affiliate_id: @affiliate.id,
+                                affi_code: id,
+                                scope_id: @scope.id).first.present?
+      rescue
+        new_product = falses
+      end
       product = Product.where(affiliate_id: @affiliate.id,
                               affi_code: id,
                               scope_id: @scope.id).first_or_create
@@ -75,6 +83,18 @@ class GenericImporter
       end
       product.update(published: true)
       product.save!
+      if new_product && @scope.board_number.present?
+        begin
+          stapler = Staplegun.new(:email => "ferhat@fashionfly.de", :password => "xxxxxxxx")
+          stapler.pin {
+            :board_id => @scope.board_number,
+            :link => Rails.application.routes.url_helpers.product_url(@scope.locale, product, :host=> 'fashionfly.co'),
+            :image_url => product.original.smaller.url,
+            :description => product.description
+          }
+        rescue
+        end
+      end
     end
   rescue Exception => e
     puts e

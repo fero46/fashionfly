@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203131846) do
+ActiveRecord::Schema.define(version: 20161213095923) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string   "file",                limit: 255
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20161203131846) do
     t.boolean  "replace_only_images", limit: 1,   default: false
     t.integer  "start_from_id",       limit: 4,   default: 0
     t.integer  "skip_items",          limit: 4,   default: 0
+    t.string   "board_number",        limit: 255
   end
 
   add_index "affiliates", ["importing"], name: "index_affiliates_on_importing", using: :btree
@@ -542,6 +543,7 @@ ActiveRecord::Schema.define(version: 20161203131846) do
     t.text     "hidden",           limit: 65535
     t.string   "meta_keywords",    limit: 255
     t.text     "meta_description", limit: 65535
+    t.string   "board_number",     limit: 255
   end
 
   add_index "scopes", ["country_code"], name: "index_scopes_on_country_code", length: {"country_code"=>10}, using: :btree
@@ -584,8 +586,6 @@ ActiveRecord::Schema.define(version: 20161203131846) do
   end
 
   add_index "simple_hashtag_hashtags", ["name", "scope_id"], name: "index_simple_hashtag_hashtags_on_name_and_scope_id", unique: true, using: :btree
-  add_index "simple_hashtag_hashtags", ["name"], name: "index_simple_hashtag_hashtags_on_name", using: :btree
-  add_index "simple_hashtag_hashtags", ["scope_id"], name: "index_simple_hashtag_hashtags_on_scope_id", using: :btree
 
   create_table "synonyms", force: :cascade do |t|
   end
