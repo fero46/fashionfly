@@ -86,12 +86,10 @@ class GenericImporter
       if new_product && @scope.board_number.present?
         begin
           stapler = Staplegun.new(:email => "ferhat@fashionfly.de", :password => "xxxxxxxx")
-          stapler.pin {
-            :board_id => @scope.board_number,
+          stapler.pin({:board_id => @scope.board_number,
             :link => Rails.application.routes.url_helpers.product_url(@scope.locale, product, :host=> 'fashionfly.co'),
             :image_url => product.original.smaller.url,
-            :description => product.description
-          }
+            :description => product.description})
         rescue
         end
       end
