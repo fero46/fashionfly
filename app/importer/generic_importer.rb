@@ -2,11 +2,14 @@
 require 'xml'
 require 'fileutils'
 require 'open-uri'
+require 'pinterest-api'
+
 
 class GenericImporter
   def initialize(affiliate)
     @affiliate = affiliate
     @scope = @affiliate.scope
+    @client = Pinterest::Client.new("x")
   end
 
   def categories
@@ -85,11 +88,7 @@ class GenericImporter
       product.save!
       if new_product && @scope.board_number.present?
         begin
-          stapler = Staplegun.new(:email => "ferhat@fashionfly.de", :password => "xxxxxxxx")
-          stapler.pin({:board_id => @scope.board_number,
-            :link => Rails.application.routes.url_helpers.product_url(@scope.locale, product, :host=> 'fashionfly.co'),
-            :image_url => product.original.smaller.url,
-            :description => product.description})
+          @client.create_pin({:board => @scope.board_number, link: Rails.application.routes.url_helpers.product_url(@scope.locale, product, :host=> 'fashionfly.co'), image_url: product.original.smaller.url, note: product.description})
         rescue
         end
       end

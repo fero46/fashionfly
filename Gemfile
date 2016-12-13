@@ -24,7 +24,7 @@ gem "nokogiri"
 gem "rubyzip"
 gem 'rack-cors', :require => 'rack/cors'
 gem "skylight"
-gem 'staplegun'
+gem 'pinterest-api'
 gem "htmlentities"
 gem 'agent_orange'
 gem 'acts-as-taggable-on', '~> 3.4'
