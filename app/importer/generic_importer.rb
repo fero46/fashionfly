@@ -9,7 +9,6 @@ class GenericImporter
   def initialize(affiliate)
     @affiliate = affiliate
     @scope = @affiliate.scope
-    @client = Pinterest::Client.new("x")
   end
 
   def categories
@@ -88,6 +87,7 @@ class GenericImporter
       product.save!
       if new_product && @scope.board_number.present?
         begin
+          @client = Pinterest::Client.new("x")
           @client.create_pin({:board => @scope.board_number, link: Rails.application.routes.url_helpers.product_url(@scope.locale, product, :host=> 'fashionfly.co'), image_url: product.original.smaller.url, note: product.description})
         rescue
         end
