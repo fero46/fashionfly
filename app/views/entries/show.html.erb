@@ -1,5 +1,7 @@
 <div class="collection_show" ng-controller="FavoriteController">
   <div class="leftside">
+
+
     <%= cache ['entry', @entry.title] do %>
       <h2><%= @entry.title %></h2>
       <div class="white_box entry_show">
@@ -13,6 +15,20 @@
   </div>
   <div class="productviews">
     <h2><%= t('.products') %></h2>
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- FashionFly Ad -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-3481906310275052"
+       data-ad-slot="1965934592"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+  <br /><br />
+
       <%= cache ['product_list', @entry.title ,@entry.products.first.updated_at] do %>
         <% for product in @entry.products %>
           <%= render 'products/small_product', product: product %>

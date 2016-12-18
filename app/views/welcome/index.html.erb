@@ -16,12 +16,25 @@
 
   <% if @scope.meta_keywords.present? %>
     <meta name="keywords" content="<%= @scope.meta_keywords%>">
-  <% end %> 
+  <% end %>
   <% if @scope.meta_description.present? %>
     <meta name="description" content="<%= @scope.meta_description%>">
-  <% end %> 
-  
+  <% end %>
+
 <% end %>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- FashionFly Ad -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3481906310275052"
+     data-ad-slot="1965934592"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<br />
 
 <h2 style="height:0px; width:0px; position:absolute;top:0px; right:0px; display:block; overflow:hidden">
   <%= t('.title') %>
@@ -45,13 +58,13 @@
 
   <div class="notificationbox">
     <%= t('.create_outfit') %>
-    <a  href="<%= fashion_fly_editor_path(assigned_locale) %>" 
-        class="bluebutton" 
+    <a  href="<%= fashion_fly_editor_path(assigned_locale) %>"
+        class="bluebutton"
         title="<%= t('shared.header.create_outfit') %>">
         <%= t('shared.header.create_outfit') %>
     </a>
   </div>
-  
+
   <div class="trendbox" ng-controller="FavoriteController">
     <h2><%= t('.trends_outfits') %></h2>
     <%= render @scope.collections.trends.limit(4) %>
