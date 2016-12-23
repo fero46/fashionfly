@@ -54,7 +54,7 @@ class CsvToXmlAffiliateWindowImporter < AffiliateWindowImporter
       @affiliate.skip_items = actual_counter
       @affiliate.save
     end
-    @affiliate.products.where(dirty: true).where(published: false).map{|x| RemoverWorker.run(x)}
+    @affiliate.products.where(dirty: true).where(removed: false).map{|x| RemoverWorker.run(x)}
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save

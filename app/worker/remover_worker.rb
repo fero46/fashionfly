@@ -4,7 +4,8 @@ class RemoverWorker
   def perform(product_id)
     product = Product.where(id: product_id).first
     if product.present?
-      product.destroy
+      product.removed = true
+      product.save
     end
   end
 

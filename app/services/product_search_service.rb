@@ -22,7 +22,7 @@ class ProductSearchService
 
 
   def products random_order=false
-    @products = Product.where(scope_id: @scope.id)
+    @products = Product.where(scope_id: @scope.id, removed: false)
     if params[:category]
       @products = @products.joins(:categorizations).where("categorizations.category_id" => params[:category])
     end

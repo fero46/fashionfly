@@ -82,7 +82,7 @@ class AffiliateWindowImporter < AffilinetImporter
       @affiliate.save
 
     end
-    @affiliate.products.where(dirty: true).where(published: false).map{|x| RemoverWorker.run(x)}
+    @affiliate.products.where(dirty: true).where(removed: false).map{|x| RemoverWorker.run(x)}
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.save
