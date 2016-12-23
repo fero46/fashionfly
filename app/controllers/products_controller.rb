@@ -51,7 +51,7 @@ protected
     begin
       @product = Product.find(params[:id])
       @category = @product.categories.where(:leaf => true).first
-      if @product.removed
+      if @product.removed && false
         if @category.present?
           redirect_to(category_path(assigned_locale, @category.slug) , alert: I18n.t('action.product_not_found'))
         else
