@@ -57,6 +57,8 @@ class ReklamActionImporter < AffilinetImporter
     @affiliate.products.where(dirty: true).where(removed: false).map{|x| RemoverWorker.run(x)}
     @affiliate.skip_items = 0
     @affiliate.percent = 100
+    @affiliate.ready = false
+    @affiliate.importing = false
     @affiliate.save
   end
 
