@@ -2,6 +2,12 @@ require 'sidekiq/web'
 
 Fashionfly::Application.routes.draw do
 
+  get 'app-entwickler-finden', to: "redirector#appentwickler", as: 'app'
+  get 'programmierer-hamburg', to: "redirector#programmierer", as: 'prog'
+  get 'internet-agentur-hamburg', to: "redirector#internetagentur", as: 'int'
+
+
+
   get 'brandet_categories/show'
 
   get 'blogs/edit'

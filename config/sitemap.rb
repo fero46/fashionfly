@@ -9,6 +9,9 @@ Scope.where(published: true).each do |scope|
 
   puts 'Seiten start'
   sitemap :site do
+    url app_url(locale: scope.locale), last_mod: Time.now, change_freq: 'daily', priority: 1.0
+    url prog_url(locale: scope.locale), last_mod: Time.now, change_freq: 'daily', priority: 1.0
+    url int_url(locale: scope.locale), last_mod: Time.now, change_freq: 'daily', priority: 1.0
     url root_url(locale: scope.locale), last_mod: Time.now, change_freq: 'daily', priority: 1.0
     scope.categories.each do |category|
       url category_url(scope.locale, category.slug), last_mod: category.updated_at
