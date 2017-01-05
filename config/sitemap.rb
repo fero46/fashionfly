@@ -4,14 +4,17 @@ require 'net/http'
 
 host 'www.fashionfly.co'
 
+
+
 Scope.where(published: true).each do |scope|
   folder "sitemaps/#{scope.locale}"
 
+  url app_url(), last_mod: Time.now, change_freq: 'daily', priority: 1.0
+  url prog_url(), last_mod: Time.now, change_freq: 'daily', priority: 1.0
+  url int_url(), last_mod: Time.now, change_freq: 'daily', priority: 1.0
+
   puts 'Seiten start'
   sitemap :site do
-    url app_url(locale: scope.locale), last_mod: Time.now, change_freq: 'daily', priority: 1.0
-    url prog_url(locale: scope.locale), last_mod: Time.now, change_freq: 'daily', priority: 1.0
-    url int_url(locale: scope.locale), last_mod: Time.now, change_freq: 'daily', priority: 1.0
     url root_url(locale: scope.locale), last_mod: Time.now, change_freq: 'daily', priority: 1.0
     scope.categories.each do |category|
       url category_url(scope.locale, category.slug), last_mod: category.updated_at
