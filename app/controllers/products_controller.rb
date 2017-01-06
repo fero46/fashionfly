@@ -50,6 +50,9 @@ protected
   def find_product
     begin
       @product = Product.find(params[:id])
+      if @product.try(:scope).try(:id) != @scope.try(:id)
+        redirect_to product_path(@product.try(:scope).locale, @product)
+      end
       @category = @product.categories.where(:leaf => true).first
       if @product.removed && false
         if @category.present?
