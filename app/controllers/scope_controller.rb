@@ -13,7 +13,8 @@ protected
       alternative_scope = Scope.where(country_code: ::Configuration.where(key: 'default_country_code').first.value).first
       redirect_to root_path(locale: alternative_scope.locale)
     end
-    current_user.update(scope_id: @scope.id) if current_user && current_user.scope_id != @scope.try(:id)
+    current_user.update(scope_id: @scope.id) if current_user && current_user.scope_id != @scope.try(:id) && @scope.present?
+    @scope = Scope.first if @scope.blank?
     @scope
   end
 
