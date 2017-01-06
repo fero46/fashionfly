@@ -29,9 +29,9 @@ Scope.where(published: true).each do |scope|
   puts 'Seiten ende'
 
   puts 'Produkte start'
-  if scope.products.where(dirty: false).present?
+  if scope.products.any?
     sitemap :products do
-      scope.products.where(dirty: false).find_in_batches(batch_size: 1000) do |group|
+      scope.products.find_in_batches(batch_size: 1000) do |group|
         for product in group
           url product_url(scope.locale, product), last_mod: product.updated_at
         end
