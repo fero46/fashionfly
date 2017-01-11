@@ -125,6 +125,7 @@ de:
   brandet_categories:
     show:
       title: '%{current_year} - Alle %{category} von %{brand}'
+      subtitle: 'Beim Label <strong>%{name}</strong> auf FashionFly findest du alle <strong>%{category}</strong>. Du findest alle Produkte aus dem Jahr %{current_year} und davor in unserem Sortiment und über alle Shops hinweg. Auf FashionFly.co gibt es nur die besten Produkte.'
   blogger_mailer:
     default:
       greeting: "Hallo %{user}"

@@ -9,7 +9,9 @@
   <% if @brandet_categories %>
   <% content_for :title do I18n.t('brandet_categories.show.title', brand: @brand.name, category: @category.name, current_year: @current_year); end %>
   <h1 style="text-align:left; padding-top:0px;padding-bottom:20px"><%=I18n.t('brandet_categories.show.title', brand: @brand.name, category: @category.name, current_year: @current_year)  %></h1>
-
+  <div class="white_box pagination_options">
+    <p><%=I18n.t('brandet_categories.show.subtitle', name: @brand.name, category: @category.name, current_year: @current_year) %></p>
+  </div>
   <% content_for :meta do %>
 
   <meta property="og:title" content="<%= I18n.t('brandet_categories.show.title', brand: @brand.name, category: @category.name, current_year: @current_year) %>"/>
