@@ -65,18 +65,6 @@
       </div>
 <br />
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- FashionFly Ad -->
-<ins class="adsbygoogle"
-   style="display:block"
-   data-ad-client="ca-pub-3481906310275052"
-   data-ad-slot="1965934592"
-   data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-<br /><br />
       <div class="details">
         <%= link_to t('.create_comment'), '#comment_now', id: 'call_to_action' %>
         <%= image_tag user_image(@collection.user, :smaller), alt: user_name(@collection.user), title: user_name(@collection.user)  %>
@@ -131,19 +119,6 @@
   <div class="productviews">
 
     <h2><%= t('.used_products') %></h2>
-
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <!-- FashionFly Ad -->
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-3481906310275052"
-       data-ad-slot="1965934592"
-       data-ad-format="auto"></ins>
-  <script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-
-  <br /><br />
       <%= cache ['product_list', @scope ,@collection] do %>
         <% for product in @collection.products %>
           <%= render 'products/small_product', product: product %>
