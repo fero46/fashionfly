@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :exception, unless: :is_a_bot?
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :find_scope
   before_action :cookie_store
@@ -74,6 +74,13 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url(locale: assigned_locale, :alert => exception.message)
   end
+
+  def is_a_bot?
+    ua = AgentOrange::UserAgent.new(request.user_agent)
+    device = ua.device
+    device.is_bot?
+  end
+
 
 protected
   def request_ip
