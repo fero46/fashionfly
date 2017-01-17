@@ -12,9 +12,8 @@ class BrandetCategoriesController < ScopeController
       category_slug = params[:category]
       @category = Category.where(slug: category_slug).first
       if @category.present?
-        params[:brand] = @brand.id
-        params[:category] = @category.id
-        @products = ProductSearchService.new(@scope, params).products
+        redirect_to category_path(assigned_locale, @category.slug)
+        return
       else
         redirect_to root_path
         return

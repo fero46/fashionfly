@@ -77,23 +77,23 @@ Scope.where(published: true).each do |scope|
   end
   puts 'Hastags ende'
 
-  brand_ids = scope.products.group('brand_id').map(&:brand_id)
+  # brand_ids = scope.products.group('brand_id').map(&:brand_id)
 
-  brands = Brand.where('id in (?)', brand_ids)
-  puts "update date in category"
-  for category in scope.categories.all
-    category.touch
-  end
+  # brands = Brand.where('id in (?)', brand_ids)
+  # puts "update date in category"
+  # for category in scope.categories.all
+  #   category.touch
+  # end
 
-  puts 'Marken start'
-  sitemap :brands do
-    for brand in brands
-      for category in scope.categories.all
-        url brand_category_url(scope.locale, brand.slug, category.slug), last_mod: category.updated_at
-        end
-      end
-  end
-  puts 'Marken ende'
+  # puts 'Marken start'
+  # sitemap :brands do
+  #   for brand in brands
+  #     for category in scope.categories.all
+  #       url brand_category_url(scope.locale, brand.slug, category.slug), last_mod: category.updated_at
+  #       end
+  #     end
+  # end
+  # puts 'Marken ende'
 
   ping_with "http://fashionfly.co/#{scope.locale}/sitemap.xml" if Rails.env == 'production'
 end
