@@ -76,6 +76,18 @@ module ProductsHelper
     end
   end
 
+  def product_item_category product
+    product.try(:categories).try(:last).try(:name) || ''
+  end
+
+  def product_adjectiv product
+    if product.blank? || product.colorization.blank?
+      t 'products.show.beautiful'
+    else
+      t 'products.show.adjective' + product.colorization.try(:name).gsub('#','_')
+    end
+  end
+
   def product_color_hex product
     if product.blank? || product.colorization.blank?
       'none'

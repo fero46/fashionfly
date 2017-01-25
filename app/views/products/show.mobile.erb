@@ -55,6 +55,11 @@
         </div>
         <div class="product_info">
           <h4 title="<%=@product.name%>" ng-click="callForm(<%= @product.id %>)"><%= truncate @product.name, length: 40 %></h4>
+          <p><%= t('.custom_words', brand: product_brand(@product),
+                                    color: product_color(@product),
+                                    category: product_item_category(@product),
+                                    adjective: product_adjectiv(@product)) %></p>
+                                    <br />
          <p><%= @product.description %></p>
           <h5><%= @product.try(:categories).try(:last).try(:name) %></h5>
           <h6><%= @product.try(:brand).try(:name) %></h6>

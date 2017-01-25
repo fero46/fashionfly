@@ -328,6 +328,25 @@ de:
       garanti: Sicher einkaufen mit der FashionFly <span class="red">Garantie</span>
       brand: Marke
       color: Farbe
+      custom_words: 'Die %{adjective} %{category} von %{brand} in der %{color} auf Fashionfly.co'
+      adjective_77858f: harmosch
+      adjective_000000: stylisch
+      adjective_019e13: fresh
+      adjective_2c2bd1: klassisch
+      adjective_2ed0cd: trendig
+      adjective_7cfe6f: klassisch
+      adjective_b9531c: kräftig
+      adjective_c5e1fd: klassisch
+      adjective_c61cd0: exotisch
+      adjective_d4d4d4: klassisch
+      adjective_e7db9c: frech
+      adjective_f4cb62: spritzig
+      adjective_ff0000: feurig
+      adjective_ff59ae: heis
+      adjective_ffc702: fruchtig
+      adjective_ffdfef: helles
+      adjective_ffff02: knallig
+      adjective_ffffff: klassich
       _77858f: grau/blau
       _000000: schwarz
       _019e13: grün

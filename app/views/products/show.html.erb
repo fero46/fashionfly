@@ -125,11 +125,18 @@
       </ul>
     </div>
     <div class="description">
+      <p><%= t('.custom_words', brand: product_brand(@product),
+                                color: product_color(@product),
+                                category: product_item_category(@product),
+                                adjective: product_adjectiv(@product)) %></p>
+                                <br />
       <%= simple_format raw @product.description %>
       <br />
       <a href="#" ng-click="callForm(<%= @product.id %>)"><%= t('.more') %></a>
     </div>
     <div class="description">
+
+
       <strong><%= t('.brand') %> :</strong> <%= product_brand(@product) %><br />
       <strong><%= t('.color') %> :</strong> <%= product_color(@product) %><br />
     </div>

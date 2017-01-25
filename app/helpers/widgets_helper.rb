@@ -6,7 +6,7 @@ module WidgetsHelper
     else
       host = ""
     end
-    image_tag(host + collection.image.original.url, 
+    image_tag(host + collection.image.original.url,
               class: 'collection_image',
               alt: collection.title,
               title: collection.title)
