@@ -76,9 +76,13 @@ class ApplicationController < ActionController::Base
   end
 
   def is_a_bot?
+    begin
     ua = AgentOrange::UserAgent.new(request.user_agent)
     device = ua.device
     device.is_bot?
+    rescue
+      return true
+    end
   end
 
 
