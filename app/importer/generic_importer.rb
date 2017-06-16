@@ -89,7 +89,7 @@ class GenericImporter
       product.dirty = false
       product.removed = false
       product.save!
-      if new_product && @scope.board_number.present?
+      if new_product && @scope.board_number.present? && false
         begin
           @client = Pinterest::Client.new("x")
           @client.create_pin({:board => @scope.board_number, link: Rails.application.routes.url_helpers.product_url(@scope.locale, product, :host=> 'fashionfly.co'), image_url: product.original.url, note: product.description})
