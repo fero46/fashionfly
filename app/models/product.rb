@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
   belongs_to :colorization
   belongs_to :scope
   belongs_to :affiliate
-  
+
   mount_uploader :image, ImageUploader
   mount_uploader :original, OriginalUploader
 
