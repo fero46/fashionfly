@@ -7,5 +7,10 @@ class ZalandoPremium < AffiliateDownloader
   def name
     'Zalando Premium'
   end
-  
+
+
+  def ended?
+    true
+  end
+
 end

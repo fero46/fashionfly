@@ -8,4 +8,8 @@ class ZalandoMode < AffiliateDownloader
     'Zalando Mode'
   end
 
+  def ended?
+    true
+  end
+
 end

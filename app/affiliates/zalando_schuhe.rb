@@ -8,4 +8,9 @@ class ZalandoSchuhe < AffiliateDownloader
     'Zalando Schuhe'
   end
 
+
+  def ended?
+    true
+  end
+
 end
