@@ -29,12 +29,12 @@ module Fashionfly
     config.active_job.queue_adapter = :sidekiq
     config.assets.initialize_on_precompile = false
     config.middleware.use Rack::Attack
-    config.middleware.use ExceptionNotification::Rack,
-      :email => {
-          :email_prefix => "[Fehlermeldung] ",
-          :sender_address => %{"FashionFly Team" <service@fashionfly.de>},
-          :exception_recipients => %w{ferhat@hansehype.de}
-        }
+    # config.middleware.use ExceptionNotification::Rack,
+    #   :email => {
+    #       :email_prefix => "[Fehlermeldung] ",
+    #       :sender_address => %{"FashionFly Team" <service@fashionfly.de>},
+    #       :exception_recipients => %w{ferhat@hansehype.de}
+    #     }
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
