@@ -19,7 +19,6 @@ gem 'rails-i18n'
 gem 'tokenizer'
 gem 'unicode'
 gem 'daemons'
-gem 'eventmachine'
 gem 'dalli'
 gem "nokogiri"
 gem "rubyzip"
@@ -57,7 +56,6 @@ gem 'lit'
 gem "dynamic_sitemaps"
 gem "aws-ses", "~> 0.6.0", :require => 'aws/ses'
 gem "feedjira"
-gem 'thin'
 
 gem 'foundation-rails','~> 5.5.0'
 gem 'modernizr-rails'
