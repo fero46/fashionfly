@@ -35,7 +35,7 @@ module Fashionfly
           :exception_recipients => %w{ferhat@hansehype.de}
         }
 
-    config.middleware.insert_before 0, "Rack::Cors" do
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource '/endpoint/*', :headers => :any, :methods => [:get, :post, :options, :update]
