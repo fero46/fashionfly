@@ -20,6 +20,7 @@ gem 'tokenizer'
 gem 'unicode'
 gem 'daemons'
 gem 'dalli'
+gem 'xmlrpc'
 gem "nokogiri"
 gem "rubyzip"
 gem 'rack-cors', :require => 'rack/cors'
