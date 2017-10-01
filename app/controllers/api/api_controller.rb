@@ -1,11 +1,11 @@
 class Api::ApiController < ScopeController
   respond_to :json
 
-  before_filter :check_format
+  before_action :check_format
 
   # http://blog.rudylee.com/2013/10/29/rails-4-cors/
-  skip_before_filter :verify_authenticity_token
-  before_filter :cors_preflight_check
+  skip_before_action :verify_authenticity_token
+  before_action :cors_preflight_check
   after_filter :cors_set_access_control_headers
 
   def check_format

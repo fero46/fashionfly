@@ -1,6 +1,6 @@
 class Endpoint::V1::ProductsController < Endpoint::V1::ScopesController
 
-  before_filter :find_scope
+  before_action :find_scope
 
   def index
     pss = ProductSearchService.new(@scope, params)

@@ -1,7 +1,7 @@
 class ScopeController < ApplicationController
 
-  skip_before_filter :get_right_scope
-  before_filter :find_scope
+  skip_before_action :get_right_scope
+  before_action :find_scope
 
 protected
 

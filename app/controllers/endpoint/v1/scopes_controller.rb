@@ -1,6 +1,6 @@
 class Endpoint::V1::ScopesController < Endpoint::V1::BaseController
 
-  before_filter :find_scope, only: [:show]
+  before_action :find_scope, only: [:show]
 
   def index
     @scopes = Scope.all

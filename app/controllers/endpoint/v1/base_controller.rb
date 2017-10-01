@@ -2,11 +2,11 @@ class Endpoint::V1::BaseController < ApplicationController
 
   respond_to :json
 
-  before_filter :check_format
+  before_action :check_format
 
   # http://blog.rudylee.com/2013/10/29/rails-4-cors/
-  skip_before_filter :verify_authenticity_token
-  skip_before_filter :prepare_for_mobile
+  skip_before_action :verify_authenticity_token
+  skip_before_action :prepare_for_mobile
   def check_format
     set_headers
     params[:format] == 'json'

@@ -1,6 +1,6 @@
 class Endpoint::V1::CategoriesController < Endpoint::V1::ScopesController
 
-  before_filter :find_scope
+  before_action :find_scope
 
   def index
     @categories = @scope.categories

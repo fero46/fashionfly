@@ -1,7 +1,7 @@
 class Endpoint::V1::CollectionsController < Endpoint::V1::ScopesController
 
-  before_filter :find_scope
-  before_filter :find_collection, only: :show
+  before_action :find_scope
+  before_action :find_collection, only: :show
 
   def index
     @collections = CollectionSearchService.new(@scope, params).collections
