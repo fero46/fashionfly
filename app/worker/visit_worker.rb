@@ -1,5 +1,4 @@
-class VisitWorker
-  include Sidekiq::Worker
+class VisitWorker < ActiveJob::Base
 
   def perform(visitable_id, visitable_type, user_id, cookie)
     klazz = Object.const_get(visitable_type)
@@ -10,7 +9,7 @@ class VisitWorker
 
 
   def self.goto(visitable_id, visitable_type, user_id, cookie)
-    perform_async(visitable_id, visitable_type, user_id, cookie)
+    perform_later(visitable_id, visitable_type, user_id, cookie)
   end
 
 

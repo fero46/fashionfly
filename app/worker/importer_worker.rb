@@ -1,5 +1,4 @@
-class ImporterWorker
-  include Sidekiq::Worker
+class ImporterWorker < ActiveJob::Base
 
   def perform(affiliate_id)
     affiliate = Affiliate.where(id: affiliate_id).first
@@ -16,7 +15,7 @@ class ImporterWorker
   def self.run_importer affiliate
     return if affiliate.blank?
     puts affiliate.ready  && affiliate.importing
-    perform_async(affiliate.id)
+    perform_later(affiliate.id)
   end
 
 end

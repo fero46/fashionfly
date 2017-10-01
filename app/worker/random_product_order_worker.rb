@@ -1,6 +1,4 @@
-class RandomProductOrderWorker
-  include Sidekiq::Worker
-
+class RandomProductOrderWorker < ActiveJob::Base
   def perform
     config = ::Configuration.where(key: 'random_product_order_worker').first_or_create
     return if config.value == 'running'
@@ -20,7 +18,7 @@ class RandomProductOrderWorker
   end
 
   def self.run
-    perform_async()
+    perform_later()
   end
-  
+
 end

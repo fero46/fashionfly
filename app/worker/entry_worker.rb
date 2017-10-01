@@ -1,5 +1,4 @@
-class EntryWorker
-  include Sidekiq::Worker
+class EntryWorker < ActiveJob::Base
 
   def perform
 
@@ -10,7 +9,7 @@ class EntryWorker
   end
 
   def self.run
-    perform_async()
+    perform_later()
   end
 
 end

@@ -1,7 +1,6 @@
-class AffiliateWorker
-  include Sidekiq::Worker
+class AffiliateWorker < ActiveJob::Base
 
-  def perform
+  def perform(*args)
     ZalandoPremium.run
     ZalandoSchuhe.run
     ZalandoMode.run
@@ -20,7 +19,7 @@ class AffiliateWorker
   end
 
   def self.run
-    perform_async()
+    perform_later()
   end
 
 end

@@ -1,6 +1,6 @@
 class ScopeController < ApplicationController
 
-  skip_before_action :get_right_scope
+  skip_before_action :get_right_scope, raise: false
   before_action :find_scope
 
 protected

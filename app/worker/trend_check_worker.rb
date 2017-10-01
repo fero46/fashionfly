@@ -1,5 +1,4 @@
-class TrendCheckWorker
-  include Sidekiq::Worker
+class TrendCheckWorker < ActiveJob::Base
 
   def perform
 
@@ -39,7 +38,7 @@ class TrendCheckWorker
   end
 
   def self.check
-    perform_async()
+    perform_later()
   end
 
 

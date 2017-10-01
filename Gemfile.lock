@@ -1,6 +1,6 @@
 GIT
   remote: git@bitbucket.org:fashionfly/fashion-fly-editor.git
-  revision: c6eb162835a3b60bb53d9776dfc9c00507205d0c
+  revision: e3000f0a33478ccbcb7615a7eafdbc4c8103e68d
   specs:
     fashion_fly_editor (0.0.1)
       carrierwave
@@ -32,6 +32,15 @@ GIT
   specs:
     simple_hashtag (0.1.8)
       rails (> 3.2.0)
+
+GIT
+  remote: https://github.com/prograils/lit.git
+  revision: 5c14b73f6e9170716fe943a1023e46fac2553732
+  specs:
+    lit (0.3.0.pre.beta.2)
+      i18n (~> 0.7.0)
+      jquery-rails
+      rails (>= 4.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -359,10 +368,6 @@ GEM
       kaminari-core (= 1.0.1)
     kaminari-core (1.0.1)
     libxml-ruby (3.0.0)
-    lit (0.2.6)
-      i18n (~> 0.7.0)
-      jquery-rails
-      rails (> 3.1.0)
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -589,7 +594,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   libxml-ruby
-  lit
+  lit!
   mini_magick
   modernizr-rails
   mysql2

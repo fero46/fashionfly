@@ -6,7 +6,7 @@ class Api::ApiController < ScopeController
   # http://blog.rudylee.com/2013/10/29/rails-4-cors/
   skip_before_action :verify_authenticity_token
   before_action :cors_preflight_check
-  after_filter :cors_set_access_control_headers
+  after_action :cors_set_access_control_headers
 
   def check_format
     render :nothing => true, :status => 406 unless params[:format] == 'json' || request.headers["Accept"] =~ /json/

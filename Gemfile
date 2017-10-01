@@ -53,7 +53,7 @@ gem 'fog'
 gem 'redis'
 gem 'redis-namespace'
 gem 'cancancan', '~> 1.9'
-gem 'lit'
+gem 'lit', :git => "https://github.com/prograils/lit.git"
 gem "dynamic_sitemaps"
 gem "aws-ses", "~> 0.6.0", :require => 'aws/ses'
 gem "feedjira"

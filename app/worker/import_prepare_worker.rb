@@ -1,5 +1,4 @@
-class ImportPrepareWorker
-  include Sidekiq::Worker
+class ImportPrepareWorker < ActiveJob::Base
 
   def perform
     affiliates = Affiliate.where(ready:true, importing: false)
@@ -11,6 +10,6 @@ class ImportPrepareWorker
   end
 
   def self.prepare
-    perform_async
+    perform_later
   end
 end

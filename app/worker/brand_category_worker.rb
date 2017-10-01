@@ -1,7 +1,6 @@
-class BrandCategoryWorker
-  include Sidekiq::Worker
+class BrandCategoryWorker< ActiveJob::Base
 
-  def perform
+  def perform(*args)
     config = ::Configuration.where(key: 'brand_category_worker').first_or_create
     return if config.value == 'running'
     begin
@@ -19,7 +18,7 @@ class BrandCategoryWorker
   end
 
   def self.run
-    perform_async()
+    perform_later()
   end
 
   def brand_category product

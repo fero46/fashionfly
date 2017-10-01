@@ -65,7 +65,7 @@ module ApplicationHelper
 
 
   def generate_name_and_flag code
-    name = Country.new(code).name
+    name = ISO3166::Country.new(code).name
     image_tag("flags/#{format_name(name)}.png") + I18n.t(code, :scope => :countries)
   end
 
