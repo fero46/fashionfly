@@ -151,7 +151,7 @@ GEM
     domp (0.0.7)
     dynamic_sitemaps (2.0.0)
     erubis (2.7.0)
-    eventmachine (1.0.8)
+    eventmachine (1.2.5)
     exception_notification (4.1.4)
       actionmailer (~> 4.0)
       activesupport (~> 4.0)
@@ -470,6 +470,7 @@ DEPENDENCIES
   devise-i18n
   domp
   dynamic_sitemaps
+  eventmachine
   exception_notification
   fashion_fly_editor!
   feedjira
@@ -521,4 +522,4 @@ DEPENDENCIES
   web-app-theme
 
 BUNDLED WITH
-   1.14.6
+   1.15.1

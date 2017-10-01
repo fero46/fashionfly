@@ -19,6 +19,7 @@ gem 'rails-i18n'
 gem 'tokenizer'
 gem 'unicode'
 gem 'daemons'
+gem 'eventmachine'
 gem 'dalli'
 gem "nokogiri"
 gem "rubyzip"
