@@ -67,7 +67,7 @@ end
 gem 'exception_notification'
 gem 'rack-attack'
 
-gem 'capistrano'
+gem 'capistrano', "3.5.0"
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
 gem 'capistrano-sidekiq'
