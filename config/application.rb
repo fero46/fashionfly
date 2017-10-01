@@ -17,7 +17,6 @@ module Fashionfly
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
     config.middleware.use Rack::Deflater
-    config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths << Rails.root.join('lib')
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.assets.precompile += ['backend.css','backend.js', 'widget.js', 'widget.css', 'overwrites.css', 'style.css', 'language.js', 'mobile.css', 'mobile.js']
