@@ -433,7 +433,7 @@ GEM
       hashie (~> 3.0)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
-    puma (3.10.0)
+    puma (3.11.0)
     rack (2.0.3)
     rack-attack (5.0.1)
       rack
