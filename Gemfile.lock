@@ -359,6 +359,11 @@ GEM
       kaminari-core (= 1.0.1)
     kaminari-core (1.0.1)
     libxml-ruby (3.0.0)
+    lit (1.0.1)
+      coffee-rails
+      jquery-rails
+      rails (>= 4.2.0)
+      sass-rails
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -586,6 +591,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   libxml-ruby
+  lit
   mini_magick
   modernizr-rails
   mysql2
