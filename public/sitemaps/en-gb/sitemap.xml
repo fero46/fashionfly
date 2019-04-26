@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/en-gb/site.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/en-gb/users.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/en-gb/published_collections.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/en-gb/hashtags.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/en-gb/brands.xml</loc>
+</sitemap>
+</sitemapindex>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/de/site.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/de/products.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/de/users.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/de/entries.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/de/published_collections.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/de/hashtags.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/de/brands.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/de/brands2.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/de/brands3.xml</loc>
+</sitemap>
+<sitemap>
+<loc>http://www.fashionfly.co/sitemaps/de/brands4.xml</loc>
+</sitemap>
+</sitemapindex>
