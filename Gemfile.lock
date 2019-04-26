@@ -433,7 +433,7 @@ GEM
       hashie (~> 3.0)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
-    puma (3.11.0)
+    puma (3.12.1)
     rack (2.0.3)
     rack-attack (5.0.1)
       rack
@@ -633,4 +633,4 @@ DEPENDENCIES
   xmlrpc
 
 BUNDLED WITH
-   1.15.4
+   1.17.3
