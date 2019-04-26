@@ -36,4 +36,4 @@ Lit.api_key = "TF6wG3fPeYfNe9mO/BevfZ1uqGGYr24inx+lCkUJb40="
 Lit.set_last_updated_at_upon_creation = true
 
 # Initialize lit
-# Lit.init
+Lit.init

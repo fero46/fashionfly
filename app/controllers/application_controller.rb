@@ -96,7 +96,7 @@ protected
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :scope_id]
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :scope_id])
   end
 
   def cookie_store
