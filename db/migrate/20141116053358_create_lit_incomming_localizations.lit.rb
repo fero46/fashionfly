@@ -1,5 +1,5 @@
 # This migration comes from lit (originally 20130924151910)
-class CreateLitIncommingLocalizations < ActiveRecord::Migration
+class CreateLitIncommingLocalizations < ActiveRecord::Migration[4.2]
   def change
     create_table :lit_incomming_localizations do |t|
       t.text :translated_value

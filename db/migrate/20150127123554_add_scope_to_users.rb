@@ -1,4 +1,4 @@
-class AddScopeToUsers < ActiveRecord::Migration
+class AddScopeToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :scope_id, :integer
     add_index :users, :scope_id

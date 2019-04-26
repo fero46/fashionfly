@@ -1,4 +1,4 @@
-class CreateSynonymsWords < ActiveRecord::Migration
+class CreateSynonymsWords < ActiveRecord::Migration[4.2]
   def change
     create_table :synonyms_words do |t|
       t.integer :synonym_id

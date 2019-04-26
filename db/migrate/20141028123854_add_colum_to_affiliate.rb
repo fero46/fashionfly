@@ -1,4 +1,4 @@
-class AddColumToAffiliate < ActiveRecord::Migration
+class AddColumToAffiliate < ActiveRecord::Migration[4.2]
   def change
     add_column :affiliates, :importing, :boolean, default: false 
     add_column :affiliates, :percent, :integer, default: 0

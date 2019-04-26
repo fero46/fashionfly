@@ -1,4 +1,4 @@
-class AddPositionToAuthenticationProviders < ActiveRecord::Migration
+class AddPositionToAuthenticationProviders < ActiveRecord::Migration[4.2]
   def up
     add_column :authentication_providers, :position, :integer, default: 0
     add_index :authentication_providers, :position

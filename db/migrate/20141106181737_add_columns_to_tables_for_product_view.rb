@@ -1,4 +1,4 @@
-class AddColumnsToTablesForProductView < ActiveRecord::Migration
+class AddColumnsToTablesForProductView < ActiveRecord::Migration[4.2]
   def up
     add_column :affiliates, :logo, :string
     add_column :affiliates, :free_shipping, :boolean , default: false

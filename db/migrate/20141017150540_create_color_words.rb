@@ -1,4 +1,4 @@
-class CreateColorWords < ActiveRecord::Migration
+class CreateColorWords < ActiveRecord::Migration[4.2]
   def change
     create_table :color_words do |t|
       t.integer :scope_id

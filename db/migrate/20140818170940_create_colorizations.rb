@@ -1,4 +1,4 @@
-class CreateColorizations < ActiveRecord::Migration
+class CreateColorizations < ActiveRecord::Migration[4.2]
   def change
     create_table :colorizations do |t|
       t.string :name

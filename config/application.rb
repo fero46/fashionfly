@@ -26,6 +26,7 @@ module Fashionfly
     config.assets.precompile += %w( lit/famfamfam_flags/tr.png )
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.available_locales = [:de, :en, :tr]
+    config.i18n.fallbacks =[:de, :en, :tr]
     config.active_job.queue_adapter = :sidekiq
     config.assets.initialize_on_precompile = false
     config.middleware.use Rack::Attack

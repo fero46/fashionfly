@@ -1,4 +1,4 @@
-class AddProfileColumnsToUsers < ActiveRecord::Migration
+class AddProfileColumnsToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :banner, :string
     add_column :users, :info, :text

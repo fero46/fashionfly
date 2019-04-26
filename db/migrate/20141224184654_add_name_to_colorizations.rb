@@ -1,4 +1,4 @@
-class AddNameToColorizations < ActiveRecord::Migration
+class AddNameToColorizations < ActiveRecord::Migration[4.2]
   def change
     add_column :colorizations, :word, :string
     add_column :colorizations, :oposite_color, :string 

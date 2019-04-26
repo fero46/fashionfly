@@ -1,4 +1,4 @@
-class AddPolymorphicToFavorites < ActiveRecord::Migration
+class AddPolymorphicToFavorites < ActiveRecord::Migration[4.2]
   def change
     add_column :favorites, :object_type, :string, after: :product_id
     add_index :favorites, :object_type

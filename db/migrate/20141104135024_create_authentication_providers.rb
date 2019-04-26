@@ -1,4 +1,4 @@
-class CreateAuthenticationProviders < ActiveRecord::Migration
+class CreateAuthenticationProviders < ActiveRecord::Migration[4.2]
   def change
     create_table "authentication_providers", :force => true do |t|
       t.string   "name"

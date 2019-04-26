@@ -1,4 +1,4 @@
-class AddCounterCacheToProducts < ActiveRecord::Migration
+class AddCounterCacheToProducts < ActiveRecord::Migration[4.2]
 
   def up
     add_column :products, :favorites_count, :integer, :default => 0

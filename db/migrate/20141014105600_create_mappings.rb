@@ -1,4 +1,4 @@
-class CreateMappings < ActiveRecord::Migration
+class CreateMappings < ActiveRecord::Migration[4.2]
   def change
     create_table :mappings do |t|
       t.references :category, index: true

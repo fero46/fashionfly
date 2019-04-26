@@ -1,4 +1,4 @@
-class CreateTableBrandsCategories < ActiveRecord::Migration
+class CreateTableBrandsCategories < ActiveRecord::Migration[4.2]
   def change
     create_table :brands_categories do |t|
       t.belongs_to :brand, index: true

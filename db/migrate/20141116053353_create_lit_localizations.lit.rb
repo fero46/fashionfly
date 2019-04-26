@@ -1,5 +1,5 @@
 # This migration comes from lit (originally 20121103182106)
-class CreateLitLocalizations < ActiveRecord::Migration
+class CreateLitLocalizations < ActiveRecord::Migration[4.2]
   def change
     create_table :lit_localizations do |t|
       t.references :locale

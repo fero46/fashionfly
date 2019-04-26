@@ -1,4 +1,4 @@
-class CreateAffiliates < ActiveRecord::Migration
+class CreateAffiliates < ActiveRecord::Migration[4.2]
   def change
     create_table :affiliates do |t|
       t.string :file

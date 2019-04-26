@@ -1,4 +1,4 @@
-class CreateScopes < ActiveRecord::Migration
+class CreateScopes < ActiveRecord::Migration[4.2]
   def change
     create_table :scopes do |t|
       t.string :country_code

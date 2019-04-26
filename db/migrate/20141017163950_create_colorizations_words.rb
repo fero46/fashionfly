@@ -1,4 +1,4 @@
-class CreateColorizationsWords < ActiveRecord::Migration
+class CreateColorizationsWords < ActiveRecord::Migration[4.2]
   def change
     create_table :colorizations_words do |t|
       t.integer :colorization_id

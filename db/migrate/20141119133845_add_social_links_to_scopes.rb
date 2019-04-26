@@ -1,4 +1,4 @@
-class AddSocialLinksToScopes < ActiveRecord::Migration
+class AddSocialLinksToScopes < ActiveRecord::Migration[4.2]
   def change
     add_column :scopes, :facebook, :string
     add_column :scopes, :twitter, :string

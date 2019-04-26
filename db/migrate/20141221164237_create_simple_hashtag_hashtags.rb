@@ -1,5 +1,5 @@
 # This migration comes from simple_hashtag
-class CreateSimpleHashtagHashtags < ActiveRecord::Migration
+class CreateSimpleHashtagHashtags < ActiveRecord::Migration[4.2]
   def change
     create_table :simple_hashtag_hashtags do |t|
       t.string :name,             :index => true

@@ -1,4 +1,4 @@
-class AddMissingIndizies < ActiveRecord::Migration
+class AddMissingIndizies < ActiveRecord::Migration[4.2]
   def change
     add_index :categories, :category_id
     add_index :categorizations, :category_id 

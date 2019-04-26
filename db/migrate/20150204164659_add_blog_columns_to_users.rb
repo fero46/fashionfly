@@ -1,4 +1,4 @@
-class AddBlogColumnsToUsers < ActiveRecord::Migration
+class AddBlogColumnsToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :blog_status, :string, default: 'NONE'
     add_column :users, :is_blogger, :boolean, default:false

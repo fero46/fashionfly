@@ -1,4 +1,4 @@
-class CreateCategoriesIconsTable < ActiveRecord::Migration
+class CreateCategoriesIconsTable < ActiveRecord::Migration[4.2]
   def change
     create_table :categories_icons do |t|
       t.integer :category_id

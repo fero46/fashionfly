@@ -1,4 +1,4 @@
-class AddColumnsToContests < ActiveRecord::Migration
+class AddColumnsToContests < ActiveRecord::Migration[4.2]
   def change
     add_column :contests, :startdate, :date
     add_index :contests, :startdate

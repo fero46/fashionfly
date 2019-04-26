@@ -1,5 +1,5 @@
 # This migration comes from lit (originally 20121103174049)
-class CreateLitLocalizationKeys < ActiveRecord::Migration
+class CreateLitLocalizationKeys < ActiveRecord::Migration[4.2]
   def change
     create_table :lit_localization_keys do |t|
       t.string :localization_key

@@ -1,4 +1,4 @@
-class ChangeIndexSize < ActiveRecord::Migration
+class ChangeIndexSize < ActiveRecord::Migration[4.2]
   def up
     remove_index :scopes, :locale
     add_index :scopes, :locale, :length => 10

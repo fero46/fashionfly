@@ -1,5 +1,5 @@
 # This migration comes from fashion_fly_editor (originally 20141009153552)
-class RenameCollectionItemAttributes < ActiveRecord::Migration
+class RenameCollectionItemAttributes < ActiveRecord::Migration[4.2]
   def change
     rename_column :fashion_fly_editor_collection_items, :x_coordinate, :position_x
     rename_column :fashion_fly_editor_collection_items, :y_coordinate, :position_y

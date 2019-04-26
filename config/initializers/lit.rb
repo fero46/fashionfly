@@ -22,7 +22,7 @@ Lit.humanize_key = false
 
 # Decide if missing translations will fallback to first found translated value
 # (same key, different language)
-Lit.fallback = false
+Lit.fallback = true
 
 # API enabled? API allows third party browsing your translations, as well as
 # synchronizing them between environments
@@ -37,5 +37,3 @@ Lit.set_last_updated_at_upon_creation = true
 
 # Initialize lit
 Lit.init
-
-

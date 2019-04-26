@@ -1,4 +1,4 @@
-class AddStartToAffiliates < ActiveRecord::Migration
+class AddStartToAffiliates < ActiveRecord::Migration[4.2]
   def change
     add_column :affiliates, :start_from_id, :integer, :default => 0
   end
