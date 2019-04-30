@@ -131,6 +131,8 @@ GEM
     color (1.8)
     concurrent-ruby (1.1.5)
     connection_pool (2.2.1)
+    cookies_eu (1.7.5)
+      js_cookie_rails (~> 2.2.0)
     countries (2.1.2)
       i18n_data (~> 0.8.0)
       money (~> 6.9)
@@ -344,6 +346,8 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    js_cookie_rails (2.2.0)
+      railties (>= 3.1)
     json (1.8.6)
     jwt (1.5.6)
     kaminari (1.0.1)
@@ -570,6 +574,7 @@ DEPENDENCIES
   clockwork
   coffee-rails
   color
+  cookies_eu
   countries
   country_select
   daemons

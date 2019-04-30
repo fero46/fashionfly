@@ -22,6 +22,7 @@ gem 'daemons'
 gem 'dalli'
 gem 'xmlrpc'
 gem "nokogiri"
+gem 'cookies_eu'
 gem "rubyzip"
 gem 'rack-cors', :require => 'rack/cors'
 gem "skylight"

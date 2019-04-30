@@ -25,6 +25,7 @@
 //= require collections
 //= require app
 //= require_tree ./angular
+//= require cookies_eu
 
 //<![CDATA[
 tinyMCE.init({
@@ -79,6 +80,6 @@ $(document).ready(function(){
   if($('#show_popup_js_popup').length > 0){
     setTimeout(function(){
       window.show_exit();
-    },1000);    
+    },1000);
   }
 });
