@@ -4,7 +4,7 @@ Devise.setup do |config|
   config.secret_key = '867cc35ae8b6d02fa4927e68edefb802d5455a07221102d7b1e3f1c4fa11171fcb879e78870831cb6027f08ffacbb297c38311b96a82b636591593fe9f81ec5b'
   config.mailer_sender = 'service@fashionfly.co'
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'Devise::Mailer'
   require 'devise/orm/active_record'
   config.case_insensitive_keys = [ :email ]
   config.strip_whitespace_keys = [ :email ]
