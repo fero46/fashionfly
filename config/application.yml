@@ -35,13 +35,13 @@ test:
       secret: x
     tumblr:
       id: x
-      secret: 104oqBPGO7nqXgnTMvcMwgKfms8OZDuwJo9IU9dICWEQZnAaXc
+      secret: x
     twitter:
-      id: XrPEL3EaKYiv08wqj5XRHZClF
-      secret: byOPa31EjtlrcopJQRmQaY7GDWR3gKrzKteucbV9AAQSWI9QGO
+      id: x
+      secret: x
     google:
-      id: 160386295309-ragvk7g62vcfimrhv3vbcjktqujcmt4c.apps.googleusercontent.com
-      secret: nva9FLxy1DPkhu01-ZW-2O7J
+      id: x
+      secret: x
 production:
   app:
     name: FashionFly
@@ -57,10 +57,10 @@ production:
       secret: x
     tumblr:
       id: x
-      secret: 104oqBPGO7nqXgnTMvcMwgKfms8OZDuwJo9IU9dICWEQZnAaXc
+      secret: x
     twitter:
-      id: XrPEL3EaKYiv08wqj5XRHZClF
-      secret: byOPa31EjtlrcopJQRmQaY7GDWR3gKrzKteucbV9AAQSWI9QGO
+      id: x
+      secret: x
     google:
-      id: 160386295309-ragvk7g62vcfimrhv3vbcjktqujcmt4c.apps.googleusercontent.com
-      secret: nva9FLxy1DPkhu01-ZW-2O7J
+      id: x
+      secret: x
