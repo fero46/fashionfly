@@ -1,6 +1,14 @@
 GIT
-  remote: git@bitbucket.org:fashionfly/fashion-fly-editor.git
-  revision: e3000f0a33478ccbcb7615a7eafdbc4c8103e68d
+  remote: https://github.com/fero46/auto_html.git
+  revision: 323c2d554e62796ee220d0324cdc6f1cfd772a58
+  specs:
+    auto_html (1.6.4)
+      redcarpet (~> 3.1)
+      rinku (~> 1.7)
+
+GIT
+  remote: https://github.com/fero46/fashion_fly_editor.git
+  revision: c3a31552b3b69d71930679dc6950582b5dbb6ae9
   specs:
     fashion_fly_editor (0.0.1)
       carrierwave
@@ -8,17 +16,9 @@ GIT
       haml
       i18n
       jquery-ui-rails
-      rails (~> 5.1.4)
+      rails
       rmagick
       sass-rails
-
-GIT
-  remote: https://github.com/fero46/auto_html.git
-  revision: 323c2d554e62796ee220d0324cdc6f1cfd772a58
-  specs:
-    auto_html (1.6.4)
-      redcarpet (~> 3.1)
-      rinku (~> 1.7)
 
 GIT
   remote: https://github.com/fero46/ratyrate.git
@@ -387,7 +387,7 @@ GEM
     grpc (1.55.0-x86_64-darwin)
       google-protobuf (~> 3.23)
       googleapis-common-protos-types (~> 1.0)
-    haml (6.1.1)
+    haml (6.3.0)
       temple (>= 0.8.2)
       thor
       tilt
@@ -525,7 +525,7 @@ GEM
       hashie (~> 3.0)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
-    pkg-config (1.5.1)
+    pkg-config (1.5.6)
     psych (5.1.0)
       stringio
     public_suffix (5.0.1)
@@ -600,7 +600,7 @@ GEM
     rexml (3.2.5)
     rinku (1.7.3)
     rly (0.2.3)
-    rmagick (5.2.0)
+    rmagick (5.3.0)
       pkg-config (~> 1.4)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
@@ -661,7 +661,7 @@ GEM
       net-ssh (>= 2.8.0)
     ssrf_filter (1.1.1)
     stringio (3.0.6)
-    temple (0.10.2)
+    temple (0.10.3)
     thor (1.2.2)
     thread_safe (0.3.6)
     tilt (2.2.0)
