@@ -2,11 +2,11 @@ require 'net/http'
 
 class CommissionJunctionDownloader < GenericDownloader
   def username
-    '4473600'
+    '4473600'  # not valid anymore
   end
 
   def password
-    '7_MxkuZ8'
+    '7_MxkuZ8' # not valid anymore
   end
 
   def temp
@@ -29,9 +29,8 @@ class CommissionJunctionDownloader < GenericDownloader
     begin
       response = file_request
       File.open(temporary_path, 'wb') do |f|
-       f.write response.body
+        f.write response.body
       end
-    ensure
     end
     File.open(temporary_path) do |f|
       @affiliate.file = f

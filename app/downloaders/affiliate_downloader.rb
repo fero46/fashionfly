@@ -1,11 +1,10 @@
 class AffiliateDownloader < GenericDownloader
-
   def publisher_id
-    '704276'
+    '704276'  # not valid anymore
   end
 
   def password
-    'khJtwzDyjLTIwoc32kwC'
+    'khJtwzDyjLTIwoc32kwC' # not valid anymore
   end
 
   def download_file
@@ -13,7 +12,4 @@ class AffiliateDownloader < GenericDownloader
     @affiliate.remote_file_url = url
     @affiliate.save
   end
-
-
-
 end
