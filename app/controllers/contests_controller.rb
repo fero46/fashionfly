@@ -1,15 +1,15 @@
-class ContestsController < ScopeController
+# frozen_string_literal: true
 
+class ContestsController < ScopeController
   before_action :contests
-  before_action :find_contest, only: [:show, :edit, :update, :destroy]
-  
+  before_action :find_contest, only: %i[show edit update destroy]
+
   load_and_authorize_resource param_method: :contest_attributes
   def index
     @contest = @contests.first
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @contest = Contest.new
@@ -19,25 +19,24 @@ class ContestsController < ScopeController
     @contest = @scope.contests.new(contest_attributes)
     @contest.scope_id = @scope.id
     if @contest.save
-      flash[:notice] = t('action.created', entity: Contest.model_name.human) 
+      flash[:notice] = t('action.created', entity: Contest.model_name.human)
       redirect_to contest_path(assigned_locale, @contest.slug)
     else
-      flash[:alert] = t('action.error')       
+      flash[:alert] = t('action.error')
       render 'new'
     end
   end
-  
-  def edit  
-  end
+
+  def edit; end
 
   def update
     if @contest.update(contest_attributes)
-      flash[:notice] = t('action.updated', entity: Contest.model_name.human) 
+      flash[:notice] = t('action.updated', entity: Contest.model_name.human)
       redirect_to contest_path(assigned_locale, @contest.slug)
     else
-      flash[:alert] = t('action.error') 
+      flash[:alert] = t('action.error')
       render 'edit'
-    end    
+    end
   end
 
   def destroy
@@ -47,8 +46,7 @@ class ContestsController < ScopeController
     redirect_to contests_path(assigned_locale)
   end
 
-
-private
+  private
 
   def contests
     @contests = @scope.contests.where('startdate <= ?', Date.today).order(startdate: :desc).page(params[:page]).per(30)
@@ -61,5 +59,5 @@ private
 
   def contest_attributes
     params.require(:contest).permit(:title, :body, :banner, :finished, :startdate, :enddate)
-  end  
+  end
 end

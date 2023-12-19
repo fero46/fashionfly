@@ -1,8 +1,9 @@
-class ImportPrepareWorker < ActiveJob::Base
+# frozen_string_literal: true
 
+class ImportPrepareWorker < ActiveJob::Base
   def perform
-    affiliates = Affiliate.where(ready:true, importing: false)
-    for affiliate in affiliates
+    affiliates = Affiliate.where(ready: true, importing: false)
+    affiliates.each do |affiliate|
       affiliate.importing = true
       affiliate.save
       ImporterWorker.run_importer(affiliate)

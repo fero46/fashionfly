@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class Backend::OutfitCategoriesHelperTest < ActionView::TestCase
+module Backend
+  class OutfitCategoriesHelperTest < ActionView::TestCase
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if @category.main_taxon?
   json.categories @category.categories do |json, category|
     json.id category.id
@@ -19,11 +21,11 @@ else
     json.id color.id
     json.hex color.name
     json.word color.word
-    json.text_color color.oposite_color  
+    json.text_color color.oposite_color
   end
 
-  json.price_ranges ['0-50','50-100', '100-250', '250-500', '>500' ] do |json, price|
-    json.range price 
+  json.price_ranges ['0-50', '50-100', '100-250', '250-500', '>500'] do |json, price|
+    json.range price
   end
 
 end

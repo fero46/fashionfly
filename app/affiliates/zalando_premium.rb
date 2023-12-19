@@ -1,5 +1,6 @@
-class ZalandoPremium < AffiliateDownloader
+# frozen_string_literal: true
 
+class ZalandoPremium < AffiliateDownloader
   def program_id
     '1467'
   end
@@ -8,9 +9,7 @@ class ZalandoPremium < AffiliateDownloader
     'Zalando Premium'
   end
 
-
   def ended?
     true
   end
-
 end

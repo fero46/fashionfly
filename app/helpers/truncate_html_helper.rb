@@ -1,19 +1,21 @@
-require "rexml/parsers/pullparser"
+# frozen_string_literal: true
+
+require 'rexml/parsers/pullparser'
 require 'htmlentities'
 
 module TruncateHtmlHelper
   # raised when tags could not be fixed up by nokogiri
   class InvalidHtml < RuntimeError; end
-  
+
   # you may set this to either 'html4', or 'xhtml1'
   mattr_accessor :flavor
   class << self
-    alias_method :flavour=, :flavor=
-    alias_method :flavour, :flavor
+    alias flavour= flavor=
+    alias flavour flavor
   end
-  
+
   self.flavor = 'html4'
-  
+
   # Truncates html respecting tags and html entities.
   #
   # The API is the same as ActionView::Helpers::TextHelper#truncate.  It uses Rexml for the parsing, and HtmlEntities for entity awareness.  If Rexml raises a ParseException, then Hpricot is used to fixup the tags, and we try again
@@ -26,13 +28,15 @@ module TruncateHtmlHelper
     options = args.extract_options!
     length = options[:length] || args[0] || 30
     omission = options[:omission] || args[1] || '&hellip;'
-    
+
     begin
       parser = REXML::Parsers::PullParser.new(input)
       encoder = HTMLEntities.new(TruncateHtmlHelper.flavor)
-      tags, output, chars_remaining = [], '', length
-    
-      while parser.has_next? && chars_remaining > 0
+      tags = []
+      output = ''
+      chars_remaining = length
+
+      while parser.has_next? && chars_remaining.positive?
         element = parser.pull
         case element.event_type
         when :start_element
@@ -44,23 +48,24 @@ module TruncateHtmlHelper
           text = encoder.decode(element[0])
           output << encoder.encode(text.first(chars_remaining))
           chars_remaining -= text.length
-          output << omission if chars_remaining < 0
+          output << omission if chars_remaining.negative?
         end
       end
-    
-      tags.reverse.each {|tag| output << "</#{tag}>" }
+
+      tags.reverse.each { |tag| output << "</#{tag}>" }
       output
-  
     rescue REXML::ParseException => e
       fixed_up = Nokogiri::HTML.fragment(input).to_html
       raise ::TruncateHtmlHelper::InvalidHtml, "Could not fixup invalid html. #{e.message}" if fixed_up == input
+
       input = fixed_up
       retry
     end
   end
-  
-private
+
+  private
+
   def rexml_element_to_tag(element)
-    "<#{element[0]}#{element[1].inject(""){|m,(k,v)| m << %{ #{k}="#{v}"}} unless element[1].empty?}>"
+    "<#{element[0]}#{element[1].inject('') { |m, (k, v)| m << %( #{k}="#{v}") } unless element[1].empty?}>"
   end
 end

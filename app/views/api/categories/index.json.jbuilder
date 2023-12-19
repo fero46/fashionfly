@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.options @options do |json, option|
   json.type option[:type]
   json.name option[:name]
@@ -11,7 +13,7 @@ json.scope do
 end
 
 json.collection do
-  json.redirect_url  collections_url(@scope.locale) + "/:id"
+  json.redirect_url "#{collections_url(@scope.locale)}/:id"
 end
 
 json.categories @categories do |json, category|

@@ -1,5 +1,6 @@
-class Aboutyou < AffiliateDownloader
+# frozen_string_literal: true
 
+class Aboutyou < AffiliateDownloader
   def program_id
     '4221'
   end
@@ -7,5 +8,4 @@ class Aboutyou < AffiliateDownloader
   def name
     'AboutYou Gesamt'
   end
-
 end

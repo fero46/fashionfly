@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from lit (originally 20121103182106)
 class CreateLitLocalizations < ActiveRecord::Migration[4.2]
   def change
@@ -6,7 +8,7 @@ class CreateLitLocalizations < ActiveRecord::Migration[4.2]
       t.references :localization_key
       t.text :default_value
       t.text :translated_value
-      t.boolean :is_changed, :default=>false
+      t.boolean :is_changed, default: false
 
       t.timestamps
     end

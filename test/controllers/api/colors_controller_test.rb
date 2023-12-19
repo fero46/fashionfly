@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class Api::ColorsControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+module Api
+  class ColorsControllerTest < ActionController::TestCase
+    # test "the truth" do
+    #   assert true
+    # end
+  end
 end

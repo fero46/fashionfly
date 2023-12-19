@@ -1,29 +1,31 @@
-class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+# frozen_string_literal: true
 
-  def facebook
-    create
-  end
+module Users
+  class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+    def facebook
+      create
+    end
 
-  def twitter
-    create
-  end
+    def twitter
+      create
+    end
 
-  def pinterest
-    create
-  end
+    def pinterest
+      create
+    end
 
-  def tumblr
-    create
-  end
+    def tumblr
+      create
+    end
 
-  def google_oauth2
-    create
-  end
+    def google_oauth2
+      create
+    end
 
-  private
+    private
 
     def create
-      auth_params = request.env["omniauth.auth"]
+      auth_params = request.env['omniauth.auth']
       provider = AuthenticationProvider.where(name: auth_params.provider).first
       authentication = provider.user_authentications.where(uid: auth_params.uid).first
       existing_user = current_user || User.where('email = ?', auth_params['info']['email']).first
@@ -58,4 +60,5 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         redirect_to new_user_registration_url
       end
     end
+  end
 end

@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class Api::ProductsHelperTest < ActionView::TestCase
+module Api
+  class ProductsHelperTest < ActionView::TestCase
+  end
 end

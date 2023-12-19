@@ -1,9 +1,9 @@
-# encoding: utf-8
+# frozen_string_literal: true
+
 require 'xml'
 require 'fileutils'
 require 'open-uri'
 require 'pinterest-api'
-
 
 class GenericImporter
   def initialize(affiliate)
@@ -14,13 +14,14 @@ class GenericImporter
   def categories
     categories = []
     begin
-    document.root.children.each do |tag|
-      next unless tag.name == @affiliate.item_tag
-      tag.children.each do |t|
-        categories << t.content if t.name == @affiliate.category_tag
+      document.root.children.each do |tag|
+        next unless tag.name == @affiliate.item_tag
+
+        tag.children.each do |t|
+          categories << t.content if t.name == @affiliate.category_tag
+        end
       end
-    end
-    rescue
+    rescue StandardError
     end
     categories.uniq
   end
@@ -31,12 +32,14 @@ class GenericImporter
     @affiliate.products.update_all(dirty: true)
     document.root.children.each do |tag|
       next unless tag.name == @affiliate.item_tag
+
       actual_counter += 1
       if (actual_counter % 20).zero?
-        @affiliate.percent = ((actual_counter.to_f / total_counter.to_f).to_f * 100).to_i
+        @affiliate.percent = ((actual_counter.to_f / total_counter).to_f * 100).to_i
         @affiliate.save
       end
       next if @affiliate.skip_items > actual_counter
+
       id = nil
       tag.attributes.each do |a|
         id = a.value if a.name == 'id' || a.name == 'zupid'
@@ -49,7 +52,7 @@ class GenericImporter
       @affiliate.skip_items = actual_counter
       @affiliate.save
     end
-    @affiliate.products.where(dirty: true).where(removed: false).map{|x| RemoverWorker.run(x)}
+    @affiliate.products.where(dirty: true).where(removed: false).map { |x| RemoverWorker.run(x) }
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.ready = false
@@ -61,46 +64,48 @@ class GenericImporter
   def insert_values(id, values)
     product = nil
     begin
-    if find_mapping(product_category(values)).present?
-      return if product_remote_image(values).blank?
-      new_product = false
-      begin
-        new_product = Product.where(affiliate_id: @affiliate.id,
-                                affi_code: id,
-                                scope_id: @scope.id).first.present?
-      rescue
-        new_product = falses
-      end
-      product = Product.where(affiliate_id: @affiliate.id,
-                              affi_code: id,
-                              scope_id: @scope.id).first_or_create
-      product.premium = @affiliate.premium
-      product.save
-      Categorization.where(product_id: product.id).destroy_all
-      update_product_categories(product, values)
-      product = update_product_attributes product, values
-      begin
-        update_product_images(product, values) if product.image.blank? || product.original.blank?
-      rescue
-        product.destroy
-        return
-      end
-      product.published = true
-      product.dirty = false
-      product.removed = false
-      product.save!
-      if new_product && @scope.board_number.present? && false
+      if find_mapping(product_category(values)).present?
+        return if product_remote_image(values).blank?
+
+        new_product = false
         begin
-          @client = Pinterest::Client.new("x")
-          @client.create_pin({:board => @scope.board_number, link: Rails.application.routes.url_helpers.product_url(@scope.locale, product, :host=> 'fashionfly.co'), image_url: product.original.url, note: product.description})
-        rescue
+          new_product = Product.where(affiliate_id: @affiliate.id,
+                                      affi_code: id,
+                                      scope_id: @scope.id).first.present?
+        rescue StandardError
+          new_product = falses
+        end
+        product = Product.where(affiliate_id: @affiliate.id,
+                                affi_code: id,
+                                scope_id: @scope.id).first_or_create
+        product.premium = @affiliate.premium
+        product.save
+        Categorization.where(product_id: product.id).destroy_all
+        update_product_categories(product, values)
+        product = update_product_attributes product, values
+        begin
+          update_product_images(product, values) if product.image.blank? || product.original.blank?
+        rescue StandardError
+          product.destroy
+          return
+        end
+        product.published = true
+        product.dirty = false
+        product.removed = false
+        product.save!
+        if new_product && @scope.board_number.present? && false
+          begin
+            @client = Pinterest::Client.new('x')
+            @client.create_pin({ board: @scope.board_number,
+                                 link: Rails.application.routes.url_helpers.product_url(@scope.locale, product, host: 'fashionfly.co'), image_url: product.original.url, note: product.description })
+          rescue StandardError
+          end
         end
       end
+    rescue Exception => e
+      puts e
+      product.destroy if product.present?
     end
-  rescue Exception => e
-    puts e
-    product.destroy if product.present?
-  end
   end
 
   def total_count
@@ -116,15 +121,14 @@ class GenericImporter
   def update_product_images(product, values)
     remote_image_path = product_remote_image(values)
     raise "Remote Image ist Leer #{values}" if remote_image_path.blank?
+
     import_product_image(product, values, remote_image_path)
   end
 
   def import_product_image(product, _values, remote_image_path)
-    begin
-      ImageCropService.new(product, remote_image_path).image_cut_out
-    rescue
-      puts "Feher beim Bild download: pfad : " + remote_image_path
-    end
+    ImageCropService.new(product, remote_image_path).image_cut_out
+  rescue StandardError
+    puts "Feher beim Bild download: pfad : #{remote_image_path}"
   end
 
   def update_product_attributes(product, values)
@@ -143,7 +147,7 @@ class GenericImporter
         product.sale_price = sale_price(values)
         product.sale = is_sale?(values)
       end
-    rescue
+    rescue StandardError
       product.price = product_price(values)
       product.sale_price = sale_price(values)
       product.sale = is_sale?(values)
@@ -163,6 +167,7 @@ class GenericImporter
     category = find_mapping(product_category(values))
     while category.present?
       next if category.blank?
+
       Categorization.where(product_id: product.id, category_id: category.id).first_or_create
       category = category.category
     end
@@ -170,7 +175,7 @@ class GenericImporter
 
   def product_remote_image(values)
     image_tags = @affiliate.image_tag.split(',')
-    for image_tag in image_tags
+    image_tags.each do |image_tag|
       result = values[image_tag.strip]
       return result if result.present?
     end
@@ -255,7 +260,7 @@ class GenericImporter
 
   def loadmapper
     result = {}
-    for mapping in @affiliate.mappings
+    @affiliate.mappings.each do |mapping|
       result[mapping.name] = mapping.category
     end
     result
@@ -263,6 +268,7 @@ class GenericImporter
 
   def document
     return nil if @affiliate.file.blank?
+
     begin
       @document if @document.present?
 
@@ -281,7 +287,7 @@ class GenericImporter
       @document = source.parse
     rescue Exception => e
       puts e.to_s
-      return nil
+      nil
     end
   end
 

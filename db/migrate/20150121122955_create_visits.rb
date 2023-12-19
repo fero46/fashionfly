@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateVisits < ActiveRecord::Migration[4.2]
   def change
     create_table :visits do |t|
@@ -9,7 +11,7 @@ class CreateVisits < ActiveRecord::Migration[4.2]
     end
     add_index :visits, :user_id
     add_index :visits, :cookie
-    add_index :visits, [:user_id, :cookie, :visitable_id, :visitable_type], unique: true, name: :visitings
-    add_index :visits, [:visitable_id, :visitable_type]
+    add_index :visits, %i[user_id cookie visitable_id visitable_type], unique: true, name: :visitings
+    add_index :visits, %i[visitable_id visitable_type]
   end
 end

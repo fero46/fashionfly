@@ -1,9 +1,11 @@
-class Users::ConfirmationsController < Devise::ConfirmationsController
+# frozen_string_literal: true
 
-  private
+module Users
+  class ConfirmationsController < Devise::ConfirmationsController
+    private
 
-  def after_confirmation_path_for(resource_name, resource)
-    root_path(locale: assigned_locale)
+    def after_confirmation_path_for(_resource_name, _resource)
+      root_path(locale: assigned_locale)
+    end
   end
-
 end

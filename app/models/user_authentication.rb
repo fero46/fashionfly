@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAuthentication < ActiveRecord::Base
   belongs_to :user
   belongs_to :authentication_provider
@@ -13,7 +15,7 @@ class UserAuthentication < ActiveRecord::Base
       uid: params['uid'],
       token: params['credentials']['token'],
       token_expires_at: token_expires_at,
-      params: params,
+      params: params
     )
   end
 end

@@ -1,5 +1,6 @@
-class CsvToXmlAffiliateWindowImporter < AffiliateWindowImporter
+# frozen_string_literal: true
 
+class CsvToXmlAffiliateWindowImporter < AffiliateWindowImporter
   ITEM_ROOT = 'product'
   ITEM = 'prod'
   MAIN_CAT = 'awCat'
@@ -19,31 +20,35 @@ class CsvToXmlAffiliateWindowImporter < AffiliateWindowImporter
   def categories
     nodes = document.root
     result = []
-    for node in nodes
+    nodes.each do |node|
       cat = category_name(node)
       result << cat if cat.present?
     end
     result.uniq
   end
 
-
   def import
     nodes = children_from_tag [document.root], ITEM_ROOT
     total_counter = nodes.length
     actual_counter = 0
     @affiliate.products.update_all(dirty: true)
-    for node in nodes
+    nodes.each do |node|
       actual_counter += 1
-      if actual_counter % 20 == 0
-          @affiliate.percent = ((actual_counter.to_f/total_counter.to_f).to_f * 100).to_i
-          @affiliate.save
+      if (actual_counter % 20).zero?
+        @affiliate.percent = ((actual_counter.to_f / total_counter).to_f * 100).to_i
+        @affiliate.save
       end
       next if @affiliate.skip_items > actual_counter
+
       values = {}
       id = nil
 
       check_category_node(node, values)
-      node.children.each {|n| next if id.present?; id = get_id(n)}
+      node.children.each do |n|
+        next if id.present?
+
+        id = get_id(n)
+      end
       check_price(node, values)
       check_deeplinks(node, values)
       check_details(node, values)
@@ -54,7 +59,7 @@ class CsvToXmlAffiliateWindowImporter < AffiliateWindowImporter
       @affiliate.skip_items = actual_counter
       @affiliate.save
     end
-    @affiliate.products.where(dirty: true).where(removed: false).map{|x| RemoverWorker.run(x)}
+    @affiliate.products.where(dirty: true).where(removed: false).map { |x| RemoverWorker.run(x) }
     @affiliate.skip_items = 0
     @affiliate.percent = 100
     @affiliate.ready = false
@@ -63,34 +68,32 @@ class CsvToXmlAffiliateWindowImporter < AffiliateWindowImporter
     true
   end
 
-  def check_price node, values
+  def check_price(node, values)
     node.children.each do |a|
       values[CURRENCY] = a.content if a.name == self.class::CURRENCY_TAG
-      values[PRICE]=a.content  if a.name == self.class::PRICE_VALUE_TAG
+      values[PRICE] = a.content if a.name == self.class::PRICE_VALUE_TAG
     end
   end
 
-  def check_details node, values
+  def check_details(node, values)
     node.children.each do |cat|
-      values[MANUFACTURER]=cat.content if cat.name == BRAND_TAG
-      values[DESCRIPTION]=cat.content if cat.name == DESCRIPTION_TAG
-      values[TITLE]=cat.content if cat.name == NAME_TAG
+      values[MANUFACTURER] = cat.content if cat.name == BRAND_TAG
+      values[DESCRIPTION] = cat.content if cat.name == DESCRIPTION_TAG
+      values[TITLE] = cat.content if cat.name == NAME_TAG
     end
   end
 
-
-  def category_name node
-    category_name = ""
+  def category_name(node)
+    category_name = ''
     node.children.each do |child|
       category_identifier.each do |identifier|
-        category_name+= child.content + " " if child.name == identifier
+        category_name += "#{child.content} " if child.name == identifier
       end
     end
     category_name.strip
   end
 
   def category_identifier
-    ['merchant_category', 'category_name']
+    %w[merchant_category category_name]
   end
-
 end

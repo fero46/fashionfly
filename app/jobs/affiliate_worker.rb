@@ -1,6 +1,7 @@
-class AffiliateWorker < ActiveJob::Base
+# frozen_string_literal: true
 
-  def perform(*args)
+class AffiliateWorker < ActiveJob::Base
+  def perform(*_args)
     # ZalandoPremium.run
     # ZalandoSchuhe.run
     # ZalandoMode.run
@@ -20,7 +21,6 @@ class AffiliateWorker < ActiveJob::Base
   end
 
   def self.run
-    perform_later()
+    perform_later
   end
-
 end

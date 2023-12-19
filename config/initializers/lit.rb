@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # Which authentication function to use (ie. :authenticate_user!)? When set to
 # `nil` will let everyone in.
@@ -5,11 +6,11 @@ Lit.authentication_function = nil
 
 # Either 'redis' or 'hash'. Hash is the fastest, but will fail in multiprocess
 # environment
-Lit.key_value_engine = "redis"
+Lit.key_value_engine = 'redis'
 
 # Pass extra options to key_value_neinge, ie. prefix for redis (only one
 # supported at the moment)
-#Lit.storage_options = { :prefix=>"fashionfly_translations" }
+# Lit.storage_options = { :prefix=>"fashionfly_translations" }
 
 # If true all translations are returned as html_safe strings
 Lit.all_translations_are_html_safe = true
@@ -29,7 +30,7 @@ Lit.fallback = true
 Lit.api_enabled = false
 
 # API key is required to authorize third party, if API is enabled
-Lit.api_key = "TF6wG3fPeYfNe9mO/BevfZ1uqGGYr24inx+lCkUJb40="
+Lit.api_key = 'TF6wG3fPeYfNe9mO/BevfZ1uqGGYr24inx+lCkUJb40='
 
 # If true, last_updated_at column of synchronizaton source will be set to now
 # upon record creation

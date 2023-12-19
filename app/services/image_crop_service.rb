@@ -1,26 +1,21 @@
-class ImageCropService
+# frozen_string_literal: true
 
+class ImageCropService
   def initialize(product, remote_image_path)
     @product = product
     @remote_image_path = remote_image_path
   end
 
-  def remote_image_path
-    @remote_image_path
-  end
-
-  def product
-    @product
-  end
+  attr_reader :remote_image_path, :product
 
   def image_cut_out(save_original = true)
     cut_out_without_mask(save_original)
   end
 
-  def cut_out_without_mask(save_original=true)
-    full_path_to_tmp = Rails.root.to_s + "/tmp/"
-    image_path = full_path_to_tmp+"#{product.id}_image.png"
-    output_path = full_path_to_tmp+"#{product.id}_out.png"
+  def cut_out_without_mask(save_original = true)
+    full_path_to_tmp = "#{Rails.root}/tmp/"
+    image_path = full_path_to_tmp + "#{product.id}_image.png"
+    output_path = full_path_to_tmp + "#{product.id}_out.png"
 
     download_image(image_path)
 
@@ -45,22 +40,20 @@ class ImageCropService
 
     File.delete(image_path) if File.exist?(image_path)
     File.delete(output_path) if File.exist?(output_path)
-
   end
 
-
   def cut_out_with_mask
-    full_path_to_tmp = Rails.root.to_s + "/tmp/"
-    image_path = full_path_to_tmp+"#{product.id}_image.png"
-    difference_path = full_path_to_tmp+"#{product.id}_difference.png"
+    full_path_to_tmp = "#{Rails.root}/tmp/"
+    image_path = full_path_to_tmp + "#{product.id}_image.png"
+    difference_path = full_path_to_tmp + "#{product.id}_difference.png"
     halo_mask = full_path_to_tmp + "#{product.id}_halo.png"
-    output_path = full_path_to_tmp+"#{product.id}_out.png"
-    with_border =  full_path_to_tmp+"#{product.id}_bordered.png"
-    trimmed_out = full_path_to_tmp+"#{product.id}_trimmed.png"
+    output_path = full_path_to_tmp + "#{product.id}_out.png"
+    with_border = full_path_to_tmp + "#{product.id}_bordered.png"
+    trimmed_out = full_path_to_tmp + "#{product.id}_trimmed.png"
 
-    File.open(image_path, "wb") do |saved_file|
+    File.open(image_path, 'wb') do |saved_file|
       # the following "open" is provided by open-uri
-      open(remote_image_path, "rb") do |read_file|
+      open(remote_image_path, 'rb') do |read_file|
         saved_file.write(read_file.read)
       end
     end
@@ -101,10 +94,10 @@ class ImageCropService
     product.image = File.open(trimmed_out)
     product.save
 
-    #colormatch
+    # colormatch
     product.match_color(trimmed_out)
 
-    #cleanup
+    # cleanup
     File.delete(image_path) if File.exist?(image_path)
     File.delete(difference_path) if File.exist?(difference_path)
     File.delete(halo_mask) if File.exist?(halo_mask)
@@ -113,36 +106,32 @@ class ImageCropService
     File.delete(trimmed_out) if File.exist?(trimmed_out)
   end
 
-private
+  private
 
-  def first_color image_path
-    begin
-      img =  Magick::Image.read(image_path).first
-      pix = img.scale(1, 1)
-      first_color_hex = pix.to_color(pix.pixel_color(0,0))
-      first_color_hex = first_color_hex[0...(7-first_color_hex.length)] if first_color_hex.length > 7
-      return first_color_hex
-    rescue => e
-      puts e
-      return "white"
-    end
+  def first_color(image_path)
+    img = Magick::Image.read(image_path).first
+    pix = img.scale(1, 1)
+    first_color_hex = pix.to_color(pix.pixel_color(0, 0))
+    first_color_hex = first_color_hex[0...(7 - first_color_hex.length)] if first_color_hex.length > 7
+    first_color_hex
+  rescue StandardError => e
+    puts e
+    'white'
   end
 
-  def download_image image_path
-    begin
-      open(image_path, 'wb') do |dest|
-        open(remote_image_path, 'rb', 'User-Agent' => 'firefox') do |src|
-          dest.write(src.read)
-        end
+  def download_image(image_path)
+    open(image_path, 'wb') do |dest|
+      open(remote_image_path, 'rb', 'User-Agent' => 'firefox') do |src|
+        dest.write(src.read)
       end
-    rescue
-      raise "UNABLE TO LOAD IMAGE #{remote_image_path}"
     end
+  rescue StandardError
+    raise "UNABLE TO LOAD IMAGE #{remote_image_path}"
   end
 
   def crop_image(src, output)
-    full_path_to_tmp = Rails.root.to_s + "/tmp/"
-    with_border =  full_path_to_tmp+"#{product.id}_bordered.png"
+    full_path_to_tmp = "#{Rails.root}/tmp/"
+    with_border =  full_path_to_tmp + "#{product.id}_bordered.png"
     border_command = "convert #{src} -bordercolor none -border 3x3 #{with_border}"
     trim_command = "convert #{with_border} -trim +repage #{output}"
     system border_command
@@ -156,5 +145,4 @@ private
     product.height = img['height']
     product.save
   end
-
 end

@@ -1,14 +1,12 @@
-class CollectionSearchService
+# frozen_string_literal: true
 
-  def initialize scope, params
+class CollectionSearchService
+  def initialize(scope, params)
     @params = params
     @scope = scope
   end
 
-  def params
-    @params
-  end
-
+  attr_reader :params
 
   def collections
     @collections = @scope.collections.where(published: true)
@@ -16,9 +14,9 @@ class CollectionSearchService
       category = FashionFlyEditor::Category.where(id: params[:outfit_category]).first
       ids = list_ids(category)
       @collections = @collections.where('category_id in (?)', ids)
-    end    
+    end
     # if params[:price].present?
-    #   range = params[:price].split("-").map(&:to_i) 
+    #   range = params[:price].split("-").map(&:to_i)
     #   if range.length == 2
     #     @collections = @collections.where('price BETWEEN ? AND ?',range[0],range[1])
     #   else
@@ -31,26 +29,25 @@ class CollectionSearchService
     @collections.page(params[:page]).per(params[:per].present? ? params[:per] : 9)
   end
 
-
-  def order_product collections, type
+  def order_product(collections, type)
     puts type
-    if type == 1
-      collections = collections.order(id: :asc)
-    elsif type == 2
-      collections = collections.order(actual_trend: :desc)
-    elsif type == 3
-      collections = collections.order(favorites_count: :desc)      
+    case type
+    when 1
+      collections.order(id: :asc)
+    when 2
+      collections.order(actual_trend: :desc)
+    when 3
+      collections.order(favorites_count: :desc)
     else
-      collections = collections.order(id: :desc)
+      collections.order(id: :desc)
     end
-    collections
   end
 
-  def list_ids category
+  def list_ids(category)
     result = []
     result << category.id
-    for subcategory in category.categories
-      result = result.concat list_ids(subcategory)
+    category.categories.each do |subcategory|
+      result.concat list_ids(subcategory)
     end
     result.uniq
   end

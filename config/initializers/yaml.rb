@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module YAML
   def self.properly_load_file(path)
     YAML.load_file path, aliases: true

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'easy_translate'
 
 EasyTranslate.api_key = 'x'
@@ -5,14 +7,16 @@ EasyTranslate.api_key = 'x'
 german_categories = [
   {
     name: 'Damenmode',
-    categories:[
+    categories: [
       {
         name: 'Kleider',
-        categories: ['Causal Kleider', 'Abendkleider', 'Bustierkleider', 'Etuikleider', 'Maxikleider', 'Minikleider', 'Partykleider', 'Strickkleider']
+        categories: ['Causal Kleider', 'Abendkleider', 'Bustierkleider', 'Etuikleider', 'Maxikleider', 'Minikleider',
+                     'Partykleider', 'Strickkleider']
       },
       {
         name: 'Oberteile',
-        categories: ['Tops', 'T-Shirts', 'Blusen', 'Pullover', 'Cardigans', 'Westen', 'Longsleeves', 'Kapuzenpullover', 'Tuniken']
+        categories: %w[Tops T-Shirts Blusen Pullover Cardigans Westen Longsleeves Kapuzenpullover
+                       Tuniken]
       },
       {
         name: 'Hosen',
@@ -24,11 +28,12 @@ german_categories = [
       },
       {
         name: 'Jacke & Mäntel',
-        categories: ['Jacken', 'Mäntel', 'Blazer']
+        categories: %w[Jacken Mäntel Blazer]
       },
       {
         name: 'Schuhe',
-        categories: ['Ballerinas', 'Pumps', 'Schnürschuhe', 'Sneaker', 'Stiefel', 'Sandalen', 'Ankle Boots', 'Overknees', 'Stiefeletten']
+        categories: ['Ballerinas', 'Pumps', 'Schnürschuhe', 'Sneaker', 'Stiefel', 'Sandalen', 'Ankle Boots',
+                     'Overknees', 'Stiefeletten']
       },
       {
         name: 'Taschen',
@@ -36,44 +41,46 @@ german_categories = [
       },
       {
         name: 'Accessoires',
-        categories: ['Gürtel', 'Sonnenbrillen', 'Schals', 'Tücher', 'Hüte & Caps', 'Handschuhe', 'Strümpfe/Strumpfhosen', 'Sonstiges']
+        categories: ['Gürtel', 'Sonnenbrillen', 'Schals', 'Tücher', 'Hüte & Caps', 'Handschuhe',
+                     'Strümpfe/Strumpfhosen', 'Sonstiges']
       },
       {
         name: 'Schmuchk',
-        categories: ['Armschmuck', 'Haslketten', 'Ohrringe', 'Ringe', 'Uhren', 'Anhänger']
+        categories: %w[Armschmuck Haslketten Ohrringe Ringe Uhren Anhänger]
       },
       {
         name: 'Beauty',
-        categories: ['Lippenstift', 'Augen Make-Up', 'Augen Make-Up', 'Nagellack', 'Parfüm', 'Körperpflege', 'Haarpflege', 'Gesichtspflege', 'Sonnenpflege']
+        categories: ['Lippenstift', 'Augen Make-Up', 'Augen Make-Up', 'Nagellack', 'Parfüm', 'Körperpflege',
+                     'Haarpflege', 'Gesichtspflege', 'Sonnenpflege']
       },
       {
         name: 'Bademode',
-        categories: ['Bikinies', 'Bikini-Tops', 'Pants', 'Badeanzüge']
+        categories: %w[Bikinies Bikini-Tops Pants Badeanzüge]
       }
     ]
   },
   {
     name: 'Herrenmode',
-    categories:[
+    categories: [
       {
         name: 'Oberteile',
-        categories: ['Shirts','Poloshirts', 'Hemden', 'Pullover', 'Strickjacken', 'Kapuzenpullover', 'Langarmshirts']
+        categories: %w[Shirts Poloshirts Hemden Pullover Strickjacken Kapuzenpullover Langarmshirts]
       },
       {
         name: 'Hosen',
-        categories: ['Jeans', 'Stoffhosen', 'Shorts']
+        categories: %w[Jeans Stoffhosen Shorts]
       },
       {
         name: 'Jacken & Mäntel',
-        categories: ['Jacken', 'Mäntel', 'Sakkos']
+        categories: %w[Jacken Mäntel Sakkos]
       },
       {
         name: 'Anzüge',
-        categories: ['Anzugsakkos', 'Anzughose', 'Anzugwesten', 'Kombination']        
+        categories: %w[Anzugsakkos Anzughose Anzugwesten Kombination]
       },
       {
         name: 'Sportbekleidung',
-        categories: ['Funktionsoberteile', 'Funktionshosen', 'Jogginghosen', 'Sporthosen']        
+        categories: %w[Funktionsoberteile Funktionshosen Jogginghosen Sporthosen]
       },
       {
         name: 'Schuhe',
@@ -81,47 +88,45 @@ german_categories = [
       },
       {
         name: 'Taschen',
-        categories: ['Umhängetaschen', 'Aktentaschen', 'Rucksäcke']
+        categories: %w[Umhängetaschen Aktentaschen Rucksäcke]
       },
       {
         name: 'Accessoires',
-        categories: ['Gürtel', 'Schals', 'Mützen & Caps', 'Handschuhe', 'Krawatten & Fliegen', 'Geldbörsen & Etuis', 'Sonnenbrillen']
+        categories: ['Gürtel', 'Schals', 'Mützen & Caps', 'Handschuhe', 'Krawatten & Fliegen', 'Geldbörsen & Etuis',
+                     'Sonnenbrillen']
       },
       {
         name: 'Schmuck',
-        categories: ['Uhren', 'Armbänder', 'Ketten', 'Ringe']
+        categories: %w[Uhren Armbänder Ketten Ringe]
       },
       {
         name: 'Beauty',
-        categories: ['Parfürm', 'Harrpflege', 'Gesichtspflege', 'Körperpflege']
+        categories: %w[Parfürm Harrpflege Gesichtspflege Körperpflege]
       },
       {
         name: 'Bademode',
-        categories: ['Badehosen', 'Boardshorts']
+        categories: %w[Badehosen Boardshorts]
       }
     ]
   }
 ]
 
-
-
-
-def create_categories categories, language = :english 
+def create_categories(categories, language = :english)
   result = []
   sleep(1)
-  for category in categories
+  categories.each do |category|
     has_childrend = category.is_a?(Hash)
     item = {}
     item[:name] = EasyTranslate.translate(category[:name], from: :german, to: language)
     puts item
-    if has_childrend
-      item[:categories] = create_categories(category[:categories], language)
-    else
-      item[:categories] = EasyTranslate.translate(category[:categories], from: :german, to: language) 
-    end
+    item[:categories] = if has_childrend
+                          create_categories(category[:categories], language)
+                        else
+                          EasyTranslate.translate(category[:categories], from: :german, to: language)
+                        end
   end
 end
 
-EasyTranslate.translate("Das ist ein Test", from: :german, to: :english)
+EasyTranslate.translate('Das ist ein Test', from: :german, to: :english)
 
-#puts create_categories(german_categories)
+# puts create_categories(german_categories)

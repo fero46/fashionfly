@@ -1,10 +1,11 @@
-class Rack::Attack
+# frozen_string_literal: true
 
-
-  blocklist('block 115.236.75.201') do |req|
-     '115.236.75.201' == req.ip
-     '199.115.117.212' == req.ip
-     '199.46.124.12' == req.ip
+module Rack
+  class Attack
+    blocklist('block 115.236.75.201') do |req|
+      req.ip == '115.236.75.201'
+      req.ip == '199.115.117.212'
+      req.ip == '199.46.124.12'
+    end
   end
-
 end

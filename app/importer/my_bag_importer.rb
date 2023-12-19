@@ -1,10 +1,11 @@
-class MyBagImporter < WConceptImporter
+# frozen_string_literal: true
 
+class MyBagImporter < WConceptImporter
   def category_identifier
-    ['merchant_category', 'category_name', 'custom_1', 'custom_2', 'custom_3']
+    %w[merchant_category category_name custom_1 custom_2 custom_3]
   end
 
-  def category_name node
+  def category_name(node)
     cat = super(node)
     value_custom_2 = nil
     value_custom_3 = nil
@@ -13,14 +14,11 @@ class MyBagImporter < WConceptImporter
       value_custom_3 = child.content if child.name == 'custom_3'
     end
 
-    if value_custom_2.present? && value_custom_2 ==value_custom_3
-      if cat.present?
-        cat = cat.gsub(value_custom_3, '')
-        cat+=" #{value_custom_3}"
-      end
+    if value_custom_2.present? && value_custom_2 == value_custom_3 && cat.present?
+      cat = cat.gsub(value_custom_3, '')
+      cat += " #{value_custom_3}"
     end
 
-    return cat
+    cat
   end
-
 end

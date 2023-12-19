@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.pagination do |json|
   json.current_page @products.current_page
   json.total_pages @products.total_pages

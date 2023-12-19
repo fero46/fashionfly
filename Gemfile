@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 gem 'acts_as_commentable'
 gem 'acts-as-taggable-on'
@@ -82,4 +84,4 @@ gem 'omniauth-pinterest'
 gem 'omniauth-tumblr'
 gem 'omniauth-twitter'
 
-gem "google-cloud-translate", "~> 2.0"
+gem 'google-cloud-translate', '~> 2.0'

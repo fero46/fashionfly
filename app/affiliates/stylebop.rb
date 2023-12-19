@@ -1,5 +1,6 @@
-class Stylebop < AffiliateDownloader
+# frozen_string_literal: true
 
+class Stylebop < AffiliateDownloader
   def program_id
     '2428'
   end
@@ -7,5 +8,4 @@ class Stylebop < AffiliateDownloader
   def name
     'StyleBop.de Gesamtliste'
   end
-
 end

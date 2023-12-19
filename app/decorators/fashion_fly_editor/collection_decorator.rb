@@ -1,29 +1,30 @@
+# frozen_string_literal: true
+
 FashionFlyEditor::Collection.class_eval do
   include SimpleHashtag::Hashtaggable
   has_many :favorites, as: :markable, dependent: :destroy
   has_many :visits, as: :visitable, dependent: :destroy, counter_cache: true
   acts_as_commentable
-  ratyrate_rateable "rate"
+  ratyrate_rateable 'rate'
   hashtaggable_attribute :description
-
 
   # Overwrite SimpleHashtag-update_hashtags
   def update_hashtags
-    if scope.present?
-      self.hashtags = parsed_hashtags
-    end
+    return unless scope.present?
+
+    self.hashtags = parsed_hashtags
   end
 
   # Overwrite SimpleHashtag-parsed_hashtags
   def parsed_hashtags
-    if scope.present?
-      parsed_hashtags = []
-      array_of_hashtags_as_string = scan_for_hashtags(hashtaggable_content)
-      array_of_hashtags_as_string.each do |s|
-        parsed_hashtags << SimpleHashtag::Hashtag.where(name: s[1], scope_id: scope.id).first_or_create
-      end
-      parsed_hashtags
+    return unless scope.present?
+
+    parsed_hashtags = []
+    array_of_hashtags_as_string = scan_for_hashtags(hashtaggable_content)
+    array_of_hashtags_as_string.each do |s|
+      parsed_hashtags << SimpleHashtag::Hashtag.where(name: s[1], scope_id: scope.id).first_or_create
     end
+    parsed_hashtags
   end
 
   def self.trends
@@ -55,22 +56,23 @@ FashionFlyEditor::Collection.class_eval do
     build_image
   end
 
-  def url_safe url
-      return '' if url.blank?
-     url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '')
+  def url_safe(url)
+    return '' if url.blank?
+
+    url.downcase.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/-{2,}/, '-').gsub(/^-|-$/, '')
   end
 
   def to_param
-     "#{id}-#{url_safe(title)}"
+    "#{id}-#{url_safe(title)}"
   end
 
   def price
-    products.map{|p| p.price }.reduce(:+)
+    products.map(&:price).reduce(:+)
   end
-private
 
-  def link_template name, link
+  private
+
+  def link_template(name, link)
     "<a href=#{link} title='#{name}' alt='#{name}'>#{name}</a>"
   end
-
 end

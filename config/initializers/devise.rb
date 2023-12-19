@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -6,8 +8,8 @@ Devise.setup do |config|
   # Configure the class responsible to send e-mails.
   config.mailer = 'Devise::Mailer'
   require 'devise/orm/active_record'
-  config.case_insensitive_keys = [ :email ]
-  config.strip_whitespace_keys = [ :email ]
+  config.case_insensitive_keys = [:email]
+  config.strip_whitespace_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -194,13 +196,11 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
 
-
-   config.omniauth :facebook, Settings.oauth.facebook.id, Settings.oauth.facebook.secret, :scope => 'email, user_likes'
-   config.omniauth :twitter, Settings.oauth.twitter.id, Settings.oauth.twitter.secret
-   # config.omniauth :pinterest, 'APP_ID', 'APP_SECRET'
-   config.omniauth :tumblr, Settings.oauth.tumblr.id, Settings.oauth.tumblr.secret
-   config.omniauth :google_oauth2, Settings.oauth.google.id, Settings.oauth.google.secret
-
+  config.omniauth :facebook, Settings.oauth.facebook.id, Settings.oauth.facebook.secret, scope: 'email, user_likes'
+  config.omniauth :twitter, Settings.oauth.twitter.id, Settings.oauth.twitter.secret
+  # config.omniauth :pinterest, 'APP_ID', 'APP_SECRET'
+  config.omniauth :tumblr, Settings.oauth.tumblr.id, Settings.oauth.tumblr.secret
+  config.omniauth :google_oauth2, Settings.oauth.google.id, Settings.oauth.google.secret
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

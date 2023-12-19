@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.id product.id
 json.price product.price
 json.name product.name
@@ -22,7 +24,7 @@ json.transparent_images do
   if Rails.env.development? || Rails.env.test?
     json.selectable_image request.protocol + request.host_with_port + product.image.selectable.url
   else
-      json.selectable_image product.image.selectable.url
+    json.selectable_image product.image.selectable.url
   end
 end
 json.width product.width
@@ -41,7 +43,7 @@ if @with_extra_info
   json.similar_products product.similar_products do |json, similar|
     json.partial! 'endpoint/v1/products/product', product: similar
   end
-  json.used_in_collections product.used_in_collections do |json, collections|
+  json.used_in_collections product.used_in_collections do |json, _collections|
     json.partial 'endpoint/v1/collections/collection'
   end
 end

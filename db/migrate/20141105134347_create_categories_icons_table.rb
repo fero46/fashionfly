@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCategoriesIconsTable < ActiveRecord::Migration[4.2]
   def change
     create_table :categories_icons do |t|

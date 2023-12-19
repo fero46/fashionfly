@@ -1,8 +1,10 @@
-class BrandCategoryWorker< ActiveJob::Base
+# frozen_string_literal: true
 
-  def perform(*args)
+class BrandCategoryWorker < ActiveJob::Base
+  def perform(*_args)
     config = ::Configuration.where(key: 'brand_category_worker').first_or_create
     return if config.value == 'running'
+
     begin
       config.value = 'running'
       config.save
@@ -18,19 +20,16 @@ class BrandCategoryWorker< ActiveJob::Base
   end
 
   def self.run
-    perform_later()
+    perform_later
   end
 
-  def brand_category product
+  def brand_category(product)
     brand = product.brand
-    if brand.present?
-      for category in product.categories
-        begin
-          category.brands << brand
-        rescue
-        end
-      end
+    return unless brand.present?
+
+    product.categories.each do |category|
+      category.brands << brand
+    rescue StandardError
     end
   end
-
 end

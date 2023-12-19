@@ -1,15 +1,15 @@
-module WidgetsHelper
+# frozen_string_literal: true
 
-  def widget_collection_image_tag collection
-    if Rails.env.development? || Rails.env.test?
-      host = "http://localhost:3000"
-    else
-      host = ""
-    end
+module WidgetsHelper
+  def widget_collection_image_tag(collection)
+    host = if Rails.env.development? || Rails.env.test?
+             'http://localhost:3000'
+           else
+             ''
+           end
     image_tag(host + collection.image.original.url,
               class: 'collection_image',
               alt: collection.title,
               title: collection.title)
-
   end
 end

@@ -1,26 +1,26 @@
-# encoding: UTF-8
-germany = Scope.where(country_code: 'DE', locale:'de').first_or_create
-usa =Scope.where(country_code: 'US', locale:'en').first_or_create
-brittish = Scope.where(country_code: 'GB', locale:'gb-en').first_or_create
-canadian = Scope.where(country_code: 'CA', locale:'ca-en').first_or_create
-australien = Scope.where(country_code: 'AU', locale:'au-en').first_or_create
-turkey = Scope.where(country_code: 'TR', locale:'tr').first_or_create
+# frozen_string_literal: true
 
+germany = Scope.where(country_code: 'DE', locale: 'de').first_or_create
+usa = Scope.where(country_code: 'US', locale: 'en').first_or_create
+brittish = Scope.where(country_code: 'GB', locale: 'gb-en').first_or_create
+canadian = Scope.where(country_code: 'CA', locale: 'ca-en').first_or_create
+australien = Scope.where(country_code: 'AU', locale: 'au-en').first_or_create
+turkey = Scope.where(country_code: 'TR', locale: 'tr').first_or_create
 
 Configuration.where(key: 'default_country_code', value: 'de').first_or_create
 
-colors =["e7db9c", "ffff02", "7cfe6f", "ffdfef", "ffdfef", 
-         "2ed0cd", "b9531c", "f4cb62", "c61cd0", "ff0000",
-         "ffffff", "2c2bd1", "d4d4d4", "ffc702", "000000",
-         "019e13", "c5e1fd", "ff59ae", "77858f"]
+colors = %w[e7db9c ffff02 7cfe6f ffdfef ffdfef
+            2ed0cd b9531c f4cb62 c61cd0 ff0000
+            ffffff 2c2bd1 d4d4d4 ffc702 000000
+            019e13 c5e1fd ff59ae 77858f]
 
-for color in colors
+colors.each do |color|
   Colorization.where(name: "##{color}").first_or_create
 end
 
 delete_all_categories = true
 
-if delete_all_categories 
+if delete_all_categories
   Category.destroy_all
   FashionFlyEditor::Category.destroy_all
 end
@@ -32,8 +32,8 @@ german_outfits = [
   },
   {
     name: 'Herrenoutfits',
-    categories: ['Club & Party','Business', 'Freizeit', 'Sport']
-  }  
+    categories: ['Club & Party', 'Business', 'Freizeit', 'Sport']
+  }
 ]
 
 english_outfits = [
@@ -44,27 +44,27 @@ english_outfits = [
   {
     name: "Men's outfits",
     categories: ['Business', 'Club & Party', 'Casual', 'Sport']
-  }  
+  }
 ]
 
 turkish_outfits = [
   {
-    name: "Kadın kıyafetler",
+    name: 'Kadın kıyafetler',
     categories: ['Akşam', 'İş', 'Club & Parti', 'Günlük', 'Spor']
   },
   {
-    name: "Erkek kıyafetler",
+    name: 'Erkek kıyafetler',
     categories: ['İş', 'Club & Parti', 'Günlük', 'Spor']
-  }  
+  }
 ]
 
 turkish_categories = [
   {
     name: 'Kadın',
-    categories:[
+    categories: [
       {
         name: 'Elbiseler',
-        categories: ['Mini', 'Uzun', 'Gündüz', 'Gece']
+        categories: %w[Mini Uzun Gündüz Gece]
       },
       {
         name: 'Tişörtler ve üstler',
@@ -76,15 +76,16 @@ turkish_categories = [
       },
       {
         name: 'Etekler',
-        categories: ['Mini', 'Midi', 'Maksi']
+        categories: %w[Mini Midi Maksi]
       },
       {
         name: 'Manto ve Ceketler',
-        categories: ['Deri', 'Blazer', 'Montlar', 'Şik', 'Bolerolar', 'Jile', 'Spor']
+        categories: %w[Deri Blazer Montlar Şik Bolerolar Jile Spor]
       },
       {
         name: 'Ayakkabı',
-        categories: ['Bot', 'Spor Ayakkabı', 'Çizme', 'Topuklu Ayakkabı', 'Babet/Düz Ayakkabı', 'Sneakers', 'Terlik/Sandalet', 'Günlük', 'Ev', 'Comfort', 'Outdoor']
+        categories: ['Bot', 'Spor Ayakkabı', 'Çizme', 'Topuklu Ayakkabı', 'Babet/Düz Ayakkabı', 'Sneakers',
+                     'Terlik/Sandalet', 'Günlük', 'Ev', 'Comfort', 'Outdoor']
       },
       {
         name: 'Çanta',
@@ -100,7 +101,8 @@ turkish_categories = [
       },
       {
         name: 'Güzellik',
-        categories: ['Ruj', 'Göz Makyajı', 'Makyajı', 'Oje', 'Parfüm', 'Vücut Bakımı', 'Saç Bakımı', 'Yüz Bakımı', 'Güneş Bakımı']
+        categories: ['Ruj', 'Göz Makyajı', 'Makyajı', 'Oje', 'Parfüm', 'Vücut Bakımı', 'Saç Bakımı', 'Yüz Bakımı',
+                     'Güneş Bakımı']
       },
       {
         name: 'Mayo',
@@ -110,42 +112,44 @@ turkish_categories = [
   },
   {
     name: 'Men',
-    categories:[
+    categories: [
       {
         name: 'Tişörtler ve üstler',
-        categories: ['Tişörtler','Pololsr', 'Gömlek', 'Kazaklar', 'Hırkalar']
+        categories: %w[Tişörtler Pololsr Gömlek Kazaklar Hırkalar]
       },
       {
         name: 'Pantolonlar',
-        categories: ['Jeans', 'Bermuda', 'Pantolon', 'Spor']
+        categories: %w[Jeans Bermuda Pantolon Spor]
       },
       {
         name: 'Manto ve Ceketler',
-        categories: ['Jackets', 'Montlar', 'Deri', 'Blazer']
+        categories: %w[Jackets Montlar Deri Blazer]
       },
       {
         name: 'Takım',
-        categories: ['Takım Ceketler', 'Takım Pantolonlar', 'Takım Yelekler', 'Takım Kombin']        
+        categories: ['Takım Ceketler', 'Takım Pantolonlar', 'Takım Yelekler', 'Takım Kombin']
       },
       {
         name: 'Spor giyim',
-        categories: ['Üst', 'Alt', 'Koşu Pantolon', 'Spor Şort']        
+        categories: ['Üst', 'Alt', 'Koşu Pantolon', 'Spor Şort']
       },
       {
         name: 'Ayakkabı',
-        categories: ['Bot', 'Spor Ayakkabı', 'Günlük', 'Klasik', 'Outdoor', 'Klasik Ayakkabı', 'Terlik/Sandalet', 'Loafer', 'Ev']
+        categories: ['Bot', 'Spor Ayakkabı', 'Günlük', 'Klasik', 'Outdoor', 'Klasik Ayakkabı', 'Terlik/Sandalet',
+                     'Loafer', 'Ev']
       },
       {
         name: 'Çanta',
-        categories: ['Omuz', 'Evrak', 'Bel', 'Sırt']
+        categories: %w[Omuz Evrak Bel Sırt]
       },
       {
         name: 'Aksesuar',
-        categories: ['Cüzdan', 'Kemer','Şal', 'Şapka', 'Bere', 'Atkı', 'Elviden', 'Matara', 'Güneş Gözlüğü', 'Diğerleri']
+        categories: ['Cüzdan', 'Kemer', 'Şal', 'Şapka', 'Bere', 'Atkı', 'Elviden', 'Matara', 'Güneş Gözlüğü',
+                     'Diğerleri']
       },
       {
         name: 'Takı',
-        categories: ['Saat', 'Bilezikler', 'Zincirler', 'Yüzük']
+        categories: %w[Saat Bilezikler Zincirler Yüzük]
       },
       {
         name: 'Güzellik',
@@ -153,24 +157,25 @@ turkish_categories = [
       },
       {
         name: 'Mayolar',
-        categories: ['Mayo', 'Şort']
+        categories: %w[Mayo Şort]
       }
     ]
   }
 ]
 
-
 english_categories = [
   {
     name: 'Women',
-    categories:[
+    categories: [
       {
         name: 'Dresses',
-        categories: ['Causal Dresses', 'Evening Growns', 'Strapless Dresses', 'Cocktail Dresses', 'Maxi Dresses', 'Shift Dresses', 'Party Dresses', 'Knitted Dresses']
+        categories: ['Causal Dresses', 'Evening Growns', 'Strapless Dresses', 'Cocktail Dresses', 'Maxi Dresses',
+                     'Shift Dresses', 'Party Dresses', 'Knitted Dresses']
       },
       {
         name: 'Tops & Shirts',
-        categories: ['Tops', 'T-Shirts', 'Blouses & Shirts', 'Jumpers', 'Cardigans', 'Vests', 'Longsleeves', 'Hoodies', 'Tunics']
+        categories: ['Tops', 'T-Shirts', 'Blouses & Shirts', 'Jumpers', 'Cardigans', 'Vests', 'Longsleeves', 'Hoodies',
+                     'Tunics']
       },
       {
         name: 'Bottoms',
@@ -182,11 +187,12 @@ english_categories = [
       },
       {
         name: 'Coats & Jackets',
-        categories: ['Jackets', 'Coats', 'Blazers']
+        categories: %w[Jackets Coats Blazers]
       },
       {
         name: 'Shoes',
-        categories: ['Ballerinas', 'Heels', 'Lace-Up Shoes', 'Sneakers', 'Boots', 'Sandals', 'Ankle Boots', 'Overknee Boots', 'Wedges']
+        categories: ['Ballerinas', 'Heels', 'Lace-Up Shoes', 'Sneakers', 'Boots', 'Sandals', 'Ankle Boots',
+                     'Overknee Boots', 'Wedges']
       },
       {
         name: 'Bags',
@@ -194,15 +200,17 @@ english_categories = [
       },
       {
         name: 'Accessories',
-        categories: ['Belts', 'Sunglasses', 'Scarves & Shawls', 'Hats & Caps', 'Gloves', 'Tights/Socks', 'Other Accessories']
+        categories: ['Belts', 'Sunglasses', 'Scarves & Shawls', 'Hats & Caps', 'Gloves', 'Tights/Socks',
+                     'Other Accessories']
       },
       {
         name: 'Jewellery',
-        categories: ['Bracelets', 'Necklaces', 'Earrings', 'Rings', 'Watches', 'Pendants']
+        categories: %w[Bracelets Necklaces Earrings Rings Watches Pendants]
       },
       {
         name: 'Beauty',
-        categories: ['Lipstick', 'Eye Make-Up', 'Make-Up', 'Nail Polish', 'Fragrance', 'Body Care', 'Hair Care', 'Face Care', 'Sun Care']
+        categories: ['Lipstick', 'Eye Make-Up', 'Make-Up', 'Nail Polish', 'Fragrance', 'Body Care', 'Hair Care',
+                     'Face Care', 'Sun Care']
       },
       {
         name: 'Swimwear',
@@ -212,26 +220,26 @@ english_categories = [
   },
   {
     name: 'Men',
-    categories:[
+    categories: [
       {
         name: 'Tops & Shirts',
-        categories: ['T-Shirts','Poloshirts', 'Shirts', 'Pullovers', 'Cardigans', 'Hoodies', 'Longsleeves']
+        categories: %w[T-Shirts Poloshirts Shirts Pullovers Cardigans Hoodies Longsleeves]
       },
       {
         name: 'Bottoms',
-        categories: ['Jeans', 'Pants', 'Shorts']
+        categories: %w[Jeans Pants Shorts]
       },
       {
         name: 'Coats & Jackets',
-        categories: ['Jackets', 'Coats']
+        categories: %w[Jackets Coats]
       },
       {
         name: 'Suits',
-        categories: ['Suit Jackes', 'Suit Pants', 'Suits Vests', 'Combinations']        
+        categories: ['Suit Jackes', 'Suit Pants', 'Suits Vests', 'Combinations']
       },
       {
         name: 'Sportswear',
-        categories: ['Upper Parts', 'Bottom Parts', 'Jogging Pants', 'Sportshorts']        
+        categories: ['Upper Parts', 'Bottom Parts', 'Jogging Pants', 'Sportshorts']
       },
       {
         name: 'Shoes',
@@ -247,7 +255,7 @@ english_categories = [
       },
       {
         name: 'Jewellery',
-        categories: ['Watches', 'Bracelets', 'Chains', 'Rings']
+        categories: %w[Watches Bracelets Chains Rings]
       },
       {
         name: 'Beauty',
@@ -255,7 +263,7 @@ english_categories = [
       },
       {
         name: 'Swimwear',
-        categories: ['Trunks', 'Boardshorts']
+        categories: %w[Trunks Boardshorts]
       }
     ]
   }
@@ -263,14 +271,16 @@ english_categories = [
 german_categories = [
   {
     name: 'Damenmode',
-    categories:[
+    categories: [
       {
         name: 'Kleider',
-        categories: ['Causal Kleider', 'Abendkleider', 'Bustierkleider', 'Etuikleider', 'Maxikleider', 'Minikleider', 'Partykleider', 'Strickkleider']
+        categories: ['Causal Kleider', 'Abendkleider', 'Bustierkleider', 'Etuikleider', 'Maxikleider', 'Minikleider',
+                     'Partykleider', 'Strickkleider']
       },
       {
         name: 'Oberteile',
-        categories: ['Tops', 'T-Shirts', 'Blusen', 'Pullover', 'Cardigans', 'Westen', 'Longsleeves', 'Kapuzenpullover', 'Tuniken']
+        categories: %w[Tops T-Shirts Blusen Pullover Cardigans Westen Longsleeves Kapuzenpullover
+                       Tuniken]
       },
       {
         name: 'Hosen',
@@ -282,11 +292,12 @@ german_categories = [
       },
       {
         name: 'Jacke & Mäntel',
-        categories: ['Jacken', 'Mäntel', 'Blazer']
+        categories: %w[Jacken Mäntel Blazer]
       },
       {
         name: 'Schuhe',
-        categories: ['Ballerinas', 'Pumps', 'Schnürschuhe', 'Sneaker', 'Stiefel', 'Sandalen', 'Ankle Boots', 'Overknees', 'Stiefeletten']
+        categories: ['Ballerinas', 'Pumps', 'Schnürschuhe', 'Sneaker', 'Stiefel', 'Sandalen', 'Ankle Boots',
+                     'Overknees', 'Stiefeletten']
       },
       {
         name: 'Taschen',
@@ -294,44 +305,46 @@ german_categories = [
       },
       {
         name: 'Accessoires',
-        categories: ['Gürtel', 'Sonnenbrillen', 'Schals', 'Tücher', 'Hüte & Caps', 'Handschuhe', 'Strümpfe/Strumpfhosen', 'Sonstiges']
+        categories: ['Gürtel', 'Sonnenbrillen', 'Schals', 'Tücher', 'Hüte & Caps', 'Handschuhe',
+                     'Strümpfe/Strumpfhosen', 'Sonstiges']
       },
       {
         name: 'Schmuchk',
-        categories: ['Armschmuck', 'Haslketten', 'Ohrringe', 'Ringe', 'Uhren', 'Anhänger']
+        categories: %w[Armschmuck Haslketten Ohrringe Ringe Uhren Anhänger]
       },
       {
         name: 'Beauty',
-        categories: ['Lippenstift', 'Augen Make-Up', 'Augen Make-Up', 'Nagellack', 'Parfüm', 'Körperpflege', 'Haarpflege', 'Gesichtspflege', 'Sonnenpflege']
+        categories: ['Lippenstift', 'Augen Make-Up', 'Augen Make-Up', 'Nagellack', 'Parfüm', 'Körperpflege',
+                     'Haarpflege', 'Gesichtspflege', 'Sonnenpflege']
       },
       {
         name: 'Bademode',
-        categories: ['Bikinies', 'Bikini-Tops', 'Pants', 'Badeanzüge']
+        categories: %w[Bikinies Bikini-Tops Pants Badeanzüge]
       }
     ]
   },
   {
     name: 'Herrenmode',
-    categories:[
+    categories: [
       {
         name: 'Oberteile',
-        categories: ['Shirts','Poloshirts', 'Hemden', 'Pullover', 'Strickjacken', 'Kapuzenpullover', 'Langarmshirts']
+        categories: %w[Shirts Poloshirts Hemden Pullover Strickjacken Kapuzenpullover Langarmshirts]
       },
       {
         name: 'Hosen',
-        categories: ['Jeans', 'Stoffhosen', 'Shorts']
+        categories: %w[Jeans Stoffhosen Shorts]
       },
       {
         name: 'Jacken & Mäntel',
-        categories: ['Jacken', 'Mäntel', 'Sakkos']
+        categories: %w[Jacken Mäntel Sakkos]
       },
       {
         name: 'Anzüge',
-        categories: ['Anzugsakkos', 'Anzughose', 'Anzugwesten', 'Kombination']        
+        categories: %w[Anzugsakkos Anzughose Anzugwesten Kombination]
       },
       {
         name: 'Sportbekleidung',
-        categories: ['Funktionsoberteile', 'Funktionshosen', 'Jogginghosen', 'Sporthosen']        
+        categories: %w[Funktionsoberteile Funktionshosen Jogginghosen Sporthosen]
       },
       {
         name: 'Schuhe',
@@ -339,58 +352,59 @@ german_categories = [
       },
       {
         name: 'Taschen',
-        categories: ['Umhängetaschen', 'Aktentaschen', 'Rucksäcke']
+        categories: %w[Umhängetaschen Aktentaschen Rucksäcke]
       },
       {
         name: 'Accessoires',
-        categories: ['Gürtel', 'Schals', 'Mützen & Caps', 'Handschuhe', 'Krawatten & Fliegen', 'Geldbörsen & Etuis', 'Sonnenbrillen']
+        categories: ['Gürtel', 'Schals', 'Mützen & Caps', 'Handschuhe', 'Krawatten & Fliegen', 'Geldbörsen & Etuis',
+                     'Sonnenbrillen']
       },
       {
         name: 'Schmuck',
-        categories: ['Uhren', 'Armbänder', 'Ketten', 'Ringe']
+        categories: %w[Uhren Armbänder Ketten Ringe]
       },
       {
         name: 'Beauty',
-        categories: ['Parfürm', 'Harrpflege', 'Gesichtspflege', 'Körperpflege']
+        categories: %w[Parfürm Harrpflege Gesichtspflege Körperpflege]
       },
       {
         name: 'Bademode',
-        categories: ['Badehosen', 'Boardshorts']
+        categories: %w[Badehosen Boardshorts]
       }
     ]
   }
 ]
 
-def create_categories scope, categories, parent_id=nil
-  for category in categories
+def create_categories(scope, categories, parent_id = nil)
+  categories.each do |category|
     has_childrend = category.is_a?(Hash)
     if has_childrend
-      parent = Category.create(scope_id: scope.id, name: category[:name] ,category_id: parent_id, main_taxon: parent_id == nil, leaf:false)
-      create_categories scope,category[:categories], parent.id
+      parent = Category.create(scope_id: scope.id, name: category[:name], category_id: parent_id,
+                               main_taxon: parent_id.nil?, leaf: false)
+      create_categories scope, category[:categories], parent.id
     else
-      Category.create(scope_id: scope.id, name: category,category_id: parent_id, main_taxon: false, leaf:true)
+      Category.create(scope_id: scope.id, name: category, category_id: parent_id, main_taxon: false, leaf: true)
     end
   end
 end
 
-create_categories germany,german_categories
-create_categories usa,english_categories
-create_categories brittish,english_categories
-create_categories canadian,english_categories
-create_categories australien,english_categories
+create_categories germany, german_categories
+create_categories usa, english_categories
+create_categories brittish, english_categories
+create_categories canadian, english_categories
+create_categories australien, english_categories
 create_categories turkey, turkish_categories
 
-
-def create_outfit_categories categories, parent
+def create_outfit_categories(categories, parent)
   parent_id = parent.id
   parent_type = parent.class.name
-  for category in categories
+  categories.each do |category|
     has_childrend = category.is_a?(Hash)
-    if has_childrend
-      name = category[:name]
-    else
-      name = category
-    end
+    name = if has_childrend
+             category[:name]
+           else
+             category
+           end
     parent = FashionFlyEditor::Category.create(name: name,
                                                parent_id: parent_id,
                                                parent_type: parent_type)
@@ -405,12 +419,11 @@ create_outfit_categories english_outfits, canadian
 create_outfit_categories english_outfits, australien
 create_outfit_categories turkish_outfits, turkey
 
-
 #### Icons
-icons = Dir[Rails.root.join('db','icons').to_s+"/*"]
+icons = Dir["#{Rails.root.join('db', 'icons')}/*"]
 
-for icon in icons
-  basename = File.basename(icon, ".png")
+icons.each do |icon|
+  basename = File.basename(icon, '.png')
   id = basename.split('_')[0]
   basename = basename.gsub("#{id}_", '')
   myicon = Icon.where(id: id).first_or_initialize

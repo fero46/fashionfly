@@ -1,4 +1,6 @@
-require File.expand_path('../boot', __FILE__)
+# frozen_string_literal: true
+
+require File.expand_path('boot', __dir__)
 
 require 'rails/all'
 require 'mime/types'
@@ -19,14 +21,15 @@ module Fashionfly
     config.middleware.use Rack::Deflater
     config.eager_load = true
     config.autoload_paths << Rails.root.join('lib')
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
-    config.assets.precompile += ['backend.css','backend.js', 'widget.js', 'widget.css', 'overwrites.css', 'style.css', 'language.js', 'mobile.css', 'mobile.js']
-    config.assets.precompile += %w( lit/famfamfam_flags/de.png )
-    config.assets.precompile += %w( lit/famfamfam_flags/en.png )
-    config.assets.precompile += %w( lit/famfamfam_flags/tr.png )
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    config.assets.precompile += ['backend.css', 'backend.js', 'widget.js', 'widget.css', 'overwrites.css', 'style.css',
+                                 'language.js', 'mobile.css', 'mobile.js']
+    config.assets.precompile += %w[lit/famfamfam_flags/de.png]
+    config.assets.precompile += %w[lit/famfamfam_flags/en.png]
+    config.assets.precompile += %w[lit/famfamfam_flags/tr.png]
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
-    config.i18n.available_locales = [:de, :en, :tr]
-    config.i18n.fallbacks =[:de, :en, :tr]
+    config.i18n.available_locales = %i[de en tr]
+    config.i18n.fallbacks = %i[de en tr]
     config.active_job.queue_adapter = :sidekiq
     config.assets.initialize_on_precompile = false
     config.middleware.use Rack::Attack
@@ -40,9 +43,8 @@ module Fashionfly
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '/endpoint/*', :headers => :any, :methods => [:get, :post, :options, :update]
+        resource '/endpoint/*', headers: :any, methods: %i[get post options update]
       end
     end
-
   end
 end

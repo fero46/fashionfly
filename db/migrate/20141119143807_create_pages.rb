@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePages < ActiveRecord::Migration[4.2]
   def change
     create_table :pages do |t|
@@ -9,6 +11,6 @@ class CreatePages < ActiveRecord::Migration[4.2]
     end
     add_index :pages, :name
     add_index :pages, :scope_id
-    add_index :pages, [:name, :scope_id], unique: true
+    add_index :pages, %i[name scope_id], unique: true
   end
 end

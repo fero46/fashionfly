@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 class ProfilesController < ScopeController
+  before_action :authenticate_user!, except: %i[show outfits favorites]
+  before_action :find_user, only: %i[show outfits favorites]
 
-  before_action :authenticate_user!, except: [:show, :outfits, :favorites]
-  before_action :find_user, only: [:show, :outfits, :favorites]
-
-  def show
-  end
+  def show; end
 
   def outfits
     @outfits = @user.collections
@@ -25,11 +25,9 @@ class ProfilesController < ScopeController
   def email_edit
     @user = current_user
     @user.confirm_email
-    if @user.update(email_attributes)
-      @mail_send = true
-    end
+    @mail_send = true if @user.update(email_attributes)
     @show_form = true
-    render :template => "welcome/index"
+    render template: 'welcome/index'
   end
 
   def update
@@ -41,21 +39,21 @@ class ProfilesController < ScopeController
     end
   end
 
-protected 
+  protected
 
   def find_user
     slug = params[:id] || params[:profile_id]
     @user = User.where(slug: slug).first
-    if @user.blank?
-      flash['alert'] = t('action.not_found', entity: User.model_name.human)
-      redirect_to root_path
-    end    
+    return unless @user.blank?
+
+    flash['alert'] = t('action.not_found', entity: User.model_name.human)
+    redirect_to root_path
   end
 
   def email_attributes
     params.require(:user).permit(:email,
-                                :email_confirmation,
-                                :scope_id)
+                                 :email_confirmation,
+                                 :scope_id)
   end
 
   def user_attributes
@@ -67,13 +65,13 @@ protected
   end
 
   def formular
-    if params[:formular] == 'profile'
+    case params[:formular]
+    when 'profile'
       'new'
-    elsif params[:formular] == 'design'
+    when 'design'
       'design'
     else
       'new'
     end
   end
-
 end

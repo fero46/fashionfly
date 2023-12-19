@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.comment do |json|
   json.user do
     json.id comment.user.present? ? comment.user.id : '-1'
@@ -21,7 +23,7 @@ json.comment do |json|
         else
           json.mini comment.user.avatar.mini.url
         end
-     end
+      end
     end
   end
   json.body comment.comment

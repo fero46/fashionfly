@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from fashion_fly_editor (originally 20141009153552)
 class RenameCollectionItemAttributes < ActiveRecord::Migration[4.2]
   def change

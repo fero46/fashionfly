@@ -1,6 +1,7 @@
-class ShopsController < ScopeController
+# frozen_string_literal: true
 
-  before_action :find_shop, only: [:show, :edit, :update, :destroy, :ref]
+class ShopsController < ScopeController
+  before_action :find_shop, only: %i[show edit update destroy ref]
   load_and_authorize_resource param_method: :shop_attributes, except: :ref
 
   def index
@@ -8,7 +9,7 @@ class ShopsController < ScopeController
   end
 
   def list
-    @shops = @scope.shops    
+    @shops = @scope.shops
   end
 
   def ref
@@ -23,7 +24,7 @@ class ShopsController < ScopeController
     @shop = Shop.new(shop_attributes)
     @shop.scope_id = @scope.id
     if @shop.save
-      flash[:notice] = t('action.created', entity: Shop.model_name.human) 
+      flash[:notice] = t('action.created', entity: Shop.model_name.human)
       redirect_to shoplist_path(assigned_locale)
     else
       flash.now[:alert] = t('action.error')
@@ -31,11 +32,9 @@ class ShopsController < ScopeController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @shop.update(shop_attributes)
@@ -53,10 +52,10 @@ class ShopsController < ScopeController
     redirect_to shoplist_path(assigned_locale)
   end
 
-protected
+  protected
 
   def find_shop
-    @shop = Shop.find(params[:id]) 
+    @shop = Shop.find(params[:id])
   end
 
   def shop_attributes
@@ -71,5 +70,4 @@ protected
                                  :top_banner,
                                  :bottom_banner)
   end
-
 end

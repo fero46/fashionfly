@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class Backend::ContestsHelperTest < ActionView::TestCase
+module Backend
+  class ContestsHelperTest < ActionView::TestCase
+  end
 end

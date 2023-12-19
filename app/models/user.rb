@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class User < ActiveRecord::Base
   TEMP_EMAIL = 'change@mymail.com'
-  TEMP_EMAIL_REGEX = /change@mymail.com/
-  BLOG_STATUS = ['NONE', 'APPLIED', 'ACCEPTED', 'REJECTED']
+  TEMP_EMAIL_REGEX = /change@mymail.com/.freeze
+  BLOG_STATUS = %w[NONE APPLIED ACCEPTED REJECTED].freeze
 
-  validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+  validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
   has_many :authentications, class_name: 'UserAuthentication', dependent: :destroy
   has_many :favorites
   has_many :comments
@@ -13,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :entries
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :omniauthable, :database_authenticatable, :registerable,:async,
+  devise :omniauthable, :database_authenticatable, :registerable, :async,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   ratyrate_rater
@@ -25,9 +27,9 @@ class User < ActiveRecord::Base
     html_escape
     image
     instagram
-    youtube(:width => 400, :height => 250, :autoplay => false)
+    youtube(width: 400, height: 250, autoplay: false)
     vimeo
-    link :target => "_blank", :rel => "nofollow"
+    link target: '_blank', rel: 'nofollow'
     simple_format
   end
 
@@ -37,48 +39,50 @@ class User < ActiveRecord::Base
   validate :email_has_to_be_validated, if: :should_confirm?
   validates :name, presence: true, uniqueness: true
 
-  before_save  :update_slug
+  before_save :update_slug
   before_create :make_secret
   before_save :check_blog_status
 
   def check_blog_status
-    return true if id.blank? || !(valid?)
+    return true if id.blank? || !valid?
+
     old_value = User.find(id)
-    if self.blog_apply == "1" && old_value.blog_status == 'NONE'
+    if blog_apply == '1' && old_value.blog_status == 'NONE'
       self.blog_status = 'APPLIED'
-      BloggerMailer.information(self.id).deliver_later
-      BloggerMailer.apply(self.id).deliver_later
+      BloggerMailer.information(id).deliver_later
+      BloggerMailer.apply(id).deliver_later
     elsif old_value.blog_status == 'APPLIED'
-      if self.blog_status == 'ACCEPTED'
-        BloggerMailer.accept(self.id).deliver_later
+      if blog_status == 'ACCEPTED'
+        BloggerMailer.accept(id).deliver_later
         self.is_blogger = true
       end
-      BloggerMailer.denied(self.id).deliver_later if self.blog_status == 'REJECTED'
+      BloggerMailer.denied(id).deliver_later if blog_status == 'REJECTED'
     end
   end
 
   def blogging_feed
     return @feed if @feed.present?
-    feed = Feed.where(user_id: self.id).first_or_initialize
+
+    feed = Feed.where(user_id: id).first_or_initialize
     if feed.value.blank?
-      urls = [self.blog_feed]
+      urls = [blog_feed]
       feeds = Feedjira::Feed.fetch_and_parse urls
-      feed.value = feeds[self.blog_feed]
+      feed.value = feeds[blog_feed]
       feed.save
     end
     @feed = feed.value
   end
 
   def update_blogging_feed
-    urls = [self.blog_feed]
+    urls = [blog_feed]
     feeds = Feedjira::Feed.fetch_and_parse urls
-    feed.value = feeds[self.blog_feed]
+    feed.value = feeds[blog_feed]
     feed.save
     @feed = feed.value
   end
 
   def email_has_to_be_validated
-    errors.add(:email_confirmation, I18n.t("user.identical")) if email_confirmation != email
+    errors.add(:email_confirmation, I18n.t('user.identical')) if email_confirmation != email
   end
 
   def should_confirm?
@@ -90,12 +94,12 @@ class User < ActiveRecord::Base
     myslug = default
     counter = 0
     other_category = User.where(slug: myslug).first
-    while other_category.present? && other_category.id != self.id
-      counter+=1
+    while other_category.present? && other_category.id != id
+      counter += 1
       myslug = "#{default}_#{counter}"
       other_category = User.where(slug: myslug).first
     end
-    self.slug=myslug
+    self.slug = myslug
   end
 
   def make_secret
@@ -118,19 +122,20 @@ class User < ActiveRecord::Base
     puts params.to_yaml
     pass = Devise.friendly_token
     image  = params['info']['image']
-    if params['provider'] == 'facebook'
+    case params['provider']
+    when 'facebook'
       image.gsub!('https', 'http')
-      image.gsub!("http","https")
-      image=image+"?type=large"
-    elsif params['provider'] == 'twitter'
-      image = image.sub("_normal", "")
+      image.gsub!('http', 'https')
+      image += '?type=large'
+    when 'twitter'
+      image = image.sub('_normal', '')
     end
 
-    t_name = params['info']['name'] || params['info']['nickname']  || auth.uid
+    t_name = params['info']['name'] || params['info']['nickname'] || auth.uid
     myname = t_name
     numb = 0
-    while User.where(:name => myname).present?
-      numb+=1
+    while User.where(name: myname).present?
+      numb += 1
       myname = "#{t_name}#{count}"
     end
     t_name = myname
@@ -141,7 +146,7 @@ class User < ActiveRecord::Base
       numb = 1
       while User.where(email: mail).present?
         mail = numb.to_s + TEMP_EMAIL
-        numb = numb + 1
+        numb += 1
       end
     end
 
@@ -155,31 +160,31 @@ class User < ActiveRecord::Base
     puts mail
     user = User.new(attributes)
     user.email = mail
-    user.email_confirmation =  mail
+    user.email_confirmation = mail
     user.skip_confirmation!
     user.confirm!
     user
   end
 
   def is_admin?
-    self.role == "ADMIN"
+    role == 'ADMIN'
   end
 
   def is_team?
-    self.role == "TEAM" || is_admin?
+    role == 'TEAM' || is_admin?
   end
 
-private
+  private
 
   def clean_name
-    name.gsub('ö', 'oe').
-         gsub('ü', 'ue').
-         gsub('ä', 'ae').
-         gsub('ß', 'ss').
-         gsub('%', '').
-         gsub(' ', '_').
-         gsub('.', '_').
-         gsub(',', '_').
-         gsub(';', '_')
+    name.gsub('ö', 'oe')
+        .gsub('ü', 'ue')
+        .gsub('ä', 'ae')
+        .gsub('ß', 'ss')
+        .gsub('%', '')
+        .gsub(' ', '_')
+        .gsub('.', '_')
+        .gsub(',', '_')
+        .gsub(';', '_')
   end
 end

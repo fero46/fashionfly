@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddScopeToProducts < ActiveRecord::Migration[4.2]
   def change
     add_reference :products, :scope, index: true

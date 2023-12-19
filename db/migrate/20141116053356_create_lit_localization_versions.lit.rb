@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from lit (originally 20130921071304)
 class CreateLitLocalizationVersions < ActiveRecord::Migration[4.2]
   def change

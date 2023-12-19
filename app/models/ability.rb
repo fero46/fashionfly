@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ability
   include CanCan::Ability
 
@@ -7,11 +9,10 @@ class Ability
       return
     end
 
-
     if user.is_admin?
-        can :manage, :all
+      can :manage, :all
     else
-        can :read, :all
+      can :read, :all
       if user.is_team?
         can :manage, Contest
         can :manage, Banner
@@ -19,6 +20,5 @@ class Ability
         can :manage, Property
       end
     end
-
   end
 end

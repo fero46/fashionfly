@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class Api::CatgegoriesHelperTest < ActionView::TestCase
+module Api
+  class CatgegoriesHelperTest < ActionView::TestCase
+  end
 end

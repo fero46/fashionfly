@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.id collection.id
 json.price collection.price
 json.name collection.title
@@ -43,7 +45,7 @@ json.user do
       else
         json.mini collection.user.avatar.mini.url
       end
-   end
+    end
   end
 end
 

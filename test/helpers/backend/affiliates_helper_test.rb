@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class Backend::AffiliatesHelperTest < ActionView::TestCase
+module Backend
+  class AffiliatesHelperTest < ActionView::TestCase
+  end
 end

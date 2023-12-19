@@ -1,15 +1,15 @@
-class Romwe < CommissionJunctionDownloader
+# frozen_string_literal: true
 
+class Romwe < CommissionJunctionDownloader
   def name
-    "ROMWE"
+    'ROMWE'
   end
 
   def temp
-    "romwe.xml.gz"
+    'romwe.xml.gz'
   end
 
   def path
-    "http://datatransfer.cj.com/datatransfer/files/4473600/outgoing/productcatalog/167837/ROMWE-ROMWE_Product_Catalog.xml.gz"
+    'http://datatransfer.cj.com/datatransfer/files/4473600/outgoing/productcatalog/167837/ROMWE-ROMWE_Product_Catalog.xml.gz'
   end
-
 end

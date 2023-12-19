@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.scope do
   json.id  scope.id
   json.locale scope.locale

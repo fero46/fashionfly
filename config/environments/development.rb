@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fashionfly::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -7,8 +9,7 @@ Fashionfly::Application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boot.
-  #config.eager_load = false
-
+  # config.eager_load = false
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -23,12 +24,12 @@ Fashionfly::Application.configure do
   config.active_record.migration_error = :page_load
 
   config.action_mailer.default_url_options = {
-    :host => 'localhost',
-    :port => 3000
+    host: 'localhost',
+    port: 3000
   }
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large

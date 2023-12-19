@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Banner < ActiveRecord::Base
   belongs_to :scope
   validates :name, presence: true
@@ -8,15 +10,16 @@ class Banner < ActiveRecord::Base
   validates :scope_id, presence: true
   mount_uploader :banner, SliderUploader
   def self.MODELS
-    [:Product, :Collection]
+    %i[Product Collection]
   end
 
   def items
     model = nil
-    if previews_model == 'Product'
+    case previews_model
+    when 'Product'
       model = scope.products
       model = model.where('id in (?)', preview_ids.split(','))
-    elsif previews_model == 'Collection'
+    when 'Collection'
       model = scope.collections
       model = model.where('collection_id in (?)', preview_ids.split(','))
     end

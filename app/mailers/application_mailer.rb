@@ -1,4 +1,6 @@
+# frozen_string_literal: true
+
 class ApplicationMailer < ActionMailer::Base
-  default from: "service@fashionfly.co"
+  default from: 'service@fashionfly.co'
   layout 'mailer'
 end

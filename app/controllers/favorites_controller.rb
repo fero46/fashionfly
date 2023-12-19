@@ -1,33 +1,34 @@
-class FavoritesController < ApplicationController
+# frozen_string_literal: true
 
+class FavoritesController < ApplicationController
   before_action :find_object
 
   def create
-    status= "notsaved"
+    status = 'notsaved'
     store = current_user.blank? ? cookie_store : nil
-    user_id = current_user.present? ? current_user.id : nil   
+    user_id = current_user.present? ? current_user.id : nil
     if @object.present?
       @object.favorites.where(user_id: user_id, cookie_store: store).first_or_create
       status = 'saved'
     end
-    render :json => { :status => status, params: params}
+    render json: { status: status, params: params }
   end
 
   def destroy
-    status= "notsaved"
+    status = 'notsaved'
     if @object.present?
-      if current_user
-        fav=@object.favorites.where(user_id: current_user.id).first
-      else
-        fav=@object.favorites.where(cookie_store: cookie_store).first
-      end
+      fav = if current_user
+              @object.favorites.where(user_id: current_user.id).first
+            else
+              @object.favorites.where(cookie_store: cookie_store).first
+            end
       fav.destroy if fav.present?
       status = 'destroyed'
     end
-    render :json => { :status => status}
+    render json: { status: status }
   end
 
-private
+  private
 
   def find_object
     if params[:product_id].present?
@@ -36,5 +37,4 @@ private
       @object = FashionFlyEditor::Collection.find(params[:collection_id])
     end
   end
-
 end

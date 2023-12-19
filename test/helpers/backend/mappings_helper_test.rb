@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class Backend::MappingsHelperTest < ActionView::TestCase
+module Backend
+  class MappingsHelperTest < ActionView::TestCase
+  end
 end

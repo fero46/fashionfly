@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Shop < ActiveRecord::Base
   belongs_to :scope
   has_many :banners
@@ -8,6 +10,4 @@ class Shop < ActiveRecord::Base
   validates :link, presence: true
 
   mount_uploader :logo, ShoplogoUploader
-
-
 end

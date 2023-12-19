@@ -1,8 +1,8 @@
+# frozen_string_literal: true
 class ProductsController < ScopeController
-
   skip_before_action :verify_authenticity_token
 
-  before_action :find_product, only: [:show, :clicked]
+  before_action :find_product, only: %i[show clicked]
 
 
   def index
@@ -18,9 +18,8 @@ class ProductsController < ScopeController
     render 'show'
   end
 
-
   def ref
-    begin
+    
       @product = Product.find(params[:id])
       if @product.deepLink.blank?
         redirect_to root_path(@scope)
@@ -31,7 +30,7 @@ class ProductsController < ScopeController
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = I18n.t('action.product_not_found')
       redirect_to root_path(assigned_locale)
-    end
+    
   end
 
   def refshop
@@ -45,18 +44,18 @@ class ProductsController < ScopeController
   end
 
 
-protected
+  protected
 
   def find_product
-    begin
+    
       @product = Product.find(params[:id])
       if @product.try(:scope).try(:id) != @scope.try(:id)
         redirect_to product_path(@product.try(:scope).locale, @product)
       end
-      @category = @product.categories.where(:leaf => true).first
+      @category = @product.categories.where(leaf: true).first
       if @product.removed
         if @category.present?
-          redirect_to(category_path(assigned_locale, @category.slug) , alert: I18n.t('action.product_not_found'))
+          redirect_to(category_path(assigned_locale, @category.slug), alert: I18n.t('action.product_not_found'))
         else
           redirect_to(root_path(assigned_locale), alert: I18n.t('action.product_not_found'))
         end
@@ -67,20 +66,18 @@ protected
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = I18n.t('action.product_not_found')
       redirect_to root_path(assigned_locale)
-    end
+    
   end
 
-
-  def category_select category, group = false
-    if category.blank? || category.main_taxon && !group
-      return nil
-    elsif category.main_taxon && group
-      return category
+  def category_select(category, group = false)
+    return nil if category.blank? || category.main_taxon && !group
+      
+     category.main_taxon && group
+      category
     else
-      result = category_select(category.category,group)
-      return result ? result : category
-    end
+      result = category_select(category.category, group)
+      result || category
+    
   end
-
 
 end

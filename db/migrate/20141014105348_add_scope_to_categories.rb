@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddScopeToCategories < ActiveRecord::Migration[4.2]
   def change
     add_reference :categories, :scope, index: true

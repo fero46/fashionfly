@@ -1,18 +1,17 @@
+# frozen_string_literal: true
+
 # Change this to your host. See the readme at https://github.com/lassebunk/dynamic_sitemaps
 # for examples of multiple hosts and folders.
 require 'net/http'
 
 host 'www.fashionfly.co'
 
-
-
 Scope.where(published: true).each do |scope|
   folder "sitemaps/#{scope.locale}"
 
   puts 'Seiten start'
   sitemap :site do
-
-    if scope.locale == "de"
+    if scope.locale == 'de'
       url app_url, last_mod: Time.now, change_freq: 'daily', priority: 1.0
       url prog_url, last_mod: Time.now, change_freq: 'daily', priority: 1.0
       url int_url, last_mod: Time.now, change_freq: 'daily', priority: 1.0
@@ -32,7 +31,7 @@ Scope.where(published: true).each do |scope|
   if scope.products.any?
     sitemap :products do
       scope.products.find_in_batches(batch_size: 1000) do |group|
-        for product in group
+        group.each do |product|
           url product_url(scope.locale, product), last_mod: product.updated_at
         end
       end
@@ -55,7 +54,7 @@ Scope.where(published: true).each do |scope|
 
   puts 'Blog start'
   if scope.entries.present?
-    sitemap_for scope.entries, name:  :entries do |entry|
+    sitemap_for scope.entries, name: :entries do |entry|
       url entry_url(scope.locale, entry), last_mod: entry.try(:updated_at)
     end
   end

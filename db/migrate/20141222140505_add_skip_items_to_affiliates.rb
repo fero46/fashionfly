@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddSkipItemsToAffiliates < ActiveRecord::Migration[4.2]
   def change
     add_column :affiliates, :skip_items, :integer, default: 0

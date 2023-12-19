@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class Api::ColorsHelperTest < ActionView::TestCase
+module Api
+  class ColorsHelperTest < ActionView::TestCase
+  end
 end

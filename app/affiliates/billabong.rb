@@ -1,15 +1,15 @@
-class Billabong < CommissionJunctionDownloader
+# frozen_string_literal: true
 
+class Billabong < CommissionJunctionDownloader
   def name
-    "Billabong US"
+    'Billabong US'
   end
 
   def temp
-    "billabong.xml.gz"
+    'billabong.xml.gz'
   end
 
   def path
-    "http://datatransfer.cj.com/datatransfer/files/4473600/outgoing/productcatalog/167731/Billabong_com-Billabong_US_Product_Catalog.xml.gz"
+    'http://datatransfer.cj.com/datatransfer/files/4473600/outgoing/productcatalog/167731/Billabong_com-Billabong_US_Product_Catalog.xml.gz'
   end
-
 end

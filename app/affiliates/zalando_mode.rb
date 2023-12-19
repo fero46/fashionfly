@@ -1,5 +1,6 @@
-class ZalandoMode < AffiliateDownloader
+# frozen_string_literal: true
 
+class ZalandoMode < AffiliateDownloader
   def program_id
     '1089'
   end
@@ -11,5 +12,4 @@ class ZalandoMode < AffiliateDownloader
   def ended?
     true
   end
-
 end

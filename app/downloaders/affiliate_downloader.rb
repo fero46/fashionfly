@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class AffiliateDownloader < GenericDownloader
   def publisher_id
-    '704276'  # not valid anymore
+    '704276' # not valid anymore
   end
 
   def password

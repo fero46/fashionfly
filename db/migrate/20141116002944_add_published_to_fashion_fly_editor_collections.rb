@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddPublishedToFashionFlyEditorCollections < ActiveRecord::Migration[4.2]
   def change
     add_column :fashion_fly_editor_collections, :published, :boolean, default: false

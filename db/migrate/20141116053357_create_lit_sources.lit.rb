@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from lit (originally 20130923162141)
 class CreateLitSources < ActiveRecord::Migration[4.2]
   def change

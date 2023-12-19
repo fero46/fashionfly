@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'net/http'
 
 class CommissionJunctionDownloader < GenericDownloader
@@ -14,7 +16,7 @@ class CommissionJunctionDownloader < GenericDownloader
   end
 
   def temporary_path
-    Rails.root.to_s + '/tmp/' + temp
+    "#{Rails.root}/tmp/#{temp}"
   end
 
   def file_request
