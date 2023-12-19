@@ -95,7 +95,7 @@ class GenericImporter
         product.save!
         if new_product && @scope.board_number.present? && false
           begin
-            @client = Pinterest::Client.new('x')
+            @client = Pinterest::Client.new('c')
             @client.create_pin({ board: @scope.board_number,
                                  link: Rails.application.routes.url_helpers.product_url(@scope.locale, product, host: 'fashionfly.co'), image_url: product.original.url, note: product.description })
           rescue StandardError
