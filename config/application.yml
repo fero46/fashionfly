@@ -1,4 +1,26 @@
-defaults: &defaults
+development:
+  app:
+    name: FashionFly
+    website: http://fashionfly.co
+  company:
+    name: HanseHype GmbH
+    owner: "Ferhat Ziba, Firat Ziba"
+    street: Schellerdamm 16
+    city: "21079 Hamburg, Germany"
+  oauth:
+    facebook:
+      id: x
+      secret: x
+    tumblr:
+      id: x
+      secret: x
+    twitter:
+      id: x
+      secret: x
+    google:
+      id: x
+      secret: x
+test:
   app:
     name: FashionFly
     website: http://fashionfly.co
@@ -20,23 +42,25 @@ defaults: &defaults
     google:
       id: 160386295309-ragvk7g62vcfimrhv3vbcjktqujcmt4c.apps.googleusercontent.com
       secret: nva9FLxy1DPkhu01-ZW-2O7J
-development:
-  <<: *defaults
+production:
+  app:
+    name: FashionFly
+    website: http://fashionfly.co
+  company:
+    name: HanseHype GmbH
+    owner: "Ferhat Ziba, Firat Ziba"
+    street: Schellerdamm 16
+    city: "21079 Hamburg, Germany"
   oauth:
     facebook:
       id: x
       secret: x
     tumblr:
       id: x
-      secret: x
+      secret: 104oqBPGO7nqXgnTMvcMwgKfms8OZDuwJo9IU9dICWEQZnAaXc
     twitter:
-      id: x
-      secret: x
+      id: XrPEL3EaKYiv08wqj5XRHZClF
+      secret: byOPa31EjtlrcopJQRmQaY7GDWR3gKrzKteucbV9AAQSWI9QGO
     google:
-      id: x
-      secret: x
-test:
-  <<: *defaults
-
-production:
-  <<: *defaults
+      id: 160386295309-ragvk7g62vcfimrhv3vbcjktqujcmt4c.apps.googleusercontent.com
+      secret: nva9FLxy1DPkhu01-ZW-2O7J

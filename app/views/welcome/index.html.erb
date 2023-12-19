@@ -79,12 +79,14 @@
     <div class="clear"></div>
   </div>
 
+<% if @scope.collections.any? %>
   <div class="trendbox">
     <h2><%= t('.trends_outfits') %></h2>
-    <%= render @scope.collections.trends.limit(16) %>
+    <%= render @scope.collections.try(:trends).limit(16) %>
     <div class="clear"></div>
   </div>
 
+<% end %>
   <div class="trendbox" ng-controller="FavoriteController">
     <h2><%= t('.trends_products') %></h2>
     <%= render @scope.products.trends.limit(16) %>

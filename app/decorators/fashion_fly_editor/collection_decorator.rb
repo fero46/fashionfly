@@ -27,11 +27,11 @@ FashionFlyEditor::Collection.class_eval do
   end
 
   def self.trends
-    where(published: true).order('actual_trend DESC')
+    where(published: true, removed: false).order('actual_trend DESC')
   end
 
   def self.newest
-    where(published: true).order('created_at DESC')
+    where(published: true, removed: false).order('created_at DESC')
   end
 
   def locale

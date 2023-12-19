@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20181129103819) do
 
-  create_table "affiliates", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "affiliates", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "file"
     t.string "name"
     t.boolean "ready"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["scope_id"], name: "index_affiliates_on_scope_id"
   end
 
-  create_table "authentication_providers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "authentication_providers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["position"], name: "index_authentication_providers_on_position"
   end
 
-  create_table "average_caches", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "average_caches", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "rater_id"
     t.string "rateable_type"
     t.integer "rateable_id"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.datetime "updated_at"
   end
 
-  create_table "banners", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "banners", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
     t.string "banner"
     t.text "link"
@@ -81,14 +81,14 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["scope_id"], name: "index_banners_on_scope_id"
   end
 
-  create_table "brands", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "brands", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
     t.string "slug"
     t.index ["name"], name: "index_brands_on_name"
     t.index ["slug"], name: "index_brands_on_slug"
   end
 
-  create_table "brands_categories", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "brands_categories", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "brand_id"
     t.integer "category_id"
     t.index ["brand_id", "category_id"], name: "by_brand_category", unique: true
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["category_id"], name: "index_brands_categories_on_category_id"
   end
 
-  create_table "categories", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
     t.integer "category_id"
     t.string "slug"
@@ -116,14 +116,14 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
-  create_table "categories_icons", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories_icons", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "category_id"
     t.integer "icon_id"
     t.index ["category_id"], name: "index_categories_icons_on_category_id"
     t.index ["icon_id"], name: "index_categories_icons_on_icon_id"
   end
 
-  create_table "categorizations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categorizations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "product_id"
     t.integer "category_id"
     t.datetime "created_at"
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["product_id"], name: "index_categorizations_on_product_id"
   end
 
-  create_table "color_words", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "color_words", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "scope_id"
     t.integer "colorization_id"
     t.string "sentence_part"
@@ -142,21 +142,21 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["scope_id"], name: "index_color_words_on_scope_id"
   end
 
-  create_table "colorizations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "colorizations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
     t.string "word"
     t.string "oposite_color"
     t.index ["name"], name: "index_colorizations_on_name"
   end
 
-  create_table "colorizations_words", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "colorizations_words", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "colorization_id"
     t.integer "word_id"
     t.index ["colorization_id"], name: "index_colorizations_words_on_colorization_id"
     t.index ["word_id"], name: "index_colorizations_words_on_word_id"
   end
 
-  create_table "comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "title", limit: 50, default: ""
     t.text "comment"
     t.string "commentable_type"
@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "configurations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "configurations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "key"
     t.string "value"
     t.datetime "created_at"
@@ -178,7 +178,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["key"], name: "index_configurations_on_key", unique: true
   end
 
-  create_table "contests", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "contests", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "title"
     t.string "banner"
     t.string "slug"
@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["startdate"], name: "index_contests_on_startdate"
   end
 
-  create_table "entries", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "entries", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "title"
     t.text "url"
     t.date "published"
@@ -216,7 +216,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
-  create_table "fashion_fly_editor_categories", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "fashion_fly_editor_categories", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
     t.string "slug"
     t.integer "parent_id"
@@ -229,7 +229,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["slug"], name: "index_fashion_fly_editor_categories_on_slug", unique: true
   end
 
-  create_table "fashion_fly_editor_collection_items", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "fashion_fly_editor_collection_items", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "collection_id"
     t.integer "item_id"
     t.integer "position_x"
@@ -245,7 +245,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.integer "order", default: 0
   end
 
-  create_table "fashion_fly_editor_collections", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "fashion_fly_editor_collections", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "title"
     t.text "description"
     t.string "image"
@@ -267,7 +267,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["user_id"], name: "index_fashion_fly_editor_collections_on_user_id"
   end
 
-  create_table "fashion_fly_editor_subscriptions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "fashion_fly_editor_subscriptions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "collection_id"
     t.string "subscriber_type"
     t.integer "subscriber_id"
@@ -277,7 +277,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["subscriber_id", "subscriber_type"], name: "subscriber"
   end
 
-  create_table "favorites", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "favorites", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "markable_id"
     t.string "markable_type"
     t.integer "user_id"
@@ -292,7 +292,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "feeds", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "feeds", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "user_id"
     t.binary "value", limit: 16777215
     t.datetime "created_at", null: false
@@ -300,13 +300,13 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["user_id"], name: "index_feeds_on_user_id"
   end
 
-  create_table "icons", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "icons", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
     t.string "image"
     t.index ["name"], name: "index_icons_on_name"
   end
 
-  create_table "lit_incomming_localizations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "lit_incomming_localizations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.text "translated_value"
     t.integer "locale_id"
     t.integer "localization_key_id"
@@ -325,14 +325,14 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["source_id"], name: "index_lit_incomming_localizations_on_source_id"
   end
 
-  create_table "lit_locales", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "lit_locales", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "locale"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean "is_hidden", default: false
   end
 
-  create_table "lit_localization_keys", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "lit_localization_keys", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "localization_key"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -343,7 +343,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["localization_key"], name: "index_lit_localization_keys_on_localization_key", unique: true
   end
 
-  create_table "lit_localization_versions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "lit_localization_versions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.text "translated_value"
     t.integer "localization_id"
     t.datetime "created_at"
@@ -351,7 +351,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["localization_id"], name: "index_lit_localization_versions_on_localization_id"
   end
 
-  create_table "lit_localizations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "lit_localizations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "locale_id"
     t.integer "localization_key_id"
     t.text "default_value"
@@ -364,7 +364,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["localization_key_id"], name: "index_lit_localizations_on_localization_key_id"
   end
 
-  create_table "lit_sources", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "lit_sources", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "identifier"
     t.string "url"
     t.string "api_key"
@@ -374,7 +374,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.boolean "sync_complete"
   end
 
-  create_table "mappings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "mappings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "category_id"
     t.string "name"
     t.datetime "created_at"
@@ -385,7 +385,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["name"], name: "index_mappings_on_name"
   end
 
-  create_table "overall_averages", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "overall_averages", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "rateable_type"
     t.integer "rateable_id"
     t.float "overall_avg", limit: 24, null: false
@@ -393,7 +393,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.datetime "updated_at"
   end
 
-  create_table "pages", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "pages", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
     t.string "title"
     t.text "body"
@@ -405,7 +405,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["scope_id"], name: "index_pages_on_scope_id"
   end
 
-  create_table "products", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "products", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "affi_code"
     t.string "name"
     t.string "number"
@@ -453,7 +453,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["scope_id"], name: "index_products_on_scope_id"
   end
 
-  create_table "properties", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "properties", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "scope_id"
     t.string "shop_highlight_title"
     t.string "shop_highlight_image"
@@ -470,7 +470,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["scope_id"], name: "index_properties_on_scope_id", unique: true
   end
 
-  create_table "rates", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "rates", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "rater_id"
     t.string "rateable_type"
     t.integer "rateable_id"
@@ -482,7 +482,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["rater_id"], name: "index_rates_on_rater_id"
   end
 
-  create_table "rating_caches", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "rating_caches", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "cacheable_type"
     t.integer "cacheable_id"
     t.float "avg", limit: 24, null: false
@@ -493,12 +493,12 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
   end
 
-  create_table "rebuilders", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "rebuilders", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "collection_id", null: false
     t.index ["collection_id"], name: "index_rebuilders_on_collection_id", unique: true
   end
 
-  create_table "scopes", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "scopes", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "country_code"
     t.string "locale"
     t.string "language"
@@ -521,7 +521,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["published"], name: "index_scopes_on_published"
   end
 
-  create_table "shops", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "shops", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
     t.string "logo"
     t.text "link"
@@ -539,7 +539,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["scope_id"], name: "index_shops_on_scope_id"
   end
 
-  create_table "simple_hashtag_hashtaggings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "simple_hashtag_hashtaggings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "hashtag_id"
     t.string "hashtaggable_type"
     t.integer "hashtaggable_id"
@@ -547,7 +547,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["hashtaggable_id", "hashtaggable_type"], name: "index_hashtaggings_hashtaggable_id_hashtaggable_type"
   end
 
-  create_table "simple_hashtag_hashtags", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "simple_hashtag_hashtags", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
     t.string "scope_id"
     t.datetime "created_at"
@@ -557,17 +557,17 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["scope_id"], name: "index_simple_hashtag_hashtags_on_scope_id"
   end
 
-  create_table "synonyms", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "synonyms", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
   end
 
-  create_table "synonyms_words", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "synonyms_words", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "synonym_id"
     t.integer "word_id"
     t.index ["synonym_id"], name: "index_synonyms_words_on_synonym_id"
     t.index ["word_id"], name: "index_synonyms_words_on_word_id"
   end
 
-  create_table "taggings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "taggings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "tag_id"
     t.string "taggable_type"
     t.integer "taggable_id"
@@ -579,13 +579,13 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
   end
 
-  create_table "tags", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "tags", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "user_authentications", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "user_authentications", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "user_id"
     t.integer "authentication_provider_id"
     t.string "uid"
@@ -598,7 +598,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["user_id"], name: "index_user_authentications_on_user_id"
   end
 
-  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "email", default: "", null: false
     t.string "name"
     t.string "avatar"
@@ -645,7 +645,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["slug"], name: "index_users_on_slug"
   end
 
-  create_table "visits", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "visits", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "user_id"
     t.string "cookie"
     t.integer "visitable_id"
@@ -658,7 +658,7 @@ ActiveRecord::Schema.define(version: 20181129103819) do
     t.index ["visitable_id", "visitable_type"], name: "index_visits_on_visitable_id_and_visitable_type"
   end
 
-  create_table "words", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "words", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.integer "scope_id"
     t.string "value"
     t.string "type"
